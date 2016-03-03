@@ -1,1 +1,0 @@
-# CS4380-Group1-KCOU-DBMS
