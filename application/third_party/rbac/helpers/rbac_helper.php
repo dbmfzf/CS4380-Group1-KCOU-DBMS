@@ -69,7 +69,7 @@ if(!function_exists('rbac_logout')){
 
 //错误跳转
 if(!function_exists("error_redirct")){
-	function error_redirct($url="",$contents="操作失败",$time = 5){
+	function error_redirct($url="",$contents="Error",$time = 5){
 		
 		$ci_obj = &get_instance();
 		if($url!=""){
@@ -89,7 +89,7 @@ if(!function_exists("error_redirct")){
 
 //正确跳转
 if(!function_exists("success_redirct")){
-	function success_redirct($url,$contents="操作成功",$time = 3){
+	function success_redirct($url,$contents="Success!",$time = 3){
 		$ci_obj = &get_instance();
 		if($url!=""){
 			$url = base_url("index.php/".$url);
