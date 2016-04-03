@@ -1,19 +1,17 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /*
 | -------------------------------------------------------------------------
-| Memcached settings
+| Memcached
 | -------------------------------------------------------------------------
-| Your Memcached servers can be specified below.
-|
-|	See: https://codeigniter.com/user_guide/libraries/caching.html#memcached
 |
 */
-$config = array(
-	'default' => array(
-		'hostname' => '127.0.0.1',
-		'port'     => '11211',
-		'weight'   => '1',
-	),
-);
+//是否开启
+$config['flag'] = FALSE;
+//memcached权限验证
+$config['config'] = array(
+               'servers' => array('192.168.4.37:11211'),
+               'debug'   => false
+             );
+
+/* End of file memcached.php */
+/* Location: ./application/third_party/rbac/config/memcached.php */
