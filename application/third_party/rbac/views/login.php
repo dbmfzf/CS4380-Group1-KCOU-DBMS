@@ -12,18 +12,18 @@
 		
 			<div class="col-sm-offset-4 col-sm-4">
 					<div class="panel panel-primary">
-						<div class="panel-heading">用户登录</div>
+						<div class="panel-heading">User login</div>
 						<div class="panel-body">
 						
 						<form class="form-horizontal" role="form"  action="" method="post">
 							<div class="input-group">
-							  <span class="input-group-addon">用户</span>
-							  <input type="text" class="form-control" placeholder="请输入用户" name="username">
+							  <span class="input-group-addon">User ID</span>
+							  <input type="text" class="form-control" placeholder="Please input your user id" name="username">
 							</div>
 							<br/>
 							<div class="input-group">
-							  <span class="input-group-addon">密码</span>
-							  <input type="password" class="form-control" placeholder="请输入密码" name="password">
+							  <span class="input-group-addon">Passord</span>
+							  <input type="password" class="form-control" placeholder="please input your password" name="password">
 							</div>
 							<br/>
 							<div class="form-group">
@@ -35,7 +35,7 @@
 							</form>
 						</div>
 					</div>
-					<div class="alert alert-success">测试用帐号（用户:admin 密码:admin）</div>
+					<div class="alert alert-success">Test accout（ID:12345 PWD:123456）</div>
 					</div>
 				</div>
 			</div>
