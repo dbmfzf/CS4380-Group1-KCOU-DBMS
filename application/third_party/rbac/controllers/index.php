@@ -19,9 +19,9 @@ class Index extends CI_Controller {
 		$this -> load -> helpers("rbac_helper");
 		$url = "Index/login";
 		if(!rbac_conf(array('INFO','uid'))){
-			error_redirct($url,"请先登录！");
+			error_redirct($url,"Please Login First!");
 		}else{
-			success_redirct($this->config->item('rbac_default_index'),"您已成功登录,正在跳转请稍候！","1");
+			success_redirct($this->config->item('rbac_default_index'),"Success!","1");
 		}
 		
 	}
@@ -36,7 +36,7 @@ class Index extends CI_Controller {
 		if($username&&$password){
 			$STATUS = $this->rbac_model->check_user($username,md5($password));
 			if($STATUS===TRUE){
-				success_redirct($this->config->item('rbac_default_index'),"登录成功！");
+				success_redirct($this->config->item('rbac_default_index'),"Success!");
 			}else{
 				error_redirct($this->config->item('rbac_auth_gateway'),$STATUS);
 				die();
@@ -52,7 +52,7 @@ class Index extends CI_Controller {
 	public function logout(){
 		session_destroy();
 		$this -> load -> helpers("rbac_helper");
-		success_redirct($this->config->item('rbac_auth_gateway'),"登出成功！",2);
+		success_redirct($this->config->item('rbac_auth_gateway'),"Success!",2);
 	}
 
 }
