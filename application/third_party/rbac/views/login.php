@@ -29,7 +29,7 @@
 							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-8">
 									<input type="hidden" name="foward" value="null"/>
-									<button type="submit" class="btn btn-primary btn-block" data-loading-text="正在登录">登录</button>
+									<button type="submit" class="btn btn-primary btn-block" data-loading-text="Please wait...">Login</button>
 								</div>
 							</div>
 							</form>
