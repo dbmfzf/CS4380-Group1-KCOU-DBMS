@@ -19,9 +19,9 @@
         </div>
         <ul class="nav navbar-nav navbar-right">
           <li id="fat-menu" class="dropdown">
-              <a href="#" id="user_action" role="button" class="dropdown-toggle" data-toggle="dropdown">欢迎您:<?php echo rbac_conf(array('INFO','nickname'));?><b class="caret"></b></a>
+              <a href="#" id="user_action" role="button" class="dropdown-toggle" data-toggle="dropdown">Welcome:<?php echo rbac_conf(array('INFO','nickname'));?><b class="caret"></b></a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="user_action">
-                <li> <?php echo anchor("Index/logout","<span class='glyphicon glyphicon-log-out'></span> 退出"); ?></li>
+                <li> <?php echo anchor("Index/logout","<span class='glyphicon glyphicon-log-out'></span> Logout"); ?></li>
               </ul>
           </li>
         </ul>
