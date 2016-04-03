@@ -41,13 +41,13 @@ class Rbac_model extends CI_Model{
 					return TRUE;
 				}
 				else{
-					return "用户密码错误！";
+					return "Invalid password!";
 				}
 			}else{
-				return "该用户已禁用！";
+				return "Sorry, this user is disabled!";
 			}
 		}else{
-			return "该用户不存在！";
+			return "Invalid user id!";
 		}
 	}
 	
