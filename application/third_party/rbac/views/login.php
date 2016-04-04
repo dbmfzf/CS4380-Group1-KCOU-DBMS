@@ -18,11 +18,11 @@
 						<form class="form-horizontal" role="form"  action="" method="post">
 							<div class="input-group">
 							  <span class="input-group-addon">User ID</span>
-							  <input type="text" class="form-control" placeholder="Please input your user id" name="username">
+							  <input type="text" class="form-control" placeholder="Please input your user id" name="userid">
 							</div>
 							<br/>
 							<div class="input-group">
-							  <span class="input-group-addon">Passord</span>
+							  <span class="input-group-addon">Password</span>
 							  <input type="password" class="form-control" placeholder="please input your password" name="password">
 							</div>
 							<br/>
@@ -35,7 +35,7 @@
 							</form>
 						</div>
 					</div>
-					<div class="alert alert-success">Test accout（ID:12345 PWD:123456）</div>
+					<div class="alert alert-success">Test accout（ID:qlzm3 PWD:123456）</div>
 					</div>
 				</div>
 			</div>
