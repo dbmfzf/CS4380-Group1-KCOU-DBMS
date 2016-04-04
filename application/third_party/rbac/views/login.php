@@ -35,7 +35,7 @@
 							</form>
 						</div>
 					</div>
-					<div class="alert alert-success">Test accout（ID:qlzm3 PWD:123456）</div>
+					<div class="alert alert-success">Test accout（ID:admin PWD:admin）</div>
 					</div>
 				</div>
 			</div>
