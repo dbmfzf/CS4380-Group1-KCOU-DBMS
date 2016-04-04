@@ -18,7 +18,7 @@
 						<form class="form-horizontal" role="form"  action="" method="post">
 							<div class="input-group">
 							  <span class="input-group-addon">User ID</span>
-							  <input type="text" class="form-control" placeholder="Please input your user id" name="userid">
+							  <input type="text" class="form-control" placeholder="Please input your user id" name="uid">
 							</div>
 							<br/>
 							<div class="input-group">
