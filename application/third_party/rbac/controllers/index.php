@@ -6,7 +6,7 @@
  * @link		http://www.toryzen.com
  */
 $gateway = "Index/login";
-$index = "product/index/index"
+$index = "product/index/index";
 class Index extends CI_Controller {
 	
 	function __construct(){
