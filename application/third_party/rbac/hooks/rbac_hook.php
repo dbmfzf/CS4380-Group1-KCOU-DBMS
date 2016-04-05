@@ -21,7 +21,7 @@ class Rbac {
 	/*
 	 * 权限验证(Hook自动加载)
 	 */
-	public function aoto_verify(){
+	public function auto_verify(){
 		//目录
 		$directory = substr($this->ci_obj->router->fetch_directory(),0,-1);
 		//控制器
