@@ -17,13 +17,11 @@ class Index extends CI_Controller {
 	public function index()
 	{
 		//验证是否登录
-		$gateway = "Index/login";
-		$index = "product/index/index";
-		$this -> load -> helpers("rbac_helper");
+		//$this -> load -> helpers("rbac_helper");
 		if(!rbac_conf(array('INFO','uid'))){
-			error_redirct($gateway,"Please Login First!");
+			error_redirct($this->config->item('rbac_auth_gateway'),"Please Login First!");
 		}else{
-			success_redirct($index,"Success!","1");
+			success_redirct($this->config->item('rbac_default_index'),"Success!","1");
 		}
 		
 	}
@@ -31,18 +29,16 @@ class Index extends CI_Controller {
 	 * 用户登录
 	 */
 	public function login(){
-		$gateway = "Index/login";
-		$index = "product/index/index";
-		$this -> load -> helpers("rbac_helper");
+		//$this -> load -> helpers("rbac_helper");
 		$this-> load -> model("rbac_model");
 		$username = $this->input->post('uid');
 		$password = $this->input->post('password');
 		if($username&&$password){
 			$STATUS = $this->rbac_model->check_user($username,md5($password));
 			if($STATUS===TRUE){
-				success_redirct($index,"Success!");
+				success_redirct($this->config->item('rbac_default_index'),"Success!");
 			}else{
-				error_redirct($gateway,$STATUS);
+				error_redirct($this->config->item('rbac_auth_gateway'),$STATUS);
 				die();
 			}
 		}else{
@@ -55,9 +51,8 @@ class Index extends CI_Controller {
 	 */
 	public function logout(){
 		session_destroy();
-		$gateway = "Index/login";
 		$this -> load -> helpers("rbac_helper");
-		success_redirct($gateway,"Success!",2);
+		success_redirct($this->config->item('rbac_auth_gateway'),"Success!",2);
 	}
 
 }
