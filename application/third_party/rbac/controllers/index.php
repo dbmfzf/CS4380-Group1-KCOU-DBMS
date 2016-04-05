@@ -37,7 +37,7 @@ class Index extends CI_Controller {
 			$STATUS = $this->rbac_model->check_user($username,md5($password));
 			if($STATUS===TRUE){
 				$url = "product/index/index";
-				success_redirct($this->config->item('rbac_default_index'),"Success!");
+				success_redirct($url,"Success!");
 			}else{
 				error_redirct($this->config->item('rbac_auth_gateway'),$STATUS);
 				die();
