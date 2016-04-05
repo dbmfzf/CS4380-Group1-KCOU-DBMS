@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //RBAC权限验证
 $hook['post_controller_constructor'] = array(
 		'class'    => 'Rbac',
-		'function' => 'aoto_verify',
+		'function' => 'auto_verify',
 		'filename' => 'rbac_hook.php',
 		'filepath' => 'third_party/rbac/hooks',
 		'params'   => '',
