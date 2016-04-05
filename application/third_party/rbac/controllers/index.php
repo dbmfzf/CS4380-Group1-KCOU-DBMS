@@ -9,8 +9,8 @@
 class Index extends CI_Controller {
 	
 	function __construct(){
-		$this -> load -> helpers("rbac_helper");
-		$this-> load -> model("rbac_model");
+		//$this -> load -> helpers("rbac_helper");
+		//$this-> load -> model("rbac_model");
 		parent::__construct();
 	}
 	/**
