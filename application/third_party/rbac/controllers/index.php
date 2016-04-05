@@ -9,6 +9,8 @@
 class Index extends CI_Controller {
 	
 	function __construct(){
+		$this -> load -> helpers("rbac_helper");
+		$this-> load -> model("rbac_model");
 		parent::__construct();
 	}
 	/**
@@ -17,7 +19,6 @@ class Index extends CI_Controller {
 	public function index()
 	{
 		//验证是否登录
-		//$this -> load -> helpers("rbac_helper");
 		if(!rbac_conf(array('INFO','uid'))){
 			error_redirct($this->config->item('rbac_auth_gateway'),"Please Login First!");
 		}else{
@@ -29,8 +30,7 @@ class Index extends CI_Controller {
 	 * 用户登录
 	 */
 	public function login(){
-		//$this -> load -> helpers("rbac_helper");
-		$this-> load -> model("rbac_model");
+		
 		$username = $this->input->post('uid');
 		$password = $this->input->post('password');
 		if($username&&$password){
@@ -51,7 +51,6 @@ class Index extends CI_Controller {
 	 */
 	public function logout(){
 		session_destroy();
-		$this -> load -> helpers("rbac_helper");
 		success_redirct($this->config->item('rbac_auth_gateway'),"Success!",2);
 	}
 
