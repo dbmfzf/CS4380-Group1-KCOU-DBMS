@@ -10,7 +10,6 @@ class Index extends CI_Controller {
 	
 	function __construct(){
 		//$this -> load -> helpers("rbac_helper");
-		$this-> load -> model("rbac_model");
 		parent::__construct();
 	}
 	/**
@@ -30,7 +29,7 @@ class Index extends CI_Controller {
 	 * 用户登录
 	 */
 	public function login(){
-		
+		$this-> load -> model("rbac_model");
 		$username = $this->input->post('uid');
 		$password = $this->input->post('password');
 		if($username&&$password){
