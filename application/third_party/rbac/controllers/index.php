@@ -5,8 +5,7 @@
  * @author		toryzen
  * @link		http://www.toryzen.com
  */
-$gateway = "Index/login";
-$index = "product/index/index";
+
 class Index extends CI_Controller {
 	
 	function __construct(){
@@ -18,6 +17,8 @@ class Index extends CI_Controller {
 	public function index()
 	{
 		//验证是否登录
+		$gateway = "Index/login";
+		$index = "product/index/index";
 		$this -> load -> helpers("rbac_helper");
 		if(!rbac_conf(array('INFO','uid'))){
 			error_redirct($gateway,"Please Login First!");
@@ -30,6 +31,8 @@ class Index extends CI_Controller {
 	 * 用户登录
 	 */
 	public function login(){
+		$gateway = "Index/login";
+		$index = "product/index/index";
 		$this -> load -> helpers("rbac_helper");
 		$this-> load -> model("rbac_model");
 		$username = $this->input->post('uid');
@@ -52,6 +55,7 @@ class Index extends CI_Controller {
 	 */
 	public function logout(){
 		session_destroy();
+		$gateway = "Index/login";
 		$this -> load -> helpers("rbac_helper");
 		success_redirct($gateway,"Success!",2);
 	}
