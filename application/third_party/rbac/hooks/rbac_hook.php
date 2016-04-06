@@ -116,14 +116,14 @@ class Rbac {
 						if(rbac_conf(array('ACL',$cvo->directory,$cvo->controller,$cvo->func))){
 							$menu[$cvo->id]["shown"] = 1;
 						}
-						$menu[$cvo->id]["self"] = array("title"=>$cvo->title,"uri"=>$cvo->directory?$cvo->dircectory."/".$cvo->controller."/".$cvo->func:$cvo->controller."/".$cvo->func);
+						$menu[$cvo->id]["self"] = array("title"=>$cvo->title,"uri"=>$cvo->directory?$cvo->directory."/".$cvo->controller."/".$cvo->func:$cvo->controller."/".$cvo->func);
 							
 					}elseif($j==1){
 						if(rbac_conf(array('ACL',$cvo->directory,$cvo->controller,$cvo->func))){
 							$menu[$cvo->pid]["shown"] = 1;
 							$menu[$cvo->pid]["child"][$cvo->id]["shown"] = 1;
 						}
-						$menu[$cvo->pid]["child"][$cvo->id]["self"] = array("title"=>$cvo->title,"uri"=>$cvo->directory?$cvo->dircectory."/".$cvo->controller."/".$cvo->func:$cvo->controller."/".$cvo->func);
+						$menu[$cvo->pid]["child"][$cvo->id]["self"] = array("title"=>$cvo->title,"uri"=>$cvo->directory?$cvo->directory."/".$cvo->controller."/".$cvo->func:$cvo->controller."/".$cvo->func);
 							
 					}else{
 						if(rbac_conf(array('ACL',$cvo->directory,$cvo->controller,$cvo->func))){
