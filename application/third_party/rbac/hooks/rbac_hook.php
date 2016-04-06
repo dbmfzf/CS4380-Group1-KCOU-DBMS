@@ -96,7 +96,7 @@ class Rbac {
 			$id_list = "";
 			foreach($menu_data as $vo){
 				if($i==2){
-					$vo->p_p_id = $Tmp_menu[1][$vo->p_id]->p_id;
+					$vo->p_p_id = $Tmp_menu[1][$vo->pid]->pid;
 				}
 				$Tmp_menu[$i][$vo->id] = $vo;
 				$id_list .= $vo->id.",";
