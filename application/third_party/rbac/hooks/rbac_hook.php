@@ -34,20 +34,20 @@ class Rbac {
 			if($this->ci_obj->config->item('rbac_auth_on')){//开启认证
 				if(!in_array($directory,$this->ci_obj->config->item('rbac_notauth_dirc'))){//需要验证的目录
 					//验证是否登录
-					//echo rbac_conf(array('INFO','id'));
-					if(!rbac_conf(array('INFO','id'))){
+					//echo rbac_conf(array('INFO','uid'));
+					if(!rbac_conf(array('INFO','uid'))){
 						error_redirct($this->ci_obj->config->item('rbac_auth_gateway'),"请先登录！");
 						die();
 					}
 					if($this->ci_obj->config->item('rbac_auth_type')==2){//若为实时认证
 						$this->ci_obj->load->model("rbac_model");
 						//检测用户状态
-						$STATUS = $this->ci_obj->rbac_model->check_user_by_id(rbac_conf(array('INFO','id')));
+						$STATUS = $this->ci_obj->rbac_model->check_user_by_id(rbac_conf(array('INFO','uid')));
 						if($STATUS==FALSE){
 							error_redirct($this->config->item('rbac_auth_gateway'),$STATUS);
 						}
 						//ACL重新赋权
-						$this->ci_obj->rbac_model->get_acl(rbac_conf(array('INFO','role_id')));
+						$this->ci_obj->rbac_model->get_acl(rbac_conf(array('INFO','rid')));
 					}
 					
 					//验证ACL权限
@@ -89,7 +89,7 @@ class Rbac {
 	*/
 	private function get_menu(){		
 		$this->ci_obj->load->database();
-		$query = $this->ci_obj->db->query("SELECT rm.id,rm.title,rm.node_id,rm.p_id,rn.dirc,rn.cont,rn.func FROM rbac_menu rm left join rbac_node rn on rm.node_id = rn.id WHERE rm.status = 1 AND rm.p_id is NULL ORDER BY sort asc");
+		$query = $this->ci_obj->db->query("SELECT M.id,M.title,M.node_id,M.pid, N.directory,N.controller,N.func FROM Menu M left join Node N on M.node_id = N.node_id WHERE M.status = 1 AND M.pid is NULL ORDER BY sort asc");
 		$menu_data = $query->result();
 		$i = 0;
 		while(count($menu_data)>0){
