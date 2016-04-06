@@ -29,7 +29,7 @@ class Rbac {
 		//方法
 		$function = $this->ci_obj->router->fetch_method();
 		//UURI(MD5)
-		$this->ci_obj->uuri = md5($directory.$controller.$function);
+		$this->ci_obj->uuri = md5($directory.$controller.$func);
 		if($directory!=""){//当非主目录
 			if($this->ci_obj->config->item('rbac_auth_on')){//开启认证
 				if(!in_array($directory,$this->ci_obj->config->item('rbac_notauth_dirc'))){//需要验证的目录
@@ -42,7 +42,7 @@ class Rbac {
 					if($this->ci_obj->config->item('rbac_auth_type')==2){//若为实时认证
 						$this->ci_obj->load->model("rbac_model");
 						//检测用户状态
-						$STATUS = $this->ci_obj->rbac_model->check_user_by_id(rbac_conf(array('INFO','uid')));
+						$STATUS = $this->ci_obj->rbac_model->check_user(rbac_conf(array('INFO','uid')));
 						if($STATUS==FALSE){
 							error_redirct($this->config->item('rbac_auth_gateway'),$STATUS);
 						}
@@ -51,8 +51,8 @@ class Rbac {
 					}
 					
 					//验证ACL权限
-					if(!rbac_conf(array('ACL',$directory,$controller,$function))){
-						error_redirct("","无权访问此节点！(".$directory."/".$controller."/".$function.")");
+					if(!rbac_conf(array('ACL',$directory,$controller,$func))){
+						error_redirct("","无权访问此节点！(".$directory."/".$controller."/".$func.")");
 						die();
 					}
 				}
