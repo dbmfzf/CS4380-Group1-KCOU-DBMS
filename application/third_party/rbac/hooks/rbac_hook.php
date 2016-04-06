@@ -126,7 +126,7 @@ class Rbac {
 						$menu[$cvo->pid]["child"][$cvo->id]["self"] = array("title"=>$cvo->title,"uri"=>$cvo->directory?$cvo->dircectory."/".$cvo->controller."/".$cvo->func:$cvo->controller."/".$cvo->func);
 							
 					}else{
-						if(rbac_conf(array('ACL',$cvo->dirc,$cvo->cont,$cvo->func))){
+						if(rbac_conf(array('ACL',$cvo->directory,$cvo->controller,$cvo->func))){
 							$menu[$cvo->p_p_id]["shown"] = 1;
 							$menu[$cvo->p_p_id]["child"][$cvo->pid]["shown"] = 1;
 							$menu[$cvo->p_p_id]["child"][$cvo->pid]["child"][$cvo->id]["shown"] = 1;
