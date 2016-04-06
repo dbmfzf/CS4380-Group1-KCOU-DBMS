@@ -42,7 +42,7 @@ class Rbac {
 					if($this->ci_obj->config->item('rbac_auth_type')==2){//若为实时认证
 						$this->ci_obj->load->model("rbac_model");
 						//检测用户状态
-						$STATUS = $this->ci_obj->rbac_model->check_user(rbac_conf(array('INFO','uid')));
+						$STATUS = $this->ci_obj->rbac_model->check_user(rbac_conf(array('INFO','uid')),rbac_conf(array('INFO','password')));
 						if($STATUS==FALSE){
 							error_redirct($this->config->item('rbac_auth_gateway'),$STATUS);
 						}
