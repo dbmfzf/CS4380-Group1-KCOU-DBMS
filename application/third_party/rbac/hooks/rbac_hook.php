@@ -110,28 +110,28 @@ class Rbac {
 		//按权限进行展示
 		foreach($Tmp_menu as $vo){
 			foreach($vo as $cvo){
-				$menu['list'][md5($cvo->dirc.$cvo->cont.$cvo->func)] = $cvo->title;
-				if(rbac_conf(array('ACL',$cvo->dirc,$cvo->cont,$cvo->func))||!$cvo->node_id){
+				$menu['list'][md5($cvo->directory.$cvo->controller.$cvo->func)] = $cvo->title;
+				if(rbac_conf(array('ACL',$cvo->directory,$cvo->controller,$cvo->func))||!$cvo->node_id){
 					if($j==0){
-						if(rbac_conf(array('ACL',$cvo->dirc,$cvo->cont,$cvo->func))){
+						if(rbac_conf(array('ACL',$cvo->directory,$cvo->controller,$cvo->func))){
 							$menu[$cvo->id]["shown"] = 1;
 						}
-						$menu[$cvo->id]["self"] = array("title"=>$cvo->title,"uri"=>$cvo->dirc?$cvo->dirc."/".$cvo->cont."/".$cvo->func:$cvo->cont."/".$cvo->func);
+						$menu[$cvo->id]["self"] = array("title"=>$cvo->title,"uri"=>$cvo->directory?$cvo->dircectory."/".$cvo->controller."/".$cvo->func:$cvo->controller."/".$cvo->func);
 							
 					}elseif($j==1){
-						if(rbac_conf(array('ACL',$cvo->dirc,$cvo->cont,$cvo->func))){
-							$menu[$cvo->p_id]["shown"] = 1;
-							$menu[$cvo->p_id]["child"][$cvo->id]["shown"] = 1;
+						if(rbac_conf(array('ACL',$cvo->directory,$cvo->controller,$cvo->func))){
+							$menu[$cvo->pid]["shown"] = 1;
+							$menu[$cvo->pid]["child"][$cvo->id]["shown"] = 1;
 						}
-						$menu[$cvo->p_id]["child"][$cvo->id]["self"] = array("title"=>$cvo->title,"uri"=>$cvo->dirc?$cvo->dirc."/".$cvo->cont."/".$cvo->func:$cvo->cont."/".$cvo->func);
+						$menu[$cvo->pid]["child"][$cvo->id]["self"] = array("title"=>$cvo->title,"uri"=>$cvo->directory?$cvo->dircectory."/".$cvo->controller."/".$cvo->func:$cvo->controller."/".$cvo->func);
 							
 					}else{
 						if(rbac_conf(array('ACL',$cvo->dirc,$cvo->cont,$cvo->func))){
 							$menu[$cvo->p_p_id]["shown"] = 1;
-							$menu[$cvo->p_p_id]["child"][$cvo->p_id]["shown"] = 1;
-							$menu[$cvo->p_p_id]["child"][$cvo->p_id]["child"][$cvo->id]["shown"] = 1;
+							$menu[$cvo->p_p_id]["child"][$cvo->pid]["shown"] = 1;
+							$menu[$cvo->p_p_id]["child"][$cvo->pid]["child"][$cvo->id]["shown"] = 1;
 						}
-						$menu[$cvo->p_p_id]["child"][$cvo->p_id]["child"][$cvo->id]["self"] = array("title"=>$cvo->title,"uri"=>$cvo->dirc?$cvo->dirc."/".$cvo->cont."/".$cvo->func:$cvo->cont."/".$cvo->func);
+						$menu[$cvo->p_p_id]["child"][$cvo->pid]["child"][$cvo->id]["self"] = array("title"=>$cvo->title,"uri"=>$cvo->directory?$cvo->directory."/".$cvo->controller."/".$cvo->func:$cvo->controller."/".$cvo->func);
 					}
 				}
 			}
