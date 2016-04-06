@@ -29,7 +29,7 @@ class Rbac {
 		//方法
 		$function = $this->ci_obj->router->fetch_method();
 		//UURI(MD5)
-		$this->ci_obj->uuri = md5($directory.$controller.$func);
+		$this->ci_obj->uuri = md5($directory.$controller.$function);
 		if($directory!=""){//当非主目录
 			if($this->ci_obj->config->item('rbac_auth_on')){//开启认证
 				if(!in_array($directory,$this->ci_obj->config->item('rbac_notauth_dirc'))){//需要验证的目录
@@ -51,8 +51,8 @@ class Rbac {
 					}
 					
 					//验证ACL权限
-					if(!rbac_conf(array('ACL',$directory,$controller,$func))){
-						error_redirct("","无权访问此节点！(".$directory."/".$controller."/".$func.")");
+					if(!rbac_conf(array('ACL',$directory,$controller,$function))){
+						error_redirct("","无权访问此节点！(".$directory."/".$controller."/".$function.")");
 						die();
 					}
 				}
@@ -102,7 +102,7 @@ class Rbac {
 				$id_list .= $vo->id.",";
 			}
 			$id_list = substr($id_list,0,-1);
-			$query = $this->ci_obj->db->query("SELECT rm.id,rm.title,rm.node_id,rm.p_id,rn.dirc,rn.cont,rn.func FROM rbac_menu rm left join rbac_node rn on rm.node_id = rn.id WHERE rm.status = 1 AND rm.p_id in (".$id_list.") ORDER BY sort asc");
+			$query = $this->ci_obj->db->query("SELECT M.id,M.title,M.node_id,M.pid, N.directory,N.controller,N.func FROM Menu M left join Node N on M.node_id = N.node_id WHERE M.status = 1 AND M.pid in (".$id_list.") ORDER BY sort asc");
 			$menu_data = $query->result();
 			$i++;
 		}
