@@ -33,7 +33,7 @@ foreach($node as $key=>$mn){
 				  	<td>'.$gcmn->memo.'</td>
 				  	<td>'.($gcmn->status==1?"启用":"停用").'</td>
 				  	<td><div class="btn-group  btn-group-xs pull-right">
-				  		  <a class="btn btn-success" href="'.site_url("manage/node/edit/".$gcmn->id).'">修改</a>
+				  		  <a class="btn btn-success" href="'.site_url("manage/node/edit/".$gcmn->node_id).'">修改</a>
 						  <a class="btn btn-danger" href="'.site_url("manage/node/delete/".$key."/".$mn_key."/".$cmn_key).'">删除方法</a>
 					</div>
 			  	</td>
