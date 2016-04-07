@@ -25,7 +25,7 @@
 						  <a class="btn btn-danger" href="%s">删除删除</a>
 						</div>
 					</td>
-				</tr>',$mb->id,$mb->rolename,($mb->status==1?"正常":"停用"),site_url("manage/role/edit/".$mb->id),site_url("manage/role/action/".$mb->id),site_url("manage/role/delete/".$mb->id));
+				</tr>',$mb->rid,$mb->name,($mb->status==1?"正常":"停用"),site_url("manage/role/edit/".$mb->rid),site_url("manage/role/action/".$mb->rid),site_url("manage/role/delete/".$mb->rid));
 	}
 	?>
   </tbody>
