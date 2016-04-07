@@ -37,15 +37,15 @@ class Role extends CI_Controller {
 	 * 角色修改
 	 * @param number $id
 	 */
-	public function edit($id){
-		$query = $this->db->query("SELECT * FROM Role WHERE rid = ".$id);
+	public function edit($rid){
+		$query = $this->db->query("SELECT * FROM Role WHERE rid = ".$rid);
 		$data = $query->row_array();
 		if($data){
 			if($this->input->post()){
 				$rolename = $this->input->post("rolename");
 				$status = $this->input->post("status")?1:0;
 				if($rolename){
-					$sql = "UPDATE Role set name='{$rolename}',status='{$status}' WHERE rid = {$id}";
+					$sql = "UPDATE Role set name='{$rolename}',status='{$status}' WHERE rid = {$rid}";
 					$this->db->query($sql);
 					success_redirct("manage/role/index","角色信息修改成功！");
 				}else{
@@ -60,7 +60,7 @@ class Role extends CI_Controller {
 	
 	/**
 	 * 角色新增
-	 * @param number $id
+	 * @param number $rid
 	 */
 	public function add(){
 		if($this->input->post()){
@@ -86,10 +86,10 @@ class Role extends CI_Controller {
 	
 	/**
 	 * 角色删除
-	 * @param number $id
+	 * @param number $rid
 	 */
-	public function delete($id){
-		$query = $this->db->query("SELECT * FROM Role WHERE rid = ".$id);
+	public function delete($rid){
+		$query = $this->db->query("SELECT * FROM Role WHERE rid = ".$rid);
 		$data = $query->row_array();
 		if($data){
 			if($this->input->post()){
@@ -113,17 +113,17 @@ class Role extends CI_Controller {
 	
 	/**
 	 * 角色赋权
-	 * @param number $id
+	 * @param number $rid
 	 */
 	public function action($id,$node_id=NULL,$role_node_list=NULL){
-		if(!$id){error_redirct("manage/role/index","未找到此角色");}
+		if(!$rid){error_redirct("manage/role/index","未找到此角色");}
 		if($node_id!=NULL){
-			$query = $this->db->query("SELECT node_id FROM Authorizes WHERE node_id= {$node_id} AND rid={$id}");
+			$query = $this->db->query("SELECT node_id FROM Authorizes WHERE node_id= {$node_id} AND rid={$rid}");
 			$data = $query->row_array();
 			if($data){
-				$sql = "DELETE FROM Authorizes WHERE node_id= {$node_id} AND rid={$id}";
+				$sql = "DELETE FROM Authorizes WHERE node_id= {$node_id} AND rid={$rid}";
 			}else{
-				$sql = "INSERT INTO Authorizes (node_id,rid) values('{$node_id}','{$id}')";
+				$sql = "INSERT INTO Authorizes (node_id,rid) values('{$node_id}','{$rid}')";
 			}
 			$this->db->query($sql);
 			success_redirct("","节点操作成功",1);
@@ -143,12 +143,12 @@ class Role extends CI_Controller {
 		foreach($data as $vo){
 			$node_list[$vo->directory][$vo->controller][$vo->func] = $vo;
 		}
-		$query = $this->db->query("SELECT node_id,directory,controller,func FROM Node WHERE node_id in (SELECT node_id FROM Authorizes WHERE rid = ".$id.")");
+		$query = $this->db->query("SELECT node_id,directory,controller,func FROM Node WHERE node_id in (SELECT node_id FROM Authorizes WHERE rid = ".$rid.")");
 		$role_data = $query->result();
 		foreach($role_data as $vo){
 			$role_node_list[$vo->directory][$vo->controller][$vo->func] = TRUE;
 		}
-		$this->load->view('manage/role/action',array('rid'=>$id,'node'=>$node_list,'rnl'=>$role_node_list));
+		$this->load->view('manage/role/action',array('rid'=>$rid,'node'=>$node_list,'rnl'=>$role_node_list));
 	}
 	
 }
