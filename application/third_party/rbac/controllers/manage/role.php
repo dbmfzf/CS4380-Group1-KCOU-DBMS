@@ -45,7 +45,7 @@ class Role extends CI_Controller {
 				$rolename = $this->input->post("rolename");
 				$status = $this->input->post("status")?1:0;
 				if($rolename){
-					$sql = "UPDATE rbac_role set name='{$rolename}',status='{$status}' WHERE rid = {$id}";
+					$sql = "UPDATE Role set name='{$rolename}',status='{$status}' WHERE rid = {$id}";
 					$this->db->query($sql);
 					success_redirct("manage/role/index","角色信息修改成功！");
 				}else{
