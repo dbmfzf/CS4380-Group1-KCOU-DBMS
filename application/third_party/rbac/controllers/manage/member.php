@@ -36,7 +36,7 @@ class Member extends CI_Controller {
 	 * @param number $id
 	 */
 	public function edit($id){
-		$query = $this->db->query("SELECT U.*,name FROM User U LEFT JOIN Role R ON R.rid = U.rid WHERE U.id = ".$id);
+		$query = $this->db->query("SELECT U.*,name FROM User U LEFT JOIN Role R ON R.rid = U.rid WHERE U.uid = ".$id);
 		$data = $query->row_array();
 		$role_query = $this->db->query("SELECT rid,name FROM Role WHERE status = 1");
 		$role_data = $role_query->result();
