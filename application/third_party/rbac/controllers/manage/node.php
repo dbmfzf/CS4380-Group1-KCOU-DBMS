@@ -21,7 +21,7 @@ class Node extends CI_Controller {
 		if(!empty($node_hidden_array)){
 			$rbac_where = "WHERE ";
 			foreach($node_hidden_array as $node_hidden){
-				$rbac_where.= "dirc != '$node_hidden' AND ";
+				$rbac_where.= "directory != '$node_hidden' AND ";
 			}
 			$rbac_where = substr($rbac_where,0,-4);
 		}
