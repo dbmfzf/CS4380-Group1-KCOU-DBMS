@@ -23,14 +23,13 @@
 					<td>%s</td>
 					<td>%s</td>
 					<td>%s</td>
-					<td>%s</td>
 					<td>
 						<div class="btn-group  btn-group-xs">
 						  <a class="btn btn-default btn-xs" href="%s">编辑</a>
 						  <a class="btn btn-danger" href="%s">删除</a>
 						</div>
 					</td>
-				</tr>',$mb->id,$mb->username,$mb->nickname,$mb->email,($mb->rolename?$mb->rolename:"暂无角色"),($mb->status==1?"正常":"停用"),site_url("manage/member/edit/".$mb->id),site_url("manage/member/delete/".$mb->id));
+				</tr>',$mb->uid,$mb->fullname,$mb->email,($mb->name?$mb->name:"暂无角色"),($mb->status==1?"正常":"停用"),site_url("manage/member/edit/".$mb->uid),site_url("manage/member/delete/".$mb->uid));
 	}
 	?>
   </tbody>
