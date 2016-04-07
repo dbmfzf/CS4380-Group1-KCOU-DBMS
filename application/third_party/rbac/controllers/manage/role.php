@@ -89,7 +89,7 @@ class Role extends CI_Controller {
 	 * @param number $id
 	 */
 	public function delete($id){
-		$query = $this->db->query("SELECT * FROM Role WHERE id = ".$id);
+		$query = $this->db->query("SELECT * FROM Role WHERE rid = ".$id);
 		$data = $query->row_array();
 		if($data){
 			if($this->input->post()){
