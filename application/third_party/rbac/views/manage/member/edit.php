@@ -19,7 +19,7 @@
     	<?php 
     		foreach($role_data as $vo){
 				$select = $data["rid"]==$vo->id?"selected":"";
-    			echo "<option value='{$vo->id}' {$select} >{$vo->name}</option>";
+    			echo "<option value='{$vo->rid}' {$select} >{$vo->name}</option>";
     		}
     	?>
     </select>
