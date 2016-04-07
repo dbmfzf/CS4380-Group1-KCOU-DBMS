@@ -115,7 +115,7 @@ class Role extends CI_Controller {
 	 * 角色赋权
 	 * @param number $id
 	 */
-	public function action($id,$node_id=NULL){
+	public function action($id,$node_id=NULL,$role_node_list=NULL){
 		if(!$id){error_redirct("manage/role/index","未找到此角色");}
 		if($node_id!=NULL){
 			$query = $this->db->query("SELECT node_id FROM Authorizes WHERE node_id= {$node_id} AND rid={$id}");
