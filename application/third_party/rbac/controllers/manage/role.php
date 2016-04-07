@@ -70,7 +70,7 @@ class Role extends CI_Controller {
 				$query = $this->db->query("SELECT * FROM Role WHERE name = '".$rolename."'");
 				$data = $query->row_array();
 				if(!$data){
-					$sql = "INSERT INTO Role(name,status) values('{$name}','{$status}')";
+					$sql = "INSERT INTO Role(name,status) values('{$rolename}','{$status}')";
 					$this->db->query($sql);
 					success_redirct("manage/role/index","角色新增成功！");
 				}else{
