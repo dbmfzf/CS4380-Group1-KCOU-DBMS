@@ -143,7 +143,7 @@ class Role extends CI_Controller {
 		foreach($data as $vo){
 			$node_list[$vo->dirc][$vo->cont][$vo->func] = $vo;
 		}
-		$query = $this->db->query("SELECT node_id,directory,controller,func FROM Node WHERE node_id in (SELECT node_id FROM Authrizes WHERE rid = ".$id.")");
+		$query = $this->db->query("SELECT node_id,directory,controller,func FROM Node WHERE node_id in (SELECT node_id FROM Authorizes WHERE rid = ".$id.")");
 		$role_data = $query->result();
 		foreach($role_data as $vo){
 			$role_node_list[$vo->directory][$vo->controller][$vo->func] = TRUE;
