@@ -86,7 +86,7 @@ class Menu extends CI_Controller {
 			$level = $this->input->post("level");
 			if($id&&$level){
 				if($title){
-					$pid   = $this->input->post("pid")==""?"pid = NULL":"pid='{$pid}'";
+					$pid   = $this->input->post("pid")=="NULL"?"pid = NULL":"pid='{$pid}'";
 					$status = $this->input->post("status")==""?"status='0'":"status='1'";
 					$sql = "UPDATE Menu SET status ='{$status}',title='{$title}',sort='{$sort}',node_id='{$node}',pid ='{$pid}' WHERE id = '{$id}'";
 					$this->db->query($sql);
