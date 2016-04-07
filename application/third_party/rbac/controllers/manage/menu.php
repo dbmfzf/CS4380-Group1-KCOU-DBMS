@@ -44,7 +44,7 @@ class Menu extends CI_Controller {
 	/**
 	 * 菜单新增
 	*/
-	public function add($id,$level,$p_id="NULL"){
+	public function add($id,$level,$pid="NULL"){
 		if($this->input->post()){
 			$title = $this->input->post("title");
 			$sort = $this->input->post("sort");
@@ -52,9 +52,9 @@ class Menu extends CI_Controller {
 			$level = $this->input->post("level");
 			if($id&&$level){
 				if($title){
-					$p_id   = $this->input->post("p_id");
+					$pid   = $this->input->post("pid");
 					$status = $this->input->post("status")==""?"0":"1";
-					$sql = "INSERT INTO Menu (status,title,sort,node_id,pid) values( '{$status}','{$title}','{$sort}','{$node}',{$p_id})";
+					$sql = "INSERT INTO Menu (status,title,sort,node_id,pid) values( '{$status}','{$title}','{$sort}','{$node}',{$pid})";
 					$this->db->query($sql);
 					success_redirct("manage/menu/index","新增菜单成功！");
 				}else{
@@ -73,12 +73,12 @@ class Menu extends CI_Controller {
 		}
 		$node_query = $this->db->query("SELECT * FROM Node WHERE status = 1 {$rbac_where} ORDER BY directory,controller");
 		$node_data = $node_query->result();
-		$this->load->view("manage/menu/add",array("node"=>$node_data,"level"=>$level,"p_id"=>$p_id));
+		$this->load->view("manage/menu/add",array("node"=>$node_data,"level"=>$level,"pid"=>$pid));
 	}
 	/**
 	 * 菜单修改
 	 */
-	public function edit($id,$level,$p_id="NULL"){
+	public function edit($id,$level,$pid="NULL"){
 		if($this->input->post()){
 			$id = $this->input->post("id");
 			$title = $this->input->post("title");
@@ -87,9 +87,9 @@ class Menu extends CI_Controller {
 			$level = $this->input->post("level");
 			if($id&&$level){
 				if($title){
-					$p_id   = $this->input->post("p_id")=="NULL"?"p_id = NULL":"p_id='{$p_id}'";
+					$pid   = $this->input->post("pid")=="NULL"?"pid = NULL":"pid='{$pid}'";
 					$status = $this->input->post("status")==""?"status='0'":"status='1'";
-					$sql = "UPDATE Menu SET {$status},title='{$title}',sort='{$sort}',node_id='{$node}',pid ='{$p_id}' WHERE id = '{$id}'";
+					$sql = "UPDATE Menu SET {$status},title='{$title}',sort='{$sort}',node_id='{$node}',pid ='{$pid}' WHERE id = '{$id}'";
 					$this->db->query($sql);
 					success_redirct("manage/menu/index","菜单修改成功！");
 				}else{
@@ -111,7 +111,7 @@ class Menu extends CI_Controller {
 			}
 			$node_query = $this->db->query("SELECT * FROM Node WHERE status = 1 {$rbac_where} ORDER BY directory,controller");
 			$node_data = $node_query->result();
-			$this->load->view("manage/menu/edit",array("data"=>$data,"node"=>$node_data,"level"=>$level,"p_id"=>$p_id));
+			$this->load->view("manage/menu/edit",array("data"=>$data,"node"=>$node_data,"level"=>$level,"pid"=>$pid));
 		}else{
 			error_redirct("manage/menu/index","未找到此菜单");
 		}
@@ -138,7 +138,7 @@ class Menu extends CI_Controller {
 			$id_list = "";
 			foreach($menu_data as $vo){
 				if($i==2){
-					$vo->pid = $Tmp_menu[1][$vo->pid]->pid;
+					$vo->p_pid = $Tmp_menu[1][$vo->pid]->pid;
 				}
 				$Tmp_menu[$i][$vo->id] = $vo;
 				$id_list .= $vo->id.",";
@@ -157,7 +157,7 @@ class Menu extends CI_Controller {
 				}elseif($j==1){
 					$menu[$cvo->pid]["child"][$cvo->id]["self"] = $cvo;
 				}else{
-					$menu[$cvo->p_p_id]["child"][$cvo->pid]["child"][$cvo->id]["self"] =$cvo;
+					$menu[$cvo->p_pid]["child"][$cvo->pid]["child"][$cvo->id]["self"] =$cvo;
 				}
 			}
 			$j++;
