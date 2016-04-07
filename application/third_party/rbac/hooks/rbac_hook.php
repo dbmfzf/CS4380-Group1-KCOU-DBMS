@@ -96,7 +96,7 @@ class Rbac {
 			$id_list = "";
 			foreach($menu_data as $vo){
 				if($i==2){
-					$vo->p_p_id = $Tmp_menu[1][$vo->pid]->pid;
+					$vo->p_pid = $Tmp_menu[1][$vo->pid]->pid;
 				}
 				$Tmp_menu[$i][$vo->id] = $vo;
 				$id_list .= $vo->id.",";
@@ -127,11 +127,11 @@ class Rbac {
 							
 					}else{
 						if(rbac_conf(array('ACL',$cvo->directory,$cvo->controller,$cvo->func))){
-							$menu[$cvo->p_p_id]["shown"] = 1;
-							$menu[$cvo->p_p_id]["child"][$cvo->pid]["shown"] = 1;
-							$menu[$cvo->p_p_id]["child"][$cvo->pid]["child"][$cvo->id]["shown"] = 1;
+							$menu[$cvo->p_pid]["shown"] = 1;
+							$menu[$cvo->p_pid]["child"][$cvo->pid]["shown"] = 1;
+							$menu[$cvo->p_pid]["child"][$cvo->pid]["child"][$cvo->id]["shown"] = 1;
 						}
-						$menu[$cvo->p_p_id]["child"][$cvo->pid]["child"][$cvo->id]["self"] = array("title"=>$cvo->title,"uri"=>$cvo->directory?$cvo->directory."/".$cvo->controller."/".$cvo->func:$cvo->controller."/".$cvo->func);
+						$menu[$cvo->p_pid]["child"][$cvo->pid]["child"][$cvo->id]["self"] = array("title"=>$cvo->title,"uri"=>$cvo->directory?$cvo->directory."/".$cvo->controller."/".$cvo->func:$cvo->controller."/".$cvo->func);
 					}
 				}
 			}
