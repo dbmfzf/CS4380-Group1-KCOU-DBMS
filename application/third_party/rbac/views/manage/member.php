@@ -6,8 +6,7 @@
 	<thead>
           <tr>
             <th>ID</th>
-            <th>用户名</th>
-            <th>昵称</th>
+            <th>姓名</th>
             <th>Email</th>
             <th>角色</th>
             <th>状态</th>
