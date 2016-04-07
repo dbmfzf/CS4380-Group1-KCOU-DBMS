@@ -24,7 +24,7 @@ class Menu extends CI_Controller {
 	 * 菜单删除
 	 */
 	public function delete($id){
-		$query = $this->db->query("SELECT M.id,M.title,M.node_id,M.pid,M.sort,M.status,M.memo FROM Menu M left join Node N on M.node_id = N.node_id WHERE M.id =".$id);
+		$query = $this->db->query("SELECT M.id,M.title,M.node_id,M.pid,M.sort,M.status,N.memo FROM Menu M left join Node N on M.node_id = N.node_id WHERE M.id =".$id);
 		$data = $query->row_array();
 		if($data){
 			//获取当前节点及其子节点
