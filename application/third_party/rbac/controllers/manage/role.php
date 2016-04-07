@@ -17,7 +17,7 @@ class Role extends CI_Controller {
 	 */
 	public function index($page=1)
 	{
-		$query = $this->db->query("SELECT COUNT(1) as cnt FROM rbac_role");
+		$query = $this->db->query("SELECT COUNT(1) as cnt FROM Role");
 		$cnt_data = $query->row_array();
 		//分页
 		$this->load->library('pagination');
