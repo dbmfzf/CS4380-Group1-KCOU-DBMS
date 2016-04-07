@@ -28,7 +28,7 @@ class Node extends CI_Controller {
 		$query = $this->db->query("SELECT * FROM Node {$rbac_where} ORDER BY directory,controller,func");
 		$data = $query->result();
 		foreach($data as $vo){
-			$node_list[$vo->dirc][$vo->cont][$vo->func] = $vo;
+			$node_list[$vo->directory][$vo->controller][$vo->func] = $vo;
 		}
 		$this->load->view('manage/node',array('node'=>$node_list));
 	}
