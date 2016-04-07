@@ -106,10 +106,10 @@ class Menu extends CI_Controller {
 			$node_hidden_array = $this->config->item('rbac_manage_node_hidden');
 			if(!empty($node_hidden_array)){
 				foreach($node_hidden_array as $node_hidden){
-					$rbac_where.= "AND dirc != '$node_hidden' ";
+					$rbac_where.= "AND directory != '$node_hidden' ";
 				}
 			}
-			$node_query = $this->db->query("SELECT * FROM Node WHERE status = 1 {$rbac_where} ORDER BY dirc,cont");
+			$node_query = $this->db->query("SELECT * FROM Node WHERE status = 1 {$rbac_where} ORDER BY directory,controller");
 			$node_data = $node_query->result();
 			$this->load->view("manage/menu/edit",array("data"=>$data,"node"=>$node_data,"level"=>$level,"p_id"=>$p_id));
 		}else{
@@ -155,9 +155,9 @@ class Menu extends CI_Controller {
 				if($j==0){
 					$menu[$cvo->id]["self"] = $cvo;
 				}elseif($j==1){
-					$menu[$cvo->p_id]["child"][$cvo->id]["self"] = $cvo;
+					$menu[$cvo->pid]["child"][$cvo->id]["self"] = $cvo;
 				}else{
-					$menu[$cvo->p_p_id]["child"][$cvo->p_id]["child"][$cvo->id]["self"] =$cvo;
+					$menu[$cvo->p_p_id]["child"][$cvo->pid]["child"][$cvo->id]["self"] =$cvo;
 				}
 			}
 			$j++;
