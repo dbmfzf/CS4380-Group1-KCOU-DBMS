@@ -77,7 +77,7 @@ class Member extends CI_Controller {
 	 * 人员增加
 	 */
 	public function add(){
-		$role_query = $this->db->query("SELECT id,rolename FROM Role WHERE status = 1");
+		$role_query = $this->db->query("SELECT rid,name FROM Role WHERE status = 1");
 		$role_data = $role_query->result();
 		if($this->input->post()){
 			$uid = $this->input->post("uid");
