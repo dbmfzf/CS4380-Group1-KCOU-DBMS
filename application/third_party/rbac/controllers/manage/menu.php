@@ -67,7 +67,7 @@ class Menu extends CI_Controller {
 		$node_hidden_array = $this->config->item('rbac_manage_node_hidden');
 		if(!empty($node_hidden_array)){
 			foreach($node_hidden_array as $node_hidden){
-				$rbac_where.= "AND directorty != '$node_hidden' ";
+				$rbac_where.= "AND directory != '$node_hidden' ";
 			}
 		}
 		$node_query = $this->db->query("SELECT * FROM Node WHERE status = 1 {$rbac_where} ORDER BY directory,controller");
