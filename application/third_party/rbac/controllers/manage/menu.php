@@ -88,7 +88,7 @@ class Menu extends CI_Controller {
 				if($title){
 					$pid   = $this->input->post("pid")=="NULL"?"pid = NULL":"pid='{$pid}'";
 					$status = $this->input->post("status")==""?"status='0'":"status='1'";
-					$sql = "UPDATE Menu SET {$status},title='{$title}',sort='{$sort}',node_id='{$node}',pid ='{$pid}' WHERE id = '{$id}'";
+					$sql = "UPDATE Menu SET status ='{$status}',title='{$title}',sort='{$sort}',node_id='{$node}',pid ='{$pid}' WHERE id = '{$id}'";
 					$this->db->query($sql);
 					success_redirct("manage/menu/index","菜单修改成功！");
 				}else{
