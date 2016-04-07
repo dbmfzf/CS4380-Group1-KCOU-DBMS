@@ -33,7 +33,7 @@ class Member extends CI_Controller {
 	}
 	/**
 	 * 人员修改
-	 * @param number $id
+	 * @param number $uid
 	 */
 	public function edit($uid){
 		$query = $this->db->query("SELECT U.*,name FROM User U LEFT JOIN Role R ON R.rid = U.rid WHERE U.uid = '".$uid."'");
