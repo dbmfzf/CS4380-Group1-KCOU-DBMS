@@ -141,7 +141,7 @@ class Role extends CI_Controller {
 		$query = $this->db->query("SELECT * FROM Node {$rbac_where} ORDER BY directory,controller,func");
 		$data = $query->result();
 		foreach($data as $vo){
-			$node_list[$vo->dirc][$vo->cont][$vo->func] = $vo;
+			$node_list[$vo->directory][$vo->controller][$vo->func] = $vo;
 		}
 		$query = $this->db->query("SELECT node_id,directory,controller,func FROM Node WHERE node_id in (SELECT node_id FROM Authorizes WHERE rid = ".$id.")");
 		$role_data = $query->result();
