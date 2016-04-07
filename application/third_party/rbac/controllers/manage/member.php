@@ -35,8 +35,8 @@ class Member extends CI_Controller {
 	 * 人员修改
 	 * @param number $id
 	 */
-	public function edit($id){
-		$query = $this->db->query("SELECT U.*,name FROM User U LEFT JOIN Role R ON R.rid = U.rid WHERE U.uid = ".$id."");
+	public function edit($uid){
+		$query = $this->db->query("SELECT U.*,name FROM User U LEFT JOIN Role R ON R.rid = U.rid WHERE U.uid = ".$uid);
 		$data = $query->row_array();
 		$role_query = $this->db->query("SELECT rid,name FROM Role WHERE status = 1");
 		$role_data = $role_query->result();
@@ -119,8 +119,8 @@ class Member extends CI_Controller {
 	 * 人员删除
 	 * @param number $id
 	 */
-	public function delete($id){
-		$query = $this->db->query("SELECT * FROM User WHERE uid = ".$id);
+	public function delete($uid){
+		$query = $this->db->query("SELECT * FROM User WHERE uid = ".$uid);
 		$data = $query->row_array();
 		if($data){
 			if($this->input->post()){
