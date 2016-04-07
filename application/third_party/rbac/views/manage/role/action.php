@@ -24,7 +24,7 @@ foreach($node as $key=>$mn){
 				  		  <a class="btn btn-default btn-%s" href="%s">%s</a>
 					</div>
 			  	</td>
-			  	</tr>',$gcmn->memo,(@$rnl[$key][$mn_key][$cmn_key]?"danger":"success"),site_url("manage/role/action/".$rid."/".$gcmn->id),(@$rnl[$key][$mn_key][$cmn_key]?"取消授权":"节点授权"));
+			  	</tr>',$gcmn->memo,(@$rnl[$key][$mn_key][$cmn_key]?"danger":"success"),site_url("manage/role/action/".$rid."/".$gcmn->rid),(@$rnl[$key][$mn_key][$cmn_key]?"取消授权":"节点授权"));
 		}
 	}
 	echo '</table>';
