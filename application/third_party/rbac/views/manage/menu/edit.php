@@ -38,7 +38,7 @@
   </div>
   <input type="hidden" name="level" value="<?php echo $level;?>">
   <input type="hidden" name="id" value="<?php echo $data['id'];?>">
-  <input type="hidden" name="pid" value="<?php echo $p_id;?>">
+  <input type="hidden" name="pid" value="<?php echo $pid;?>">
   <button type="submit" class="btn btn-success">确认修改</button>
   <a class="btn btn-danger" href="<?php echo site_url('manage/menu/index'); ?>">取消修改</a>
 </form>
