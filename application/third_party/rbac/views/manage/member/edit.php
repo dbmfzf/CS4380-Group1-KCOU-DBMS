@@ -18,7 +18,7 @@
     	<option value=''>暂无角色</option>
     	<?php 
     		foreach($role_data as $vo){
-				$select = $data["rid"]==$vo->id?"selected":"";
+				$select = $data["rid"]==$vo->rid?"selected":"";
     			echo "<option value='{$vo->rid}' {$select} >{$vo->name}</option>";
     		}
     	?>
