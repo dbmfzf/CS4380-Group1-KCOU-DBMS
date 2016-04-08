@@ -15,5 +15,17 @@ class Index extends CI_Controller {
 		);
 		$this->load->view("product/index",$header);
 	}
+	
+	public function profile(){
+		
+	}
+	
+	public function music(){
+		
+	}
+	
+	public function message(){
+		
+	}
 
 }
