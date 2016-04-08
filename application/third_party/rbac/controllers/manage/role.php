@@ -35,7 +35,7 @@ class Role extends CI_Controller {
 	
 	/**
 	 * 角色修改
-	 * @param number $id
+	 * @param number $rid
 	 */
 	public function edit($rid){
 		$query = $this->db->query("SELECT * FROM Role WHERE rid = ".$rid);
@@ -95,9 +95,9 @@ class Role extends CI_Controller {
 			if($this->input->post()){
 				$verfiy = $this->input->post("verfiy");
 				if($verfiy){
-					$sql = "DELETE FROM Role WHERE rid = ".$id." ";
+					$sql = "DELETE FROM Role WHERE rid = ".$rid." ";
 					$this->db->query($sql);
-					$sql = "DELETE FROM Authorizes WHERE rid = ".$id." ";
+					$sql = "DELETE FROM Authorizes WHERE rid = ".$rid." ";
 					$this->db->query($sql);
 					success_redirct("manage/role/index","角色删除成功");
 				}else{
