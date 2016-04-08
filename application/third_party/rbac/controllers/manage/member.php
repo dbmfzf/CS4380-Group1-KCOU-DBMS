@@ -55,7 +55,7 @@ class Member extends CI_Controller {
 							if($password){$newpass = ",password='".md5($password2)."'";}else{$newpass="";}
 							if($status){$newstat = ",status='1'";}else{$newstat = ",status='0'";}
 							if($role){$newrole = ",rid={$role}";}else{$newrole = ",rid=NULL";}
-							$sql = "UPDATE User set fullname='{$fullname}',email='{$email}' {$newpass} {$newstat} {$newrole} WHERE uid = {$uid}";
+							$sql = "UPDATE User set fullname='{$fullname}',email='{$email}' {$newpass} {$newstat} {$newrole} WHERE uid = '{$uid}'";
 							$this->db->query($sql);
 							success_redirct("manage/member/index","用户信息修改成功！");
 						}else{
