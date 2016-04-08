@@ -120,13 +120,13 @@ class Member extends CI_Controller {
 	 * @param number $id
 	 */
 	public function delete($uid){
-		$query = $this->db->query("SELECT * FROM User WHERE uid = ".$uid);
+		$query = $this->db->query("SELECT * FROM User WHERE uid = '".$uid."' ");
 		$data = $query->row_array();
 		if($data){
 			if($this->input->post()){
 				$verfiy = $this->input->post("verfiy");
 				if($verfiy){
-					$sql = "DELETE FROM User WHERE uid = ".$uid." ";
+					$sql = "DELETE FROM User WHERE uid = '".$uid."' ";
 					$this->db->query($sql);
 					success_redirct("manage/member/index","用户删除成功");
 				}else{
