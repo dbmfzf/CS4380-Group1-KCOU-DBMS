@@ -49,7 +49,7 @@ class Member extends CI_Controller {
 				$status = $this->input->post("status");
 				$password = $this->input->post("password");
 				$password2 = $this->input->post("password2");
-				if($uid>0){
+				if($uid!=""){
 					if($password==$password2){
 						if($uid){
 							if($password){$newpass = ",password='".md5($password2)."'";}else{$newpass="";}
