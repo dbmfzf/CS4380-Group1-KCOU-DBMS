@@ -11,7 +11,6 @@ class Index extends CI_Controller {
 	{
 		//cancel rewrite VIEW
 		//$this->view_override = FALSE;
-		$uid = array('INFO','uid');
 		$userquery = $this->db->query("SELECT uid,fullname,gender FROM User WHERE uid = '".$uid."' limit 1");
 		$user_data = $userquery -> row_array();
 		 
