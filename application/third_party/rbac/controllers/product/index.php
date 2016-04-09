@@ -24,8 +24,11 @@ class Index extends CI_Controller {
 		$recent_query = $this->db->query("SELECT SS.sid as song_id,S.title as song_title FROM Search_song SS,Song S WHERE S.sid = SS.sid AND SS.uid = '".$uid."' order by date_time desc limit 1");
 		$most_recently_searched = $recent_query->row_array();
 		
-		$most = $this->db->query("SELECT S1.sid as song_id, S.title as song_title FROM Search_song S1, Song S WHERE S1.sid = S.sid AND S1.uid = '".$uid."' group by S1.sid having count(*) = (SELECT MAX(S2.sid) FROM Search_song S2 WHERE S2.uid = '".$uid."' group by S2.sid) order by S1.date_time desc limit 1");
+		$most_query = $this->db->query("SELECT S1.sid as song_id, S.title as song_title FROM Search_song S1, Song S WHERE S1.sid = S.sid AND S1.uid = '".$uid."' group by S1.sid having count(*) = (SELECT MAX(S2.sid) FROM Search_song S2 WHERE S2.uid = '".$uid."' group by S2.sid) order by S1.date_time desc limit 1");
 		$most_searched = $most_query->row_array();
+		
+		//$message_query = $this->db->query();
+		//$manager_message = $message_query -> row_array();
 		
 		$header = 'Home';
 		
