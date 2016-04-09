@@ -44,7 +44,7 @@ class Index extends CI_Controller {
 		$data['most_sid'] = $most_searched['song_id'];
 		$data['most_title'] = $most_searched['song_title'];
 		
-		$this->load->view("product/index",array("data"=>$data),);
+		$this->load->view("product/index",array("data"=>$data));
 	}
 
 }
