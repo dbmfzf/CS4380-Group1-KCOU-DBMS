@@ -6,7 +6,7 @@
    		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="<?php echo base_url();?>static/bootstrap/css/bootstrap.min.css">
 		<link href="<?php echo base_url();?>static/offcanvas.css" rel="stylesheet">
-        <title><?php echo isset($header_title)?$header_title:isset($this->get_menu['list'][$this->uuri])?$this->get_menu['list'][$this->uuri]:""; ?></title>
+        <title>KCOU management system</title>
         <script src="<?php echo base_url();?>static/jquery.1102.min.js"></script>
 		<script src="<?php echo base_url();?>static/bootstrap/js/bootstrap.min.js"></script>
         <script src="<?php echo base_url();?>static/bootstrap/js/respond.min.js"></script>
