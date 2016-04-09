@@ -12,14 +12,17 @@ class Index extends CI_Controller {
 		//cancel rewrite VIEW
 		//$this->view_override = FALSE;
 		$uid = rbac_conf(array('INFO','uid'));
-		$userquery = $this->db->query("SELECT fullname,gender FROM User WHERE uid = '".$uid."' limit 1");
-		$user_data = $userquery -> row_array();
+		$user_query = $this->db->query("SELECT fullname,gender FROM User WHERE uid = '".$uid."' limit 1");
+		$user_data = $user_query -> row_array();
 		 
-		$rolequery = $this->db->query("SELECT name from Role R, User U where U.rid = R.rid and U.uid = '".$uid."' limit 1");
-		$roledata = $rolequery -> row_array();
+		$role_query = $this->db->query("SELECT name from Role R, User U where U.rid = R.rid and U.uid = '".$uid."' limit 1");
+		$role_data = $role_query -> row_array();
 		
-		$loginquery = $this->db->query("SELECT * FROM Login_record WHERE uid = '".$uid."' order by log_id desc limit 1");
-		$login_data = $loginquery -> row_array();
+		$dept_query = $this->db->query("SELECT name from Department D, Belongs_to B, User U where U.uid = B.uid and D.did = B.did and U.uid = '".$uid."' limit 1");
+		$dept_data = $dept_query -> row_array();
+		
+		$login_query = $this->db->query("SELECT * FROM Login_record WHERE uid = '".$uid."' order by log_id desc limit 1");
+		$login_data = $login_query -> row_array();
 		
 		$recent_query = $this->db->query("SELECT SS.sid as song_id,S.title as song_title FROM Search_song SS,Song S WHERE S.sid = SS.sid AND SS.uid = '".$uid."' order by date_time desc limit 1");
 		$most_recently_searched = $recent_query->row_array();
@@ -35,7 +38,8 @@ class Index extends CI_Controller {
 		$data['header'] = $header;
 		$data['fullname'] = $user_data['fullname'];
 		$data['gender'] = $user_data['gender'];
-		$data['role'] = $roledata['name'];
+		$data['role'] = $role_data['name'];
+		$data['dept'] = $dept_data['name'];
 		$data['last_login_time'] = $login_data['date_time'];
 		$data['last_login_ip'] = $login_data['ip'];
 		$data['most_rencently_sid'] = $most_recently_searched['song_id'];
