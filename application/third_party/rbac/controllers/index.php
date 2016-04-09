@@ -32,7 +32,7 @@ class Index extends CI_Controller {
 		$this->load->model("rbac_model");
 		$uid = $this->input->post('uid');
 		$password = $this->input->post('password');
-		if($username&&$password){
+		if($uid&&$password){
 			$STATUS = $this->rbac_model->check_user($uid,md5($password));
 			if($STATUS===TRUE){
 				success_redirct($this->config->item('rbac_default_index'),"Login successful!");
