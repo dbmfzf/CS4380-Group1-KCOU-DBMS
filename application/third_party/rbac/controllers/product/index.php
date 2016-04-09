@@ -11,7 +11,7 @@ class Index extends CI_Controller {
 	{
 		//cancel rewrite VIEW
 		//$this->view_override = FALSE;
-		$uid = rbac_conf(array('INFO','uid')
+		$uid = rbac_conf(array('INFO','uid'));
 		$userquery = $this->db->query("SELECT fullname,gender FROM User WHERE uid = '".$uid."' limit 1");
 		$user_data = $userquery -> row_array();
 		 
