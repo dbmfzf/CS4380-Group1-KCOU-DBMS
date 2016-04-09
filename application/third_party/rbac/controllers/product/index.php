@@ -11,7 +11,7 @@ class Index extends CI_Controller {
 	{
 		//cancel rewrite VIEW
 		//$this->view_override = FALSE;
-		$uid = $data['uid'];
+		$uid = rbac_conf(array('INFO','uid');
 		$userquery = $this->db->query("SELECT fullname,gender FROM User WHERE uid = '".$uid."' limit 1");
 		$user_data = $userquery -> row_array();
 		 
@@ -36,8 +36,8 @@ class Index extends CI_Controller {
 		$data['fullname'] = $user_data['fullname'];
 		$data['gender'] = $user_data['gender'];
 		$data['role'] = $roledata['name'];
-		$data['last_login_time'] = $logindata['date_time'];
-		$data['last_login_ip'] = $logindata['ip'];
+		$data['last_login_time'] = $login_data['date_time'];
+		$data['last_login_ip'] = $login_data['ip'];
 		$data['most_rencently_sid'] = $most_recently_searched['song_id'];
 		$data['most_rencently_title'] = $most_recently_searched['song_title'];
 		$data['most_sid'] = $most_searched['song_id'];
