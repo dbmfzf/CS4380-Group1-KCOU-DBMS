@@ -20,11 +20,11 @@
             <div class="col-6 col-sm-6 col-lg-4">
               <h2>Music</h2>
               <form role="form" action="" method="post">
-                 <input name = "search_song" type = "text" class="form-control" placeholder="Please input song title here">
+                 <p><input name = "search_song" type = "text" class="form-control" placeholder="Please input song title here"></p>
                  <p align = "right"><button type="submit" class="btn btn-success">GO!</button></p>
-                 <p>Most recently searched song: <a target="_blank" href="<?php echo $data['most_rencently_path'] ?>"><?php echo $data['most_rencently_title'];?></a></p>
-                 <p>Most searched song: <a target="_blank" href="<?php echo $data['most_path'] ?>"><?php echo $data['most_title'];?></a></p>
               </form>
+              <p>Most recently searched song: <a target="_blank" href="<?php echo $data['most_rencently_path'] ?>"><?php echo $data['most_rencently_title'];?></a></p>
+              <p>Most searched song: <a target="_blank" href="<?php echo $data['most_path'] ?>"><?php echo $data['most_title'];?></a></p>
               <p><a class="btn btn-default" href="#" role="button">More &raquo;</a></p>
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
