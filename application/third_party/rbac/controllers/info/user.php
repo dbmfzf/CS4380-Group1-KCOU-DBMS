@@ -57,20 +57,20 @@ class User extends CI_Controller {
 							if($role){$newrole = ",rid={$role}";}else{$newrole = ",rid=NULL";}
 							$sql = "UPDATE User set fullname='{$fullname}',email='{$email}' {$newpass} {$newstat} {$newrole} WHERE uid = '{$uid}'";
 							$this->db->query($sql);
-							success_redirct("info/user/index","用户信息修改成功！");
+							success_redirct("info/user/index","Edit successful!");
 						}else{
-							error_redirct("","信息填写不全！");
+							error_redirct("","The user's information is not complete!");
 						}
 					}else{
-						error_redirct("","新密码两次输入验证不符！");
+						error_redirct("","Invaild password!");
 					}
 				}else{
-					error_redirct("","未找到此用户");
+					error_redirct("","No user is found!");
 				}
 			}
 			$this->load->view("info/user/edit",array("data"=>$data,"role_data"=>$role_data));
 		}else{
-			error_redirct("info/user/index","未找到此用户");
+			error_redirct("info/user/index","No user is found!");
 		}
 	}
 	/**
@@ -98,19 +98,19 @@ class User extends CI_Controller {
 							if(!$status){$newstat = "0";}else{$newstat = "1";}
 							$sql = "INSERT INTO User (uid,fullname,email,password,rid,status) values('{$uid}','{$fullname}','{$email}' ,'{$password2}','{$role}', '{$status}')";
 							$this->db->query($sql);
-							success_redirct("info/user/index","用户新增成功！");
+							success_redirct("info/user/index","Add successful!");
 						}else{
-							error_redirct("","该Email已存在！");
+							error_redirct("","The email already exists!");
 						}
 					}else{
-						error_redirct("","该用户名已存在！");
+						error_redirct("","The user ID already exists!");
 					}
 					
 				}else{
-					error_redirct("","信息填写不全！");
+					error_redirct("","The user's information is not complete!");
 				}
 			}else{
-				error_redirct("","新密码两次输入验证不符！");
+				error_redirct("","Invalid password!");
 			}
 		}
 		$this->load->view("info/user/add",array("role_data"=>$role_data));
@@ -128,14 +128,14 @@ class User extends CI_Controller {
 				if($verfiy){
 					$sql = "DELETE FROM User WHERE uid = '".$uid."' ";
 					$this->db->query($sql);
-					success_redirct("info/user/index","用户删除成功");
+					success_redirct("info/user/index","Delete successful!");
 				}else{
-					error_redirct("info/user/index","操作失败");
+					error_redirct("info/user/index","Delete faild!");
 				}
 			}
 			$this->load->view("info/user/delete",array("data"=>$data));
 		}else{
-			error_redirct("info/user/index","未找到此用户");
+			error_redirct("info/user/index","No user is found!");
 		}
 	}
 
