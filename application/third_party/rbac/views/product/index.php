@@ -6,7 +6,8 @@
             <p>This is a kcou management system.</p>
           </div>
           <div class="row">
-            <div class="col-6 col-sm-6 col-lg-4" style="border:1px solid #93DB70;border-radius:3px">
+            <div class="col-6 col-sm-6 col-lg-4">
+              <div style="border:1px solid #93DB70;border-radius:3px">
               <h2 style="background-color:#93DB70">Profile</h2>
               <p><b>User ID:</b> <?php echo rbac_conf(array('INFO','uid'));?> </p>
               <p><b>Fullname:</b> <?php echo $data['fullname'];?> </p>
@@ -16,6 +17,7 @@
               <p><b>Last login time:</b> <?php echo $data['last_login_time'];?> </p>
               <p><b>Last login ip:</b> <?php echo $data['last_login_ip'];?> </p>
               <p><a class="btn btn-default" href="product/index/edit" role="button">View &raquo;</a></p>
+              </div>
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
               <h2>Music</h2>
