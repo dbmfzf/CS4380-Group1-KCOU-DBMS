@@ -7,7 +7,7 @@
           </div>
           <div class="row">
             <div class="col-6 col-sm-6 col-lg-4">
-              <div style="background-color:#93DB70;border-radius:5px"><h2 aalign="center">Profile</h2></div>
+              <div style="background-color:#93DB70;border-radius:5px"><h2 align="center">Profile</h2></div>
               <div style="border:1px solid #93DB70;border-radius:5px">
               <p>&nbsp;&nbsp;&nbsp;<b>User ID:</b> <?php echo rbac_conf(array('INFO','uid'));?> </p>
               <p>&nbsp;&nbsp;&nbsp;<b>Fullname:</b> <?php echo $data['fullname'];?> </p>
@@ -21,6 +21,8 @@
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
               <h2>Music</h2>
+              <div style="background-color:#FF6EC7;border-radius:5px"><h2 align="center">Profile</h2></div>
+              <div style="border:1px solid #FF6EC7;border-radius:5px">
               <form role="form" action="" method="post">
                  <p><input name = "search_song" type = "text" class="form-control" placeholder="Please input song title here"></p>
                  <p align = "right"><button type="submit" class="btn btn-success">GO!</button></p>
@@ -36,6 +38,7 @@
                 <?php echo $data['most_title'];?>
               </p>
               <p><a class="btn btn-default" href="#" role="button">More &raquo;</a></p>
+              </div>
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
               <h2>Message</h2>
