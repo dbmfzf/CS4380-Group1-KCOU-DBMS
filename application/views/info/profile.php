@@ -2,35 +2,50 @@
 .table td:first-child{width:10%}
 .table td:nth-child(2){width:20%}
 </style>
-<table class="table table-bordered well">
-	<thead>
-          <tr>
-            <th>ID</th>
-            <th>角色名称</th>
-            <th>状态</th>
-            <th>操作</th>
-          </tr>
-        </thead>
-   <tbody>
-	<?php 
-	foreach($data as $mb){
-		printf('<tr>
-					<td>%s</td>
-					<td>%s</td>
-					<td>%s</td>
-					<td>
-						<div class="btn-group  btn-group-xs  pull-right">
-						  <a class="btn btn-default btn-xs" href="%s">编辑角色</a>
-						  <a class="btn btn-info btn-xs" href="%s">赋权节点</a>
-						  <a class="btn btn-danger" href="%s">删除</a>
-						</div>
-					</td>
-				</tr>',$mb->rid,$mb->name,($mb->status==1?"正常":"停用"),site_url("manage/role/edit/".$mb->rid),site_url("manage/role/action/".$mb->rid),site_url("manage/role/delete/".$mb->rid));
-	}
-	?>
-  </tbody>
-</table>
+<h2>Profile</h2>
+    <table class="table table-bordered table-hover definewidth m10">
+        <tr>
+            <td class="tableleft">User ID</td>
+            <td><p><?php echo $data['uid'];?></p></td>
+        </tr>     
+        <tr>
+            <td class="tableleft">Full name</td>
+            <td><p><?php echo $data['fullname'];?></p></td>
+        </tr>
+        <tr>
+            <td class="tableleft">Gender</td>
+            <td><p><?php echo $data['gender'];?></p></td>
+        </tr>
+        <tr>
+            <td class="tableleft">Email</td>
+            <td><p><?php echo $data['email'];?></p></td>
+        </tr>
+        <tr>
+            <td class="tableleft">Phone</td>
+            <td><p><?php echo $data['phone'];?></p></td>
+        </tr>
+        <tr>
+            <td class="tableleft">Birthday</td>
+            <td><p><?php echo $data['birth'];?></p></td>
+        </tr>
+        <tr>
+            <td class="tableleft">Role</td>
+            <td><p><?php echo $data['role'];?></p></td>
+        </tr>
+         <tr>
+            <td class="tableleft">Department</td>
+            <td><p><?php echo $data['dept'];?></p></td>
+        </tr>
+         <tr>
+            <td class="tableleft">Last login time</td>
+            <td><p><?php echo $data['last_login_time'];?></p></td>
+        </tr>
+        <tr>
+            <td class="tableleft">Last login ip</td>
+            <td><p><?php echo $data['last_login_ip'];?></p></td>
+        </tr>
+    </table>
 <hr/>
 
-<?php echo '<a class="btn btn-success pull-right" href="'.site_url("manage/role/add").'">新增角色</a>'; ?>
-<?php echo $this->pagination->create_links(); ?>
+<?php echo '<a class="btn btn-success pull-right" href="'.site_url("info/profile/edit").'">Edit profile</a>'; ?>
+<?php echo '<a class="btn btn-success pull-right" href="'.site_url("info/profile/reset").'">Reset password</a>'; ?>
