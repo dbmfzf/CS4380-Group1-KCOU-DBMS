@@ -27,7 +27,7 @@
                 Most recently searched song:
                 <?php 
                   if($data['most_rencently_path']!=""){
-                    echo "<a href=$data['most_rencently_path']>$data['most_rencently_title']"</a>;
+                    echo "<a href=$data['most_rencently_path']>$data['most_rencently_title']</a>";
                   }
                   else {
                     echo $data['most_rencently_title'];
