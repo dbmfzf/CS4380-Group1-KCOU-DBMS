@@ -46,7 +46,7 @@
         </tr>
     </table>
 <hr/>
-<?php echo '<a class="btn btn-warning pull-right" href="'.site_url("info/profile/reset").'">Reset password</a>'; ?>
+<a class="btn btn-warning pull-right" href="<?php echo '.site_url("info/profile/reset").';?>">Reset password</a>
 &nbsp;&nbsp;&nbsp;
-<?php echo '<a class="btn btn-success pull-right" href="'.site_url("info/profile/edit").'">Edit profile</a>'; ?>
-
+<a class="btn btn-success pull-right" href="<?php echo '.site_url("info/profile/edit").';?>">Edit profile</a>
+&nbsp;&nbsp;&nbsp;
