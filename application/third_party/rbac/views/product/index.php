@@ -7,16 +7,16 @@
           </div>
           <div class="row">
             <div class="col-6 col-sm-6 col-lg-4">
-              <div style="border:1px solid #93DB70;border-radius:3px">
               <div style="background-color:#93DB70"><h2 >Profile</h2></div>
-              <p>nbsp;nbsp;nbsp;<b>User ID:</b> <?php echo rbac_conf(array('INFO','uid'));?> </p>
-              <p>nbsp;nbsp;nbsp;<b>Fullname:</b> <?php echo $data['fullname'];?> </p>
-              <p>nbsp;nbsp;nbsp;<b>Gender:</b> <?php echo $data['gender'];?> </p>
-              <p>nbsp;nbsp;nbsp;<b>Role:</b> <?php echo $data['role'];?> </p>
-              <p>nbsp;nbsp;nbsp;<b>Department:</b> <?php echo $data['dept'];?> </p>
-              <p>nbsp;nbsp;nbsp;<b>Last login time:</b> <?php echo $data['last_login_time'];?> </p>
-              <p>nbsp;nbsp;nbsp;<b>Last login ip:</b> <?php echo $data['last_login_ip'];?> </p>
-              <p>nbsp;nbsp;nbsp;<a class="btn btn-default" href="product/index/edit" role="button">View &raquo;</a></p>
+              <div style="border:1px solid #93DB70;border-radius:5px">
+              <p>&nbsp;&nbsp;&nbsp;<b>User ID:</b> <?php echo rbac_conf(array('INFO','uid'));?> </p>
+              <p>&nbsp;&nbsp;&nbsp;<b>Fullname:</b> <?php echo $data['fullname'];?> </p>
+              <p>&nbsp;&nbsp;&nbsp;<b>Gender:</b> <?php echo $data['gender'];?> </p>
+              <p>&nbsp;&nbsp;&nbsp;<b>Role:</b> <?php echo $data['role'];?> </p>
+              <p>&nbsp;&nbsp;&nbsp;<b>Department:</b> <?php echo $data['dept'];?> </p>
+              <p>&nbsp;&nbsp;&nbsp;<b>Last login time:</b> <?php echo $data['last_login_time'];?> </p>
+              <p>&nbsp;&nbsp;&nbsp;<b>Last login ip:</b> <?php echo $data['last_login_ip'];?> </p>
+              <p>&nbsp;&nbsp;&nbsp;<a class="btn btn-default" href="product/index/edit" role="button">View &raquo;</a></p>
               </div>
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
