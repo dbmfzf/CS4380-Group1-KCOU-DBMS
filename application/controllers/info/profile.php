@@ -100,7 +100,7 @@ class Profile extends CI_Controller {
 			error_redirct("","No user is found!");
 		}
 		
-		$this->load->view("info/profile/reset",array("data"=>$data));
+		$this->load->view("info/profile/reset");
 	}
 
 }
