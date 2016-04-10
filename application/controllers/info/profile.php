@@ -36,7 +36,7 @@ class Profile extends CI_Controller {
 		$data['email'] = $user_data['email'];
 		$data['phone'] = $user_data['phone'];
 		$data['role'] = $role_data['name'];
-		$data['birth'] = $user_data['bitrh'];
+		$data['birth'] = $user_data['birth'];
 		$dept_data['name'] == NULL?$data['dept'] = "No department!":$data['dept'] = $dept_data['name'];
 		$login_data['date_time'] ==NULL?$data['last_login_time'] = "First login!":$data['last_login_time'] = $login_data['date_time'];
 		$login_data['ip']== NULL?$data['last_login_ip'] = "First login!":$data['last_login_ip'] = $login_data['ip'];
