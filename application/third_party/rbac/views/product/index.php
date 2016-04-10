@@ -6,7 +6,7 @@
             <p>This is a kcou management system.</p>
           </div>
           <div class="row">
-            <div class="col-6 col-sm-6 col-lg-4" style="border:1">
+            <div class="col-6 col-sm-6 col-lg-4" style="border:1px solid #F00">
               <h2>Profile</h2>
               <p><b>User ID:</b> <?php echo rbac_conf(array('INFO','uid'));?> </p>
               <p><b>Fullname:</b> <?php echo $data['fullname'];?> </p>
