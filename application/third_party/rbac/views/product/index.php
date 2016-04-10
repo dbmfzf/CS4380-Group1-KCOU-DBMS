@@ -25,10 +25,12 @@
               </form>
               <p>
                 <b>Most recently searched song:</b>
+                </br>
                 <?php echo $data['most_rencently_title'];?>
               </p>
               <p>
                 <b>Most searched song:</b>
+                </br>
                 <?php echo $data['most_title'];?>
               </p>
               <p><a class="btn btn-default" href="#" role="button">More &raquo;</a></p>
