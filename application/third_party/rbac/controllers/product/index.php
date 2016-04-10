@@ -39,8 +39,8 @@ class Index extends CI_Controller {
 		$data['fullname'] = $user_data['fullname'];
 		$data['gender'] = $user_data['gender'];
 		$data['role'] = $role_data['name'];
-		$data['dept'] = NULL?$data['dept'] = "No department!":$data['dept'] = $dept_data['name'];
-		$data['last_login_time'] =NULL?$data['last_login_time'] = "First login!":$data['last_login_time'] = $login_data['date_time'];
+		$dept_data['name'] == NULL?$data['dept'] = "No department!":$data['dept'] = $dept_data['name'];
+		$login_data['date_time'] ==NULL?$data['last_login_time'] = "First login!":$data['last_login_time'] = $login_data['date_time'];
 		$login_data['ip']== NULL?$data['last_login_ip'] = "First login!":$data['last_login_ip'] = $login_data['ip'];
 		$data['most_rencently_sid'] = $most_recently_searched['song_id'];
 		$data['most_rencently_title'] = $most_recently_searched['song_title'];
