@@ -20,7 +20,7 @@
               </div>
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
-              <div style="background-color:#FF6EC7;border-radius:5px"><h2 align="center">Music</h2></div>
+              <div style="background-color:#EAADEA;border-radius:5px"><h2 align="center">Music</h2></div>
               <div style="border:1px solid #EAADEA;border-radius:5px">
               <form role="form" action="" method="post">
                  <p><input name = "search_song" type = "text" class="form-control" placeholder="Please input song title here"></p>
@@ -40,8 +40,8 @@
               </div>
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
-              <div style="background-color:#FF6EC7;border-radius:5px"><h2 align="center">Message</h2></div>
-              <div style="border:1px solid #FF6EC7;border-radius:5px">
+              <div style="background-color:#EBC79E;border-radius:5px"><h2 align="center">Message</h2></div>
+              <div style="border:1px solid #EBC79E;border-radius:5px">
               <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
               <p><a class="btn btn-default" href="#" role="button">View all &raquo;</a></p>
               </div>
