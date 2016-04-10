@@ -9,25 +9,18 @@
             <td><p><?php echo rbac_conf(array('INFO','uid'));?></p></td>
         </tr>     
         <tr>
-            <td class="tableleft">Gender</td>
-            <td>
-                <label><input name="gender" type="radio" value="Male" checked = <?php echo $data['gender']=="Male"?"":"checked" ?>/>Male</label>
-                <label><input name="gender" type="radio" value="Female" checked = <?php echo $data['gender']=="Male"?"":"checked" ?>/>Female</label>
-            </td>
+            <td class="tableleft">Old password</td>
+            <td><input name="password" type="password" class="form-control" ></td>
         </tr>
         <tr>
-            <td class="tableleft">Email</td>
-            <td><input name="email" type="text" class="form-control" value="<?php echo $data['email']; ?>"></td>
+            <td class="tableleft">New password</td>
+            <td><input name="password1" type="password" class="form-control" ></td>
         </tr>
         <tr>
-            <td class="tableleft">Phone</td>
-            <td><input name="phone" type="text" class="form-control" value="<?php echo $data['phone']; ?>"></td>
-        </tr>
-        <tr>
-            <td class="tableleft">Birthday</td>
-            <td><input name="birth" type="text" class="form-control" value="<?php echo $data['birth']; ?>"></td>
+            <td class="tableleft">Repeat new password</td>
+            <td><input name="password2" type="password" class="form-control" ></td>
         </tr>
     </table>
-    <button type="submit" class="btn btn-success">确认修改</button> 
-     <a class="btn btn-danger" href="<?php echo site_url('info/profile/index'); ?>">取消修改</a> 
+    <button type="submit" class="btn btn-success">Save</button> 
+     <a class="btn btn-danger" href="<?php echo site_url('info/profile/index'); ?>">Cancel</a> 
 </form>
