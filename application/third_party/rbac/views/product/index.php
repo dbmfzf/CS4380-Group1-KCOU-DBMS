@@ -13,8 +13,8 @@
               <p><b>Gender:</b> <?php echo $data['gender'];?> </p>
               <p><b>Role:</b> <?php echo $data['role'];?> </p>
               <p><b>Department:</b> <?php echo $data['dept'];?> </p>
-              <p><b>Last login time:</b> <?php echo $data['last_login_time'];?> </p>
-              <p><b>Last login ip:</b> <?php echo $data['last_login_ip'];?> </p>
+              <p><b>Last login time:</b> </br><?php echo $data['last_login_time'];?> </p>
+              <p><b>Last login ip:</b> </br><?php echo $data['last_login_ip'];?> </p>
               <p><a class="btn btn-default" href="product/index/edit" role="button">View/Edit &raquo;</a></p>
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
