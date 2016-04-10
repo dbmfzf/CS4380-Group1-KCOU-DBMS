@@ -10,7 +10,7 @@
         </tr>     
         <tr>
             <td class="tableleft">Old password</td>
-            <td><input name="password" type="password" class="form-control" ></td>
+            <td><input name="password" type="password" value ="<?php echo $data['password'] ?>" class="form-control" ></td>
         </tr>
         <tr>
             <td class="tableleft">New password</td>
