@@ -5,7 +5,7 @@
  * @author		toryzen
  * @link		http://www.toryzen.com
  */
-class User extends CI_Controller {
+class Profile extends CI_Controller {
 	
 	function __construct(){
 		parent::__construct();
