@@ -1,7 +1,7 @@
 <style>
 .tableleft{font-weight:bold;background-color:#F5F5F5;}
 </style>
-<h2>Profile</h2>
+<h2>Edit profile</h2>
 <form action="" method="post"> 
     <table class="table table-bordered table-hover definewidth m10">
         <tr>
