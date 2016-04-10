@@ -19,7 +19,7 @@ class User extends CI_Controller {
 	{
 		$uid = rbac_conf(array('INFO','uid'));
 		
-		$user_query = $this->db->query("SELECT fullname,gender FROM User WHERE uid = '".$uid."' limit 1");
+		$user_query = $this->db->query("SELECT fullname,gender,birth,email,phone FROM User WHERE uid = '".$uid."' limit 1");
 		$user_data = $user_query -> row_array();
 		 
 		$role_query = $this->db->query("SELECT name from Role R, User U where U.rid = R.rid and U.uid = '".$uid."' limit 1");
@@ -33,7 +33,10 @@ class User extends CI_Controller {
 		
 		$data['fullname'] = $user_data['fullname'];
 		$data['gender'] = $user_data['gender'];
+		$data['email'] = $user_data['email'];
+		$data['phone'] = $user_data['phone'];
 		$data['role'] = $role_data['name'];
+		$data['birth'] = $user_data['bitrh'];
 		$dept_data['name'] == NULL?$data['dept'] = "No department!":$data['dept'] = $dept_data['name'];
 		$login_data['date_time'] ==NULL?$data['last_login_time'] = "First login!":$data['last_login_time'] = $login_data['date_time'];
 		$login_data['ip']== NULL?$data['last_login_ip'] = "First login!":$data['last_login_ip'] = $login_data['ip'];
@@ -47,39 +50,27 @@ class User extends CI_Controller {
 	 */
 	public function edit(){
 		$uid = rbac_conf(array('INFO','uid')); 
-		$query = $this->db->query("SELECT U.*,name FROM User U LEFT JOIN Role R ON R.rid = U.rid WHERE U.uid = '".$uid."'");
+		$query = $this->db->query("SELECT fullname,gender,email,phone,birth FROM User uid = '".$uid."'");
 		$data = $query->row_array();
-		$role_query = $this->db->query("SELECT rid,name FROM Role WHERE status = 1");
-		$role_data = $role_query->result();
 		if($data){
 			if($this->input->post()){
-				$uid = $this->input->post("uid");
-				$fullname = $this->input->post("fullname");
+				$gender = $this->input->post("gender");
 				$email = $this->input->post("email");
-				$role = $this->input->post("role");
-				$status = $this->input->post("status");
-				$password = $this->input->post("password");
-				$password2 = $this->input->post("password2");
+				$phone = $this->input->post("phone");
+				$birth = $this->input->post("birth");
 				if($uid!=""){
-					if($password==$password2){
-						if($uid){
-							if($password){$newpass = ",password='".md5($password2)."'";}else{$newpass="";}
-							if($status){$newstat = ",status='1'";}else{$newstat = ",status='0'";}
-							if($role){$newrole = ",rid={$role}";}else{$newrole = ",rid=NULL";}
-							$sql = "UPDATE User set fullname='{$fullname}',email='{$email}' {$newpass} {$newstat} {$newrole} WHERE uid = '{$uid}'";
-							$this->db->query($sql);
-							success_redirct("info/profile/index","Edit successful!");
-						}else{
-							error_redirct("","The user's information is not complete!");
-						}
+					if($uid&&$gender&&$email&&$phone&&$birth){
+						$sql = "UPDATE User set gender = '{$gender}', email='{$email}', phone='{$phone}',birth = '{$birth}' WHERE uid = '{$uid}'";
+						$this->db->query($sql);
+						success_redirct("info/profile/index","Edit successful!");
 					}else{
-						error_redirct("","Invaild password!");
+						error_redirct("","The user's information is not complete!");
 					}
 				}else{
 					error_redirct("","No user is found!");
 				}
 			}
-			$this->load->view("info/profile/edit",array("data"=>$data,"role_data"=>$role_data));
+			$this->load->view("info/profile/edit",array("data"=>$data);
 		}else{
 			error_redirct("info/profile/index","No user is found!");
 		}
@@ -89,43 +80,28 @@ class User extends CI_Controller {
 	 */
 	public function reset(){
 		$uid = rbac_conf(array('INFO','uid'));
-		$role_query = $this->db->query("SELECT rid,name FROM Role WHERE status = 1");
-		$role_data = $role_query->result();
-		if($this->input->post()){
-			$uid = $this->input->post("uid");
-			$fullname = $this->input->post("fullname");
-			$email = $this->input->post("email");
-			$role = $this->input->post("role");
-			$status = $this->input->post("status");
-			$password = md5($this->input->post("password"));
+		$query = $this->db->query("SELECT password FROM User WHERE uid = '".$uid."'");
+		$data = $query->row_array();
+		if($uid!=""){
+			$password = $data['password'];
+			$password1 = md5($this->input->post("password1"));
 			$password2 = md5($this->input->post("password2"));
-			if($password==$password2){
-				if($uid&&$fullname&&$email&&$password2){
-					$query = $this->db->query("SELECT * FROM User WHERE uid = '".$uid."'");
-					$data = $query->row_array();
-					if(!$data){
-						$query = $this->db->query("SELECT * FROM User WHERE email = '".$email."'");
-						$data = $query->row_array();
-						if(!$data){
-							if(!$status){$newstat = "0";}else{$newstat = "1";}
-							$sql = "INSERT INTO User (uid,fullname,email,password,rid,status) values('{$uid}','{$fullname}','{$email}' ,'{$password2}','{$role}', '{$status}')";
-							$this->db->query($sql);
-							success_redirct("info/profile/index","Add successful!");
-						}else{
-							error_redirct("","The email already exists!");
-						}
-					}else{
-						error_redirct("","The user ID already exists!");
-					}
-					
+			if($password==$password1){
+				if($password1==$password2){
+					$sql = "UPDATE User SET password = '{$password1}' WHERE uid = '".$uid."'";
+					$this->db->query($sql);
+					success_redirct("info/profile/index","Reset successful!");
 				}else{
-					error_redirct("","The user's information is not complete!");
+					error_redirct("","Repeat the wrong password!");
 				}
 			}else{
-				error_redirct("","Invalid password!");
+				error_redirct("","Old password doesn't match!");
 			}
+		}else{
+			error_redirct("","No user is found!");
 		}
-		$this->load->view("info/profile/reset",array("role_data"=>$role_data));
+		
+		$this->load->view("info/profile/reset",array("data"=>$data));
 	}
 
 }
