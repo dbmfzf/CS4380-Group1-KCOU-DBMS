@@ -8,13 +8,13 @@
           <div class="row">
             <div class="col-6 col-sm-6 col-lg-4">
               <h2>Profile</h2>
-              <p>User ID: <?php echo rbac_conf(array('INFO','uid'));?> </p>
-              <p>Fullname: <?php echo $data['fullname'];?> </p>
-              <p>Gender: <?php echo $data['gender'];?> </p>
-              <p>Role: <?php echo $data['role'];?> </p>
-              <p>Department: <?php echo $data['dept'];?> </p>
-              <p>Last login time: <?php echo $data['last_login_time'];?> </p>
-              <p>Last login ip: <?php echo $data['last_login_ip'];?> </p>
+              <p><b>User ID:</b> <?php echo rbac_conf(array('INFO','uid'));?> </p>
+              <p><b>Fullname:</b> <?php echo $data['fullname'];?> </p>
+              <p><b>Gender:</b> <?php echo $data['gender'];?> </p>
+              <p><b>Role:</b> <?php echo $data['role'];?> </p>
+              <p><b>Department:</b> <?php echo $data['dept'];?> </p>
+              <p><b>Last login time:</b> <?php echo $data['last_login_time'];?> </p>
+              <p><b>Last login ip:</b> <?php echo $data['last_login_ip'];?> </p>
               <p><a class="btn btn-default" href="product/index/edit" role="button">View/Edit &raquo;</a></p>
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
