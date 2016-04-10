@@ -41,7 +41,6 @@ class Profile extends CI_Controller {
 		$login_data['date_time'] ==NULL?$data['last_login_time'] = "First login!":$data['last_login_time'] = $login_data['date_time'];
 		$login_data['ip']== NULL?$data['last_login_ip'] = "First login!":$data['last_login_ip'] = $login_data['ip'];
 		
-		$data = $query->result();
 		$this->load->view("info/profile",array("data"=>$data));
 	}
 	/**
