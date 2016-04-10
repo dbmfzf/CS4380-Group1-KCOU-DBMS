@@ -2,50 +2,33 @@
 .tableleft{font-weight:bold;background-color:#F5F5F5;}
 </style>
 <h2>Profile</h2>
+<form action="" method="post"> 
     <table class="table table-bordered table-hover definewidth m10">
         <tr>
             <td width = "15%" class="tableleft">User ID</td>
             <td><p><?php echo rbac_conf(array('INFO','uid'));?></p></td>
         </tr>     
         <tr>
-            <td class="tableleft">Full name</td>
-            <td><p><?php echo $data['fullname'];?></p></td>
-        </tr>
-        <tr>
             <td class="tableleft">Gender</td>
-            <td><p><?php echo $data['gender'];?></p></td>
+            <td>
+                <label><input name="gender" type="radio" value="Male" checked = <?php echo $data['gender']=="Male"?"":"checked" ?>/>Male</label>
+                <label><input name="gender" type="radio" value="Female" checked = <?php echo $data['gender']=="Male"?"":"checked" ?>/>Female</label>
+            </td>
         </tr>
         <tr>
             <td class="tableleft">Email</td>
-            <td><p><?php echo $data['email'];?></p></td>
+            <td><input name="email" type="text" class="form-control" value="<?php echo $data['email']; ?>"></td>
         </tr>
         <tr>
             <td class="tableleft">Phone</td>
-            <td><p><?php echo $data['phone'];?></p></td>
+            <td><input name="phone" type="text" class="form-control" value="<?php echo $data['phone']; ?>"></td>
         </tr>
         <tr>
             <td class="tableleft">Birthday</td>
-            <td><p><?php echo $data['birth'];?></p></td>
-        </tr>
-        <tr>
-            <td class="tableleft">Role</td>
-            <td><p><?php echo $data['role'];?></p></td>
-        </tr>
-         <tr>
-            <td class="tableleft">Department</td>
-            <td><p><?php echo $data['dept'];?></p></td>
-        </tr>
-         <tr>
-            <td class="tableleft">Last login time</td>
-            <td><p><?php echo $data['last_login_time'];?></p></td>
-        </tr>
-        <tr>
-            <td class="tableleft">Last login ip</td>
-            <td><p><?php echo $data['last_login_ip'];?></p></td>
+            <td><input name="phone" type="text" class="form-control" value="<?php echo $data['birthday']; ?>"></td>
         </tr>
     </table>
-<hr/>
-<a class="btn btn-warning pull-right" href="<?php echo '.site_url("info/profile/reset").';?>">Reset password</a>
-&nbsp;&nbsp;&nbsp;
-<a class="btn btn-success pull-right" href="<?php echo '.site_url("info/profile/edit").';?>">Edit profile</a>
-&nbsp;&nbsp;&nbsp;
+    <button type="submit" class="btn btn-success">确认修改</button> 
+     <a class="btn btn-danger" href="<?php echo site_url('info/profile/index'); ?>">取消修改</a> 
+</form>
+
