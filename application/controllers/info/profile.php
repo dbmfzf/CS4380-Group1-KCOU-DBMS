@@ -81,26 +81,31 @@ class Profile extends CI_Controller {
 		$uid = rbac_conf(array('INFO','uid'));
 		$query = $this->db->query("SELECT password FROM User WHERE uid = '".$uid."'");
 		$data = $query->row_array();
-		if($uid!=""){
-			$password = $data['password'];
-			$password1 = md5($this->input->post("password1"));
-			$password2 = md5($this->input->post("password2"));
-			if($password==$password1){
-				if($password1==$password2){
-					$sql = "UPDATE User SET password = '{$password1}' WHERE uid = '".$uid."'";
-					$this->db->query($sql);
-					success_redirct("info/profile/index","Reset successful!");
+		$password = $data['password'];
+		if($data){
+			if($this->input->post()){
+				$password1 = md5($this->input->post("password1"));
+				$password2 = md5($this->input->post("password2"));
+				if($uid!=""){
+					if($password==$password1){
+						if($password1==$password2){
+							$sql = "UPDATE User SET password = '{$password1}' WHERE uid = '".$uid."'";
+							$this->db->query($sql);
+							success_redirct("info/profile/index","Reset successful!");
+						}else{
+							error_redirct("","Repeat the wrong password!");
+						}
+					}else{
+						error_redirct("","Old password doesn't match!");
+					}
 				}else{
-					error_redirct("","Repeat the wrong password!");
+					error_redirct("","No user is found!");
 				}
-			}else{
-				error_redirct("","Old password doesn't match!");
 			}
+			$this->load->view("info/profile/reset");
 		}else{
-			error_redirct("","No user is found!");
+			error_redirct("info/profile/index","No user is found!");
 		}
-		
-		$this->load->view("info/profile/reset");
 	}
 
 }
