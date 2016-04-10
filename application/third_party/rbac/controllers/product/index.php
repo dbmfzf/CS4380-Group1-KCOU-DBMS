@@ -42,9 +42,9 @@ class Index extends CI_Controller {
 		$dept_data['name'] == NULL?$data['dept'] = "No department!":$data['dept'] = $dept_data['name'];
 		$login_data['date_time'] ==NULL?$data['last_login_time'] = "First login!":$data['last_login_time'] = $login_data['date_time'];
 		$login_data['ip']== NULL?$data['last_login_ip'] = "First login!":$data['last_login_ip'] = $login_data['ip'];
-		$most_recently_searched['song_path'] == NULL?$data['most_rencently_path'] = "#":$data['most_rencently_path'] = $most_recently_searched['song_path'];;
+		$most_recently_searched['song_path'] == NULL?$data['most_rencently_path'] = "":$data['most_rencently_path'] = $most_recently_searched['song_path'];;
 		$most_recently_searched['song_title'] == NULL?$data['most_rencently_title'] = "No search record!":$data['most_rencently_title'] = $most_recently_searched['song_title'];
-		$most_searched['song_path'] == NULL?$data['most_path'] = "#":$data['most_path'] = $most_recently_searched['song_path'];;
+		$most_searched['song_path'] == NULL?$data['most_path'] = "":$data['most_path'] = $most_recently_searched['song_path'];;
 		$most_searched['song_title'] == NULL?$data['most_title'] = "No search record!":$data['most_title'] = $most_recently_searched['song_title'];
 		
 		$this->load->view("product/index",array("data"=>$data));
