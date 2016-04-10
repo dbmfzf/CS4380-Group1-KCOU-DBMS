@@ -7,7 +7,7 @@
           </div>
           <div class="row">
             <div class="col-6 col-sm-6 col-lg-4">
-              <div style="background-color:#93DB70"><h2 >Profile</h2></div>
+              <div style="background-color:#93DB70;border-radius:5px"><h2 aalign="center">Profile</h2></div>
               <div style="border:1px solid #93DB70;border-radius:5px">
               <p>&nbsp;&nbsp;&nbsp;<b>User ID:</b> <?php echo rbac_conf(array('INFO','uid'));?> </p>
               <p>&nbsp;&nbsp;&nbsp;<b>Fullname:</b> <?php echo $data['fullname'];?> </p>
