@@ -49,7 +49,7 @@ class Profile extends CI_Controller {
 	 */
 	public function edit(){
 		$uid = rbac_conf(array('INFO','uid')); 
-		$query = $this->db->query("SELECT fullname,gender,email,phone,birth FROM User uid = '".$uid."'");
+		$query = $this->db->query("SELECT fullname,gender,email,phone,birth FROM User WHERE uid = '{$uid}'");
 		$data = $query->row_array();
 		if($data){
 			if($this->input->post()){
