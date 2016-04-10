@@ -25,7 +25,7 @@
         </tr>
         <tr>
             <td class="tableleft">Birthday</td>
-            <td><input name="phone" type="text" class="form-control" value="<?php echo $data['birthday']; ?>"></td>
+            <td><input name="phone" type="text" class="form-control" value="<?php echo $data['birth']; ?>"></td>
         </tr>
     </table>
     <button type="submit" class="btn btn-success">确认修改</button> 
