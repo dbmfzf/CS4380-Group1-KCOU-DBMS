@@ -27,7 +27,7 @@
                 Most recently searched song:
                 <?php 
                   if($data['most_rencently_path']!=""){
-                    echo "<a target='_blank' href=$data['most_rencently_path']>$data['most_rencently_title']"</a>;
+                    echo "<a target="_blank" href=$data['most_rencently_path']>$data['most_rencently_title']"</a>;
                   }
                   else {
                     echo $data['most_rencently_title'];
@@ -38,7 +38,7 @@
                 Most searched song:
                 <?php 
                   if($data['most_path']!=""){
-                    echo "<a target='_blank' href=$data['most_path']>$data['most_title']</a>";
+                    echo "<a target="_blank" href=$data['most_path']>$data['most_title']</a>";
                   }
                   else {
                     echo $data['most_title'];
