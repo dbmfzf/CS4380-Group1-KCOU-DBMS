@@ -23,7 +23,7 @@
                  <input name = "search_song" type = "text" class="form-control" placeholder="Please input song title here">
                  <button type="submit" class="btn btn-success">GO!</button>
                  <p>Most recently searched song: <a target="_blank" href="<?php echo $data['most_rencently_path'] ?>"><?php echo $data['most_rencently_title'];?></a></p>
-                 <p>Most searched song: <a target="_blank" href="<?php echo $data['most_path'] ?>"><?php echo $data['most_title'];?></a>?> </p>
+                 <p>Most searched song: <a target="_blank" href="<?php echo $data['most_path'] ?>"><?php echo $data['most_title'];?></a></p>
               </form>
               <p><a class="btn btn-default" href="#" role="button">More &raquo;</a></p>
             </div><!--/span-->
