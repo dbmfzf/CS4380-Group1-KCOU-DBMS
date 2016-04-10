@@ -24,11 +24,11 @@
                  <p align = "right"><button type="submit" class="btn btn-success">GO!</button></p>
               </form>
               <p>
-                Most recently searched song:
+                <b>Most recently searched song:</b>
                 <?php echo $data['most_rencently_title'];?>
               </p>
               <p>
-                Most searched song:
+                <b>Most searched song:</b>
                 <?php echo $data['most_title'];?>
               </p>
               <p><a class="btn btn-default" href="#" role="button">More &raquo;</a></p>
