@@ -17,15 +17,15 @@
         </tr>
         <tr>
             <td class="tableleft">Email</td>
-            <td><input name="email" type="text" class="form-control" value="<?php echo $data['email']; ?>"></td>
+            <td><input name="email" type="email" class="form-control" value="<?php echo $data['email']; ?>"></td>
         </tr>
         <tr>
             <td class="tableleft">Phone</td>
-            <td><input name="phone" type="text" class="form-control" value="<?php echo $data['phone']; ?>"></td>
+            <td><input name="phone" type="number" class="form-control" value="<?php echo $data['phone']; ?>"></td>
         </tr>
         <tr>
             <td class="tableleft">Birthday</td>
-            <td><input name="birth" type="text" class="form-control" value="<?php echo $data['birth']; ?>"></td>
+            <td><input name="birth" type="date" class="form-control" value="<?php echo $data['birth']; ?>"></td>
         </tr>
     </table>
     <button type="submit" class="btn btn-success">Save</button> 
