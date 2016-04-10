@@ -81,13 +81,13 @@ class Profile extends CI_Controller {
 		$uid = rbac_conf(array('INFO','uid'));
 		$query = $this->db->query("SELECT password FROM User WHERE uid = '".$uid."'");
 		$data = $query->row_array();
-		$password = $data['password'];
 		if($data){
 			if($this->input->post()){
+				$password = md5($this->input->post("password"));
 				$password1 = md5($this->input->post("password1"));
 				$password2 = md5($this->input->post("password2"));
 				if($uid!=""){
-					if($password==$password1){
+					if($password==$data['password']){
 						if($password1==$password2){
 							$sql = "UPDATE User SET password = '{$password1}' WHERE uid = '".$uid."'";
 							$this->db->query($sql);
