@@ -40,8 +40,8 @@ class Node extends CI_Controller {
 	 */
 	public function add($directory=NULL,$controller=NULL,$func=NULL){
 		if($this->input->post()){
-			$directory = $this->input->post("directory")?$this->input->post("directory"):$dirc;
-			$controller = $this->input->post("controller")?$this->input->post("controller"):$cont;
+			$directory = $this->input->post("directory")?$this->input->post("directory"):$directory;
+			$controller = $this->input->post("controller")?$this->input->post("controller"):$controller;
 			$func    = $this->input->post("func");
 			$memo   = $this->input->post("memo");
 			$status   = $this->input->post("status")==1?1:0;
