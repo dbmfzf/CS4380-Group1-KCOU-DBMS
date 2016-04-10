@@ -44,8 +44,8 @@
             <td><p><?php echo $data['last_login_ip'];?></p></td>
         </tr>
     </table>
+
 <hr/>
-<a class="btn btn-warning pull-right" href="<?php echo '.site_url("info/profile/reset").';?>">Reset password</a>
-&nbsp;&nbsp;&nbsp;
-<a class="btn btn-success pull-right" href="<?php echo '.site_url("info/profile/edit").';?>">Edit profile</a>
-&nbsp;&nbsp;&nbsp;
+<a class="btn btn-warning pull-right" href=<?php echo '.site_url("info/profile/reset").';?>>Reset password</a>
+<a class="btn btn-success pull-right" href=<?php echo '.site_url("info/profile/edit").';?>>Edit profile</a>
+
