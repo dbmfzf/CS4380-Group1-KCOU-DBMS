@@ -5,7 +5,7 @@
 <form action="" method="post"> 
     <table class="table table-bordered table-hover definewidth m10">
         <tr>
-            <td width = "15%" class="tableleft">User ID</td>
+            <td width = "20%" class="tableleft">User ID</td>
             <td><p><?php echo rbac_conf(array('INFO','uid'));?></p></td>
         </tr>     
         <tr>
