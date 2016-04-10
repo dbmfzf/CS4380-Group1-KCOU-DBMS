@@ -10,6 +10,11 @@
               <h2>Profile</h2>
               <p>User ID: <?php echo rbac_conf(array('INFO','uid'));?> </p>
               <p>Fullname: <?php echo $data['fullname'];?> </p>
+              <p>Gender: <?php echo $data['gender'];?> </p>
+              <p>Role: <?php echo $data['role'];?> </p>
+              <p>Department: <?php echo $data['dept'];?> </p>
+              <p>Last login time: <?php echo $data['data_time'];?> </p>
+              <p>Last login ip: <?php echo $data['login_ip'];?> </p>
               <p><a class="btn btn-default" href="product/index/edit" role="button">View/Edit &raquo;</a></p>
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
