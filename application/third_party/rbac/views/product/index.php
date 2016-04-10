@@ -25,25 +25,11 @@
               </form>
               <p>
                 Most recently searched song:
-                <?php 
-                  if($data['most_rencently_path']!=""){
-                    echo "<a href='$data['most_rencently_path']'>$data['most_rencently_title']</a>";
-                  }
-                  else {
-                    echo $data['most_rencently_title'];
-                  }
-                ?>
+                <?php echo $data['most_rencently_title'];?>
               </p>
               <p>
                 Most searched song:
-                <?php 
-                  if($data['most_path']!=""){
-                    echo "<a href=$data['most_path']>$data['most_title']</a>";
-                  }
-                  else {
-                    echo $data['most_title'];
-                  }
-                ?>
+                <?php echo $data['most_title'];?>
               </p>
               <p><a class="btn btn-default" href="#" role="button">More &raquo;</a></p>
             </div><!--/span-->
