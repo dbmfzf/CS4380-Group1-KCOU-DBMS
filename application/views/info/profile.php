@@ -6,7 +6,7 @@
     <table class="table table-bordered table-hover definewidth m10">
         <tr>
             <td class="tableleft">User ID</td>
-            <td><p><?php echo $data['uid'];?></p></td>
+            <td><p><?php echo rbac_conf(array('INFO','uid'));?></p></td>
         </tr>     
         <tr>
             <td class="tableleft">Full name</td>
