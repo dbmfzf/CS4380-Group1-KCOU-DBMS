@@ -36,7 +36,7 @@ class Rbac {
 					//验证是否登录
 					//echo rbac_conf(array('INFO','uid'));
 					if(!rbac_conf(array('INFO','uid'))){
-						error_redirct($this->ci_obj->config->item('rbac_auth_gateway'),"请先登录！");
+						error_redirct($this->ci_obj->config->item('rbac_auth_gateway'),"Please login first!");
 						die();
 					}
 					if($this->ci_obj->config->item('rbac_auth_type')==2){//若为实时认证
@@ -52,7 +52,7 @@ class Rbac {
 					
 					//验证ACL权限
 					if(!rbac_conf(array('ACL',$directory,$controller,$function))){
-						error_redirct("","无权访问此节点！(".$directory."/".$controller."/".$function.")");
+						error_redirct("","You have no authority to do that!(".$directory."/".$controller."/".$function.")");
 						die();
 					}
 				}
