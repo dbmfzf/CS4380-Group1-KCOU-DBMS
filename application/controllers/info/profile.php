@@ -70,7 +70,7 @@ class User extends CI_Controller {
 					error_redirct("","No user is found!");
 				}
 			}
-			$this->load->view("info/profile/edit",array("data"=>$data);
+			$this->load->view("info/profile/edit",array("data"=>$data));
 		}else{
 			error_redirct("info/profile/index","No user is found!");
 		}
