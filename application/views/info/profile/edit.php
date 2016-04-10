@@ -28,7 +28,7 @@
             <td><input name="birth" type="text" class="form-control" value="<?php echo $data['birth']; ?>"></td>
         </tr>
     </table>
-    <button type="submit" class="btn btn-success">确认修改</button> 
-     <a class="btn btn-danger" href="<?php echo site_url('info/profile/index'); ?>">取消修改</a> 
+    <button type="submit" class="btn btn-success">Save</button> 
+     <a class="btn btn-danger" href="<?php echo site_url('info/profile/index'); ?>">Cancel</a> 
 </form>
 
