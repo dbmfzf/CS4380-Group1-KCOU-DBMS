@@ -1,6 +1,4 @@
 <style>
-.table td:first-child{width:10%}
-.table td:nth-child(2){width:20%}
 .tableleft{font-weight:bold;}
 </style>
 <h2>Profile</h2>
