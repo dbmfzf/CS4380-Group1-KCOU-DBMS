@@ -1,5 +1,5 @@
 <style>
-.tableleft{font-weight:bold;}
+.tableleft{font-weight:bold;background-color:#F5F5F5;}
 </style>
 <h2>Profile</h2>
     <table class="table table-bordered table-hover definewidth m10">
