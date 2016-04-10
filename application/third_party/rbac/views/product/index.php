@@ -21,10 +21,10 @@
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
               <div style="background-color:#EAADEA;border-radius:5px"><h2 align="center">Music</h2></div>
-              <div style="border:1px solid #EAADEA;border-radius:5px">
+              <div style="border:1px solid #EAADEA;border-radius:5px;padding:5px">
               <form role="form" action="" method="post">
                  <p><input name = "search_song" type = "text" class="form-control" placeholder="Please input song title here"></p>
-                 <p align = "right"><button type="submit" class="btn btn-success">GO!</button></p>
+                 <p align = "right"><button type="submit" class="btn btn-default">GO!</button></p>
               </form>
               <p>
                 <b>Most recently searched song:</b>
