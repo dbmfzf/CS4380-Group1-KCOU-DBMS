@@ -4,7 +4,7 @@
 <h2>Profile</h2>
     <table class="table table-bordered table-hover definewidth m10">
         <tr>
-            <td width = "10%" class="tableleft">User ID</td>
+            <td width = "20%" class="tableleft">User ID</td>
             <td><p><?php echo rbac_conf(array('INFO','uid'));?></p></td>
         </tr>     
         <tr>
