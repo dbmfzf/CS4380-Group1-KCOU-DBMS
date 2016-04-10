@@ -38,18 +38,18 @@ class Node extends CI_Controller {
 	 * @param string $cont
 	 * @param string $func
 	 */
-	public function add($dirc=NULL,$cont=NULL,$func=NULL){
+	public function add($directory=NULL,$controller=NULL,$func=NULL){
 		if($this->input->post()){
-			$dirc = $this->input->post("dirc")?$this->input->post("dirc"):$dirc;
-			$cont = $this->input->post("cont")?$this->input->post("cont"):$cont;
+			$directory = $this->input->post("directory")?$this->input->post("directory"):$dirc;
+			$controller = $this->input->post("controller")?$this->input->post("controller"):$cont;
 			$func    = $this->input->post("func");
 			$memo   = $this->input->post("memo");
 			$status   = $this->input->post("status")==1?1:0;
-			if($dirc&&$cont&&$func&&$memo){
-				$query = $this->db->query("SELECT node_id FROM Node WHERE directory = '".$dirc."' AND controller = '".$cont."' AND func = '".$func."'");
+			if($directory&&$controller&&$func&&$memo){
+				$query = $this->db->query("SELECT node_id FROM Node WHERE directory = '".$directory."' AND controller = '".$controller."' AND func = '".$func."'");
 				$data = $query->row_array();
 				if(!$data){
-					$sql = "INSERT INTO Node (directory,controller,func,status,memo) values('{$dirc}','{$cont}','{$func}','{$status}','{$memo}')";
+					$sql = "INSERT INTO Node (directory,controller,func,status,memo) values('{$directory}','{$controller}','{$func}','{$status}','{$memo}')";
 					//echo $sql;die();
 					$this->db->query($sql);
 					success_redirct('manage/node/index','节点添加成功！');
@@ -60,7 +60,7 @@ class Node extends CI_Controller {
 				error_redirct('',"信息填写不全！");
 			}
 		}
-		$this->load->view('manage/node/add',array('dirc'=>$dirc,'cont'=>$cont,'func'=>$func));
+		$this->load->view('manage/node/add',array('directory'=>$directory,'controller'=>$controller,'func'=>$func));
 	}
 	/**
 	 * 删除节点
@@ -68,13 +68,13 @@ class Node extends CI_Controller {
 	 * @param string $cont
 	 * @param string $func
 	 */
-	public function delete($dirc=NULL,$cont=NULL,$func=NULL){
-		if($dirc==NULL){error_redirct("manage/node/index","操作失败");}
+	public function delete($directory=NULL,$controller=NULL,$func=NULL){
+		if($directory==NULL){error_redirct("manage/node/index","操作失败");}
 		if($this->input->post()){
 			$verfiy = $this->input->post("verfiy");
 			if($verfiy){
-				$where_dirc = "directory = '{$dirc}'";
-				$where_cont = $cont==NULL?"":" AND controller = '{$cont}'";
+				$where_dirc = "directory = '{$directory}'";
+				$where_cont = $controller==NULL?"":" AND controller = '{$controller}'";
 				$where_func = $func==NULL?"":" AND func = '{$func}'";
 				$query = $this->db->query("SELECT GROUP_CONCAT(node_id) as nodeid FROM Node WHERE {$where_dirc} {$where_cont} {$where_func}");
 				$node_list = $query->row_array();
@@ -88,7 +88,7 @@ class Node extends CI_Controller {
 			}
 		
 		}
-		$this->load->view('manage/node/delete',array('dirc'=>$dirc,'cont'=>$cont,'func'=>$func));
+		$this->load->view('manage/node/delete',array('directory'=>$directory,'controller'=>$controller,'func'=>$func));
 	}
 	/**
 	 * 修改节点
