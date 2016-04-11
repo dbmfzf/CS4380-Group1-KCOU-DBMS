@@ -1,7 +1,7 @@
 <h1>Add new user</h1>
 <form role="form" action="" method="post">
   <div class="form-group">
-    <label>User serID</label>
+    <label>User ID</label>
     <input name="uid" type="text" class="form-control"  placeholder="Please input user ID here" value="">
   </div>
   <div class="form-group">
