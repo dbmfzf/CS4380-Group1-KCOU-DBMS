@@ -75,8 +75,8 @@
     $(document).ready(function() {
         var role = document.getElementByID("role");
         var index = role.selectedIndex;
-        var rolename = role.options[index].text
-        if(role!=31)
+        var rolename = role.options[index].text;
+        if(role!="Volunteer")
             document.getElementById("dept").style.display='none';
         else
             document.getElementById("dept").style.display='block';
@@ -84,8 +84,9 @@
     function check(){
         var role = document.getElementByID("role");
         var index = role.selectedIndex;
-        var rolename = role.options[index].text
-        if(role!=31)
+        var rolename = role.options[index].text;
+        alert(role);
+        if(role!="Volunteer")
             document.getElementById("dept").style.display='none';
         else
             document.getElementById("dept").style.display='block';
