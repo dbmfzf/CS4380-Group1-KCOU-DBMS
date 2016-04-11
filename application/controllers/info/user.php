@@ -12,14 +12,14 @@ class User extends CI_Controller {
 		$this->load->database();
 	}
 	/**
-	 * 人员列表
+	 * User index
 	 * @param number $page
 	 */
 	public function index($page=1)
 	{
 		$query = $this->db->query("SELECT COUNT(1) as cnt FROM User");
 		$cnt_data = $query->row_array();
-		//分页
+		//page
 		$this->load->library('pagination');
 		$config['base_url'] = site_url("info/user/index");
 		$config['total_rows'] = $cnt_data['cnt'];
@@ -27,25 +27,47 @@ class User extends CI_Controller {
 		$config['uri_segment']= '4';
 		$config['use_page_numbers'] = TRUE;
 		$this->pagination->initialize($config);
-		$query = $this->db->query("SELECT U.*,name FROM User U LEFT JOIN Role R ON R.rid = U.rid LIMIT ".(($page-1)*$config['per_page']).",".$config['per_page']."");
+		$query = $this->db->query("SELECT U.uid,U.fullname,U.gender,U.email,U.phone,U.birth,U.status,R.name as rolename,D.name as deptname FROM Belongs_to B, Department D, User U, Role R WHERE R.rid = U.rid AND B.uid = U.uid AND B.did = D.did LIMIT ".(($page-1)*$config['per_page']).",".$config['per_page']."");
 		$data = $query->result();
 		$this->load->view("info/user",array("data"=>$data));
 	}
 	/**
-	 * 人员修改
+	 * Edit users
 	 * @param number $uid
 	 */
 	public function edit($uid){
-		$query = $this->db->query("SELECT U.*,name FROM User U LEFT JOIN Role R ON R.rid = U.rid WHERE U.uid = '".$uid."'");
-		$data = $query->row_array();
+		$user_query = $this->db->query("SELECT uid,fullname,gender,birth,email,phone FROM User WHERE uid = '".$uid."' limit 1");
+		$user_data = $user_query -> row_array();
+		 
+		$role = $this->db->query("SELECT name from Role R, User U where U.rid = R.rid and U.uid = '".$uid."' limit 1");
+		$current_role = $role -> row_array();
+		
+		$dept = $this->db->query("SELECT name from Department D, Belongs_to B, User U where U.uid = B.uid and D.did = B.did and U.uid = '".$uid."' limit 1");
+		$current_dept = $dept -> row_array();
+		
+		$data['fullname'] = $user_data['fullname'];
+		$data['gender'] = $user_data['gender'];
+		$data['email'] = $user_data['email'];
+		$data['phone'] = $user_data['phone'];
+		$data['birth'] = $user_data['birth'];
+		$data['role'] = $current_role['name'];
+		$dept_data['name'] == NULL?$data['dept'] = "No department!":$data['dept'] = $dept_data['name'];
+		
 		$role_query = $this->db->query("SELECT rid,name FROM Role WHERE status = 1");
 		$role_data = $role_query->result();
+		$dept_query = $this->db->query("SELECT did,name FROM Department");
+		$dept_data = $dept_query->result();
+		
 		if($data){
 			if($this->input->post()){
 				$uid = $this->input->post("uid");
 				$fullname = $this->input->post("fullname");
+				$gender = $this->input->post("gender");
 				$email = $this->input->post("email");
+				$phone = $this->input->post("phone");
+				$birth = $this->input->post("birth");
 				$role = $this->input->post("role");
+				$dept = $this->input->post("dept");
 				$status = $this->input->post("status");
 				$password = $this->input->post("password");
 				$password2 = $this->input->post("password2");
@@ -55,38 +77,50 @@ class User extends CI_Controller {
 							if($password){$newpass = ",password='".md5($password2)."'";}else{$newpass="";}
 							if($status){$newstat = ",status='1'";}else{$newstat = ",status='0'";}
 							if($role){$newrole = ",rid={$role}";}else{$newrole = ",rid=NULL";}
+							if($dept){$newdept = ",did={$dept}";}else{$newdept = ",did=NULL";}
 							$sql = "UPDATE User set fullname='{$fullname}',email='{$email}' {$newpass} {$newstat} {$newrole} WHERE uid = '{$uid}'";
 							$this->db->query($sql);
+							$dsql = "UPDATE Belongs_to set {$newdept} WHERE uid = '{$uid}'";
+							$this->db->query($dsql);
 							success_redirct("info/user/index","Edit successful!");
 						}else{
 							error_redirct("","The user's information is not complete!");
 						}
 					}else{
-						error_redirct("","Invaild password!");
+						error_redirct("","Repeat the wrong password!");
 					}
 				}else{
 					error_redirct("","No user is found!");
 				}
 			}
-			$this->load->view("info/user/edit",array("data"=>$data,"role_data"=>$role_data));
+			$this->load->view("info/user/edit",array("data"=>$data,"role_data"=>$role_data,"dept_data"=>$dept_data));
 		}else{
 			error_redirct("info/user/index","No user is found!");
 		}
 	}
 	/**
-	 * 人员增加
+	 * Add users
 	 */
 	public function add(){
+		
 		$role_query = $this->db->query("SELECT rid,name FROM Role WHERE status = 1");
 		$role_data = $role_query->result();
+		
+		$dept_query = $this->db->query("SELECT did,name FROM Department");
+		$dept_data = $dept_query->result();
+		
 		if($this->input->post()){
 			$uid = $this->input->post("uid");
 			$fullname = $this->input->post("fullname");
+			$gender = $this->input->post("gender");
 			$email = $this->input->post("email");
+			$phone = $this->input->post("phone");
+			$birth = $this->input->post("birth");
 			$role = $this->input->post("role");
+			$dept = $this->input->post("dept");
 			$status = $this->input->post("status");
-			$password = md5($this->input->post("password"));
-			$password2 = md5($this->input->post("password2"));
+			$password = $this->input->post("password");
+			$password2 = $this->input->post("password2");
 			if($password==$password2){
 				if($uid&&$fullname&&$email&&$password2){
 					$query = $this->db->query("SELECT * FROM User WHERE uid = '".$uid."'");
@@ -113,10 +147,10 @@ class User extends CI_Controller {
 				error_redirct("","Invalid password!");
 			}
 		}
-		$this->load->view("info/user/add",array("role_data"=>$role_data));
+		$this->load->view("info/user/add",array("role_data"=>$role_data,"dept_data"=>$dept_data));
 	}
 	/**
-	 * 人员删除
+	 * Delete users
 	 * @param number $id
 	 */
 	public function delete($uid){
@@ -130,7 +164,7 @@ class User extends CI_Controller {
 					$this->db->query($sql);
 					success_redirct("info/user/index","Delete successful!");
 				}else{
-					error_redirct("info/user/index","Delete faild!");
+					error_redirct("info/user/index","Delete failed!");
 				}
 			}
 			$this->load->view("info/user/delete",array("data"=>$data));
