@@ -36,7 +36,7 @@ class User extends CI_Controller {
 	 * @param number $uid
 	 */
 	public function edit($uid){
-		$user_query = $this->db->query("SELECT uid,fullname,gender,birth,email,phone FROM User WHERE uid = '".$uid."' limit 1");
+		$user_query = $this->db->query("SELECT uid,fullname,gender,birth,email,phone,status FROM User WHERE uid = '".$uid."' limit 1");
 		$user_data = $user_query -> row_array();
 		 
 		$role = $this->db->query("SELECT R.rid,name from Role R, User U where U.rid = R.rid and U.uid = '".$uid."' limit 1");
@@ -45,11 +45,14 @@ class User extends CI_Controller {
 		$dept = $this->db->query("SELECT D.did,name from Department D, Belongs_to B, User U where U.uid = B.uid and D.did = B.did and U.uid = '".$uid."' limit 1");
 		$current_dept = $dept -> row_array();
 		
+		$data['uid'] = $user_data['uid'];
 		$data['fullname'] = $user_data['fullname'];
 		$data['gender'] = $user_data['gender'];
 		$data['email'] = $user_data['email'];
 		$data['phone'] = $user_data['phone'];
 		$data['birth'] = $user_data['birth'];
+		$data['status'] = $user_data['status'];
+		
 		$data['role'] = $current_role['name'];
 		$data['rid'] = $current_role['rid'];
 		
