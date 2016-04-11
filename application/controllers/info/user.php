@@ -82,7 +82,7 @@ class User extends CI_Controller {
 							if($password){$newpass = ",password='".md5($password2)."'";}else{$newpass="";}
 							if($status){$newstat = ",status='1'";}else{$newstat = ",status='0'";}
 							if($role){$newrole = ",rid={$role}";}else{$newrole = ",rid=NULL";}
-							if($dept){$newdept = ",did={$dept}";}else{$newdept = ",did=NULL";}
+							if($dept){$newdept = "did={$dept}";}else{$newdept = ",did=NULL";}
 							$sql = "UPDATE User set fullname='{$fullname}',gender = '{$gender}',email='{$email}',phone = '{$phone}',birth = '{$birth}' {$newpass} {$newstat} {$newrole} WHERE uid = '{$uid}'";
 							$this->db->query($sql);
 							$dsql = "UPDATE Belongs_to set {$newdept} WHERE uid = '{$uid}'";
