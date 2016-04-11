@@ -73,21 +73,31 @@
 </form>
 <script >
     $(document).ready(function() {
+        var dept = document.getElementById('dept');
         var role = document.getElementById('role');
         var index = role.selectedIndex;
         var rolename = role.options[index].text;
-        if(rolename!="Volunteer")
-            document.getElementById('dept').style.display='none';
-        else
-            document.getElementById('dept').style.display='block';
+        if(rolename!="Volunteer"){
+            dept.style.display='none';
+            dept.disabled = true;
+        }
+        else{
+            dept.getElementById('dept').style.display='block';
+            dept.disabled = false;
+        }
     })
     function check(){
+        var dept = document.getElementById('dept')
         var role = document.getElementById('role');
         var index = role.selectedIndex;
         var rolename = role.options[index].text;
-        if(rolename!="Volunteer")
-            document.getElementById('dept').style.display='none';
-        else
-            document.getElementById('dept').style.display='block';
+        if(rolename!="Volunteer"){
+            dept.style.display='none';
+            dept.disabled = true;
+        }
+        else{
+            dept.getElementById('dept').style.display='block';
+            dept.disabled = false;
+        }
     }
 </script>
