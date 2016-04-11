@@ -124,11 +124,11 @@ class User extends CI_Controller {
 			$status = $this->input->post("status");
 			$password = $this->input->post("password");
 			$password2 = $this->input->post("password2");
-			echo $fullname;
-			echo $gender;
-			echo $email;
-			echo $phone;
-			echo $birth;
+			echo $role." ";
+			echo $dept." ";
+			echo $status." ";
+			echo $password." ";
+			echo $password2." ";
 			if($password==$password2){
 				if($uid&&$fullname&&$gender&&$email&&$phone&&$birth&&$role&&$dept&&$status){
 					$query = $this->db->query("SELECT * FROM User WHERE uid = '".$uid."'");
