@@ -1,65 +1,73 @@
+<style>
+.tableleft{font-weight:bold;background-color:#F5F5F5;}
+</style>
 <h1>Add new user</h1>
-<form role="form" action="" method="post">
-  <div class="form-group">
-    <label>User ID</label>
-    <input name="uid" type="text" class="form-control"  placeholder="Please input user ID here" value="">
-  </div>
-  <div class="form-group">
-    <label>Full name</label>
-    <input name="fullname" type="text" class="form-control" placeholder="Please input the full name here" value="">
-  </div>
-  <div class="form-group">
-    <label>Gender</label>
-    <p>
-    <input name="gender" type="radio" class="form-control" value="Male">Male
-    <input name="gender" type="radio" class="form-control" value="Female">Female
-    </p>
-  </div>
-  <div class="form-group">
-    <label>Email</label>
-    <input name="email" type="email" class="form-control" placeholder="Please input the email here" value="">
-  </div>
-  <div class="forn-group">
-    <label>Phone</label>
-    <input name="phone" type="number" class="form-control" placeholder="Please input the phone number here" value="">
-  </div>
-  <div class="form-group">
-    <label>Birthday</label>
-    <input name="birth" type="date" class="form-control" placeholder="Please input or select the birthday here" value="">
-  </div>
-  <div class="form-group">
-    <label>Role</label>
-    <select name="role"  class="form-control" >
-    	<?php 
-    		foreach($role_data as $vo){
-    			echo "<option value='{$vo->rid}'>{$vo->name}</option>";
-    		}
-    	?>
-    </select>
-  </div>
-  <div class="form-group">
-    <label>Department</label>
-    <select name="role"  class="form-control" >
-    	<?php 
-    		foreach($dept_data as $vo){
-    			echo "<option value='{$vo->did}'>{$vo->name}</option>";
-    		}
-    	?>
-    </select>
-  </div>
-  <div class="form-group">
-    <label>New password</label>
-    <input name="password" type="password" class="form-control" placeholder="Please input the new password here" value="">
-  </div>
-  <div class="form-group">
-    <label>Repeat the password</label>
-    <input name="password2" type="password" class="form-control" placeholder="Please repeat the new password here" value="">
-  </div>
-  <div class="checkbox">
-    <label>
-      <input value="1" name="status" type="checkbox" checked > Enable?
-    </label>
-  </div>
-  <button type="submit" class="btn btn-success">Save</button>
-  <a class="btn btn-danger" href="<?php echo site_url('info/user/index'); ?>">Cancel</a>
+<form action="" method="post"> 
+    <table class="table table-bordered table-hover definewidth m10">
+        <tr>
+            <td width = "15%" class="tableleft">User ID</td>
+            <td><input name="uid" type="text" class="form-control" placeholder="Please input user ID here"></td>
+        </tr>
+        <tr>
+            <td class="tableleft">Full name</td>
+            <td><input name="fullname" type="text" class="form-control" placeholder="Please input full name here"></td>
+        </tr> 
+        <tr>
+            <td class="tableleft">Gender</td>
+            <td>
+                <label><input name="gender" type="radio" value="Male" >Male</label>
+                <label><input name="gender" type="radio" value="Female" >Female</label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">Email</td>
+            <td><input name="email" type="email" class="form-control" placeholder="Please input email here"></td>
+        </tr>
+        <tr>
+            <td class="tableleft">Phone</td>
+            <td><input name="phone" type="number" class="form-control" placeholder="Please input phone number here"></td>
+        </tr>
+        <tr>
+            <td class="tableleft">Birthday</td>
+            <td><input name="birth" type="date" class="form-control" placeholder="Please input or select birthday here">"></td>
+        </tr>
+        <tr>
+            <td class="tableleft">Role</td>
+            <td>
+                <select name="role"  class="form-control" >
+                  	<?php 
+                  		foreach($role_data as $vo){
+                  			echo "<option value='{$vo->rid}'>{$vo->name}</option>";
+                  		}
+                  	?>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">Department</td>
+            <td>
+                <select name="dept"  class="form-control" >
+                  	<?php 
+                  		foreach($dept_data as $vo){
+                  			echo "<option value='{$vo->uid}'>{$vo->name}</option>";
+                  		}
+                  	?>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">New password</td>
+            <td><input name="password" type="password" class="form-control" placeholder="Please input new password here"></td>
+        </tr>
+        <tr>
+            <td class="tableleft">Repeat password</td>
+            <td><input name="password2" type="password" class="form-control" placeholder="Please repeat password here"></td>
+        </tr>
+        <tr>
+            <td class="tableleft">Enable</td>
+            <td><input value="1" name="status" type="checkbox" checked > Enable?</td>
+        </tr> 
+    </table>
+    <button type="submit" class="btn btn-success">Save</button> 
+     <a class="btn btn-danger" href="<?php echo site_url('info/user/index'); ?>">Cancel</a> 
 </form>
