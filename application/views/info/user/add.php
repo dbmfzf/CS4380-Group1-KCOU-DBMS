@@ -73,6 +73,7 @@
 </form>
 <script >
     $(document).ready(function() {
+        document.getElementById("dept").style.display='none';
         var role = document.getElementByID("role");
         var index = role.selectedIndex;
         var rolename = role.options[index].text;
