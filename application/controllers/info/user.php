@@ -137,7 +137,7 @@ class User extends CI_Controller {
 			$password = $this->input->post("password");
 			$password2 = $this->input->post("password2");
 			if($password==$password2){
-				if($uid&&$fullname&&$gender&&$email&&$phone&&$birth&&$role&&$dept){
+				if($uid&&$fullname&&$gender&&$email&&$phone&&$birth&&$role){
 					$query = $this->db->query("SELECT * FROM User WHERE uid = '".$uid."'");
 					$data = $query->row_array();
 					if(!$data){
