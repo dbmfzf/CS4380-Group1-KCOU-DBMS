@@ -79,18 +79,24 @@ class User extends CI_Controller {
 				$phone = $this->input->post("phone");
 				$birth = $this->input->post("birth");
 				$role = $this->input->post("role");
+				
+				$role_dept_query = $this->db->query("SELECT did from Department WHERE rid = ".$role."");
+				$role_dept_data = $role_dept_query->row_array();
+				$did = $role_dept_data['did'];
+				
 				$dept = $this->input->post("dept");
 				$status = $this->input->post("status");
 				$password = $this->input->post("password");
 				$password2 = $this->input->post("password2");
 				if($uid!=""){
 					if($password==$password2){
-						if($uid&&$fullname&&$gender&&$email&&$phone&&$birth&&$role&&$dept){
+						if($uid&&$fullname&&$gender&&$email&&$phone&&$birth&&$role){
+							if($did==""){$newdept = $dept;}else{$newdept = $did;}
 							if($password){$newpass = ",password='".md5($password2)."'";}else{$newpass="";}
 							if($status){$newstat = ",status='1'";}else{$newstat = ",status='0'";}
 							$sql = "UPDATE User set fullname='{$fullname}',gender = '{$gender}',email='{$email}',phone = '{$phone}',birth = '{$birth}',rid='{$role}' {$newpass} {$newstat} WHERE uid = '{$uid}'";
 							$this->db->query($sql);
-							$dsql = "UPDATE Belongs_to set did = $dept WHERE uid = '{$uid}'";
+							$dsql = "UPDATE Belongs_to set did = $dept WHERE uid = '{$newdept}'";
 							$this->db->query($dsql);
 							success_redirct("info/user/index","Edit successful!");
 						}else{
