@@ -146,7 +146,8 @@ class User extends CI_Controller {
 						if(!$data){
 							if($did==""){$newdept = $dept;}else{$newdept = $did;}
 							if(!$status){$newstat = "0";}else{$newstat = "1";}
-							$sql = "INSERT INTO User (uid,fullname,gender,email,phone,birth,password,rid,status) values('{$uid}','{$fullname}','{$gender}','{$email}','{$phone}','{$birth}','{$password2}','{$role}', '{$newstat}')";
+							$newpass = md5($password2);
+							$sql = "INSERT INTO User (uid,fullname,gender,email,phone,birth,password,rid,status) values('{$uid}','{$fullname}','{$gender}','{$email}','{$phone}','{$birth}','{$newpass}','{$role}', '{$newstat}')";
 							$this->db->query($sql);
 							$dsql = "INSERT INTO Belongs_to(uid,did) values('{$uid}','{$newdept}')";
 							$this->db->query($dsql);
