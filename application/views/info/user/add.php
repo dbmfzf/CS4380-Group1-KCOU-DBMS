@@ -74,7 +74,7 @@
 <script >
     $(document).ready(function() {
         var role = document.getElementByID("role");
-        alert(role);
+        alert("hi");
         var index = role.selectedIndex;
         var rolename = role.options[index].text;
         if(role!="Volunteer")
