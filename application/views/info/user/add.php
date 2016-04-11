@@ -10,8 +10,10 @@
   </div>
   <div class="form-group">
     <label>Gender</label>
+    <p>
     <input name="gender" type="radio" class="form-control" value="Male">Male
     <input name="gender" type="radio" class="form-control" value="Female">Female
+    </p>
   </div>
   <div class="form-group">
     <label>Email</label>
