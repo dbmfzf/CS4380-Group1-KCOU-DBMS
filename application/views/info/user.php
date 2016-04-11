@@ -29,6 +29,7 @@
 					<td>%s</td>
 					<td>%s</td>
 					<td>%s</td>
+					<td>%s</td>
 					<td>
 						<div class="btn-group  btn-group-xs">
 						  <a class="btn btn-default btn-xs" href="%s">Edit</a>
