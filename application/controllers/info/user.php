@@ -78,7 +78,7 @@ class User extends CI_Controller {
 				$password2 = $this->input->post("password2");
 				if($uid!=""){
 					if($password==$password2){
-						if($uid&&$fullname&&$gender&&$email&&$phone&&$birth&&$role&&$dept&&$status){
+						if($uid&&$fullname&&$gender&&$email&&$phone&&$birth&&$role&&$dept){
 							if($password){$newpass = ",password='".md5($password2)."'";}else{$newpass="";}
 							if($status){$newstat = ",status='1'";}else{$newstat = ",status='0'";}
 							$sql = "UPDATE User set fullname='{$fullname}',gender = '{$gender}',email='{$email}',phone = '{$phone}',birth = '{$birth}' {$newpass} {$newstat} {$newrole} WHERE uid = '{$uid}'";
@@ -130,7 +130,7 @@ class User extends CI_Controller {
 			echo $password." ";
 			echo $password2." ";
 			if($password==$password2){
-				if($uid&&$fullname&&$gender&&$email&&$phone&&$birth&&$role&&$dept&&$status){
+				if($uid&&$fullname&&$gender&&$email&&$phone&&$birth&&$role&&$dept){
 					$query = $this->db->query("SELECT * FROM User WHERE uid = '".$uid."'");
 					$data = $query->row_array();
 					if(!$data){
@@ -138,7 +138,7 @@ class User extends CI_Controller {
 						$data = $query->row_array();
 						if(!$data){
 							if(!$status){$newstat = "0";}else{$newstat = "1";}
-							$sql = "INSERT INTO User (uid,fullname,gender,email,phone,birth,password,rid,status) values('{$uid}','{$fullname}','{$gender}','{$email}','{$phone}','{$birth}','{$password2}','{$role}', '{$status}')";
+							$sql = "INSERT INTO User (uid,fullname,gender,email,phone,birth,password,rid,status) values('{$uid}','{$fullname}','{$gender}','{$email}','{$phone}','{$birth}','{$password2}','{$role}', '{$newstat}')";
 							$this->db->query($sql);
 							$dsql = "INSERT INTO Belongs_to(uid,did) values('{$uid}','{$dept}')";
 							$this->db->query($dsql);
