@@ -34,7 +34,7 @@
         <tr>
             <td class="tableleft">Role</td>
             <td>
-                <select name="role" id="role" class="form-control" onChange="check()" >
+                <select name="role" id="role" class="form-control" onchange="check()" >
                   	<?php 
                   		foreach($role_data as $vo){
                   			echo "<option value='{$vo->rid}'>{$vo->name}</option>";
@@ -83,12 +83,12 @@
     })
     function check(){
         var role = document.getElementByID("role");
+        alert(role);
         var index = role.selectedIndex;
         var rolename = role.options[index].text;
-        alert(role);
         if(role!="Volunteer")
             document.getElementById("dept").style.display='none';
         else
             document.getElementById("dept").style.display='block';
-    })
+    }
 </script>
