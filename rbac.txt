@@ -1,0 +1,2 @@
+Current login user ID: 
+rbac_conf(array('INFO','uid'));
