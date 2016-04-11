@@ -39,10 +39,10 @@ class User extends CI_Controller {
 		$user_query = $this->db->query("SELECT uid,fullname,gender,birth,email,phone FROM User WHERE uid = '".$uid."' limit 1");
 		$user_data = $user_query -> row_array();
 		 
-		$role = $this->db->query("SELECT name from Role R, User U where U.rid = R.rid and U.uid = '".$uid."' limit 1");
+		$role = $this->db->query("SELECT rid,name from Role R, User U where U.rid = R.rid and U.uid = '".$uid."' limit 1");
 		$current_role = $role -> row_array();
 		
-		$dept = $this->db->query("SELECT name from Department D, Belongs_to B, User U where U.uid = B.uid and D.did = B.did and U.uid = '".$uid."' limit 1");
+		$dept = $this->db->query("SELECT did,name from Department D, Belongs_to B, User U where U.uid = B.uid and D.did = B.did and U.uid = '".$uid."' limit 1");
 		$current_dept = $dept -> row_array();
 		
 		$data['fullname'] = $user_data['fullname'];
@@ -51,11 +51,14 @@ class User extends CI_Controller {
 		$data['phone'] = $user_data['phone'];
 		$data['birth'] = $user_data['birth'];
 		$data['role'] = $current_role['name'];
-		$dept_data['name'] == NULL?$data['dept'] = "No department!":$data['dept'] = $dept_data['name'];
+		$data['rid'] = $current_role['rid'];
 		
-		$role_query = $this->db->query("SELECT rid,name FROM Role WHERE status = 1");
+		$data['dept'] = $current_dept['name'];
+		$data['did'] = $current_dept['name'];
+		
+		$role_query = $this->db->query("SELECT rid,name FROM Role WHERE status = 1 order by rid desc");
 		$role_data = $role_query->result();
-		$dept_query = $this->db->query("SELECT did,name FROM Department");
+		$dept_query = $this->db->query("SELECT did,name FROM Department order by did desc");
 		$dept_data = $dept_query->result();
 		
 		if($data){
@@ -102,10 +105,10 @@ class User extends CI_Controller {
 	 */
 	public function add(){
 		
-		$role_query = $this->db->query("SELECT rid,name FROM Role WHERE status = 1");
+		$role_query = $this->db->query("SELECT rid,name FROM Role WHERE status = 1 order by rid desc");
 		$role_data = $role_query->result();
 		
-		$dept_query = $this->db->query("SELECT did,name FROM Department");
+		$dept_query = $this->db->query("SELECT did,name FROM Department order by did desc");
 		$dept_data = $dept_query->result();
 		
 		if($this->input->post()){
