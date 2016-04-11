@@ -29,7 +29,7 @@ class User extends CI_Controller {
 		$config['use_page_numbers'] = TRUE;
 		$this->pagination->initialize($config);
 		$role_dept_query = $this->db->query("Select D.did as deptid,U.rid as roleid, R.name as rolename from Department D, User U, Role R WHERE R.rid = U.rid and U.uid = '{$uid}' and U.rid = D.rid");
-		$role_dept_data = $role_dept_query->rowarray();
+		$role_dept_data = $role_dept_query->row_array();
 		$rolename = $role_dept_data['rolename'];
 		$roleid = $role_dept_data['roleid'];
 		$deptid = $role_dept_data['deptid'];
