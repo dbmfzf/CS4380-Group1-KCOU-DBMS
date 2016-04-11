@@ -1,6 +1,5 @@
 <style>
-.table td:first-child{width:10%}
-.table td:nth-child(2){width:20%}
+.table td{width:10%}
 </style>
 <table class="table  table-bordered well">
 	<thead>
