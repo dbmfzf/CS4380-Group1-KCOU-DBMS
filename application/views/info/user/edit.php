@@ -34,7 +34,7 @@
         <tr>
             <td class="tableleft">Role</td>
             <td>
-                <select name="role" id="role"  class="form-control" >
+                <select name="role" id="role" onChange="check()"  class="form-control" >
 		    	<?php 
 		    		foreach($role_data as $vo){
 						$select = $data["rid"]==$vo->rid?"selected":"";
