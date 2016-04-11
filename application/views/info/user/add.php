@@ -73,14 +73,18 @@
 </form>
 <script >
     $(document).ready(function() {
-        var role = document.getElementByID("role").value;
+        var role = document.getElementByID("role");
+        var index = role.selectedIndex;
+        var rolename = role.options[index].text
         if(role!=31)
             document.getElementById("dept").style.display='none';
         else
             document.getElementById("dept").style.display='block';
     })
     function check(){
-        var role = document.getElementByID("role").value;
+        var role = document.getElementByID("role");
+        var index = role.selectedIndex;
+        var rolename = role.options[index].text
         if(role!=31)
             document.getElementById("dept").style.display='none';
         else
