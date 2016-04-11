@@ -131,11 +131,6 @@ class User extends CI_Controller {
 			$status = $this->input->post("status");
 			$password = $this->input->post("password");
 			$password2 = $this->input->post("password2");
-			echo $role." ";
-			echo $dept." ";
-			echo $status." ";
-			echo $password." ";
-			echo $password2." ";
 			if($password==$password2){
 				if($uid&&$fullname&&$gender&&$email&&$phone&&$birth&&$role&&$dept){
 					$query = $this->db->query("SELECT * FROM User WHERE uid = '".$uid."'");
@@ -147,6 +142,7 @@ class User extends CI_Controller {
 							if(!$status){$newstat = "0";}else{$newstat = "1";}
 							$sql = "INSERT INTO User (uid,fullname,gender,email,phone,birth,password,rid,status) values('{$uid}','{$fullname}','{$gender}','{$email}','{$phone}','{$birth}','{$password2}','{$role}', '{$newstat}')";
 							$this->db->query($sql);
+							if
 							$dsql = "INSERT INTO Belongs_to(uid,did) values('{$uid}','{$dept}')";
 							$this->db->query($dsql);
 							success_redirct("info/user/index","Add successful!");
