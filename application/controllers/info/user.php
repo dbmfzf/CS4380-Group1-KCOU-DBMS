@@ -64,7 +64,7 @@ class User extends CI_Controller {
 		$data['rid'] = $current_role['rid'];
 		
 		$data['dept'] = $current_dept['name'];
-		$data['did'] = $current_dept['name'];
+		$data['did'] = $current_dept['did'];
 		
 		$role_query = $this->db->query("SELECT rid,name FROM Role WHERE status = 1 order by rid desc");
 		$role_data = $role_query->result();
@@ -144,7 +144,7 @@ class User extends CI_Controller {
 						$query = $this->db->query("SELECT * FROM User WHERE email = '".$email."'");
 						$data = $query->row_array();
 						if(!$data){
-							if(!$did){$newdept = $did;}else{$newdept = $dept;}
+							if($did==""){$newdept = $dept;}else{$newdept = $did;}
 							if(!$status){$newstat = "0";}else{$newstat = "1";}
 							$sql = "INSERT INTO User (uid,fullname,gender,email,phone,birth,password,rid,status) values('{$uid}','{$fullname}','{$gender}','{$email}','{$phone}','{$birth}','{$password2}','{$role}', '{$newstat}')";
 							$this->db->query($sql);
