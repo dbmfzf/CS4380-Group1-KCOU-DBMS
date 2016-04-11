@@ -5,12 +5,16 @@
 <table class="table  table-bordered well">
 	<thead>
           <tr>
-            <th>ID</th>
-            <th>姓名</th>
+            <th>User ID</th>
+            <th>Full name</th>
+            <th>Gender</th>
             <th>Email</th>
-            <th>角色</th>
-            <th>状态</th>
-            <th>操作</th>
+            <th>Phone</th>
+            <th>Birthday</th>
+            <th>Role</th>
+            <th>Department</th>
+            <th>Status</th>
+            <th>Operation</th>
           </tr>
         </thead>
    <tbody>
@@ -22,18 +26,21 @@
 					<td>%s</td>
 					<td>%s</td>
 					<td>%s</td>
+					<td>%s</td>
+					<td>%s</td>
+					<td>%s</td>
 					<td>
 						<div class="btn-group  btn-group-xs">
-						  <a class="btn btn-default btn-xs" href="%s">编辑</a>
-						  <a class="btn btn-danger" href="%s">删除</a>
+						  <a class="btn btn-default btn-xs" href="%s">Edit</a>
+						  <a class="btn btn-danger" href="%s">Delete</a>
 						</div>
 					</td>
-				</tr>',$mb->uid,$mb->fullname,$mb->email,($mb->name?$mb->name:"暂无角色"),($mb->status==1?"正常":"停用"),site_url("info/user/edit/".$mb->uid),site_url("info/user/delete/".$mb->uid));
+				</tr>',$mb->uid,$mb->fullname,$mb->gender,$mb->email,$mb->phone,$mb->birth,$mb->role,$mb->dept,($mb->status==1?"Enable":"Disable"),site_url("info/user/edit/".$mb->uid),site_url("info/user/delete/".$mb->uid));
 	}
 	?>
   </tbody>
 </table>
 <hr/>
 
-<?php echo '<a class="btn btn-success pull-right" href="'.site_url("info/user/add").'">新增用户</a>'; ?>
+<?php echo '<a class="btn btn-success pull-right" href="'.site_url("info/user/add").'">Add new user</a>'; ?>
 <?php echo $this->pagination->create_links(); ?>
