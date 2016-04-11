@@ -96,7 +96,7 @@
             dept.disabled = true;
         }
         else{
-            dept.getElementById('dept').style.display='block';
+            dept.style.display='block';
             dept.disabled = false;
         }
     }
