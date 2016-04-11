@@ -1,7 +1,7 @@
 <style>
 .tableleft{font-weight:bold;background-color:#F5F5F5;}
 </style>
-<h2>Reset password</h2>
+<h1>Reset password</h1>
 <form action="" method="post"> 
     <table class="table table-bordered table-hover definewidth m10">
         <tr>
