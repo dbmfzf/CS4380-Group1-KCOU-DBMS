@@ -73,23 +73,23 @@
 </form>
 <script >
     $(document).ready(function() {
-        alert("hi");
-        var role = document.getElementByID("role");
+        alert(document.getElementByID('role'));
+        var role = document.getElementByID('role');
         alert("hi");
         var index = role.selectedIndex;
         var rolename = role.options[index].text;
         if(role!="Volunteer")
-            document.getElementById("dept").style.display='none';
+            document.getElementById('dept').style.display='none';
         else
-            document.getElementById("dept").style.display='block';
+            document.getElementById('dept').style.display='block';
     })
     function check(){
-        var role = document.getElementByID("role");
+        var role = document.getElementByID('role');
         var index = role.selectedIndex;
         var rolename = role.options[index].text;
         if(role!="Volunteer")
-            document.getElementById("dept").style.display='none';
+            document.getElementById('dept').style.display='none';
         else
-            document.getElementById("dept").style.display='block';
+            document.getElementById('dept').style.display='block';
     }
 </script>
