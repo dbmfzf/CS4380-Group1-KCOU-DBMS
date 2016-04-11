@@ -42,7 +42,7 @@ class User extends CI_Controller {
 		$role = $this->db->query("SELECT R.rid,name from Role R, User U where U.rid = R.rid and U.uid = '".$uid."' limit 1");
 		$current_role = $role -> row_array();
 		
-		$dept = $this->db->query("SELECT did,name from Department D, Belongs_to B, User U where U.uid = B.uid and D.did = B.did and U.uid = '".$uid."' limit 1");
+		$dept = $this->db->query("SELECT D.did,name from Department D, Belongs_to B, User U where U.uid = B.uid and D.did = B.did and U.uid = '".$uid."' limit 1");
 		$current_dept = $dept -> row_array();
 		
 		$data['fullname'] = $user_data['fullname'];
