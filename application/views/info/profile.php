@@ -1,7 +1,7 @@
 <style>
 .tableleft{font-weight:bold;background-color:#F5F5F5;}
 </style>
-<h2>Profile</h2>
+<h1>Profile</h1>
     <table class="table table-bordered table-hover definewidth m10">
         <tr>
             <td width = "15%" class="tableleft">User ID</td>
