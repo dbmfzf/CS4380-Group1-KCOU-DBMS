@@ -73,8 +73,8 @@
 </form>
 <script >
     $(document).ready(function() {
-        var role = document.getElementByID("role").innerHTML;
-        if(role!="Volunteer")
+        var role = document.getElementByID("role").value;
+        if(role!=31)
         document.getElementById("dept").disabled=true;
     })
 </script>
