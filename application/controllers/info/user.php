@@ -96,7 +96,7 @@ class User extends CI_Controller {
 							if($status){$newstat = ",status='1'";}else{$newstat = ",status='0'";}
 							$sql = "UPDATE User set fullname='{$fullname}',gender = '{$gender}',email='{$email}',phone = '{$phone}',birth = '{$birth}',rid='{$role}' {$newpass} {$newstat} WHERE uid = '{$uid}'";
 							$this->db->query($sql);
-							$dsql = "UPDATE Belongs_to set did = $dept WHERE uid = '{$newdept}'";
+							$dsql = "UPDATE Belongs_to set did = '{$newdept}' WHERE uid = '{$uid}'";
 							$this->db->query($dsql);
 							success_redirct("info/user/index","Edit successful!");
 						}else{
