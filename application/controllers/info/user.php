@@ -64,7 +64,7 @@ class User extends CI_Controller {
 		$data['rid'] = $current_role['rid'];
 		
 		$data['dept'] = $current_dept['name'];
-		$data['did'] = $current_dept['name'];
+		$data['did'] = $current_dept['did'];
 		
 		$role_query = $this->db->query("SELECT rid,name FROM Role WHERE status = 1 order by rid desc");
 		$role_data = $role_query->result();
@@ -79,18 +79,24 @@ class User extends CI_Controller {
 				$phone = $this->input->post("phone");
 				$birth = $this->input->post("birth");
 				$role = $this->input->post("role");
+				
+				$role_dept_query = $this->db->query("SELECT did from Department WHERE rid = ".$role."");
+				$role_dept_data = $role_dept_query->row_array();
+				$did = $role_dept_data['did'];
+				
 				$dept = $this->input->post("dept");
 				$status = $this->input->post("status");
 				$password = $this->input->post("password");
 				$password2 = $this->input->post("password2");
 				if($uid!=""){
 					if($password==$password2){
-						if($uid&&$fullname&&$gender&&$email&&$phone&&$birth&&$role&&$dept){
+						if($uid&&$fullname&&$gender&&$email&&$phone&&$birth&&$role){
+							if($did==""){$newdept = $dept;}else{$newdept = $did;}
 							if($password){$newpass = ",password='".md5($password2)."'";}else{$newpass="";}
 							if($status){$newstat = ",status='1'";}else{$newstat = ",status='0'";}
 							$sql = "UPDATE User set fullname='{$fullname}',gender = '{$gender}',email='{$email}',phone = '{$phone}',birth = '{$birth}',rid='{$role}' {$newpass} {$newstat} WHERE uid = '{$uid}'";
 							$this->db->query($sql);
-							$dsql = "UPDATE Belongs_to set did = $dept WHERE uid = '{$uid}'";
+							$dsql = "UPDATE Belongs_to set did = '{$newdept}' WHERE uid = '{$uid}'";
 							$this->db->query($dsql);
 							success_redirct("info/user/index","Edit successful!");
 						}else{
@@ -144,9 +150,10 @@ class User extends CI_Controller {
 						$query = $this->db->query("SELECT * FROM User WHERE email = '".$email."'");
 						$data = $query->row_array();
 						if(!$data){
-							if(!$did){$newdept = $did;}else{$newdept = $dept;}
+							if($did==""){$newdept = $dept;}else{$newdept = $did;}
 							if(!$status){$newstat = "0";}else{$newstat = "1";}
-							$sql = "INSERT INTO User (uid,fullname,gender,email,phone,birth,password,rid,status) values('{$uid}','{$fullname}','{$gender}','{$email}','{$phone}','{$birth}','{$password2}','{$role}', '{$newstat}')";
+							$newpass = md5($password2);
+							$sql = "INSERT INTO User (uid,fullname,gender,email,phone,birth,password,rid,status) values('{$uid}','{$fullname}','{$gender}','{$email}','{$phone}','{$birth}','{$newpass}','{$role}', '{$newstat}')";
 							$this->db->query($sql);
 							$dsql = "INSERT INTO Belongs_to(uid,did) values('{$uid}','{$newdept}')";
 							$this->db->query($dsql);
