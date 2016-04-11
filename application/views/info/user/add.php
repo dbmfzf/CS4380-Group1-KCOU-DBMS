@@ -15,8 +15,8 @@
         <tr>
             <td class="tableleft">Gender</td>
             <td>
-                <label><input name="gender" type="radio" value="Male" >Male</label>
-                <label><input name="gender" type="radio" value="Female" >Female</label>
+                <p><input name="gender" type="radio" value="Male" >Male
+                <input name="gender" type="radio" value="Female" >Female</p>
             </td>
         </tr>
         <tr>
@@ -29,7 +29,7 @@
         </tr>
         <tr>
             <td class="tableleft">Birthday</td>
-            <td><input name="birth" type="date" class="form-control" placeholder="Please input or select birthday here">"></td>
+            <td><input name="birth" type="date" class="form-control" placeholder="Please input or select birthday here"></td>
         </tr>
         <tr>
             <td class="tableleft">Role</td>
