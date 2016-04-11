@@ -73,9 +73,7 @@
 </form>
 <script >
     $(document).ready(function() {
-        alert(document.getElementById('role'));
         var role = document.getElementById('role');
-        alert("hi");
         var index = role.selectedIndex;
         var rolename = role.options[index].text;
         if(role!="Volunteer")
