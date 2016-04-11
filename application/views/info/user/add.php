@@ -73,8 +73,8 @@
 </form>
 <script >
     $(document).ready(function() {
-        alert(document.getElementByID('role'));
-        var role = document.getElementByID('role');
+        alert(document.getElementById('role'));
+        var role = document.getElementById('role');
         alert("hi");
         var index = role.selectedIndex;
         var rolename = role.options[index].text;
@@ -84,7 +84,7 @@
             document.getElementById('dept').style.display='block';
     })
     function check(){
-        var role = document.getElementByID('role');
+        var role = document.getElementById('role');
         var index = role.selectedIndex;
         var rolename = role.options[index].text;
         if(role!="Volunteer")
