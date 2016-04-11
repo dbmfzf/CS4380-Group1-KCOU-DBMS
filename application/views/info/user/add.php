@@ -76,7 +76,7 @@
         var role = document.getElementById('role');
         var index = role.selectedIndex;
         var rolename = role.options[index].text;
-        if(role!="Volunteer")
+        if(rolename!="Volunteer")
             document.getElementById('dept').style.display='none';
         else
             document.getElementById('dept').style.display='block';
@@ -85,7 +85,7 @@
         var role = document.getElementById('role');
         var index = role.selectedIndex;
         var rolename = role.options[index].text;
-        if(role!="Volunteer")
+        if(rolename!="Volunteer")
             document.getElementById('dept').style.display='none';
         else
             document.getElementById('dept').style.display='block';
