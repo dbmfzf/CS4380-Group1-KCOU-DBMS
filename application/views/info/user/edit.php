@@ -1,43 +1,78 @@
-<h1>用户编辑</h1>
-<form role="form" action="" method="post">
-  <div class="form-group">
-    <label>用户ID</label>
-    <input name="uid" type="text" class="form-control" disabled value="<?php echo $data['uid']; ?>">
-  </div>
-  <div class="form-group">
-    <label>名字</label>
-    <input name="fullname" type="text" class="form-control" placeholder="在此输入名字" value="<?php echo $data['fullname']; ?>">
-  </div>
-  <div class="form-group">
-    <label>Email</label>
-    <input name="email" type="email" class="form-control" placeholder="在此输入Email" value="<?php echo $data['email'];?>">
-  </div>
-  <div class="form-group">
-    <label>角色</label>
-    <select name="role"  class="form-control" >
-    	<option value=''>暂无角色</option>
-    	<?php 
-    		foreach($role_data as $vo){
-				$select = $data["rid"]==$vo->rid?"selected":"";
-    			echo "<option value='{$vo->rid}' {$select} >{$vo->name}</option>";
-    		}
-    	?>
-    </select>
-  </div>
-  <div class="form-group">
-    <label>新密码</label>
-    <input name="password" type="password" class="form-control" placeholder="在此输入密码(留空则不修改)" value="">
-  </div>
-  <div class="form-group">
-    <label>确认密码</label>
-    <input name="password2" type="password" class="form-control" placeholder="在此确认密码(留空则不修改)" value="">
-  </div>
-  <div class="checkbox">
-    <label>
-      <input value="1" name="status" type="checkbox" <?php if($data["status"]){echo "checked";}?>> 是否启用
-    </label>
-  </div>
-  <input type="hidden" name="uid" value="<?php echo $data['uid'];?>">
-  <button type="submit" class="btn btn-success">确认修改</button>
-  <a class="btn btn-danger" href="<?php echo site_url('info/user/index'); ?>">取消修改</a>
+<style>
+.tableleft{font-weight:bold;background-color:#F5F5F5;}
+</style>
+<h1>Edit user</h1>
+<form action="" method="post"> 
+    <table class="table table-bordered table-hover definewidth m10">
+        <tr>
+            <td width = "15%" class="tableleft">User ID</td>
+            <td><input type="text" name="uid" disabled value="<?php echo $data['uid'];?>"></td>
+        </tr>
+        <tr>
+            <td class="tableleft">Full name</td>
+            <td><input name="fullname" type="text" class="form-control" value="<?php echo $data['fullname']; ?>" placeholder="Please input full name here"></td>
+        </tr> 
+        <tr>
+            <td class="tableleft">Gender</td>
+            <td>
+                <p><input name="gender" type="radio" value="Male" checked = <?php echo $data['gender']=="Male"?"":"checked" ?>>Male
+                <input name="gender" type="radio" value="Female" checked = <?php echo $data['gender']=="Female"?"":"checked" ?>>Female</p>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">Email</td>
+            <td><input name="email" type="email" class="form-control" value="<?php echo $data['email']; ?>" placeholder="Please input email here"></td>
+        </tr>
+        <tr>
+            <td class="tableleft">Phone</td>
+            <td><input name="phone" type="number" class="form-control" value="<?php echo $data['phone']; ?>" placeholder="Please input phone number here"></td>
+        </tr>
+        <tr>
+            <td class="tableleft">Birthday</td>
+            <td><input name="birth" type="date" class="form-control" value="<?php echo $data['birth']; ?>" placeholder="Please input or select birthday here"></td>
+        </tr>
+        <tr>
+            <td class="tableleft">Role</td>
+            <td>
+                <select name="role"  class="form-control" >
+		    	<?php 
+		    		foreach($role_data as $vo){
+						$select = $data["rid"]==$vo->rid?"selected":"";
+		    			echo "<option value='{$vo->rid}' {$select} >{$vo->name}</option>";
+		    		}
+		    	?>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">Department</td>
+            <td>
+                <select name="dept"  class="form-control" >
+		    	<?php 
+		    		foreach($dept_data as $vo){
+						$select = $data["did"]==$vo->did?"selected":"";
+		    			echo "<option value='{$vo->did}' {$select} >{$vo->name}</option>";
+		    		}
+		    	?>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">New password</td>
+            <td><input name="password" type="password" class="form-control" placeholder="Please input new password here"></td>
+        </tr>
+        <tr>
+            <td class="tableleft">Repeat password</td>
+            <td><input name="password2" type="password" class="form-control" placeholder="Please repeat password here"></td>
+        </tr>
+        <tr>
+            <td class="tableleft">Enable</td>
+            <td><input value="1" name="status" type="checkbox" <?php if($data["status"]){echo "checked";}?>> Enable? </td>
+        </tr> 
+    </table>
+    <button type="submit" class="btn btn-success">Save</button> 
+     <a class="btn btn-danger" href="<?php echo site_url('info/user/index'); ?>">Cancel</a> 
 </form>
+
+
+
