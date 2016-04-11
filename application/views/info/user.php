@@ -1,5 +1,5 @@
 <style>
-.table td{width:10%}
+.table td{width:9%}
 </style>
 <table class="table  table-bordered well">
 	<thead>
