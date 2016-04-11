@@ -49,7 +49,7 @@
                 <select name="dept"  class="form-control" >
                   	<?php 
                   		foreach($dept_data as $vo){
-                  			echo "<option value='{$vo->uid}'>{$vo->name}</option>";
+                  			echo "<option value='{$vo->did}'>{$vo->name}</option>";
                   		}
                   	?>
                 </select>
