@@ -60,7 +60,6 @@ class User extends CI_Controller {
 		
 		if($data){
 			if($this->input->post()){
-				$uid = $this->input->post("uid");
 				$fullname = $this->input->post("fullname");
 				$gender = $this->input->post("gender");
 				$email = $this->input->post("email");
@@ -73,12 +72,12 @@ class User extends CI_Controller {
 				$password2 = $this->input->post("password2");
 				if($uid!=""){
 					if($password==$password2){
-						if($uid){
+						if($uid&&$fullname&&$gender&&$email&&$phone&&$birth&&$role&&$dept&&$status){
 							if($password){$newpass = ",password='".md5($password2)."'";}else{$newpass="";}
 							if($status){$newstat = ",status='1'";}else{$newstat = ",status='0'";}
 							if($role){$newrole = ",rid={$role}";}else{$newrole = ",rid=NULL";}
 							if($dept){$newdept = ",did={$dept}";}else{$newdept = ",did=NULL";}
-							$sql = "UPDATE User set fullname='{$fullname}',email='{$email}' {$newpass} {$newstat} {$newrole} WHERE uid = '{$uid}'";
+							$sql = "UPDATE User set fullname='{$fullname}',gender = '{$gender}',email='{$email}',phone = '{$phone}',birth = '{$birth}' {$newpass} {$newstat} {$newrole} WHERE uid = '{$uid}'";
 							$this->db->query($sql);
 							$dsql = "UPDATE Belongs_to set {$newdept} WHERE uid = '{$uid}'";
 							$this->db->query($dsql);
@@ -122,7 +121,7 @@ class User extends CI_Controller {
 			$password = $this->input->post("password");
 			$password2 = $this->input->post("password2");
 			if($password==$password2){
-				if($uid&&$fullname&&$email&&$password2){
+				if($uid&&$fullname&&$gender&&$email&&$phone&&$birth&&$role&&$dept&&$status){
 					$query = $this->db->query("SELECT * FROM User WHERE uid = '".$uid."'");
 					$data = $query->row_array();
 					if(!$data){
@@ -130,8 +129,10 @@ class User extends CI_Controller {
 						$data = $query->row_array();
 						if(!$data){
 							if(!$status){$newstat = "0";}else{$newstat = "1";}
-							$sql = "INSERT INTO User (uid,fullname,email,password,rid,status) values('{$uid}','{$fullname}','{$email}' ,'{$password2}','{$role}', '{$status}')";
+							$sql = "INSERT INTO User (uid,fullname,gender,email,phone,birth,password,rid,status) values('{$uid}','{$fullname}','{$gender}','{$email}','{$phone}','{$birth}','{$password2}','{$role}', '{$status}')";
 							$this->db->query($sql);
+							$dsql = "INSERT INTO Belongs_to(uid,did) values('{$uid}','{$dept}')";
+							$this->db->query($dsql);
 							success_redirct("info/user/index","Add successful!");
 						}else{
 							error_redirct("","The email already exists!");
@@ -144,7 +145,7 @@ class User extends CI_Controller {
 					error_redirct("","The user's information is not complete!");
 				}
 			}else{
-				error_redirct("","Invalid password!");
+				error_redirct("","Repeat the wrong password!");
 			}
 		}
 		$this->load->view("info/user/add",array("role_data"=>$role_data,"dept_data"=>$dept_data));
