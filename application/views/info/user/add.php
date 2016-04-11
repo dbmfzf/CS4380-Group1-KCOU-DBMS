@@ -46,7 +46,7 @@
         <tr>
             <td class="tableleft">Department</td>
             <td>
-                <select name="dept" id="dept" disabled=true class="form-control" >
+                <select name="dept" id="dept" style="display:none" class="form-control" >
                   	<?php 
                   		foreach($dept_data as $vo){
                   			echo "<option value='{$vo->did}'>{$vo->name}</option>";
