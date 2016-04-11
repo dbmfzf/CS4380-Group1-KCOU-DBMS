@@ -73,6 +73,7 @@
 </form>
 <script >
     $(document).ready(function() {
+        alert("hi");
         var role = document.getElementByID("role");
         alert("hi");
         var index = role.selectedIndex;
