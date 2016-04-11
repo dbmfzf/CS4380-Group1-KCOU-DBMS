@@ -126,7 +126,12 @@ class User extends CI_Controller {
 			$email = $this->input->post("email");
 			$phone = $this->input->post("phone");
 			$birth = $this->input->post("birth");
+			
 			$role = $this->input->post("role");
+			$role_dept_query = $this->db->query("SELECT did from Department WHERE rid = ".$role."");
+			$role_dept_data = $role_dept_query->row_array();
+			$did = $role_dept_data['did'];
+			
 			$dept = $this->input->post("dept");
 			$status = $this->input->post("status");
 			$password = $this->input->post("password");
@@ -139,11 +144,11 @@ class User extends CI_Controller {
 						$query = $this->db->query("SELECT * FROM User WHERE email = '".$email."'");
 						$data = $query->row_array();
 						if(!$data){
+							if(!$did){$newdept = $did;}else{$newdept = $dept;}
 							if(!$status){$newstat = "0";}else{$newstat = "1";}
 							$sql = "INSERT INTO User (uid,fullname,gender,email,phone,birth,password,rid,status) values('{$uid}','{$fullname}','{$gender}','{$email}','{$phone}','{$birth}','{$password2}','{$role}', '{$newstat}')";
 							$this->db->query($sql);
-							if
-							$dsql = "INSERT INTO Belongs_to(uid,did) values('{$uid}','{$dept}')";
+							$dsql = "INSERT INTO Belongs_to(uid,did) values('{$uid}','{$newdept}')";
 							$this->db->query($dsql);
 							success_redirct("info/user/index","Add successful!");
 						}else{
