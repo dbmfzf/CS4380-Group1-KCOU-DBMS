@@ -34,7 +34,7 @@
         <tr>
             <td class="tableleft">Role</td>
             <td>
-                <select name="role" id="role" class="form-control" >
+                <select name="role" id="role" class="form-control" onChange="check()" >
                   	<?php 
                   		foreach($role_data as $vo){
                   			echo "<option value='{$vo->rid}'>{$vo->name}</option>";
@@ -46,7 +46,7 @@
         <tr>
             <td class="tableleft">Department</td>
             <td>
-                <select name="dept" id="dept" style="display:none" class="form-control" >
+                <select name="dept" id="dept" class="form-control" >
                   	<?php 
                   		foreach($dept_data as $vo){
                   			echo "<option value='{$vo->did}'>{$vo->name}</option>";
@@ -75,6 +75,15 @@
     $(document).ready(function() {
         var role = document.getElementByID("role").value;
         if(role!=31)
-        document.getElementById("dept").disabled=true;
+            document.getElementById("dept").style.display='none';
+        else
+            document.getElementById("dept").style.display='block';
+    })
+    function check(){
+        var role = document.getElementByID("role").value;
+        if(role!=31)
+            document.getElementById("dept").style.display='none';
+        else
+            document.getElementById("dept").style.display='block';
     })
 </script>
