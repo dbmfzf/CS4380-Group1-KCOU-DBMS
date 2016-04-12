@@ -20,7 +20,7 @@ class User extends CI_Controller {
 		$this->load->library('pagination');
 		$config['base_url'] = site_url("info/user/index");
 		$config['total_rows'] = $cnt_data['cnt'];
-		$config['per_page']   = 35;
+		$config['per_page']   = 1;
 		$config['uri_segment']= '4';
 		$config['use_page_numbers'] = TRUE;
 		$this->pagination->initialize($config);
