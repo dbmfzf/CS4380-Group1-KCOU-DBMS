@@ -36,7 +36,7 @@ class Rbac_model extends CI_Model{
 					rbac_conf(array('INFO','uid'),$data['uid']);
 					rbac_conf(array('INFO','rid'),$data['rid']);
 					rbac_conf(array('INFO','email'),$data['email']);
-					rbac_conf(array('INFO','fullname'),$data['fullname']);
+					rbac_conf(array('INFO','phone'),$data['phone']);
 					$this->get_acl($data['rid']);
 					return TRUE;
 				}
