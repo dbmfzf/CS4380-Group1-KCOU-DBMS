@@ -11,8 +11,8 @@ class Department extends CI_Controller {
 	 */
 	public function index($page=1)
 	{
-		$uid = rbac_conf(array('INFO','uid'));
-		$query = $this->db->query("SELECT COUNT(1) as cnt FROM User");
+		$did = rbac_conf(array('INFO','did'));
+		$query = $this->db->query("SELECT COUNT(1) as cnt FROM department");
 		$cnt_data = $query->row_array();
 		//page
 		$this->load->library('pagination');
@@ -22,15 +22,13 @@ class Department extends CI_Controller {
 		$config['uri_segment']= '4';
 		$config['use_page_numbers'] = TRUE;
 		$this->pagination->initialize($config);
-		$role_dept_query = $this->db->query("Select D.did as deptid,U.rid as roleid, R.name as rolename from Department D, User U, Role R WHERE R.rid = U.rid and U.uid = '{$uid}' and U.rid = D.rid");
+		$role_dept_query = $this->db->query("Select d.did, d.name as dname, d.rid, r.name as rname from department d, role r WHERE r.rid = d.rid and d.did = '{$did}'");
 		$role_dept_data = $role_dept_query->row_array();
-		$rolename = $role_dept_data['rolename'];
-		$roleid = $role_dept_data['roleid'];
-		$deptid = $role_dept_data['deptid'];
-		if(($rolename="Manager")or($rolename="Volunteer")){$where="";} else{$where = "AND D.did ='".$deptid."'";}
-		$query = $this->db->query("SELECT U.uid,U.fullname,U.gender,U.email,U.phone,U.birth,U.status,R.name as rolename,D.name as deptname FROM Belongs_to B, Department D, User U, Role R WHERE R.rid = U.rid AND B.uid = U.uid AND B.did = D.did ".$where." LIMIT ".(($page-1)*$config['per_page']).",".$config['per_page']."");
+		$rolename = $role_dept_data['rname'];
+		if(($rolename="Manager")or($rolename="Volunteer")){$where="";} else{$where = "AND D.did ='".$did."'";}
+		$query = $this->db->query("SELECT d.name as dname, r.name as rname FROM department d, role r WHERE r.rid = d.rid  ".$where." LIMIT ".(($page-1)*$config['per_page']).",".$config['per_page']."");
 		$data = $query->result();
-		$this->load->view("info/user",array("data"=>$data));
+		$this->load->view("info/department",array("data"=>$data));
 	}
 	/**
 	 * Edit departments
