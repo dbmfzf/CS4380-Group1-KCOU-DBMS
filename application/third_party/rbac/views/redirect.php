@@ -21,10 +21,10 @@
 				window.onload =function() {
 				    var i = <?php echo $time-1; ?>;
 				            setInterval(function(){                
-				                document.getElementById("cnt").innerHTML = i--;
-				                if(document.getElementById("cnt").innerHTML=='0'){
-									window.location.href='<?php echo $url; ?>';
-					            }
+				                while(document.getElementById("cnt").innerHTML!='0'){
+				                	document.getElementById("cnt").innerHTML = i--;
+							window.location.href='<?php echo $url; ?>';
+					        }
 				 
 				            },1000);
 				        };
