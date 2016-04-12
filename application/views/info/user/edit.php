@@ -73,21 +73,32 @@
     <button type="submit" class="btn btn-success">Save</button> 
      <a class="btn btn-danger" href="<?php echo site_url('info/user/index'); ?>">Cancel</a> 
 </form>
+
 <script >
     $(document).ready(function() {
+    	var login_rolename = "<?php echo $data['login_rolename']?>";
         var dept = document.getElementById('dept');
         var role = document.getElementById('role');
-        var index = role.selectedIndex;
-        var rolename = role.options[index].text;
-        if(rolename!="Volunteer"){
-            dept.style.display='none';
-            dept.disabled = true;
+        if(login_rolename!="Manager"){
+        	dept.style.display='none';
+	        dept.disabled = true;
+	        role.style.display='none';
+	        role.disabled = true;
         }
         else{
-            dept.getElementById('dept').style.display='block';
-            dept.disabled = false;
+        	var index = role.selectedIndex;
+	        var rolename = role.options[index].text;
+	        if(rolename!="Volunteer"){
+	            dept.style.display='none';
+	            dept.disabled = true;
+	        }
+	        else{
+	            dept.getElementById('dept').style.display='block';
+	            dept.disabled = false;
+	        }	
         }
     })
+    
     function check(){
         var dept = document.getElementById('dept')
         var role = document.getElementById('role');
