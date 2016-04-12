@@ -52,7 +52,7 @@ class User extends CI_Controller {
 		$current_dept = $dept -> row_array();
 		
 		$login_rid = rbac_conf(array('INFO','rid'));
-		$login_role_query = $this->db->query("SELECT name from Role where rid = '{$login_rid}'");
+		$login_role_query = $this->db->query("SELECT rid,name from Role where rid = '{$login_rid}'");
 		$login_role = $login_role_query->row_array(); 
 		
 		$data['uid'] = $user_data['uid'];
@@ -70,6 +70,7 @@ class User extends CI_Controller {
 		$data['did'] = $current_dept['did'];
 		
 		$data['login_rolename'] = $login_role['name'];
+		$data['login_rid'] = $login_role['rid'];
 		
 		$role_query = $this->db->query("SELECT rid,name FROM Role WHERE status = 1 order by rid desc");
 		$role_data = $role_query->result();
@@ -133,10 +134,11 @@ class User extends CI_Controller {
 		$dept_data = $dept_query->result();
 		
 		$login_rid = rbac_conf(array('INFO','rid'));
-		$login_role_query = $this->db->query("SELECT name from Role where rid = $login_rid");
+		$login_role_query = $this->db->query("SELECT rid,name from Role where rid = $login_rid");
 		$login_role = $login_role_query->row_array();
 		
 		$data['login_rolename'] = $login_role['name'];
+		$data['login_rid'] = $login_role['rid'];
 		
 		if($this->input->post()){
 			$uid = $this->input->post("uid");
