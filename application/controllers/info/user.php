@@ -1,10 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-/**
- * CI RBAC
- * RBAC管理后台中用户模块
- * @author		toryzen
- * @link		http://www.toryzen.com
- */
+
 class User extends CI_Controller {
 	
 	function __construct(){
@@ -28,12 +23,11 @@ class User extends CI_Controller {
 		$config['uri_segment']= '4';
 		$config['use_page_numbers'] = TRUE;
 		$this->pagination->initialize($config);
-		$role_dept_query = $this->db->query("Select D.did as deptid,U.rid as roleid, R.name as rolename from Department D, User U, Role R WHERE R.rid = U.rid and U.uid = '{$uid}' and U.rid = D.rid");
+		$role_dept_query = $this->db->query("Select D.did as deptid,R.name as rolename from Department D, User U, Role R WHERE R.rid = U.rid and U.uid = '{$uid}' and R.rid = D.rid");
 		$role_dept_data = $role_dept_query->row_array();
 		$rolename = $role_dept_data['rolename'];
-		$roleid = $role_dept_data['roleid'];
 		$deptid = $role_dept_data['deptid'];
-		if(($rolename="Manager")or($rolename="Volunteer")){$where="";} else{$where = "AND D.did ='".$deptid."'";}
+		if($rolename="Manager"){$where="";} else{$where = "AND D.did ='".$deptid."'";}
 		$query = $this->db->query("SELECT U.uid,U.fullname,U.gender,U.email,U.phone,U.birth,U.status,R.name as rolename,D.name as deptname FROM Belongs_to B, Department D, User U, Role R WHERE R.rid = U.rid AND B.uid = U.uid AND B.did = D.did ".$where." LIMIT ".(($page-1)*$config['per_page']).",".$config['per_page']."");
 		$data = $query->result();
 		$this->load->view("info/user",array("data"=>$data));
