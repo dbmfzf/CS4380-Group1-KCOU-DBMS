@@ -38,7 +38,7 @@
 		    	<?php
 		    		if($data['login_rolename']!= "Manager")
 		    		{
-		    				echo "<option value='{$data['login_rid']}' {$select} >$data['login_rolename']</option>";
+		    				echo "<option value="{$data['login_rid']}" selected >$data['login_rolename']</option>";
 		    		}
 		    		else{
 			    		foreach($role_data as $vo){
