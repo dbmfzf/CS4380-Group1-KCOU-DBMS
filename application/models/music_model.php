@@ -9,7 +9,7 @@ class Music_model extends CI_Model {
     }
     
     // Input: param songName which is a string
-    // Return value: an array of some object that is to be defined later
+    // Return value: a json array with the results
     public function searchBySong($songName){
         $songName = htmlspecialchars($songName);
         
@@ -25,6 +25,7 @@ class Music_model extends CI_Model {
         
         //gets the return object from the query
         $queryObj = $this->db->query($sql);
+        return json_encode($queryObj->result());
     }
     
     public function searchByArtist($artistName){
@@ -35,6 +36,7 @@ class Music_model extends CI_Model {
         "%' AND aps.sid = s.sid AND ar.artistID = aps.artistID AND ar.artistID = r.artistID AND al.albumID = r.albumID;";
         
         $queryObj = $this->db->query($sql);
+        return json_encode($queryObj->result());
     }
     
     public function searchByAlbum($albumName){
@@ -46,7 +48,7 @@ class Music_model extends CI_Model {
         "%' AND aps.sid = s.sid AND ar.artistID = aps.artistID AND ar.artistID = r.artistID AND al.albumID = r.albumID;";
         
         $queryObj = $this->db->query($sql);
-
+        return json_encode($queryObj->result());
     }
     
     //Searches for album name, artist name, and song name all at once
@@ -61,6 +63,7 @@ class Music_model extends CI_Model {
          AND aps.sid = s.sid AND ar.artistID = aps.artistID AND ar.artistID = r.artistID AND al.albumID = r.albumID;";
         
         $queryObj = $this->db->query($sql);
+        return json_encode($queryObj->result());
     }
     //Input: a genre of music that is exact
     public function searchByGenre($genre){
@@ -72,6 +75,7 @@ class Music_model extends CI_Model {
         . "' AND aps.sid = s.sid AND ar.artistID = aps.artistID AND ar.artistID = r.artistID AND al.albumID = r.albumID;";
         
         $queryObj = $this->db->query($sql);
+        return json_encode($queryObj->result());
     }
 
 }

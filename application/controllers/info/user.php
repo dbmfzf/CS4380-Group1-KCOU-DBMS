@@ -1,10 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-/**
- * CI RBAC
- * RBAC管理后台中用户模块
- * @author		toryzen
- * @link		http://www.toryzen.com
- */
+
 class User extends CI_Controller {
 	
 	function __construct(){
@@ -17,24 +12,29 @@ class User extends CI_Controller {
 	 */
 	public function index($page=1)
 	{
-		$uid = rbac_conf(array('INFO','uid'));
+		$login_rid = rbac_conf(array('INFO','rid'));
+		
 		$query = $this->db->query("SELECT COUNT(1) as cnt FROM User");
 		$cnt_data = $query->row_array();
 		//page
 		$this->load->library('pagination');
 		$config['base_url'] = site_url("info/user/index");
 		$config['total_rows'] = $cnt_data['cnt'];
-		$config['per_page']   = 35;
+		$config['per_page']   = 2;
 		$config['uri_segment']= '4';
+		$config['num_links']='2';
+		$config['first_link'] = 'First';
+		$config['last_link'] = 'last';
 		$config['use_page_numbers'] = TRUE;
 		$this->pagination->initialize($config);
-		$role_dept_query = $this->db->query("Select D.did as deptid,U.rid as roleid, R.name as rolename from Department D, User U, Role R WHERE R.rid = U.rid and U.uid = '{$uid}' and U.rid = D.rid");
+		
+		$role_dept_query = $this->db->query("Select D.did as deptid,R.name as rolename from Department D, Role R WHERE R.rid = '{$login_rid}' and R.rid = D.rid");
 		$role_dept_data = $role_dept_query->row_array();
 		$rolename = $role_dept_data['rolename'];
-		$roleid = $role_dept_data['roleid'];
 		$deptid = $role_dept_data['deptid'];
-		if(($rolename="Manager")or($rolename="Volunteer")){$where="";} else{$where = "AND D.did ='".$deptid."'";}
-		$query = $this->db->query("SELECT U.uid,U.fullname,U.gender,U.email,U.phone,U.birth,U.status,R.name as rolename,D.name as deptname FROM Belongs_to B, Department D, User U, Role R WHERE R.rid = U.rid AND B.uid = U.uid AND B.did = D.did ".$where." LIMIT ".(($page-1)*$config['per_page']).",".$config['per_page']."");
+		
+		if($rolename=="Manager"){$where="";} else{$where = "AND D.did = $deptid";}
+		$query = $this->db->query("SELECT U.uid,U.fullname,U.gender,U.email,U.phone,U.birth,U.status,R.name as rolename,D.name as deptname FROM Belongs_to B, Department D, User U, Role R WHERE R.rid = U.rid AND B.uid = U.uid AND B.did = D.did AND U.rid != '{$login_rid}' ".$where." LIMIT ".(($page-1)*$config['per_page']).",".$config['per_page']."");
 		$data = $query->result();
 		$this->load->view("info/user",array("data"=>$data));
 	}
@@ -43,6 +43,7 @@ class User extends CI_Controller {
 	 * @param number $uid
 	 */
 	public function edit($uid){
+		
 		$user_query = $this->db->query("SELECT uid,fullname,gender,birth,email,phone,status FROM User WHERE uid = '".$uid."' limit 1");
 		$user_data = $user_query -> row_array();
 		 
@@ -51,6 +52,10 @@ class User extends CI_Controller {
 		
 		$dept = $this->db->query("SELECT D.did,name from Department D, Belongs_to B, User U where U.uid = B.uid and D.did = B.did and U.uid = '".$uid."' limit 1");
 		$current_dept = $dept -> row_array();
+		
+		$login_rid = rbac_conf(array('INFO','rid'));
+		$login_role_query = $this->db->query("SELECT name from Role where rid = '{$login_rid}'");
+		$login_role = $login_role_query->row_array(); 
 		
 		$data['uid'] = $user_data['uid'];
 		$data['fullname'] = $user_data['fullname'];
@@ -65,6 +70,8 @@ class User extends CI_Controller {
 		
 		$data['dept'] = $current_dept['name'];
 		$data['did'] = $current_dept['did'];
+		
+		$data['login_rolename'] = $login_role['name'];
 		
 		$role_query = $this->db->query("SELECT rid,name FROM Role WHERE status = 1 order by rid desc");
 		$role_data = $role_query->result();
@@ -114,9 +121,11 @@ class User extends CI_Controller {
 			error_redirct("info/user/index","No user is found!");
 		}
 	}
+	
 	/**
 	 * Add users
 	 */
+	 
 	public function add(){
 		
 		$role_query = $this->db->query("SELECT rid,name FROM Role WHERE status = 1 order by rid desc");
@@ -124,6 +133,18 @@ class User extends CI_Controller {
 		
 		$dept_query = $this->db->query("SELECT did,name FROM Department order by did desc");
 		$dept_data = $dept_query->result();
+		
+		$login_rid = rbac_conf(array('INFO','rid'));
+		$login_role_query = $this->db->query("SELECT name FROM Role WHERE rid = $login_rid");
+		$login_role = $login_role_query->row_array();
+		
+		$login_role_dept_query = $this->db->query("SELECT did,name FROM Department WHERE rid = $login_rid");
+		$login_role_dept = $login_role_dept_query->row_array();
+		
+		$data['login_rolename'] = $login_role['name'];
+		$data['did'] = $login_role_dept['did'];
+		$data['dept'] = $login_role_dept['name'];
+		
 		
 		if($this->input->post()){
 			$uid = $this->input->post("uid");
@@ -172,7 +193,7 @@ class User extends CI_Controller {
 				error_redirct("","Repeat the wrong password!");
 			}
 		}
-		$this->load->view("info/user/add",array("role_data"=>$role_data,"dept_data"=>$dept_data));
+		$this->load->view("info/user/add",array("data"=>$data,"role_data"=>$role_data,"dept_data"=>$dept_data));
 	}
 	/**
 	 * Delete users

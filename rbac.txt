@@ -1,2 +1,5 @@
 Current login user ID: 
 rbac_conf(array('INFO','uid'));
+
+Current login user's role ID:
+rbac_conf(array('INFO','rid'));

@@ -28,7 +28,7 @@ class Rbac_model extends CI_Model{
 	 * 用户登录检测
 	*/
 	public function check_user($uid,$password){
-		$query = $this->db->query("SELECT uid,password,fullname,email,rid,status FROM User WHERE uid = '".$uid."' LIMIT 1");
+		$query = $this->db->query("SELECT uid,password,phone,email,rid,status FROM User WHERE uid = '".$uid."' LIMIT 1");
 		$data  = $query->row_array();
 		if($data){
 			if($data['status']==1){
@@ -36,7 +36,7 @@ class Rbac_model extends CI_Model{
 					rbac_conf(array('INFO','uid'),$data['uid']);
 					rbac_conf(array('INFO','rid'),$data['rid']);
 					rbac_conf(array('INFO','email'),$data['email']);
-					rbac_conf(array('INFO','fullname'),$data['fullname']);
+					rbac_conf(array('INFO','phone'),$data['phone']);
 					$this->get_acl($data['rid']);
 					return TRUE;
 				}
