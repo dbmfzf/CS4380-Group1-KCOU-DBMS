@@ -36,11 +36,9 @@
             <td>
                 <select name="role" id="role" class="form-control" onchange="check()" >
                   	<?php 
-                        $rid = $data['login_rid'];
-    		    		$rolename = $data['login_rolename'];
     		    		if($data['login_rolename']!= "Manager")
     		    		{
-    		    			echo "<option value='{$rid}' selected >{$rolename}</option>";
+    		    			echo "<option value='4' selected >Volunteer</option>";
     		    		}
     		    		else{
     			    		foreach($role_data as $vo){
@@ -90,17 +88,20 @@
 </form>
 <script >
     $(document).ready(function() {
+    	var login_rolename = "<?php echo $data['login_rolename'] ?>";
         var dept = document.getElementById('dept');
         var role = document.getElementById('role');
-        var index = role.selectedIndex;
-        var rolename = role.options[index].text;
-        if(rolename!="Volunteer"){
-            dept.style.display='none';
-            dept.disabled = true;
-        }
-        else{
-            dept.getElementById('dept').style.display='block';
-            dept.disabled = false;
+        if(login_rolename == "Manager"){
+	        var index = role.selectedIndex;
+	        var rolename = role.options[index].text;
+	        if(rolename!="Volunteer"){
+	            dept.style.display='none';
+	            dept.disabled = true;
+	        }
+	        else{
+	            dept.getElementById('dept').style.display='block';
+	            dept.disabled = false;
+	        }
         }
     })
     function check(){
