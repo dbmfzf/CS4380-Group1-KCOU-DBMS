@@ -8,6 +8,10 @@ $(document).ready(function(){
 function searchMusic(searchType){
     switch(searchType){
         case 'generic':
+            $.getJSON("../../../controllers/music/search_music/genericSearchHandler",
+                $("#genericSearch").val(), function(){
+                    //parse the json
+                });
             break;
         case 'advanced':
             break;
