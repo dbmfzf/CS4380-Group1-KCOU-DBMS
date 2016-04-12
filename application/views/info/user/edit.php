@@ -36,11 +36,11 @@
             <td>
                 <select name="role" id="role" onChange="check()"  class="form-control" >
 		    	<?php
-		    		$rid = $data['login_rid'];
+		    		$rid = $data['rid'];
 		    		$rolename = $data['login_rolename'];
 		    		if($data['login_rolename']!= "Manager")
 		    		{
-		    				echo "<option value='{$rid}' selected >{$rolename}</option>";
+		    			echo "<option value='{$rid}' selected >{$rolename}</option>";
 		    		}
 		    		else{
 			    		foreach($role_data as $vo){
@@ -57,9 +57,16 @@
             <td>
                 <select name="dept" id="dept" class="form-control" >
 		    	<?php 
-		    		foreach($dept_data as $vo){
-						$select = $data["did"]==$vo->did?"selected":"";
-		    			echo "<option value='{$vo->did}' {$select} >{$vo->name}</option>";
+		    		$did = $data['did'];
+		    		$dname = $data['dept'];
+		    		if($data['login_rolename']!= "Manager"){
+		    			echo "<option value='{$did}' selected >{$dname}</option>";
+		    		}
+		    		else{
+			    		foreach($dept_data as $vo){
+							$select = $data["did"]==$vo->did?"selected":"";
+			    			echo "<option value='{$vo->did}' {$select} >{$vo->name}</option>";
+			    		}
 		    		}
 		    	?>
                 </select>
