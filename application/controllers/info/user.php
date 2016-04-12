@@ -28,7 +28,7 @@ class User extends CI_Controller {
 		$rolename = $role_dept_data['rolename'];
 		$deptid = $role_dept_data['deptid'];
 		echo $deptid;
-		$temp = "and D.did = '{$deptid}';
+		$temp = "and D.did = '{$deptid}'";
 		echo $temp;
 		if($rolename="Manager"){$where="";} else{$where = $temp.$deptid;}
 		echo $where;
