@@ -35,10 +35,16 @@
             <td class="tableleft">Role</td>
             <td>
                 <select name="role" id="role" onChange="check()"  class="form-control" >
-		    	<?php 
-		    		foreach($role_data as $vo){
+		    	<?php
+		    		if($data['login_rolename']!= "Manager")
+		    		{
+		    				echo "<option value='{$data['login_rid']}' {$select} >$data['login_rolename']</option>";
+		    		}
+		    		else{
+			    		foreach($role_data as $vo){
 						$select = $data["rid"]==$vo->rid?"selected":"";
-		    			echo "<option value='{$vo->rid}' {$select} >{$vo->name}</option>";
+			    			echo "<option value='{$vo->rid}' {$select} >{$vo->name}</option>";
+			    		}
 		    		}
 		    	?>
                 </select>
