@@ -23,6 +23,8 @@ class User extends CI_Controller {
 		$config['per_page']   = 2;
 		$config['uri_segment']= '4';
 		$config['num_links']='2';
+		$config['first_link'] = 'First';
+		$config['last_link'] = 'last';
 		$config['use_page_numbers'] = TRUE;
 		$this->pagination->initialize($config);
 		
