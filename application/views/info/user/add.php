@@ -36,9 +36,18 @@
             <td>
                 <select name="role" id="role" class="form-control" onchange="check()" >
                   	<?php 
-                  		foreach($role_data as $vo){
-                  			echo "<option value='{$vo->rid}'>{$vo->name}</option>";
-                  		}
+                        $rid = $data['login_rid'];
+    		    		$rolename = $data['login_rolename'];
+    		    		if($data['login_rolename']!= "Manager")
+    		    		{
+    		    			echo "<option value='{$rid}' selected >{$rolename}</option>";
+    		    		}
+    		    		else{
+    			    		foreach($role_data as $vo){
+    						$select = $data["rid"]==$vo->rid?"selected":"";
+    			    			echo "<option value='{$vo->rid}' {$select} >{$vo->name}</option>";
+    			    		}
+    		    		}
                   	?>
                 </select>
             </td>
@@ -48,9 +57,17 @@
             <td>
                 <select name="dept" id="dept" class="form-control" >
                   	<?php 
-                  		foreach($dept_data as $vo){
-                  			echo "<option value='{$vo->did}'>{$vo->name}</option>";
-                  		}
+                  		$did = $data['did'];
+		    		    $dname = $data['dept'];
+    		    		if($data['login_rolename']!= "Manager"){
+    		    			echo "<option value='{$did}' selected >{$dname}</option>";
+    		    		}
+    		    		else{
+    			    		foreach($dept_data as $vo){
+    							$select = $data["did"]==$vo->did?"selected":"";
+    			    			echo "<option value='{$vo->did}' {$select} >{$vo->name}</option>";
+    			    		}
+    		    		}
                   	?>
                 </select>
             </td>
@@ -87,17 +104,20 @@
         }
     })
     function check(){
+        var login_rolename = "<?php echo $data['login_rolename'] ?>";
         var dept = document.getElementById('dept')
         var role = document.getElementById('role');
-        var index = role.selectedIndex;
-        var rolename = role.options[index].text;
-        if(rolename!="Volunteer"){
-            dept.style.display='none';
-            dept.disabled = true;
-        }
-        else{
-            dept.style.display='block';
-            dept.disabled = false;
+        if(login_rolename == "Manager"){
+            var index = role.selectedIndex;
+            var rolename = role.options[index].text;
+            if(rolename!="Volunteer"){
+                dept.style.display='none';
+                dept.disabled = true;
+            }
+            else{
+                dept.style.display='block';
+                dept.disabled = false;
+            }
         }
     }
 </script>
