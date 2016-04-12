@@ -36,9 +36,11 @@
             <td>
                 <select name="role" id="role" onChange="check()"  class="form-control" >
 		    	<?php
+		    		$rid = $data['login_rid'];
+		    		$rolename = $data['login_name'];
 		    		if($data['login_rolename']!= "Manager")
 		    		{
-		    				echo "<option value=$data['login_rid'] selected >$data['login_rolename']</option>";
+		    				echo "<option value='{$rid}' selected >$rolename</option>";
 		    		}
 		    		else{
 			    		foreach($role_data as $vo){
