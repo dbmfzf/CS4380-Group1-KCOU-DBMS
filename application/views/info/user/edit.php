@@ -37,7 +37,7 @@
                 <select name="role" id="role" onChange="check()"  class="form-control" >
 		    	<?php
 		    		$rid = $data['rid'];
-		    		$rolename = $data['login_rolename'];
+		    		$rolename = $data['role'];
 		    		if($data['login_rolename']!= "Manager")
 		    		{
 		    			echo "<option value='{$rid}' selected >{$rolename}</option>";
