@@ -26,9 +26,10 @@ class User extends CI_Controller {
 		$role_dept_query = $this->db->query("Select D.did as deptid,R.name as rolename from Department D, User U, Role R WHERE R.rid = U.rid and U.uid = '{$uid}' and R.rid = D.rid");
 		$role_dept_data = $role_dept_query->row_array();
 		$rolename = $role_dept_data['rolename'];
-		echo $rolename;
 		$deptid = $role_dept_data['deptid'];
+		echo $deptid;
 		if($rolename="Manager"){$where="";} else{$where = "AND D.did = $deptid ";}
+		echo $where;
 		$query = $this->db->query("SELECT U.uid,U.fullname,U.gender,U.email,U.phone,U.birth,U.status,R.name as rolename,D.name as deptname FROM Belongs_to B, Department D, User U, Role R WHERE R.rid = U.rid AND B.uid = U.uid AND B.did = D.did AND ".$where." ".(($page-1)*$config['per_page']).",".$config['per_page']."");
 		$data = $query->result();
 		$this->load->view("info/user",array("data"=>$data));
