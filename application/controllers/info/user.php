@@ -12,7 +12,8 @@ class User extends CI_Controller {
 	 */
 	public function index($page=1)
 	{
-		$uid = rbac_conf(array('INFO','uid'));
+		$login_role = rbac_conf(array('INFO','rid'));
+		
 		$query = $this->db->query("SELECT COUNT(1) as cnt FROM User");
 		$cnt_data = $query->row_array();
 		//page
@@ -23,12 +24,13 @@ class User extends CI_Controller {
 		$config['uri_segment']= '4';
 		$config['use_page_numbers'] = TRUE;
 		$this->pagination->initialize($config);
-		$role_dept_query = $this->db->query("Select D.did as deptid,R.name as rolename from Department D, User U, Role R WHERE R.rid = U.rid and U.uid = '{$uid}' and R.rid = D.rid");
+		
+		$role_dept_query = $this->db->query("Select D.did as deptid,R.name as rolename from Department D, Role R WHERE R.rid = $login_role and R.rid = D.rid");
 		$role_dept_data = $role_dept_query->row_array();
 		$rolename = $role_dept_data['rolename'];
 		$deptid = $role_dept_data['deptid'];
+		
 		if($rolename=="Manager"){$where="";} else{$where = "AND D.did = $deptid";}
-		echo $where;
 		$query = $this->db->query("SELECT U.uid,U.fullname,U.gender,U.email,U.phone,U.birth,U.status,R.name as rolename,D.name as deptname FROM Belongs_to B, Department D, User U, Role R WHERE R.rid = U.rid AND B.uid = U.uid AND B.did = D.did ".$where." LIMIT ".(($page-1)*$config['per_page']).",".$config['per_page']."");
 		$data = $query->result();
 		$this->load->view("info/user",array("data"=>$data));
@@ -38,6 +40,7 @@ class User extends CI_Controller {
 	 * @param number $uid
 	 */
 	public function edit($uid){
+		
 		$user_query = $this->db->query("SELECT uid,fullname,gender,birth,email,phone,status FROM User WHERE uid = '".$uid."' limit 1");
 		$user_data = $user_query -> row_array();
 		 
@@ -46,6 +49,9 @@ class User extends CI_Controller {
 		
 		$dept = $this->db->query("SELECT D.did,name from Department D, Belongs_to B, User U where U.uid = B.uid and D.did = B.did and U.uid = '".$uid."' limit 1");
 		$current_dept = $dept -> row_array();
+		
+		$login_role = rbac_conf(array('INFO','rid'));
+		$login_rolename = $this->db->query("SELECT name from Role where rid = $login_role);
 		
 		$data['uid'] = $user_data['uid'];
 		$data['fullname'] = $user_data['fullname'];
@@ -109,9 +115,11 @@ class User extends CI_Controller {
 			error_redirct("info/user/index","No user is found!");
 		}
 	}
+	
 	/**
 	 * Add users
 	 */
+	 
 	public function add(){
 		
 		$role_query = $this->db->query("SELECT rid,name FROM Role WHERE status = 1 order by rid desc");
