@@ -26,7 +26,7 @@ class User extends CI_Controller {
 		$config['use_page_numbers'] = TRUE;
 		$this->pagination->initialize($config);
 		
-		$role_dept_query = $this->db->query("Select D.did as deptid,R.name as rolename from Department D, Role R WHERE R.rid = $login_rid and R.rid = D.rid");
+		$role_dept_query = $this->db->query("Select D.did as deptid,R.name as rolename from Department D, Role R WHERE R.rid = '{$login_rid}' and R.rid = D.rid");
 		$role_dept_data = $role_dept_query->row_array();
 		$rolename = $role_dept_data['rolename'];
 		$deptid = $role_dept_data['deptid'];
@@ -52,7 +52,7 @@ class User extends CI_Controller {
 		$current_dept = $dept -> row_array();
 		
 		$login_rid = rbac_conf(array('INFO','rid'));
-		$login_role_query = $this->db->query("SELECT name from Role where rid = $login_rid");
+		$login_role_query = $this->db->query("SELECT name from Role where rid = '{$login_rid}'");
 		$login_role = $login_role_query->row_array(); 
 		
 		$data['uid'] = $user_data['uid'];
