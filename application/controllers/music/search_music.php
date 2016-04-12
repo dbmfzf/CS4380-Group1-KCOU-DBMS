@@ -13,4 +13,13 @@ class search_music extends CI_Controller {
         
         $this->load->view("music/search_music.php");
     }
+    
+    public function genericSearchHandler(){
+        $JSONstring = $this->music_model->genericSearch($this->input->get('searchString'));
+        echo"$JSONstring";
+    }
+    
+    public function advancedSearchHandler(){
+        
+    }
 }
