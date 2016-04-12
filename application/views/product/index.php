@@ -36,7 +36,7 @@
                 </br>
                 <?php echo $data['most_title'];?>
               </p>
-              <p><a class="btn btn-default" href="music/search_music.php" role="button">More &raquo;</a></p>
+              <p><a class="btn btn-default" href=<?php echo site_url('music/search_music.php'); ?> role="button">More &raquo;</a></p>
               </div>
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
