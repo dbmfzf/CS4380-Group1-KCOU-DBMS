@@ -22,6 +22,7 @@ class User extends CI_Controller {
 		$config['total_rows'] = $cnt_data['cnt'];
 		$config['per_page']   = 2;
 		$config['uri_segment']= '4';
+		$config['num_links']='2';
 		$config['use_page_numbers'] = TRUE;
 		$this->pagination->initialize($config);
 		
