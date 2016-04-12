@@ -133,11 +133,17 @@ class User extends CI_Controller {
 		$dept_data = $dept_query->result();
 		
 		$login_rid = rbac_conf(array('INFO','rid'));
-		$login_role_query = $this->db->query("SELECT rid,name from Role where rid = $login_rid");
+		$login_role_query = $this->db->query("SELECT rid,name FROM Role WHERE rid = $login_rid");
 		$login_role = $login_role_query->row_array();
+		
+		$login_role_dept_query = $this->db->query("SELECT did,name FROM Department WHERE rid = $login_rid");
+		$login_role_dept = $login_role_dept_query->row_array();
 		
 		$data['login_rolename'] = $login_role['name'];
 		$data['login_rid'] = $login_role['rid'];
+		$data['did'] = $login_role_dept['did'];
+		$data['dept'] = $login_role_dept['dept'];
+		
 		
 		if($this->input->post()){
 			$uid = $this->input->post("uid");
