@@ -35,106 +35,74 @@ class Department extends CI_Controller {
 	/**
 	 * Edit departments
 	 */
-	public function edit($uid){
-		$department_query = $this->db->query("SELECT d.did,d.name,d.rid FROM department d, belongs_to b WHERE b.did = d.did and b.uid = '".$uid."' limit 1");
+	public function edit($did){
+		$department_query = $this->db->query("SELECT d.did,d.name as dname,d.rid FROM department d WHERE d.did = '".$did."' limit 1");
 		$department_data = $department_query -> row_array();
 		 
-		$role = $this->db->query("SELECT R.rid,name from Role R, User U where U.rid = R.rid and U.uid = '".$uid."' limit 1");
-		$current_role = $role -> row_array();
+		$rolename = $this->db->query("SELECT r.rid, r.name as rname from role r, department d where d.rid = R.rid and d.did = '".$did."' limit 1");
+		$current_role = $rolename -> row_array();
 		
-		$dept = $this->db->query("SELECT D.did,name from Department D, Belongs_to B, User U where U.uid = B.uid and D.did = B.did and U.uid = '".$uid."' limit 1");
-		$current_dept = $dept -> row_array();
 		
-		$data['uid'] = $user_data['uid'];
-		$data['fullname'] = $user_data['fullname'];
-		$data['gender'] = $user_data['gender'];
-		$data['email'] = $user_data['email'];
-		$data['phone'] = $user_data['phone'];
-		$data['birth'] = $user_data['birth'];
-		$data['status'] = $user_data['status'];
+		$data['did'] = $department_data['did'];
+		$data['name'] = $department_data['dname'];
 		
-		$data['role'] = $current_role['name'];
+		$data['rolename'] = $current_role['rname'];
 		$data['rid'] = $current_role['rid'];
-		
-		$data['dept'] = $current_dept['name'];
-		$data['did'] = $current_dept['name'];
-		
-		$role_query = $this->db->query("SELECT rid,name FROM Role WHERE status = 1 order by rid desc");
-		$role_data = $role_query->result();
-		$dept_query = $this->db->query("SELECT did,name FROM Department order by did desc");
-		$dept_data = $dept_query->result();
+
+
 		
 		if($data){
 			if($this->input->post()){
-				$fullname = $this->input->post("fullname");
-				$gender = $this->input->post("gender");
-				$email = $this->input->post("email");
-				$phone = $this->input->post("phone");
-				$birth = $this->input->post("birth");
-				$role = $this->input->post("role");
-				$dept = $this->input->post("dept");
-				$status = $this->input->post("status");
-				$password = $this->input->post("password");
-				$password2 = $this->input->post("password2");
+				$name = $this->input->post("dname");
+				$rolename = $this->input->post("rname");
+				
+				$role_dept_query = $this->db->query("SELECT rid from role WHERE rname = ".$rolename."");
+				$role_dept_data = $role_dept_query->row_array();
+				$rid = $role_dept_data['rid'];
+
 				if($uid!=""){
-					if($password==$password2){
-						if($uid&&$fullname&&$gender&&$email&&$phone&&$birth&&$role&&$dept){
-							if($password){$newpass = ",password='".md5($password2)."'";}else{$newpass="";}
-							if($status){$newstat = ",status='1'";}else{$newstat = ",status='0'";}
-							$sql = "UPDATE User set fullname='{$fullname}',gender = '{$gender}',email='{$email}',phone = '{$phone}',birth = '{$birth}',rid='{$role}' {$newpass} {$newstat} WHERE uid = '{$uid}'";
-							$this->db->query($sql);
-							$dsql = "UPDATE Belongs_to set did = $dept WHERE uid = '{$uid}'";
-							$this->db->query($dsql);
-							success_redirct("info/user/index","Edit successful!");
-						}else{
-							error_redirct("","The user's information is not complete!");
-						}
+					if($did&&$name&&$rolename){
+						$rsql = "UPDATE department, set name='{$rolename}' name='{$rolename}' WHERE uid = '{$uid}'";
+						$this->db->query($sql);
+						$sql = "UPDATE Belongs_to set did = $dept WHERE uid = '{$uid}'";
+						$this->db->query($dsql);
+						success_redirct("info/department/index","Edit successful!");
 					}else{
-						error_redirct("","Repeat the wrong password!");
+						error_redirct("","The department's information is not complete!");
 					}
 				}else{
 					error_redirct("","No user is found!");
 				}
 			}
-			$this->load->view("info/user/edit",array("data"=>$data,"role_data"=>$role_data,"dept_data"=>$dept_data));
+			$this->load->view("info/department/edit",array("data"=>$data,"role_data"=>$role_data,"dept_data"=>$dept_data));
 		}else{
-			error_redirct("info/user/index","No user is found!");
+			error_redirct("info/department/index","No user is found!");
 		}
 	}
 	/**
-	 * Add users
+	 * Add departments
 	 */
 	public function add(){
 		
-		$role_query = $this->db->query("SELECT rid,name FROM Role WHERE status = 1 order by rid desc");
+		$role_query = $this->db->query("SELECT rid,name FROM role order by rid desc");
 		$role_data = $role_query->result();
 		
-		$dept_query = $this->db->query("SELECT did,name FROM Department order by did desc");
+		$dept_query = $this->db->query("SELECT did,name FROM department order by did desc");
 		$dept_data = $dept_query->result();
 		
 		if($this->input->post()){
-			$uid = $this->input->post("uid");
-			$fullname = $this->input->post("fullname");
-			$gender = $this->input->post("gender");
-			$email = $this->input->post("email");
-			$phone = $this->input->post("phone");
-			$birth = $this->input->post("birth");
+			$dname = $this->input->post("dname");
 			
-			$role = $this->input->post("role");
-			$role_dept_query = $this->db->query("SELECT did from Department WHERE rid = ".$role."");
+			$rolename = $this->input->post("rolename");
+			$role_dept_query = $this->db->query("SELECT d.did from department d, role r WHERE d.rid = r.rid and r.name = ".$rolename."");
 			$role_dept_data = $role_dept_query->row_array();
 			$did = $role_dept_data['did'];
-			
-			$dept = $this->input->post("dept");
-			$status = $this->input->post("status");
-			$password = $this->input->post("password");
-			$password2 = $this->input->post("password2");
-			if($password==$password2){
-				if($uid&&$fullname&&$gender&&$email&&$phone&&$birth&&$role){
-					$query = $this->db->query("SELECT * FROM User WHERE uid = '".$uid."'");
-					$data = $query->row_array();
-					if(!$data){
-						$query = $this->db->query("SELECT * FROM User WHERE email = '".$email."'");
+		
+			if($dname&&$rolename){
+				$query = $this->db->query("SELECT * FROM department WHERE did = '".$did."'");
+				$data = $query->row_array();
+				if(!$data){
+					$query = $this->db->query("SELECT * FROM User WHERE email = '".$email."'");
 						$data = $query->row_array();
 						if(!$data){
 							if(!$did){$newdept = $did;}else{$newdept = $dept;}
@@ -143,46 +111,39 @@ class Department extends CI_Controller {
 							$this->db->query($sql);
 							$dsql = "INSERT INTO Belongs_to(uid,did) values('{$uid}','{$newdept}')";
 							$this->db->query($dsql);
-							success_redirct("info/user/index","Add successful!");
-						}else{
-							error_redirct("","The email already exists!");
-						}
+							success_redirct("info/department/index","Add successful!");
 					}else{
-						error_redirct("","The user ID already exists!");
+						error_redirct("","The department already exists!");
 					}
 					
 				}else{
 					error_redirct("","The user's information is not complete!");
-				}
-			}else{
-				error_redirct("","Repeat the wrong password!");
 			}
 		}
-		$this->load->view("info/user/add",array("role_data"=>$role_data,"dept_data"=>$dept_data));
+		$this->load->view("info/department/add",array("role_data"=>$role_data,"dept_data"=>$dept_data));
 	}
+	}
+	
 	/**
-	 * Delete users
-	 * @param number $id
+	 * Delete departments
 	 */
-	public function delete($uid){
-		$query = $this->db->query("SELECT * FROM User WHERE uid = '".$uid."' ");
+	public function delete($did){
+		$query = $this->db->query("SELECT * FROM department WHERE did = '".$did."' ");
 		$data = $query->row_array();
 		if($data){
 			if($this->input->post()){
 				$verfiy = $this->input->post("verfiy");
 				if($verfiy){
-					$sql = "DELETE FROM User WHERE uid = '".$uid."' ";
+					$sql = "DELETE FROM department WHERE did = '".$did."' ";
 					$this->db->query($sql);
-					success_redirct("info/user/index","Delete successful!");
+					success_redirct("info/department/index","Delete successful!");
 				}else{
-					error_redirct("info/user/index","Delete failed!");
+					error_redirct("info/department/index","Delete failed!");
 				}
 			}
-			$this->load->view("info/user/delete",array("data"=>$data));
+			$this->load->view("info/department/delete",array("data"=>$data));
 		}else{
-			error_redirct("info/user/index","No user is found!");
+			error_redirct("info/department/index","No user is found!");
 		}
 	}
 }
-
-<?php
