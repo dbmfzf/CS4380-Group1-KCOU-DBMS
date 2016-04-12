@@ -1,12 +1,15 @@
+$(document).ready(function(){
+    var searchWidth = $("#advancedOptions").innerWidth();
+    $("#genericSearch").width(searchWidth);
+});
+        
+
+
 function searchMusic(searchType){
     switch(searchType){
         case 'generic':
             break;
-        case 'artist':
-            break;
-        case 'song':
-            break;
-        case 'genre':
+        case 'advanced':
             break;
         default:
             break;
