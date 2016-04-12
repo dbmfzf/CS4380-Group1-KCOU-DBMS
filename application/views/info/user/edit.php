@@ -84,27 +84,18 @@
 
 <script >
     $(document).ready(function() {
-    	var login_rolename = "<?php echo $data['login_rolename']?>";
         var dept = document.getElementById('dept');
         var role = document.getElementById('role');
-        if(login_rolename!="Manager"){
-        	dept.style.display='none';
-	        dept.disabled = true;
-	        role.style.display='none';
-	        role.disabled = true;
+	var index = role.selectedIndex;
+        var rolename = role.options[index].text;
+        if(rolename!="Volunteer"){
+            dept.style.display='none';
+            dept.disabled = true;
         }
         else{
-        	var index = role.selectedIndex;
-	        var rolename = role.options[index].text;
-	        if(rolename!="Volunteer"){
-	            dept.style.display='none';
-	            dept.disabled = true;
-	        }
-	        else{
-	            dept.getElementById('dept').style.display='block';
-	            dept.disabled = false;
-	        }	
-        }
+            dept.getElementById('dept').style.display='block';
+            dept.disabled = false;
+        }	
     })
     
     function check(){
