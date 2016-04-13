@@ -18,15 +18,15 @@
 				</div>
 			</div>
 			<script>
-				window.onload =function() {
-				    var i = <?php echo $time-1; ?>;
-				            setInterval(function(){                
-				                while(document.getElementById("cnt").innerHTML!='0'){
-				                	document.getElementById("cnt").innerHTML = --i;
-							window.location.href='<?php echo $url; ?>';
-					        }
-				 
-				            },1000);
-				        };
+				var timeLeft=<?php echo $time-1; ?>//这里设定的时间是20分钟
+				function countTime(){
+					if(timeLeft==0){
+						window.location.href='<?php echo $url; ?>';
+						return;
+					}
+					document.getElementById('cnt').innerHTML= timeLeft;
+					timeLeft=timeLeft-1;
+					setTimeout('countTime()',1000);
+				}
 			</script>
 <?php $this->load->view("foot");?>
