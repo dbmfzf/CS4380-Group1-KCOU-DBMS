@@ -1,26 +1,26 @@
-<h1>节点修改</h1>
+<h1>Edit node</h1>
 <form role="form" action="" method="post">
   <div class="form-group">
-    <label>目录</label>
+    <label>Directoty</label>
     <input name="directory" type="text" class="form-control"  value="<?php echo $data['directory']; ?>" disabled>
   </div>
   <div class="form-group">
-    <label>控制器</label>
+    <label>Controller</label>
     <input name="controller" type="text" class="form-control"  value="<?php echo $data['controller']; ?>" disabled>
   </div>
   <div class="form-group">
-    <label>方法</label>
+    <label>Method</label>
     <input name="func" type="text" class="form-control"  value="<?php echo $data['func']; ?>" disabled>
   </div>
   <div class="form-group">
-    <label>备注</label>
+    <label>Memo</label>
     <input name="memo" type="text" class="form-control" placeholder="在此输入备注" value="<?php echo $data['memo']; ?>">
   </div>
   <div class="checkbox">
     <label>
-      <input value="1" name="status" type="checkbox" <?php if($data['status']){echo "checked";}?>> 是否启用
+      <input value="1" name="status" type="checkbox" <?php if($data['status']){echo "checked";}?>> Enalble?
     </label>
   </div>
-  <button type="submit" class="btn btn-success">确认修改</button>
-  <a class="btn btn-danger" href="<?php echo site_url('manage/node/index'); ?>">取消操作</a>
+  <button type="submit" class="btn btn-success">Save</button>
+  <a class="btn btn-danger" href="<?php echo site_url('manage/node/index'); ?>">Cancel</a>
 </form>
