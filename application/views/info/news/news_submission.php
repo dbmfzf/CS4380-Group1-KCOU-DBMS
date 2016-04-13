@@ -5,8 +5,8 @@
 <title>kindeditor</title>
 
 <!-- 在这里引入css文件 -->
-<link rel="stylesheet" href="kindeditor/themes/default/default.css" />
-<link rel="stylesheet" href="kindeditor/plugins/code/prettify.css" />
+<link rel="stylesheet" href="<?php echo base_url();?>kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="<?php echo base_url();?>kindeditor/plugins/code/prettify.css" />
 </head>
 <body>
     <form action="Diary.php" name="myform" method="post">
@@ -22,9 +22,9 @@
 <script>
    KindEditor.ready(function(K) {//kindeditor控件调用
        var editor1=K.create('textarea[name="content"]',{//name=form中textarea的name属性
-           cssPath : '../../kindeditor/plugins/code/prettify.css',
-           uploadJson : '../../kindeditor/php/upload_json.php',
-           fileManagerJson : '../../kindeditor/php/file_manager_json.php',
+           cssPath : '<?php echo base_url();?>kindeditor/plugins/code/prettify.css',
+           uploadJson : <?php echo base_url();?>kindeditor/php/upload_json.php',
+           fileManagerJson : '<?php echo base_url();?>kindeditor/php/file_manager_json.php',
            allowFileManager : true,
            afterCreate : function() {
                var self = this;
