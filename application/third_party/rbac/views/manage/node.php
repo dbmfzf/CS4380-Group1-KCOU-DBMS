@@ -33,7 +33,7 @@ foreach($node as $key=>$mn){
 				  	<td>'.$gcmn->memo.'</td>
 				  	<td>'.($gcmn->status==1?"Enable":"Disable").'</td>
 				  	<td><div class="btn-group  btn-group-xs pull-right">
-				  		  <a class="btn btn-success" href="'.site_url("manage/node/edit/".$gcmn->node_id).'">Edit</a>
+				  		  <a class="btn btn-warning" href="'.site_url("manage/node/edit/".$gcmn->node_id).'">Edit</a>
 						  <a class="btn btn-danger" href="'.site_url("manage/node/delete/".$key."/".$mn_key."/".$cmn_key).'">Delete</a>
 					</div>
 			  	</td>
