@@ -1,6 +1,6 @@
 <style>
 .table td:first-child{width:25%}
-.table td:nth-child(2){width:40%}
+.table td:nth-child(2){width:35%}
 </style>
 <?php 
 //print_r($node);
