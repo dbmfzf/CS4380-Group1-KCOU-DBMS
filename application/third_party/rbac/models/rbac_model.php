@@ -1,10 +1,5 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-/**
- * CI RBAC
- * 模型
- * @author		toryzen
- * @link		http://www.toryzen.com
- */
+
 class Rbac_model extends CI_Model{
 	
 	public function __construct(){
@@ -13,7 +8,7 @@ class Rbac_model extends CI_Model{
 	}
 	
 	/*
-	 * 获取权限列表
+	 * Get privileges list
 	*/
 	public function get_acl($role_id){
 		$query = $this->db->query("SELECT node_id,directory,controller,func FROM Node WHERE node_id in (SELECT node_id FROM Authorizes WHERE rid = ".$role_id.")");
@@ -25,7 +20,7 @@ class Rbac_model extends CI_Model{
 	}
 	
 	/*
-	 * 用户登录检测
+	 * check user
 	*/
 	public function check_user($uid,$password){
 		$query = $this->db->query("SELECT uid,password,phone,email,rid,status FROM User WHERE uid = '".$uid."' LIMIT 1");

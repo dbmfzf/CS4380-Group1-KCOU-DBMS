@@ -1,18 +1,13 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-/**
- * CI RBAC
- * RBAC中用到的公共函数
- * @author		toryzen
- * @link		http://www.toryzen.com
- */
-//MEMCACHED唯一ID
+
+//MEMCACHED unique id
 if(!function_exists('mem_id')){
 	function mem_id(){
 		return $_SERVER['HTTP_HOST']."|".md5($_SERVER['SCRIPT_NAME'].session_id());
 	}
 }
 
-//MEMCACHED调用方法
+//MEMCACHED call method
 if(!function_exists('mem_inst')){
 	function mem_inst(){
 		$ci_obj = &get_instance();
@@ -27,11 +22,11 @@ if(!function_exists('mem_inst')){
 	}
 }
 
-//获取&设置RBAC数据[基于SESSION|MEMCACHED]
+//Get and set rbac data[base on SESSION|MEMCACHED]
 if(!function_exists('rbac_conf')){
 	function rbac_conf($arr_key,$value=NULL){
 		$ci_obj = &get_instance();
-		//获取
+		//get
 		if(mem_inst()){
 			if(!$config = mem_inst()->get(mem_id())){
 				$config = $_SESSION[$ci_obj->config->item('rbac_auth_key')];
@@ -46,7 +41,7 @@ if(!function_exists('rbac_conf')){
 		if($value !==NULL){
 			$conf[count($arr_key)-1] = $value;
 		}
-		//设置
+		//set
 		if(mem_inst()){
 			if(!mem_inst()->set(mem_id(),$config)){
 				$_SESSION[$ci_obj->config->item('rbac_auth_key')] = $config;
@@ -57,7 +52,7 @@ if(!function_exists('rbac_conf')){
 		return isset($conf[count($arr_key)-1])?$conf[count($arr_key)-1]:FALSE;
 	}
 }
-//用户退出
+//logout
 if(!function_exists('rbac_logout')){
 	function rbac_logout($arr_key,$value=NULL){
 		if(mem_inst()){
@@ -67,7 +62,7 @@ if(!function_exists('rbac_logout')){
 	}
 }
 
-//错误跳转
+//error_redirect
 if(!function_exists("error_redirct")){
 	function error_redirct($url="",$contents="Error",$time = 3){
 		
@@ -87,7 +82,7 @@ if(!function_exists("error_redirct")){
 	}
 }
 
-//正确跳转
+//success redirect
 if(!function_exists("success_redirct")){
 	function success_redirct($url,$contents="Success!",$time = 3){
 		$ci_obj = &get_instance();

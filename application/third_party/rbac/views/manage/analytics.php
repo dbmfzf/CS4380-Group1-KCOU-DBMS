@@ -1,39 +1,72 @@
-<style>
-.table td:first-child{width:10%}
-.table td:nth-child(2){width:20%}
-</style>
-<table class="table  table-bordered well">
-	<thead>
-          <tr>
-            <th>ID</th>
-            <th>姓名</th>
-            <th>Email</th>
-            <th>角色</th>
-            <th>状态</th>
-            <th>操作</th>
-          </tr>
-        </thead>
-   <tbody>
-	<?php 
-	foreach($data as $mb){
-		printf('<tr>
-					<td>%s</td>
-					<td>%s</td>
-					<td>%s</td>
-					<td>%s</td>
-					<td>%s</td>
-					<td>
-						<div class="btn-group  btn-group-xs">
-						  <a class="btn btn-default btn-xs" href="%s">编辑</a>
-						  <a class="btn btn-danger" href="%s">删除</a>
-						</div>
-					</td>
-				</tr>',$mb->uid,$mb->fullname,$mb->email,($mb->name?$mb->name:"暂无角色"),($mb->status==1?"正常":"停用"),site_url("manage/member/edit/".$mb->uid),site_url("manage/member/delete/".$mb->uid));
-	}
-	?>
-  </tbody>
-</table>
-<hr/>
-
-<?php echo '<a class="btn btn-success pull-right" href="'.site_url("manage/member/add").'">新增用户</a>'; ?>
-<?php echo $this->pagination->create_links(); ?>
+<h1>Distribution of users</h1>
+<script>
+$(function () {
+        // Build the chart
+        $('#dept').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Browser market shares January, 2015 to May, 2015'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                name: 'Brands',
+                colorByPoint: true,
+                data: [{
+                    name: 'Microsoft Internet Explorer',
+                    y: 56.33
+                }, {
+                    name: 'Chrome',
+                    y: 24.03,
+                    sliced: true,
+                    selected: true
+                }, {
+                    name: 'Firefox',
+                    y: 10.38
+                }, {
+                    name: 'Safari',
+                    y: 4.77
+                }, {
+                    name: 'Opera',
+                    y: 0.91
+                }, {
+                    name: 'Proprietary or Undetectable',
+                    y: 0.2
+                }]
+            }]
+        });
+});
+</script>
+<ul id="myTab" class="nav nav-tabs">
+   <li class="active"><a href="#home" data-toggle="tab">By department</a>
+   </li>
+   <li><a href="#second" data-toggle="tab">By gender</a></li>
+   <li><a href="#third" data-toggle="tab">By role</a></li>
+</ul>
+<div id="myTabContent" class="tab-content">
+   <div class="tab-pane fade in active" id="home">
+      <div id="dept" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto; padding-top:10%"></div>
+   </div>
+   <div class="tab-pane fade" id="second">
+      <div id="gender" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto; padding-top:10%"></div>
+   </div>
+   <div class="tab-pane fade" id="third">
+      <div id="role" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto; padding-top:10%"></div>
+   </div>
+</div>

@@ -9,7 +9,7 @@
 						<div class="panel-body">
 						
 						<h1><?php echo $contents; ?></h1>
-    					<h4>Please wait for <span id="cnt"><?php echo $time; ?></span> seconds【<a href="<?php echo $url; ?>">No wait!</a>】</h4>
+    					<h4>Please wait for <span id="cnt">&nbsp;</span> seconds【<a href="<?php echo $url; ?>">No wait!</a>】</h4>
 						<br/>
 						
 						</div>
@@ -18,15 +18,19 @@
 				</div>
 			</div>
 			<script>
+				var i = <?php echo $time; ?>;
+				function countTime(){
+					document.getElementById("cnt").innerHTML = i;
+					if(i==0){
+						window.location.href='<?php echo $url; ?>';
+					}
+					else{
+						i--;
+						setTimeout('countTime()',1000);
+					}
+				}
 				window.onload =function() {
-				    var i = <?php echo $time-1; ?>;
-				            setInterval(function(){                
-				                document.getElementById("cnt").innerHTML = i--;
-				                if(document.getElementById("cnt").innerHTML=='0'){
-									window.location.href='<?php echo $url; ?>';
-					            }
-				 
-				            },1000);
-				        };
+				    countTime();
+				};
 			</script>
 <?php $this->load->view("foot");?>

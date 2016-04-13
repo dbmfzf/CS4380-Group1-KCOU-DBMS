@@ -2,6 +2,7 @@
 	.table td:first-child{width:30%}
 	.table td:nth-child(2){width:40%}
 </style>
+<h1>Authorize</h1>
 <?php 
 foreach($node as $key=>$mn){
 	echo '<table class="table well">';
@@ -24,7 +25,7 @@ foreach($node as $key=>$mn){
 				  		  <a class="btn btn-default btn-%s" href="%s">%s</a>
 					</div>
 			  	</td>
-			  	</tr>',$gcmn->memo,(@$rnl[$key][$mn_key][$cmn_key]?"danger":"success"),site_url("manage/role/action/".$rid."/".$gcmn->node_id),(@$rnl[$key][$mn_key][$cmn_key]?"取消授权":"节点授权"));
+			  	</tr>',$gcmn->memo,(@$rnl[$key][$mn_key][$cmn_key]?"danger":"success"),site_url("manage/role/action/".$rid."/".$gcmn->node_id),(@$rnl[$key][$mn_key][$cmn_key]?"Revoke":"Authorize"));
 		}
 	}
 	echo '</table>';

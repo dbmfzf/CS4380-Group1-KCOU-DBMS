@@ -1,10 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-/**
- * CI RBAC
- * RBAC管理后台中菜单模块
- * @author		toryzen
- * @link		http://www.toryzen.com
- */
+
 class Menu extends CI_Controller {
 	
 	function __construct(){
@@ -12,7 +7,7 @@ class Menu extends CI_Controller {
 		$this->load->database();
 	}
 	/**
-	 * 菜单主页
+	 * menu index
 	 */
 	public function index()
 	{
@@ -21,27 +16,27 @@ class Menu extends CI_Controller {
 	}
 	
 	/**
-	 * 菜单删除
+	 * delete menu
 	 */
 	public function delete($id){
 		$query = $this->db->query("SELECT M.id,M.title,M.node_id,M.pid,M.sort,M.status,N.memo FROM Menu M left join Node N on M.node_id = N.node_id WHERE M.id =".$id);
 		$data = $query->row_array();
 		if($data){
-			//获取当前节点及其子节点
+			//Get current node and its sub nodes; 
 			$menu_data = $this->get_menu_list($id);
 			if($this->input->post()){
 				$verfiy = $this->input->post("verfiy");
 				$sql = "DELETE FROM Menu WHERE id in (".$menu_data["id_list"].") ";
 				$this->db->query($sql);
-				success_redirct("manage/menu/index","菜单删除成功");
+				success_redirct("manage/menu/index","Delete successful!");
 			}
 			$this->load->view("manage/menu/delete",$menu_data);
 		}else{
-			error_redirct("manage/menu/index","未找到此菜单");
+			error_redirct("manage/menu/index","No menus is found!");
 		}
 	}
 	/**
-	 * 菜单新增
+	 * add menu
 	*/
 	public function add($id,$level,$pid="NULL"){
 		if($this->input->post()){
@@ -55,12 +50,12 @@ class Menu extends CI_Controller {
 					$status = $this->input->post("status")==""?"0":"1";
 					$sql = "INSERT INTO Menu (status,title,sort,node_id,pid) values( '{$status}','{$title}','{$sort}','{$node}',{$pid})";
 					$this->db->query($sql);
-					success_redirct("manage/menu/index","新增菜单成功！");
+					success_redirct("manage/menu/index","Add sucessful!");
 				}else{
-					error_redirct("","标题不能为空！");
+					error_redirct("","The title can't be left empty!");
 				}
 			}else{
-				error_redirct("","参数不正确！");
+				error_redirct("","Invalid parameters!");
 			}
 		}
 		$rbac_where = "";
@@ -75,7 +70,7 @@ class Menu extends CI_Controller {
 		$this->load->view("manage/menu/add",array("node"=>$node_data,"level"=>$level,"pid"=>$pid));
 	}
 	/**
-	 * 菜单修改
+	 * Edit menu
 	 */
 	public function edit($id,$level,$pid="NULL"){
 		if($this->input->post()){
@@ -90,12 +85,12 @@ class Menu extends CI_Controller {
 					$status = $this->input->post("status")==""?"status='0'":"status='1'";
 					$sql = "UPDATE Menu SET {$status},title='{$title}',sort='{$sort}',node_id='{$node}',{$pid} WHERE id = '{$id}'";
 					$this->db->query($sql);
-					success_redirct("manage/menu/index","菜单修改成功！");
+					success_redirct("manage/menu/index","Edit successful!");
 				}else{
-					error_redirct("","标题不能为空！");
+					error_redirct("","The title can't be left empty!");
 				}
 			}else{
-				error_redirct("","参数不正确！");
+				error_redirct("","Invalid parameters!");
 			}
 		}
 		$query = $this->db->query("SELECT M.id,M.title,M.node_id,M.pid,M.sort,M.status,N.memo FROM Menu M left join Node N on M.node_id = N.node_id WHERE M.id =".$id);
@@ -112,12 +107,12 @@ class Menu extends CI_Controller {
 			$node_data = $node_query->result();
 			$this->load->view("manage/menu/edit",array("data"=>$data,"node"=>$node_data,"level"=>$level,"pid"=>$pid));
 		}else{
-			error_redirct("manage/menu/index","未找到此菜单");
+			error_redirct("manage/menu/index","No menus is found!");
 		}
 	}
 	
 	/**
-	 * 获取菜单页
+	 * get menus
 	 * @param string $id
 	 * @return array($id_list,$menu)
 	 */

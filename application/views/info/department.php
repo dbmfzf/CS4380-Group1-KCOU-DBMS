@@ -17,11 +17,11 @@
 					<td>%s</td>
 					<td>
 						<div class="btn-group  btn-group-xs">
-						  <a class="btn btn-default btn-xs" href="%s">Edit</a>
+						  <a class="btn btn-warning btn-xs" href="%s">Edit</a>
 						  <a class="btn btn-danger" href="%s">Delete</a>
 						</div>
 					</td>
-				</tr>',$mb->dname,$mb->rname,site_url("info/department/edit/".$mb->did),site_url("info/department/delete/".$mb->did));
+				</tr>',$mb->dname,$mb->rname,site_url("info/department/edit".$mb->did),site_url("info/department/delete".$mb->did));
 	}
 	?>
   </tbody>
