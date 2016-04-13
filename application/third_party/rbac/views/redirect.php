@@ -18,7 +18,8 @@
 				</div>
 			</div>
 			<script>
-				var timeLeft=<?php echo $time-1; ?>//这里设定的时间是20分钟
+			window.onload =function(){
+				var timeLeft=<?php echo $time-1; ?>;
 				function countTime(){
 					if(timeLeft==0){
 						window.location.href='<?php echo $url; ?>';
@@ -28,5 +29,6 @@
 					timeLeft=timeLeft-1;
 					setTimeout('countTime()',1000);
 				}
+			}
 			</script>
 <?php $this->load->view("foot");?>
