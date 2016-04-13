@@ -18,14 +18,14 @@
 				</div>
 			</div>
 			<script>
+				var i = <?php echo $time-1; ?>;
 				function countTime(){
-					var i = <?php echo $time-1; ?>;
 					document.getElementById("cnt").innerHTML = i;
 					if(i==0){
 						window.location.href='<?php echo $url; ?>';
 					}
 					i--;
-					setTimeout(countTime(),1000);
+					setTimeout('countTime()',1000);
 				}
 				window.onload =function() {
 				    setTimeout('countTime()',1000);
