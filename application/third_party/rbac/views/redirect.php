@@ -24,8 +24,10 @@
 					if(i==0){
 						window.location.href='<?php echo $url; ?>';
 					}
-					i--;
-					setTimeout('countTime()',1000);
+					else{
+						i--;
+						setTimeout('countTime()',1000);
+					}
 				}
 				window.onload =function() {
 				    countTime();
