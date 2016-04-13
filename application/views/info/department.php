@@ -21,7 +21,7 @@
 						  <a class="btn btn-danger" href="%s">Delete</a>
 						</div>
 					</td>
-				</tr>',$mb->dname,$mb->rname,site_url("info/department/edit".$mb->did),site_url("info/department/delete".$mb->did));
+				</tr>',$mb->dname,$mb->rname,site_url("info/department/edit/".$mb->did),site_url("info/department/delete/".$mb->did));
 	}
 	?>
   </tbody>
