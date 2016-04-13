@@ -10,7 +10,7 @@
     	<option value=''>No links</option>
     	<?php 
     		foreach($node as $vo){
-				$select = $data["node_id"]==$vo->id?"selected":"";
+				$select = $data["node_id"]==$vo->node_id?"selected":"";
     			echo "<option value='{$vo->node_id}' {$select} >{$vo->memo} [{$vo->directory}/{$vo->controller}/{$vo->func}]</option>";
     		}
     	?>
