@@ -1,10 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-/**
- * CI RBAC
- * RBAC后台管理中角色模块
- * @author		toryzen
- * @link		http://www.toryzen.com
- */
+
 class Role extends CI_Controller {
 	
 	function __construct(){
@@ -12,14 +7,14 @@ class Role extends CI_Controller {
 		$this->load->database();
 	}
 	/**
-	 * 角色首页
+	 * role index
 	 * @param number $page
 	 */
 	public function index($page=1)
 	{
 		$query = $this->db->query("SELECT COUNT(1) as cnt FROM Role");
 		$cnt_data = $query->row_array();
-		//分页
+		//page settings
 		$this->load->library('pagination');
 		$config['base_url'] = site_url("manage/role/index");
 		$config['total_rows'] = $cnt_data['cnt'];
@@ -34,7 +29,7 @@ class Role extends CI_Controller {
 	}
 	
 	/**
-	 * 角色修改
+	 * Edit role
 	 * @param number $rid
 	 */
 	public function edit($rid){
@@ -47,19 +42,19 @@ class Role extends CI_Controller {
 				if($rolename){
 					$sql = "UPDATE Role set name='{$rolename}',status='{$status}' WHERE rid = {$rid}";
 					$this->db->query($sql);
-					success_redirct("manage/role/index","角色信息修改成功！");
+					success_redirct("manage/role/index","Edit successful!");
 				}else{
-					error_redirct("","信息填写不全！");
+					error_redirct("","The role's information is not complete!");
 				}
 			}
 			$this->load->view("manage/role/edit",array("data"=>$data));
 		}else{
-			error_redirct("manage/role/index","未找到此角色");
+			error_redirct("manage/role/index","No roles is found!");
 		}
 	}
 	
 	/**
-	 * 角色新增
+	 * add role
 	 * @param number $rid
 	 */
 	public function add(){
@@ -72,20 +67,20 @@ class Role extends CI_Controller {
 				if(!$data){
 					$sql = "INSERT INTO Role(name,status) values('{$rolename}','{$status}')";
 					$this->db->query($sql);
-					success_redirct("manage/role/index","角色新增成功！");
+					success_redirct("manage/role/index","Add successful!");
 				}else{
-					error_redirct("","此角色名已存在！");
+					error_redirct("","The role's name already exists!");
 				}
 				
 			}else{
-				error_redirct("","信息填写不全！");
+				error_redirct("","The role's information is not complete!");
 			}
 		}
 		$this->load->view("manage/role/add");
 	}
 	
 	/**
-	 * 角色删除
+	 * delete role
 	 * @param number $rid
 	 */
 	public function delete($rid){
@@ -99,24 +94,24 @@ class Role extends CI_Controller {
 					$this->db->query($sql);
 					$sql = "DELETE FROM Authorizes WHERE rid = ".$rid." ";
 					$this->db->query($sql);
-					success_redirct("manage/role/index","角色删除成功");
+					success_redirct("manage/role/index","Delete successful!");
 				}else{
-					error_redirct("manage/role/index","操作失败");
+					error_redirct("manage/role/index","Failed to delete!");
 				}
 	
 			}
 			$this->load->view("manage/role/delete",array("data"=>$data));
 		}else{
-			error_redirct("manage/role/index","未找到此角色");
+			error_redirct("manage/role/index","No roles is found!");
 		}
 	}
 	
 	/**
-	 * 角色赋权
+	 * Authorize
 	 * @param number $rid
 	 */
 	public function action($rid,$node_id=NULL,$role_node_list=NULL){
-		if(!$rid){error_redirct("manage/role/index","未找到此角色");}
+		if(!$rid){error_redirct("manage/role/index","No roles is found!");}
 		if($node_id!=NULL){
 			$query = $this->db->query("SELECT node_id FROM Authorizes WHERE node_id= {$node_id} AND rid={$rid}");
 			$data = $query->row_array();
@@ -126,7 +121,7 @@ class Role extends CI_Controller {
 				$sql = "INSERT INTO Authorizes (node_id,rid) values('{$node_id}','{$rid}')";
 			}
 			$this->db->query($sql);
-			success_redirct("","节点操作成功",1);
+			success_redirct("","Authorize successful!",1);
 			
 		}
 		$rbac_where = "";
