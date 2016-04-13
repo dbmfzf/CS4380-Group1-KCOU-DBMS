@@ -2,7 +2,7 @@
 <script>
 $(function () {
         // Build the chart
-        $('#container').highcharts({
+        $('#dept').highcharts({
             chart: {
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
@@ -53,7 +53,7 @@ $(function () {
         });
 });
 </script>
-
+<div id="test" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 <ul id="myTab" class="nav nav-tabs">
    <li class="active"><a href="#home" data-toggle="tab">By department</a>
    </li>
