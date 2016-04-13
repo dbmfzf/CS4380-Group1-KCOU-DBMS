@@ -11,9 +11,9 @@
         <tr>
             <td class="tableleft">Role</td>
             <td>
-                <select name="rolename" id="role" class="form-control" onchange="check()" >
+                <select name="rname" id="role" class="form-control" >
                   	<?php 
-                  		foreach($data as $vo){
+                  		foreach($role_data as $vo){
                   			echo "<option value='{$vo->rid}'>{$vo->rname}</option>";
                   		}
                   	?>
