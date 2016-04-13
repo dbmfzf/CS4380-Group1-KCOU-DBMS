@@ -5,10 +5,10 @@
 <table class="table table-bordered well">
 	<thead>
           <tr>
-            <th>ID</th>
-            <th>角色名称</th>
-            <th>状态</th>
-            <th>操作</th>
+            <th>Role ID</th>
+            <th>Role name</th>
+            <th>Status</th>
+            <th>Action</th>
           </tr>
         </thead>
    <tbody>
@@ -20,17 +20,17 @@
 					<td>%s</td>
 					<td>
 						<div class="btn-group  btn-group-xs  pull-right">
-						  <a class="btn btn-default btn-xs" href="%s">编辑角色</a>
-						  <a class="btn btn-info btn-xs" href="%s">赋权节点</a>
-						  <a class="btn btn-danger" href="%s">删除</a>
+						  <a class="btn btn-info btn-xs" href="%s">Authorize</a>
+						  <a class="btn btn-warning btn-xs" href="%s">Edit</a>
+						  <a class="btn btn-danger" href="%s">Delete</a>
 						</div>
 					</td>
-				</tr>',$mb->rid,$mb->name,($mb->status==1?"正常":"停用"),site_url("manage/role/edit/".$mb->rid),site_url("manage/role/action/".$mb->rid),site_url("manage/role/delete/".$mb->rid));
+				</tr>',$mb->rid,$mb->name,($mb->status==1?"Enable":"Disable"),site_url("manage/role/edit/".$mb->rid),site_url("manage/role/action/".$mb->rid),site_url("manage/role/delete/".$mb->rid));
 	}
 	?>
   </tbody>
 </table>
 <hr/>
 
-<?php echo '<a class="btn btn-success pull-right" href="'.site_url("manage/role/add").'">新增角色</a>'; ?>
+<?php echo '<a class="btn btn-success pull-right" href="'.site_url("manage/role/add").'">Add new role</a>'; ?>
 <?php echo $this->pagination->create_links(); ?>
