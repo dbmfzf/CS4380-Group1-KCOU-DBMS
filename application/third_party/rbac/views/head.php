@@ -10,7 +10,8 @@
         <script src="<?php echo base_url();?>static/jquery.js"></script>
 	<script src="<?php echo base_url();?>static/bootstrap/js/bootstrap.min.js"></script>
         <script src="<?php echo base_url();?>static/bootstrap/js/respond.min.js"></script>
-	<script src="<?php echo base_url();?>static/highcharts.js"></script>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
     </head>
     <body>
     <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
