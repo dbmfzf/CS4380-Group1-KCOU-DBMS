@@ -22,7 +22,7 @@ class Department extends CI_Controller {
 		$config['use_page_numbers'] = TRUE;
 		$this->pagination->initialize($config);
 		$role_dept_query = $this->db->query("Select d.did, d.name as dname, d.rid, r.name as rname from department d, role r WHERE r.rid = d.rid");
-		$data = $role_dept_query->row_array();
+		$data = $role_dept_query->result();
 		$this->load->view("info/department",array("data"=>$data));
 	}
 	/**
