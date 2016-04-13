@@ -11,7 +11,8 @@ class search_music extends CI_Controller {
     }
     
     public function index(){
-        
+        $this->load->view("music/css/style.css");
+        $this->load->view("music/js/ajax_music_search.js");
         $this->load->view("music/search_music.php");
     }
     
