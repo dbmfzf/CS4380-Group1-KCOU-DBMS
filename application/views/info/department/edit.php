@@ -15,7 +15,7 @@
 		    	<?php 
 		    		foreach($data as $vo){
 						$select = $data["rid"]==$vo->rid?"selected":"";
-		    			echo "<option value='{$vo->rid}' {$select} >{$vo->name}</option>";
+		    			echo "<option value='{$vo->rid}' {$select} >{$vo->rname}</option>";
 		    		}
 		    	?>
                 </select>

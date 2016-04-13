@@ -13,8 +13,8 @@
             <td>
                 <select name="rolename" id="role" class="form-control" onchange="check()" >
                   	<?php 
-                  		foreach($role_data as $vo){
-                  			echo "<option value='{$vo->rid}'>{$vo->name}</option>";
+                  		foreach($data as $vo){
+                  			echo "<option value='{$vo->rid}'>{$vo->rname}</option>";
                   		}
                   	?>
                 </select>
