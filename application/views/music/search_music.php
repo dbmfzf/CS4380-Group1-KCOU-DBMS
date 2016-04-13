@@ -22,9 +22,6 @@
 }
 </script>
 <style>
-    #genericSearch{
-        width: 350px;
-    }
     .songContent {
         margin: 0px;
         height: 150px;
@@ -54,8 +51,8 @@
                     <input type="text" class="form-control" id="genreSearch" placeholder="Genre">
                 </span>
             </span>
-            <span class="btn-group">
-                <button data-toggle="collapse" data-target=".advancedSearch" class="btn btn-primary form-control">Advanced Search...</button>
+            <span class="btn-group-justified">
+                <button data-toggle="collapse" data-target=".advancedSearch" class="btn btn-primary form-control">Advanced Options...</button>
                 <button type="button" class="btn btn-primary form-control" onclick="searchMusic('generic')"><span class="glyphicon glyphicon-search"></span>  Search</button>
             </span>
         </form>
