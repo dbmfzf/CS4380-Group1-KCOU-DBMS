@@ -1,7 +1,7 @@
 <script>
     $(document).ready(function(){
-        var searchWidth = $("#advancedOptions").innerWidth();
-        $("#genericSearch").width(searchWidth);
+        /*var searchWidth = $("#advancedOptions").innerWidth();
+        $("#genericSearch").width(searchWidth);*/
     });
 
 
@@ -33,7 +33,7 @@
         background: #DDD;
     }
     .songContent:nth-child(odd) {
-        background: #FFF;
+        background: #FAFAFA;
     }
     #searchBar {
         background-color: #AAA;
@@ -62,7 +62,7 @@
     </div>
     <div id="resultArea">
         <?php
-        for($i = 0; $i < 10; $i++){
+        for($i = 0; $i < 15; $i++){
             echo "<div class=\"songContent well\"></div>";
         }
     ?>
