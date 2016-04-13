@@ -11,7 +11,7 @@ foreach($node as $key=>$mn){
 		  	<td></td>
 			<td></td>
 		  	<td><div class="btn-group  btn-group-xs pull-right">
-				  <a class="btn btn-success" href="'.site_url("manage/node/add/".$key).'">Add new cotroller</a>
+				  <a class="btn btn-success" href="'.site_url("manage/node/add/".$key).'">Add cotroller</a>
 		  		  <a class="btn btn-danger" href="'.site_url("manage/node/delete/".$key).'">Delete directory</a>
 				</div>
 			</td>
@@ -22,7 +22,7 @@ foreach($node as $key=>$mn){
 			  	<td></td>
 			  	<td></td>
 			  	<td><div class="btn-group  btn-group-xs pull-right">
-					  <a class="btn btn-success" href="'.site_url("manage/node/add/".$key."/".$mn_key).'">Add new methods</a>
+					  <a class="btn btn-success" href="'.site_url("manage/node/add/".$key."/".$mn_key).'">Add methods</a>
 			  		  <a class="btn btn-danger" href="'.site_url("manage/node/delete/".$key."/".$mn_key).'">Delete controller</a>
 					</div>
 				</td>
