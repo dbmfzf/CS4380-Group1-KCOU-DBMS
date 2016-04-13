@@ -19,10 +19,10 @@
 			</div>
 			<script>
 				window.onload =function() {
-				    var i = <?php echo $time; ?>;
+				    var i = <?php echo $time-1; ?>;
 				            setInterval(function(){                
 				                while(document.getElementById("cnt").innerHTML!='0'){
-				                	document.getElementById("cnt").innerHTML = i--;
+				                	document.getElementById("cnt").innerHTML = --i;
 							window.location.href='<?php echo $url; ?>';
 					        }
 				 
