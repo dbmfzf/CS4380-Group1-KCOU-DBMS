@@ -13,7 +13,7 @@
             <td>
                 <select name="rolename" id="rolename" onChange="check()"  class="form-control" >
 		    	<?php 
-		    		foreach($role_data as $vo){
+		    		foreach($data as $vo){
 						$select = $data["rid"]==$vo->rid?"selected":"";
 		    			echo "<option value='{$vo->rid}' {$select} >{$vo->name}</option>";
 		    		}
