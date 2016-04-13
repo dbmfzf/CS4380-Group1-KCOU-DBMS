@@ -19,7 +19,7 @@
 			</div>
 			<script>
 				window.onload =function() {
-				    var i = <?php echo $time-1; ?>;
+				    var i = <?php echo $time; ?>;
 				            setInterval(function(){                
 				                while(document.getElementById("cnt").innerHTML!='0'){
 				                	document.getElementById("cnt").innerHTML = i--;
