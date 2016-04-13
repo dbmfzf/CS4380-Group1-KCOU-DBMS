@@ -18,17 +18,14 @@
 				</div>
 			</div>
 			<script>
-			window.onload =function(){
-				var timeLeft=<?php echo $time-1; ?>;
-				function countTime(){
-					if(timeLeft==0){
-						window.location.href='<?php echo $url; ?>';
-						return;
-					}
-					document.getElementById('cnt').innerHTML= timeLeft;
-					timeLeft=timeLeft-1;
-					setTimeout('countTime()',1000);
-				}
-			}
+				window.onload =function() {
+				    var i = <?php echo $time-1; ?>;
+				            setInterval(function(){                
+				                document.getElementById("cnt").innerHTML = i--;
+				                if(document.getElementById("cnt").innerHTML=='0'){
+							window.location.href='<?php echo $url; ?>';
+					        }
+				            },1000);
+				};
 			</script>
 <?php $this->load->view("foot");?>
