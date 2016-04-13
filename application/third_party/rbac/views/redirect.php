@@ -9,7 +9,7 @@
 						<div class="panel-body">
 						
 						<h1><?php echo $contents; ?></h1>
-    					<h4>Please wait for <span id="cnt"><?php echo $time; ?></span> seconds【<a href="<?php echo $url; ?>">No wait!</a>】</h4>
+    					<h4>Please wait for <span id="cnt">&nbsp;</span> seconds【<a href="<?php echo $url; ?>">No wait!</a>】</h4>
 						<br/>
 						
 						</div>
@@ -18,7 +18,7 @@
 				</div>
 			</div>
 			<script>
-				var i = <?php echo $time-1; ?>;
+				var i = <?php echo $time; ?>;
 				function countTime(){
 					document.getElementById("cnt").innerHTML = i;
 					if(i==0){
