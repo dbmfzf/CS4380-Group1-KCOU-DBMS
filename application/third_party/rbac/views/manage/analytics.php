@@ -1,9 +1,7 @@
 <h1>Distribution of users</h1>
-<script type="text/javascript" src="http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="../../../Public/Js/HighCharts/highcharts.js"></script>
-<script type="text/javascript">
+<script>
 <?php
-	include("../../conn.php");
+	/*
 	$openid=$_COOKIE["openid"];
 	$tpo=$_GET[tpo];
 	$rsql = "select number,score,adddate from history where openid='$openid' and tpo='$tpo' and flag='reading' order by number;";
@@ -17,18 +15,7 @@
 	$rn = json_encode($readnum);
 	$rdata = array(array("name"=>$readdate,"data"=>$reading));
 	$rdata = json_encode($rdata);
-	
-	$lsql = "select number,score,adddate from history where openid='$openid' and flag='listening' and tpo='$tpo' order by number;";
-	$lresult=mysql_query($lsql,$conn);
-	while($lrow = mysql_fetch_array($lresult))
-	{
-		 $listendate[]=$lrow['adddate'];
-		 $lnumber[]=intval($lrow['number']);
-		 $listening[]=intval($lrow['score']);
-	}
-	$ln = json_encode($lnumber);
-	$ldata = array(array("name"=>$listendate,"data"=>$listening));
-	$ldata = json_encode($ldata);
+	*/
 ?>
 $(function () {
     $(document).ready(function () {
