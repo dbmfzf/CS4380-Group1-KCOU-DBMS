@@ -22,7 +22,7 @@ foreach($node as $key=>$mn){
 			  	<td></td>
 			  	<td></td>
 			  	<td><div class="btn-group  btn-group-xs pull-right">
-					  <a class="btn btn-success" href="'.site_url("manage/node/add/".$key."/".$mn_key).'">Add methods</a>
+					  <a class="btn btn-success" href="'.site_url("manage/node/add/".$key."/".$mn_key).'">Add method</a>
 			  		  <a class="btn btn-danger" href="'.site_url("manage/node/delete/".$key."/".$mn_key).'">Delete controller</a>
 					</div>
 				</td>
