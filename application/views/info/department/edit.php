@@ -6,7 +6,7 @@
     <table class="table table-bordered table-hover definewidth m10">
         <tr>
             <td width = "15%" class="tableleft">Department</td>
-            <td><input type="text" name="dname" disabled value="<?php echo $data['dname'];?>"></td>
+            <td><input type="text" name="dname" value="<?php echo $data['dname'];?>"></td>
         </tr>
         <tr>
             <td class="tableleft">Role</td>
