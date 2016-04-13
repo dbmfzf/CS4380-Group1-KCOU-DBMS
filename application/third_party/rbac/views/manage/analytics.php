@@ -1,10 +1,11 @@
 <h1>Distribution of users</h1>
 <script>
-
 $(function () {
+
     $(document).ready(function () {
+
         // Build the chart
-        $('#dept').highcharts({
+        $('#container').highcharts({
             chart: {
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
@@ -52,6 +53,8 @@ $(function () {
                     y: 0.2
                 }]
             }]
+        });
+    });
 });
 </script>
 
