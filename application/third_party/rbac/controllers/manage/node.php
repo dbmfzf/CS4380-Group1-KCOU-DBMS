@@ -1,10 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-/**
- * CI RBAC
- * RBAC后台管理中节点模块
- * @author		toryzen
- * @link		http://www.toryzen.com
- */
+
 class Node extends CI_Controller {
 	
 	function __construct(){
@@ -12,7 +7,7 @@ class Node extends CI_Controller {
 		$this->load->database();
 	}
 	/**
-	 * 节点首页
+	 * node index
 	 */
 	public function index()
 	{
@@ -33,9 +28,9 @@ class Node extends CI_Controller {
 		$this->load->view('manage/node',array('node'=>$node_list));
 	}
 	/**
-	 * 新增节点
-	 * @param string $dirc
-	 * @param string $cont
+	 * Add node
+	 * @param string $directory
+	 * @param string $controller
 	 * @param string $func
 	 */
 	public function add($directory=NULL,$controller=NULL,$func=NULL){
@@ -52,24 +47,24 @@ class Node extends CI_Controller {
 					$sql = "INSERT INTO Node (directory,controller,func,status,memo) values('{$directory}','{$controller}','{$func}','{$status}','{$memo}')";
 					//echo $sql;die();
 					$this->db->query($sql);
-					success_redirct('manage/node/index','节点添加成功！');
+					success_redirct('manage/node/index','Add successful!');
 				}else{
-					error_redirct('',"该节点已存在！");
+					error_redirct('',"The node already exists!");
 				}
 			}else{
-				error_redirct('',"信息填写不全！");
+				error_redirct('',"The node's information is not complete!");
 			}
 		}
 		$this->load->view('manage/node/add',array('directory'=>$directory,'controller'=>$controller,'func'=>$func));
 	}
 	/**
-	 * 删除节点
-	 * @param string $dirc
-	 * @param string $cont
+	 * Delete node
+	 * @param string $directory
+	 * @param string $controller
 	 * @param string $func
 	 */
 	public function delete($directory=NULL,$controller=NULL,$func=NULL){
-		if($directory==NULL){error_redirct("manage/node/index","操作失败");}
+		if($directory==NULL){error_redirct("manage/node/index","Failed to delete!");}
 		if($this->input->post()){
 			$verfiy = $this->input->post("verfiy");
 			if($verfiy){
@@ -82,16 +77,16 @@ class Node extends CI_Controller {
 				$this->db->query($sql);
 				$sql = "DELETE FROM Node WHERE {$where_dirc} {$where_cont} {$where_func} ";
 				$this->db->query($sql);
-				success_redirct("manage/node/index","删除成功");
+				success_redirct("manage/node/index","Delete successful!");
 			}else{
-				error_redirct("manage/node/index","操作失败");
+				error_redirct("manage/node/index","Failed to delete!");
 			}
 		
 		}
 		$this->load->view('manage/node/delete',array('directory'=>$directory,'controller'=>$controller,'func'=>$func));
 	}
 	/**
-	 * 修改节点
+	 * Edit node
 	 * @param unknown $id
 	 */
 	public function edit($id){
@@ -104,14 +99,14 @@ class Node extends CI_Controller {
 				if($memo){
 					$sql = "UPDATE Node set memo='{$memo}',status = '{$status}' WHERE node_id = {$id}";
 					$this->db->query($sql);
-					success_redirct("manage/node/index","节点修改成功");
+					success_redirct("manage/node/index","Edit node successful!");
 				}else{
-					error_redirct('',"信息填写不全！");
+					error_redirct('',"The node's information is not complete!");
 				}
 			}
 			$this->load->view("manage/node/edit",array('data'=>$data));
 		}else{
-			error_redirct("manage/node/index","未找到此节点");
+			error_redirct("manage/node/index","No nodes is found!");
 		}
 	}
 
