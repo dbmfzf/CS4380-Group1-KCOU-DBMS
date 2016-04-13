@@ -18,7 +18,7 @@
 				</div>
 			</div>
 			<script>
-				var i = <?php echo $time-1; ?>;
+				var i = <?php echo $time; ?>;
 				function countTime(){
 					document.getElementById("cnt").innerHTML = i;
 					if(i==0){
