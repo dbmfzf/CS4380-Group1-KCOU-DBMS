@@ -5,9 +5,9 @@
 | -------------------------------------------------------------------------
 |
 */
-//是否开启
+//enable
 $config['flag'] = FALSE;
-//memcached权限验证
+//memcached check privileges
 $config['config'] = array(
                'servers' => array('192.168.4.37:11211'),
                'debug'   => false
