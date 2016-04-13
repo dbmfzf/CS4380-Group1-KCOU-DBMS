@@ -14,7 +14,7 @@
   </div>
   <div class="form-group">
     <label>Memo</label>
-    <input name="memo" type="text" class="form-control" placeholder="在此输入备注" value="<?php echo $data['memo']; ?>">
+    <input name="memo" type="text" class="form-control" placeholder="Please input memo here" value="<?php echo $data['memo']; ?>">
   </div>
   <div class="checkbox">
     <label>
