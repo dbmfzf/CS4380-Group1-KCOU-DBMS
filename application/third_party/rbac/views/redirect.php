@@ -18,7 +18,7 @@
 				</div>
 			</div>
 			<script>
-				var i = <?php echo $time; ?>;
+				var i = <?php echo $time-1; ?>;
 				function countTime(){
 					document.getElementById("cnt").innerHTML = i;
 					if(i==0){
@@ -28,7 +28,7 @@
 					setTimeout('countTime()',1000);
 				}
 				window.onload =function() {
-				    setTimeout('countTime()',1000);
+				    countTime();
 				};
 			</script>
 <?php $this->load->view("foot");?>
