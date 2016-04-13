@@ -1,22 +1,6 @@
 <h1>Distribution of users</h1>
 <script>
-<?php
-	/*
-	$openid=$_COOKIE["openid"];
-	$tpo=$_GET[tpo];
-	$rsql = "select number,score,adddate from history where openid='$openid' and tpo='$tpo' and flag='reading' order by number;";
-	$rresult=mysql_query($rsql,$conn);
-	while($rrow = mysql_fetch_array($rresult))
-	{
-		 $readdate[]=$rrow['adddate'];
-		 $readnum[]=intval($rrow['number']);
-		 $reading[]=intval($rrow['score']);
-	}
-	$rn = json_encode($readnum);
-	$rdata = array(array("name"=>$readdate,"data"=>$reading));
-	$rdata = json_encode($rdata);
-	*/
-?>
+
 $(function () {
     $(document).ready(function () {
         // Build the chart
@@ -70,6 +54,7 @@ $(function () {
             }]
 });
 </script>
+
 <ul id="myTab" class="nav nav-tabs">
    <li class="active"><a href="#home" data-toggle="tab">By department</a>
    </li>
