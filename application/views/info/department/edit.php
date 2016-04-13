@@ -21,10 +21,6 @@
                 </select>
             </td>
         </tr>
-        <tr>
-            <td class="tableleft">Enable</td>
-            <td><input value="1" name="status" type="checkbox" <?php if($data['status']){echo "checked";}?>> Enable? </td>
-        </tr> 
     </table>
     <button type="submit" class="btn btn-success">Save</button> 
      <a class="btn btn-danger" href="<?php echo site_url('info/department/index'); ?>">Cancel</a> 
