@@ -55,7 +55,7 @@
                 </div>
             </span>
             <span class="form-group btn-group">
-                <button data-toggle="collapse" data-target=".advancedSearch" class="form-control">Advanced Search...</button>
+                <button href="#" data-toggle="collapse" data-target=".advancedSearch" class="form-control">Advanced Search...</button>
                 <button type="button" class="btn btn-default" onclick="searchMusic('generic')"><span class="glyphicon glyphicon-search"></span>  Search</button>
             </span>
         </form>
@@ -63,7 +63,7 @@
     <div id="resultArea">
         <?php
         for($i = 0; $i < 15; $i++){
-            echo "<div class=\"songContent well\"></div>";
+            echo "<div class=\"songContent well\"></div>\n\t\t";
         }
     ?>
     </div>
