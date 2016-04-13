@@ -13,7 +13,7 @@
             <th>Role</th>
             <th>Department</th>
             <th>Status</th>
-            <th>Operation</th>
+            <th>Action</th>
           </tr>
         </thead>
    <tbody>
@@ -31,7 +31,7 @@
 					<td>%s</td>
 					<td>
 						<div class="btn-group  btn-group-xs">
-						  <a class="btn btn-default btn-xs" href="%s">Edit</a>
+						  <a class="btn btn-warning btn-xs" href="%s">Edit</a>
 						  <a class="btn btn-danger" href="%s">Delete</a>
 						</div>
 					</td>
