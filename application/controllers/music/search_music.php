@@ -6,7 +6,6 @@ class search_music extends CI_Controller {
     public function __construct(){
         parent::__construct();
         $this->load->model("music_model");
-        $this->load->library('javascript');
     }
     
     public function index(){
