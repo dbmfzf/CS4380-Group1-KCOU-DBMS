@@ -1,5 +1,5 @@
 <style>
-.table td:first-child{width:30%}
+.table td:first-child{width:25%}
 .table td:nth-child(2){width:40%}
 </style>
 <?php 
