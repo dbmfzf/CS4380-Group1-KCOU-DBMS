@@ -1,9 +1,6 @@
 <h1>Distribution of users</h1>
 <script>
 $(function () {
-
-    $(document).ready(function () {
-
         // Build the chart
         $('#container').highcharts({
             chart: {
@@ -54,7 +51,6 @@ $(function () {
                 }]
             }]
         });
-    });
 });
 </script>
 
