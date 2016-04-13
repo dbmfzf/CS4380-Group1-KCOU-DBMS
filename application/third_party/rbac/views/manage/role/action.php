@@ -2,6 +2,7 @@
 	.table td:first-child{width:30%}
 	.table td:nth-child(2){width:40%}
 </style>
+<h1>Authorize</h1>
 <?php 
 foreach($node as $key=>$mn){
 	echo '<table class="table well">';
