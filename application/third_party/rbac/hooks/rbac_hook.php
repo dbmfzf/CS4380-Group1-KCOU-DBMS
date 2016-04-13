@@ -1,10 +1,5 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); 
-/**
- * CI RBAC
- * RBAC钩子,用于权限验证&菜单生成&视图重写
- * @author		toryzen
- * @link		http://www.toryzen.com
- */
+
 class Rbac {
 	
 	private $ci_obj;
@@ -14,51 +9,47 @@ class Rbac {
 		$this->ci_obj->load->helper(array('rbac','url'));
 		$this->ci_obj->load->config('rbac');
 		if(!isset($this->ci_obj->view_override)){
-			//默认重写View开
+			//rewrite the view
 			$this->ci_obj->view_override = TRUE;
 		}
 	}
 	/*
-	 * 权限验证(Hook自动加载)
+	 * check privileges
 	 */
 	public function auto_verify(){
-		//目录
 		$directory = substr($this->ci_obj->router->fetch_directory(),0,-1);
-		//控制器
 		$controller = $this->ci_obj->router->fetch_class();
-		//方法
 		$function = $this->ci_obj->router->fetch_method();
 		//UURI(MD5)
 		$this->ci_obj->uuri = md5($directory.$controller.$function);
-		if($directory!=""){//当非主目录
-			if($this->ci_obj->config->item('rbac_auth_on')){//开启认证
-				if(!in_array($directory,$this->ci_obj->config->item('rbac_notauth_dirc'))){//需要验证的目录
-					//验证是否登录
+		if($directory!=""){
+			if($this->ci_obj->config->item('rbac_auth_on')){
+				if(!in_array($directory,$this->ci_obj->config->item('rbac_notauth_dirc'))){
 					//echo rbac_conf(array('INFO','uid'));
 					if(!rbac_conf(array('INFO','uid'))){
 						error_redirct($this->ci_obj->config->item('rbac_auth_gateway'),"Please login first!");
 						die();
 					}
-					if($this->ci_obj->config->item('rbac_auth_type')==2){//若为实时认证
+					if($this->ci_obj->config->item('rbac_auth_type')==2){
 						$this->ci_obj->load->model("rbac_model");
-						//检测用户状态
+					
 						$STATUS = $this->ci_obj->rbac_model->check_user(rbac_conf(array('INFO','uid')),rbac_conf(array('INFO','password')));
 						if($STATUS==FALSE){
 							error_redirct($this->config->item('rbac_auth_gateway'),$STATUS);
 						}
-						//ACL重新赋权
+						
 						$this->ci_obj->rbac_model->get_acl(rbac_conf(array('INFO','rid')));
 					}
 					
-					//验证ACL权限
+					
 					if(!rbac_conf(array('ACL',$directory,$controller,$function))){
 						error_redirct("","You have no authority to do that!(".$directory."/".$controller."/".$function.")");
 						die();
 					}
 				}
 			}
-			//已登录且有权限,获取左侧菜单
-			if($this->ci_obj->config->item('rbac_auth_type')==2){//若为实时认证
+		
+			if($this->ci_obj->config->item('rbac_auth_type')==2){
 				$this->ci_obj->get_menu = $this->get_menu();
 			}else{
 				if(rbac_conf(array('MENU'))){
@@ -72,7 +63,7 @@ class Rbac {
 	}
 		
 	/*
-	 * 重写View
+	 * rewrite the view
 	 */
 	public function view_override() {
 		$directory = substr($this->ci_obj->router->fetch_directory(),0,-1);
@@ -85,7 +76,7 @@ class Rbac {
 	}
 	
 	/*
-	 * 获取左侧菜单
+	 * Get menus
 	*/
 	private function get_menu(){		
 		$this->ci_obj->load->database();
@@ -107,7 +98,7 @@ class Rbac {
 			$i++;
 		}
 		$j = 0;
-		//按权限进行展示
+		//show menus according to privileges
 		foreach($Tmp_menu as $vo){
 			foreach($vo as $cvo){
 				$menu['list'][md5($cvo->directory.$cvo->controller.$cvo->func)] = $cvo->title;
