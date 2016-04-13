@@ -1,13 +1,13 @@
-<h1>新增子菜单</h1>
+<h1>Add new submenu</h1>
 <form role="form" action="" method="post">
   <div class="form-group">
-    <label>标题</label>
-    <input name="title" type="text" class="form-control" placeholder="在此输入标题" value="">
+    <label>Title</label>
+    <input name="title" type="text" class="form-control" placeholder="Please input title here" value="">
   </div>
   <div class="form-group">
-    <label>挂接节点</label>
+    <label>Link a node</label>
     <select name="node"  class="form-control">
-    	<option value=''>不进行挂接</option>
+    	<option value=''>No links</option>
     	<?php 
     		foreach($node as $vo){
 				$select = $data["node_id"]==$vo->id?"selected":"";
@@ -17,26 +17,26 @@
     </select>
   </div>
   <div class="form-group">
-    <label>排序</label>
-    <input name="sort" type="number" class="form-control" placeholder="在此输入排序" value="1">
+    <label>Sort</label>
+    <input name="sort" type="number" class="form-control" placeholder="Please input order number here " value="1">
   </div>
   <div class="checkbox">
     <label>
-      <input value="1" name="status" type="checkbox" checked> 是否显示
+      <input value="1" name="status" type="checkbox" checked> Shown?
     </label>
   </div>
   <div class="checkbox pull-right">
   	<label>
-      	友情提示：
+      	Tips:
     </label>
     <ul>
-    	<li>一级菜单建议不挂接节点，只当标题使用！</li>
-    	<li>二级当标题时其下需有三级节点，否则将不显示！</li>
-  		<li>三级菜单请挂接节点，否则将不会显示！</li>
+    	<li>We strongly suggest you do not link a node to a first-class navigation.</li>
+    	<li>The second-class navigation cannot be seen if it have no submenus (third-class).</li>
+  	<li>Please link a node to a third-class memu.</li>
   	</ul>
   </div>
   <input type="hidden" name="level" value="<?php echo $level;?>">
   <input type="hidden" name="pid" value="<?php echo $pid;?>">
-  <button type="submit" class="btn btn-success">确认修改</button>
-  <a class="btn btn-danger" href="<?php echo site_url('manage/menu/index'); ?>">取消修改</a>
+  <button type="submit" class="btn btn-success">Save</button>
+  <a class="btn btn-danger" href="<?php echo site_url('manage/menu/index'); ?>">Cancel</a>
 </form>
