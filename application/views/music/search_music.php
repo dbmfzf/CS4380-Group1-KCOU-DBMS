@@ -51,10 +51,10 @@
                     <input type="text" class="form-control" id="genreSearch" placeholder="Genre">
                 </span>
             </span>
-            <span class="btn-group-justified">
+            <div class="btn-group">
                 <button data-toggle="collapse" data-target=".advancedSearch" class="btn btn-primary form-control">Advanced Options...</button>
                 <button type="button" class="btn btn-primary form-control" onclick="searchMusic('generic')"><span class="glyphicon glyphicon-search"></span>  Search</button>
-            </span>
+            </div>
         </form>
     </div>
     <div id="resultArea">
