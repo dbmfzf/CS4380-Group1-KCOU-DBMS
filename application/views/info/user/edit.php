@@ -45,8 +45,8 @@
 		    		else{
 			    		foreach($role_dept_data as $key){
 						$select = $rid==$key->rid?"selected":"";
-
-			    			echo "<option value='{$key->rid}' {$select} >$key->rolename.""("".$key->deptname."")"</option>";
+						printf('<option value = "%s" %s> %s(%s) </option>',".$key->rid.",".$select.",".$key->rolename.",".$key->deptname.");
+			    		
 			    		}
 		    		}
 		    	?>
