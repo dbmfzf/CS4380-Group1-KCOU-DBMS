@@ -23,7 +23,7 @@ class Role extends CI_Controller {
 		$config['use_page_numbers'] = TRUE;
 		$this->pagination->initialize($config);
 		
-		$query = $this->db->query("SELECT * FROM Role LIMIT ".(($page-1)*$config['per_page']).",".$config['per_page']."");
+		$query = $this->db->query("SELECT * FROM Role LIMIT ".(($page-1)*$config['per_page']).",".$config['per_page']." ORDER BY level");
 		$data = $query->result();
 		$this->load->view("manage/role",array("data"=>$data));
 	}
@@ -37,10 +37,11 @@ class Role extends CI_Controller {
 		$data = $query->row_array();
 		if($data){
 			if($this->input->post()){
+				$level = $this->input->post("level");
 				$rolename = $this->input->post("rolename");
 				$status = $this->input->post("status")?1:0;
-				if($rolename){
-					$sql = "UPDATE Role set name='{$rolename}',status='{$status}' WHERE rid = {$rid}";
+				if($rolename&&$level){
+					$sql = "UPDATE Role set level = {$level},name='{$rolename}',status='{$status}' WHERE rid = {$rid}";
 					$this->db->query($sql);
 					success_redirct("manage/role/index","Edit successful!");
 				}else{
@@ -59,13 +60,14 @@ class Role extends CI_Controller {
 	 */
 	public function add(){
 		if($this->input->post()){
+			$level = $this->input->post("level");
 			$rolename = $this->input->post("rolename");
 			$status = $this->input->post("status")?1:0;
-			if($rolename){
+			if($rolename&&$level){
 				$query = $this->db->query("SELECT * FROM Role WHERE name = '".$rolename."'");
 				$data = $query->row_array();
 				if(!$data){
-					$sql = "INSERT INTO Role(name,status) values('{$rolename}','{$status}')";
+					$sql = "INSERT INTO Role(name,status,level) values('{$rolename}','{$status}','{$level}')";
 					$this->db->query($sql);
 					success_redirct("manage/role/index","Add successful!");
 				}else{
