@@ -119,7 +119,7 @@ class User extends CI_Controller {
 		$login_role_query = $this->db->query("SELECT name as rolename FROM Role WHERE rid = $login_rid");
 		$login_role = $login_role_query->row_array();
 		
-		$data['login_rolename'] = $login_role_data['rolename'];
+		$data['login_rolename'] = $login_role['rolename'];
 		
 		
 		if($this->input->post()){
