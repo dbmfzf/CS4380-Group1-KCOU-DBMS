@@ -123,7 +123,7 @@ class User extends CI_Controller {
 		
 		//role and dept info for department leaders;
 		
-		$role_level_query = $this->db->query("select R.rid,R.name as rolename,D.name as deptname from Role R, Department D where R.rid != $login_rid and D.did = (select did from Role where rid = $login_rid) and level > (select level from Role where rid =$login_rid);");
+		$role_level_query = $this->db->query("select R.rid,R.name as rolename,D.name as deptname from Role R, Department D where D.did = R.did AND R.rid != $login_rid and D.did = (select did from Role where rid = $login_rid) and level > (select level from Role where rid =$login_rid);");
 		$role_level_data = $role_level_query->result();
 		
 		
