@@ -13,7 +13,6 @@
               <p><b>Fullname:</b> <?php echo $data['fullname'];?> </p>
               <p><b>Gender:</b> <?php echo $data['gender'];?> </p>
               <p><b>Role:</b> <?php echo $data['role_dept'];?> </p>
-              <p><b>Department:</b> <?php echo $data['dept'];?> </p>
               <p><b>Last login time:</b> <?php echo $data['last_login_time'];?> </p>
               <p><b>Last login ip:</b> <?php echo $data['last_login_ip'];?> </p>
               <p><a class="btn btn-default" href="<?php echo site_url('info/profile/index'); ?>" role="button">View/Edit &raquo;</a></p>
