@@ -1,4 +1,3 @@
-<script>
 <?php
         foreach($user_gender_data as $key){
 		 $gender[]=$key->gender;
@@ -8,6 +7,7 @@
 	$gender_data = json_encode($gender_data);
 	echo $gender_data;
 ?>
+<script>
 $(function () {
 
     $(document).ready(function () {
