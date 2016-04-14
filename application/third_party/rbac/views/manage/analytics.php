@@ -1,5 +1,5 @@
 <?php
-	echo $user_gender_data;
+	echo json_encode($user_gender_data);
 ?>
 <script>
 $(function () {
