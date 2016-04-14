@@ -14,6 +14,13 @@
    <tbody>
 	<?php 
 	foreach($data as $key){
+		if($key->name =="Manager")
+		{
+			$disable = "disabled";
+		}
+		else{
+			$disable = "";
+		}
 		printf('<tr>
 					<td>%s</td>
 					<td>%s</td>
@@ -21,11 +28,11 @@
 					<td>
 						<div class="btn-group  btn-group-xs  pull-right">
 						  <a class="btn btn-info btn-xs" href="%s">Authorize</a>
-						  <a class="btn btn-warning btn-xs" href="%s">Edit</a>
-						  <a class="btn btn-danger" href="%s">Delete</a>
+						  <a %s class="btn btn-warning btn-xs" href="%s">Edit</a>
+						  <a %s class="btn btn-danger" href="%s">Delete</a>
 						</div>
 					</td>
-				</tr>',$key->level,$key->name,($key->status==1?"Enable":"Disable"),site_url("manage/role/action/".$key->rid),site_url("manage/role/edit/".$key->rid),site_url("manage/role/delete/".$key->rid));
+				</tr>',$key->level,$key->name,($key->status==1?"Enable":"Disable"),site_url("manage/role/action/".$key->rid),$disable,site_url("manage/role/edit/".$key->rid),$disable,site_url("manage/role/delete/".$key->rid));
 	}
 	?>
   </tbody>
