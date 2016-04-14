@@ -22,7 +22,7 @@ class User extends CI_Controller {
 		
 		if($rolename=="Manager"){
 			$where="";
-			$cnt_query = $this->db->query("SELECT COUNT(*) as cnt FROM User $where_cnt AND rid != $login_rid");
+			$cnt_query = $this->db->query("SELECT COUNT(*) as cnt FROM User WHERE rid != $login_rid");
 			
 
 		} 
