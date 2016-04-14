@@ -23,7 +23,7 @@ class Role extends CI_Controller {
 		$config['use_page_numbers'] = TRUE;
 		$this->pagination->initialize($config);
 		
-		$query = $this->db->query("SELECT * FROM Role LIMIT ".(($page-1)*$config['per_page']).",".$config['per_page']." ORDER BY level");
+		$query = $this->db->query("SELECT * FROM Role ORDER BY level LIMIT ".(($page-1)*$config['per_page']).",".$config['per_page']."");
 		$data = $query->result();
 		$this->load->view("manage/role",array("data"=>$data));
 	}
