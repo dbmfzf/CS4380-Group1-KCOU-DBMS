@@ -68,7 +68,7 @@
                     <input type="text" class="form-control" id="genreSearch" placeholder="Genre">
                 </div>
                 <div class="form-group">
-                    <button type="button" class="btn btn-primary" onclick="searchMusic('generic')"><span class="glyphicon glyphicon-search"></span>  Search</button>
+                    <button type="button" class="btn btn-primary" onclick="searchMusic('advanced')"><span class="glyphicon glyphicon-search"></span>  Search</button>
                 </div>
         </form>
     </div>
