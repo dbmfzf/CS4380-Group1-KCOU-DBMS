@@ -1,6 +1,10 @@
 <h1>Add role</h1>
 <form role="form" action="" method="post">
   <div class="form-group">
+    <label>Role level</label>
+    <input name="level" type="number" class="form-control"  placeholder="Please input role level(a number) here" value="">
+  </div>
+  <div class="form-group">
     <label>Role name</label>
     <input name="rolename" type="text" class="form-control"  placeholder="Please input role name here" value="">
   </div>
