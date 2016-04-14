@@ -28,7 +28,7 @@ class User extends CI_Controller {
 		$config['use_page_numbers'] = TRUE;
 		$this->pagination->initialize($config);
 		
-		$role_dept_query = $this->db->query("Select did Role R WHERE R.rid = '{$login_rid}'");
+		$role_dept_query = $this->db->query("Select did,name as rolename from Role R WHERE R.rid = '{$login_rid}'");
 		$role_dept_data = $role_dept_query->row_array();
 		$rolename = $role_dept_data['rolename'];
 		$deptid = $role_dept_data['did'];
