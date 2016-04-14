@@ -12,10 +12,10 @@
     <label>Department</label>
       <select name="dept" class="form-control" >
         <?php 
-	    			foreach($dept_data as $key){
-	    			    $select = $data['did']==$key->did?"selected":"";
-	    			    printf('<option value ="%s">%s</oprtion>',$key->did,$key->deptname);
-	    			}
+	    	foreach($dept_data as $key){
+	    	    $select = $data['did']==$key->did?"selected":"";
+	    	    printf('<option value ="%s">%s</oprtion>',$key->did,$key->deptname);
+	    	}
 
         ?>
       </select>
