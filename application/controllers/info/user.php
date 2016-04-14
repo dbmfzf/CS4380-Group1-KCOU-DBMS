@@ -22,12 +22,14 @@ class User extends CI_Controller {
 		
 		if($rolename=="Manager"){
 			$where="";
-			$cnt_query = $this->db->query("select count(*) as cnt FROM User U, Role R, Department D where U.rid = R.rid AND D.did = R.did AND R.rid != $login_rid and D.did = $deptid and level > $level;");
+			$cnt_query = $this->db->query("SELECT COUNT(*) as cnt FROM User $where_cnt AND rid != $login_rid");
+			
 
 		} 
 		else{
 			$where = "AND R.did = $deptid AND level > $level";
-			$cnt_query = $this->db->query("SELECT COUNT(*) as cnt FROM User $where_cnt AND rid != $login_rid");
+			$cnt_query = $this->db->query("select count(*) as cnt FROM User U, Role R, Department D where U.rid = R.rid AND D.did = R.did AND D.did = $deptid AND level > $level;");
+			
 		}
 		
 		
@@ -36,7 +38,7 @@ class User extends CI_Controller {
 		
 		$this->load->library('pagination');
 		$config['base_url'] = site_url("info/user/index");
-		$config['total_rows'] = $cnt_data['cnt']-1;
+		$config['total_rows'] = $cnt_data['cnt'];
 		$config['per_page']   = 2;
 		$config['uri_segment']= '4';
 		$config['num_links']='2';
