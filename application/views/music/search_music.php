@@ -39,10 +39,18 @@
 </style>
 <div class="well">
     <div class="well well-lg" id="searchBar">
-        <form role="form" class="form-horizontal" id="searchForm">
+        <form role="form" class="form-inline" id="genericSearchForm">
                 <div class="form-group">
+                  <label for="genericSearch">Search for: </label>
                    <input type="text" class="form-control" id="genericSearch" placeholder="Enter song name, artist name, or album name here"> 
                 </div>
+
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary" onclick="searchMusic('generic')"><span class="glyphicon glyphicon-search"></span>  Search</button>
+                </div>
+        </form>
+        <hr>
+        <form role="form" class="form-inline" id="advancedSearchForm">
                 <div class="form-group">
                     <label for="songSearch">Song: </label>
                     <input type="text" class="form-control" id="songSearch" placeholder="Song name">
