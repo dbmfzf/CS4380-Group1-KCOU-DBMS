@@ -3,8 +3,6 @@
         console.dir("DOM loaded");
     }
 
-
-
     function searchMusic(searchType){
         switch(searchType){
             case 'generic':
@@ -21,10 +19,12 @@
         
     var toggleSearch = false;
     function toggleOptions(){
+        var basicSearch = "Basic Search <span class=\"glyphicon glyphicon-triangle-top\"></span>";
+        var advancedSearch = "Advanced Search <span class=\"glyphicon glyphicon-triangle-bottom\"></span>";
         if(!toggleSearch){
-            $("#toggleSearch").val("Basic Search <span class=\"glyphicon halflings-triangle-top\"></span>");
+            $("#toggleSearch").val(basicSearch);
         }else{
-            $("#toggleSearch").val("Advanced Search <span class=\"glyphicon halflings-triangle-bottom\"></span>");
+            $("#toggleSearch").val(advancedSearch);
         }
         toggleSearch != toggleSearch;
     }
@@ -57,8 +57,7 @@
                     <button type="button" class="btn btn-primary" onclick="searchMusic('generic')"><span class="glyphicon glyphicon-search"></span>  Search</button>
                 </div>
         </form>
-        <hr>
-        <button type="button" data-toggle="collapse" data-target=".form-inline" class="btn btn-primary" id="toggleSearch" onclick="toggleOptions()">Advanced Search <span class="glyphicon halflings-triangle-bottom"></span> </button>
+        <button type="button" data-toggle="collapse" data-target=".form-inline" class="btn btn-primary" id="toggleSearch" onclick="toggleOptions()">Advanced Search <span class="glyphicon glyphicon-triangle-bottom"></span> </button>
         <form role="form" class="form-inline collapse" id="advancedSearchForm">
                 <div class="form-group">
                     <label for="songSearch">Song: </label>
