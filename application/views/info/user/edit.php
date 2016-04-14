@@ -44,8 +44,8 @@
 		    		}
 		    		else{
 			    		foreach($role_dept_data as $key){
-						$select = $data["rid"]==$key->rid?"selected":"";
-			    			echo "<option value='{$key->rid}' {$select} >$key->rolename."(".$key->deptname.")"</option>";
+						$select = $rid==$key->rid?"selected":"";
+			    			echo "<option value='{$key->rid}' {$select} >'$key->rolename."(".$key->deptname.")"'</option>";
 			    		}
 		    		}
 		    	?>
