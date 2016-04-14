@@ -8,6 +8,17 @@
     <label>Role name</label>
     <input name="rolename" type="text" class="form-control"  placeholder="Please input role name here" value="">
   </div>
+    <div class="form-group">
+    <label>Department</label>
+      <select name="dept" class="form-control" >
+        <?php 
+	    			foreach($dept_data as $key){
+	    			    printf('<option value ="%s">%s</oprtion>',$key->did,$key->deptname);
+	    			}
+
+        ?>
+      </select>
+  </div>
   <div class="checkbox">
     <label>
       <input value="1" name="status" type="checkbox" checked > Enable?
