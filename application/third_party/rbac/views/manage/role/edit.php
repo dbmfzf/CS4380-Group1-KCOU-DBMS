@@ -1,6 +1,10 @@
 <h1>Edit role</h1>
 <form role="form" action="" method="post">
   <div class="form-group">
+    <label>Role level</label>
+    <input name="level" type="text" class="form-control" value="<?php echo $data['level']; ?>">
+  </div>
+  <div class="form-group">
     <label>Role name</label>
     <input name="rolename" type="text" class="form-control" value="<?php echo $data['name']; ?>">
   </div>
