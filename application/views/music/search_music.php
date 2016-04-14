@@ -44,7 +44,6 @@
                   <label for="genericSearch">Search for: </label>
                    <input type="text" class="form-control" id="genericSearch" placeholder="Enter song name, artist name, or album name here"> 
                 </div>
-
                 <div class="form-group">
                     <button type="button" class="btn btn-primary" onclick="searchMusic('generic')"><span class="glyphicon glyphicon-search"></span>  Search</button>
                 </div>
