@@ -1,8 +1,7 @@
 <script>
-    $(document).ready(function(){
-        /*var searchWidth = $("#advancedOptions").innerWidth();
-        $("#genericSearch").width(searchWidth);*/
-    });
+    $(function() {
+        console.dir("DOM loaded");
+    }
 
 
 
@@ -19,6 +18,16 @@
             default:
                 break;
         }
+        
+    var toggleSearch = false;
+    function toggleOptions(){
+        if(!toggleSearch){
+            $("#toggleSearch").val("Basic Search <span class=\"glyphicon halflings-triangle-top\"></span>");
+        }else{
+            $("#toggleSearch").val("Advanced Search <span class=\"glyphicon halflings-triangle-bottom\"></span>");
+        }
+        toggleSearch != toggleSearch;
+    }
 }
 </script>
 <style>
@@ -39,7 +48,7 @@
 </style>
 <div class="well">
     <div class="well well-lg" id="searchBar">
-        <form role="form" class="form-inline" id="genericSearchForm">
+        <form role="form" class="form-inline collapse in" id="genericSearchForm">
                 <div class="form-group">
                   <label for="genericSearch">Search for: </label>
                    <input type="text" class="form-control" id="genericSearch" placeholder="Enter song name, artist name, or album name here"> 
@@ -49,7 +58,8 @@
                 </div>
         </form>
         <hr>
-        <form role="form" class="form-inline" id="advancedSearchForm">
+        <button type="button" data-toggle="collapse" data-target=".form-inline" class="btn btn-primary" id="toggleSearch" onclick="toggleOptions()">Advanced Search <span class="glyphicon halflings-triangle-bottom"></span> </button>
+        <form role="form" class="form-inline collapse" id="advancedSearchForm">
                 <div class="form-group">
                     <label for="songSearch">Song: </label>
                     <input type="text" class="form-control" id="songSearch" placeholder="Song name">
