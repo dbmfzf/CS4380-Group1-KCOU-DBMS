@@ -5,6 +5,7 @@
 <table class="table table-bordered well">
 	<thead>
           <tr>
+            <th>Role level</th>
             <th>Role name</th>
             <th>Status</th>
             <th>Action</th>
@@ -12,7 +13,7 @@
         </thead>
    <tbody>
 	<?php 
-	foreach($data as $mb){
+	foreach($data as $key){
 		printf('<tr>
 					<td>%s</td>
 					<td>%s</td>
@@ -23,7 +24,7 @@
 						  <a class="btn btn-danger" href="%s">Delete</a>
 						</div>
 					</td>
-				</tr>',$mb->name,($mb->status==1?"Enable":"Disable"),site_url("manage/role/action/".$mb->rid),site_url("manage/role/edit/".$mb->rid),site_url("manage/role/delete/".$mb->rid));
+				</tr>',$key->level,$key->name,($key->status==1?"Enable":"Disable"),site_url("manage/role/action/".$key->rid),site_url("manage/role/edit/".$key->rid),site_url("manage/role/delete/".$key->rid));
 	}
 	?>
   </tbody>
