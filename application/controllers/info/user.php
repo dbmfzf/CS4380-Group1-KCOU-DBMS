@@ -100,7 +100,7 @@ class User extends CI_Controller {
 					error_redirct("","No user is found!");
 				}
 			}
-			$this->load->view("info/user/edit",array("data"=>$data);
+			$this->load->view("info/user/edit",array("data"=>$data，"role_dept_name"=>$role_dept_name);
 		}else{
 			error_redirct("info/user/index","No user is found!");
 		}
