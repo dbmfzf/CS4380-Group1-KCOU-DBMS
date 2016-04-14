@@ -34,7 +34,7 @@
         <tr>
             <td class="tableleft">Role(Department)</td>
             <td>
-                <select name="role" id="role" onChange="check()"  class="form-control" >
+                <select name="role" id="role"  class="form-control" >
 		    	<?php
 		    		$rid = $data['rid'];
 		    		$rolename = $data['rolename'];
