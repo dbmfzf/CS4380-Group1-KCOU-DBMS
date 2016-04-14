@@ -1,5 +1,5 @@
 <?php
-	echo $gender_data;
+	echo $user_gender_data;
 ?>
 <script>
 $(function () {
