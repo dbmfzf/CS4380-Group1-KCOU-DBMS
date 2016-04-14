@@ -19,6 +19,8 @@ class User extends CI_Controller {
 		$rolename = $role_dept_data['rolename'];
 		$deptid = $role_dept_data['did'];
 		
+		
+		
 		if($rolename=="Manager"){
 			$where="";
 			$where_cnt="";
