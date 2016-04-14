@@ -28,14 +28,10 @@
             <td><p><?php echo $data['birth'];?></p></td>
         </tr>
         <tr>
-            <td class="tableleft">Role</td>
-            <td><p><?php echo $data['role'];?></p></td>
+            <td class="tableleft">Role(Department)</td>
+            <td><p><?php echo $data['role_dept'];?></p></td>
         </tr>
-         <tr>
-            <td class="tableleft">Department</td>
-            <td><p><?php echo $data['dept'];?></p></td>
-        </tr>
-         <tr>
+        <tr>
             <td class="tableleft">Last login time</td>
             <td><p><?php echo $data['last_login_time'];?></p></td>
         </tr>
