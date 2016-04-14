@@ -33,15 +33,18 @@ class Role extends CI_Controller {
 	 * @param number $rid
 	 */
 	public function edit($rid){
-		$query = $this->db->query("SELECT * FROM Role WHERE rid = ".$rid);
+		$query = $this->db->query("SELECT R.*,D.name as deptname FROM Role R WHERE rid = ".$rid);
 		$data = $query->row_array();
+		$dept_query = $this->db->query("SELECT D.did, D.name FROM Role R, Department D WHERE R.did = D.did");
+		$dept_data = $dept_query->result();
 		if($data){
 			if($this->input->post()){
 				$level = $this->input->post("level");
 				$rolename = $this->input->post("rolename");
+				$dept = $this->input->post("dept");
 				$status = $this->input->post("status")?1:0;
 				if($rolename&&$level){
-					$sql = "UPDATE Role set level = {$level},name='{$rolename}',status='{$status}' WHERE rid = {$rid}";
+					$sql = "UPDATE Role set did = '{$dept}',level = '{$level}',name='{$rolename}',status='{$status}' WHERE rid = {$rid}";
 					$this->db->query($sql);
 					success_redirct("manage/role/index","Edit successful!");
 				}else{
@@ -59,6 +62,8 @@ class Role extends CI_Controller {
 	 * @param number $rid
 	 */
 	public function add(){
+		$dept_query = $this->db->query("SELECT D.did, D.name FROM Role R, Department D WHERE R.did = D.did");
+		$dept_data = $dept_query->result();
 		if($this->input->post()){
 			$level = $this->input->post("level");
 			$rolename = $this->input->post("rolename");
@@ -78,7 +83,7 @@ class Role extends CI_Controller {
 				error_redirct("","The role's information is not complete!");
 			}
 		}
-		$this->load->view("manage/role/add");
+		$this->load->view("manage/role/add","dept_data"=>$dept_data);
 	}
 	
 	/**
