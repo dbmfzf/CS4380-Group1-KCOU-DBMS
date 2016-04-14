@@ -35,7 +35,7 @@ class Role extends CI_Controller {
 	public function edit($rid){
 		$query = $this->db->query("SELECT * FROM Role R WHERE rid = ".$rid);
 		$data = $query->row_array();
-		$dept_query = $this->db->query("SELECT D.did, D.name as deptname FROM Role R, Department D WHERE R.did = D.did");
+		$dept_query = $this->db->query("SELECT distinct D.did, D.name as deptname FROM Role R, Department D WHERE R.did = D.did");
 		$dept_data = $dept_query->result();
 		if($data){
 			if($this->input->post()){
