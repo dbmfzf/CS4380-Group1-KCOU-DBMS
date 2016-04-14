@@ -34,7 +34,7 @@
         <tr>
             <td class="tableleft">Role(Department)</td>
             <td>
-                <select name="role" id="role" class="form-control" onchange="check()" >
+                <select name="role" id="role" class="form-control" >
                   	<?php 
     		    		if($data['login_rolename']!= "Manager")
     		    		{
@@ -66,39 +66,3 @@
     <button type="submit" class="btn btn-success">Save</button> 
      <a class="btn btn-danger" href="<?php echo site_url('info/user/index'); ?>">Cancel</a> 
 </form>
-<script >
-    $(document).ready(function() {
-    	var login_rolename = "<?php echo $data['login_rolename'] ?>";
-        var dept = document.getElementById('dept');
-        var role = document.getElementById('role');
-        if(login_rolename == "Manager"){
-	        var index = role.selectedIndex;
-	        var rolename = role.options[index].text;
-	        if(rolename!="Volunteer"){
-	            dept.style.display='none';
-	            dept.disabled = true;
-	        }
-	        else{
-	            dept.getElementById('dept').style.display='block';
-	            dept.disabled = false;
-	        }
-        }
-    })
-    function check(){
-        var login_rolename = "<?php echo $data['login_rolename'] ?>";
-        var dept = document.getElementById('dept')
-        var role = document.getElementById('role');
-        if(login_rolename == "Manager"){
-            var index = role.selectedIndex;
-            var rolename = role.options[index].text;
-            if(rolename!="Volunteer"){
-                dept.style.display='none';
-                dept.disabled = true;
-            }
-            else{
-                dept.style.display='block';
-                dept.disabled = false;
-            }
-        }
-    }
-</script>
