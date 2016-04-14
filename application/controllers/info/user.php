@@ -20,8 +20,6 @@ class User extends CI_Controller {
 		$deptid = $role_dept_data['did'];
 		
 		if($rolename=="Manager"){$where="";} else{$where = "AND D.did = $deptid";}
-		$query = $this->db->query("SELECT U.uid,U.fullname,U.gender,U.email,U.phone,U.birth,U.status,R.name as rolename,D.name as deptname FROM Department D, User U, Role R WHERE R.rid = U.rid AND D.did = R.did AND U.rid != '{$login_rid}' ".$where." LIMIT ".(($page-1)*$config['per_page']).",".$config['per_page']."");
-		$data = $query->result();
 		
 		$cnt_query = $this->db->query("SELECT COUNT(1) as cnt FROM User $where");
 		$cnt_data = $cnt_query->row_array();
@@ -37,6 +35,9 @@ class User extends CI_Controller {
 		$config['last_link'] = 'last';
 		$config['use_page_numbers'] = TRUE;
 		$this->pagination->initialize($config);
+		
+		$query = $this->db->query("SELECT U.uid,U.fullname,U.gender,U.email,U.phone,U.birth,U.status,R.name as rolename,D.name as deptname FROM Department D, User U, Role R WHERE R.rid = U.rid AND D.did = R.did AND U.rid != '{$login_rid}' ".$where." LIMIT ".(($page-1)*$config['per_page']).",".$config['per_page']."");
+		$data = $query->result();
 		
 		$this->load->view("info/user",array("data"=>$data));
 	}
