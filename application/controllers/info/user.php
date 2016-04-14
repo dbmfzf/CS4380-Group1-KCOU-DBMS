@@ -116,13 +116,15 @@ class User extends CI_Controller {
 		$role_dept_data = $role_dept_query->result();
 		
 		$login_rid = rbac_conf(array('INFO','rid'));
-		$login_role_query = $this->db->query("SELECT name as rolename FROM Role WHERE rid = $login_rid");
+		$login_role_query = $this->db->query("SELECT level,name as rolename FROM Role WHERE rid = $login_rid");
 		$login_role = $login_role_query->row_array();
 		
 		$data['login_rolename'] = $login_role['rolename'];
 		
 		//role and dept info for department leaders;
 		
+		$role_level_query = $this->db->query("select R.rid,R.name as rolename,D.name as deptname from Role R, Department D where rid != $login_rid and did = (select did from Role where rid = $login_rid) and level > (select level from Role where rid =$login_rid);");
+		$role_level_data = $role_level_query->result();
 		
 		
 		if($this->input->post()){
@@ -163,7 +165,7 @@ class User extends CI_Controller {
 				error_redirct("","Repeat the wrong password!");
 			}
 		}
-		$this->load->view("info/user/add",array("data"=>$data,"role_dept_data"=>$role_dept_data));
+		$this->load->view("info/user/add",array("data"=>$data,"role_dept_data"=>$role_dept_data,"role_level_data"=>$role_level_data));
 	}
 	/**
 	 * Delete users
