@@ -12,9 +12,10 @@ class Index extends CI_Controller {
 		$uid = rbac_conf(array('INFO','uid'));
 		$user_query = $this->db->query("SELECT fullname,gender FROM User WHERE uid = '".$uid."' limit 1");
 		$user_data = $user_query -> row_array();
-		 
-		$role_query = $this->db->query("SELECT name from Role R, User U where U.rid = R.rid and U.uid = '".$uid."' limit 1");
-		$role_data = $role_query -> row_array();
+		
+		$uid = rbac_conf(array('INFO','rid'));
+		$role_dept_query = $this->db->query("SELECT name from Role R, User U where U.rid = R.rid and U.uid = '".$uid."' limit 1");
+		$role_dept_data = $role_dept_query -> row_array();
 		
 		$dept_query = $this->db->query("SELECT name from Department D, Belongs_to B, User U where U.uid = B.uid and D.did = B.did and U.uid = '".$uid."' limit 1");
 		$dept_data = $dept_query -> row_array();
@@ -36,8 +37,7 @@ class Index extends CI_Controller {
 		$data['header'] = $header;
 		$data['fullname'] = $user_data['fullname'];
 		$data['gender'] = $user_data['gender'];
-		$data['role'] = $role_data['name'];
-		$dept_data['name'] == NULL?$data['dept'] = "No department!":$data['dept'] = $dept_data['name'];
+		$data['role_dept'] = $role_dept_data['rolename']."(".$role_dept_data['deptname'].")";
 		$login_data['date_time'] ==NULL?$data['last_login_time'] = "First login!":$data['last_login_time'] = $login_data['date_time'];
 		$login_data['ip']== NULL?$data['last_login_ip'] = "First login!":$data['last_login_ip'] = $login_data['ip'];
 		$most_recently_searched['song_path'] == NULL?$data['most_rencently_path'] = "":$data['most_rencently_path'] = $most_recently_searched['song_path'];;
