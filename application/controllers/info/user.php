@@ -121,6 +121,9 @@ class User extends CI_Controller {
 		
 		$data['login_rolename'] = $login_role['rolename'];
 		
+		//role and dept info for department leaders;
+		
+		
 		
 		if($this->input->post()){
 			$uid = $this->input->post("uid");
