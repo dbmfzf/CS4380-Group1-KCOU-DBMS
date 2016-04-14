@@ -39,7 +39,7 @@
 </style>
 <div class="well">
     <div class="well well-lg" id="searchBar">
-        <form role="form" class="form-inline" id="searchForm">
+        <form role="form" class="form-horizontal" id="searchForm">
                 <div class="form-group">
                    <input type="text" class="form-control" id="genericSearch" placeholder="Enter song name, artist name, or album name here"> 
                 </div>
