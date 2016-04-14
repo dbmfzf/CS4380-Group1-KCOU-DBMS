@@ -1,9 +1,4 @@
 <?php
-	foreach($user_gender_data as $key){
-		echo $key->gender;
-		
-		
-	}
 	echo json_encode($user_gender_data);
 ?>
 <script>
@@ -78,6 +73,12 @@ $(function () {
       <div id="gender" style="min-width: 310px; height: 600px; max-width: 800px; margin: 0 auto; padding-top:5%"></div>
    </div>
    <div class="tab-pane fade" id="third">
-      <div id="role" style="min-width: 310px; height: 600px; max-width: 800px; margin: 0 auto; padding-top:5%"><?php echo $user_gender_data; ?></div>
+      <div id="role" style="min-width: 310px; height: 600px; max-width: 800px; margin: 0 auto; padding-top:5%">
+      	<?php
+      		foreach($user_gender_data as $key){
+			echo $key->gender;
+		}
+	?>
+      </div>
    </div>
 </div>
