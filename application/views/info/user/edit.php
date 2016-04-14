@@ -43,9 +43,9 @@
 		    			echo "<option value='{$rid}' selected >{$rolename}</option>";
 		    		}
 		    		else{
-			    		foreach($role_data as $vo){
-						$select = $data["rid"]==$vo->rid?"selected":"";
-			    			echo "<option value='{$vo->rid}' {$select} >{$vo->name}</option>";
+			    		foreach($role_dept_data as $key){
+						$select = $data["rid"]==$key->rid?"selected":"";
+			    			echo "<option value='{$key->rid}' {$select} >$key->rolename."(".$key->deptname.")"</option>";
 			    		}
 		    		}
 		    	?>
