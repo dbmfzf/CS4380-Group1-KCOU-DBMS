@@ -36,13 +36,13 @@
             <td>
                 <select name="role" id="role" class="form-control" >
                   	<?php 
-    		    		if($data['login_rolename']!= "Manager")
-    		    		{
-    		    			foreach($role_level_data as $key)
-    		    			printf('<option value ="%s">%s(%s)</oprtion>',$key->rid,$key->rolename,$key->deptname);
+    		    		if($data['login_rolename']!= "Manager"){
+    		    			foreach($role_level_data as $key){
+    		    			    printf('<option value ="%s">%s(%s)</oprtion>',$key->rid,$key->rolename,$key->deptname);
+    		    			}
     		    		}
     		    		else{
-    			    		foreach($role_dept_data as $$key){
+    			    		foreach($role_dept_data as $key){
     			    			printf('<option value = "%s"> %s(%s) </option>',$key->rid,$key->rolename,$key->deptname);
     			    		}
     		    		}
