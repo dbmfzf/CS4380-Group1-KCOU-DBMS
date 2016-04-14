@@ -1,4 +1,9 @@
 <?php
+	foreach($user_gender_data as $key){
+		echo $key->gender;
+		
+		
+	}
 	echo json_encode($user_gender_data);
 ?>
 <script>
