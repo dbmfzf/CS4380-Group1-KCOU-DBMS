@@ -112,7 +112,7 @@ class User extends CI_Controller {
 	 
 	public function add(){
 		
-		$role_dept_query = $this->db->query("SELECT rid,R.name as rolename,D.name as deptname FROM Role R, Department D WHERE status = 1 order by rid desc");
+		$role_dept_query = $this->db->query("SELECT rid,R.name as rolename,D.name as deptname FROM Role R, Department D WHERE R.did = D.did AND status = 1 order by rid desc");
 		$role_dept_data = $role_dept_query->result();
 		
 		$login_rid = rbac_conf(array('INFO','rid'));
