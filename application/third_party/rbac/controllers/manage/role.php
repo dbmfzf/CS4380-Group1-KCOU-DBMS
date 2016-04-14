@@ -51,7 +51,7 @@ class Role extends CI_Controller {
 					error_redirct("","The role's information is not complete!");
 				}
 			}
-			$this->load->view("manage/role/edit",array("data"=>$data));
+			$this->load->view("manage/role/edit",array("data"=>$data,"dept_data"=>$dept_data));
 		}else{
 			error_redirct("manage/role/index","No roles is found!");
 		}
