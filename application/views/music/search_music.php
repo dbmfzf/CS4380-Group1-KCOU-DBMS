@@ -40,14 +40,12 @@
 <div class="well">
     <div class="well well-lg" id="searchBar">
         <form role="form" class="form-inline" id="searchForm">
-                    <input type="text" class="form-control" id="genericSearch" placeholder="Enter song name, artist name, or album name here">
-                    <input type="text" class="form-control" id="songSearch" placeholder="Song name">
-                    <input type="text" class="form-control" id="artistSearch" placeholder="Artist name">
-                    <input type="text" class="form-control" id="albumSearch" placeholder="Album name">
-                    <input type="text" class="form-control" id="genreSearch" placeholder="Genre">
-            <div class="btn-group">
-                <button type="button" class="btn btn-primary form-control" onclick="searchMusic('generic')"><span class="glyphicon glyphicon-search"></span>  Search</button>
-            </div>
+                <input type="text" class="form-control" id="genericSearch" placeholder="Enter song name, artist name, or album name here">
+                <input type="text" class="form-control" id="songSearch" placeholder="Song name">
+                <input type="text" class="form-control" id="artistSearch" placeholder="Artist name">
+                <input type="text" class="form-control" id="albumSearch" placeholder="Album name">
+                <input type="text" class="form-control" id="genreSearch" placeholder="Genre">
+                <button type="button" class="btn btn-primary" onclick="searchMusic('generic')"><span class="glyphicon glyphicon-search"></span>  Search</button>
         </form>
     </div>
     <div id="resultArea">
