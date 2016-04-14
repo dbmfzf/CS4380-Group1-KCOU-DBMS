@@ -51,26 +51,6 @@
             </td>
         </tr>
         <tr>
-            <td class="tableleft">Department</td>
-            <td>
-                <select name="dept" id="dept" class="form-control" >
-                  	<?php 
-                  		$did = $data['did'];
-		    		    $dname = $data['dept'];
-    		    		if($data['login_rolename']!= "Manager"){
-    		    			echo "<option value='{$did}' selected >{$dname}</option>";
-    		    		}
-    		    		else{
-    			    		foreach($dept_data as $vo){
-    							$select = $data["did"]==$vo->did?"selected":"";
-    			    			echo "<option value='{$vo->did}' {$select} >{$vo->name}</option>";
-    			    		}
-    		    		}
-                  	?>
-                </select>
-            </td>
-        </tr>
-        <tr>
             <td class="tableleft">New password</td>
             <td><input name="password" type="password" class="form-control" placeholder="Please input new password here"></td>
         </tr>
