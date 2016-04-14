@@ -1,6 +1,4 @@
-<?php
-	echo json_encode($user_gender_data);
-?>
+
 <script>
 $(function () {
 
@@ -78,6 +76,12 @@ $(function () {
       		foreach($user_gender_data as $key){
 			echo $key->gender;
 		}
+		foreach($user_gender_data as $row){
+			 $gender1[]=$row['gender'];
+			 $gender_num1[]=intval($key['gender_num']);
+		}
+		$gender_data = array(array("name"=>$gender1,"data"=>$gender_num1));
+		$gender_data = json_encode($gender_data);
 	?>
       </div>
    </div>
