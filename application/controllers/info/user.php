@@ -160,7 +160,7 @@ class User extends CI_Controller {
 				error_redirct("","Repeat the wrong password!");
 			}
 		}
-		$this->load->view("info/user/add",array("data"=>$data,"role_query_data"=>$role_query_data));
+		$this->load->view("info/user/add",array("data"=>$data,"role_dept_data"=>$role_dept_data));
 	}
 	/**
 	 * Delete users
