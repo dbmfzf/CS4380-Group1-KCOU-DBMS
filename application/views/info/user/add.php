@@ -32,18 +32,18 @@
             <td><input name="birth" type="date" class="form-control" placeholder="Please input or select birthday here"></td>
         </tr>
         <tr>
-            <td class="tableleft">Role</td>
+            <td class="tableleft">Role(Department)</td>
             <td>
                 <select name="role" id="role" class="form-control" onchange="check()" >
                   	<?php 
     		    		if($data['login_rolename']!= "Manager")
     		    		{
-    		    			echo "<option value='4' selected >Volunteer</option>";
+    		    			foreach($role_level_data as $key)
+    		    			printf('<option value ="%s">%s(%s)</oprtion>',$key->rid,$key->rolename,$key->deptname);
     		    		}
     		    		else{
-    			    		foreach($role_data as $vo){
-    						$select = $data["rid"]==$vo->rid?"selected":"";
-    			    			echo "<option value='{$vo->rid}' {$select} >{$vo->name}</option>";
+    			    		foreach($role_dept_data as $$key){
+    			    			printf('<option value = "%s"> %s(%s) </option>',$key->rid,$key->rolename,$key->deptname);
     			    		}
     		    		}
                   	?>
