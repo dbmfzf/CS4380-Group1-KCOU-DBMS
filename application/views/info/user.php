@@ -10,7 +10,7 @@
             <th>Email</th>
             <th>Phone</th>
             <th>Birthday</th>
-            <th>Role/Department</th>
+            <th>Role(Department)</th>
             <th>Status</th>
             <th>Action</th>
           </tr>
