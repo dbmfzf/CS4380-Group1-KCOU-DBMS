@@ -69,7 +69,7 @@ class User extends CI_Controller {
 		$data['login_rolename'] = $login_role['rolename'];
 		
 		$role_dept_query = $this->db->query("SELECT rid,R.name AS rolename, D.name AS deptname FROM Role R, Department D WHERE R.did = D.did AND status = 1 order by rid desc");
-		$role_dept_data = $role_query->result();
+		$role_dept_data = $role_dept_query->result();
 		
 		if($data){
 			if($this->input->post()){
