@@ -14,9 +14,19 @@ class User extends CI_Controller {
 	{
 		$login_rid = rbac_conf(array('INFO','rid'));
 		
-		$query = $this->db->query("SELECT COUNT(1) as cnt FROM User");
-		$cnt_data = $query->row_array();
+		$role_dept_query = $this->db->query("Select did,name as rolename from Role R WHERE R.rid = '{$login_rid}'");
+		$role_dept_data = $role_dept_query->row_array();
+		$rolename = $role_dept_data['rolename'];
+		$deptid = $role_dept_data['did'];
+		
+		if($rolename=="Manager"){$where="";} else{$where = "AND D.did = $deptid";}
+		$query = $this->db->query("SELECT U.uid,U.fullname,U.gender,U.email,U.phone,U.birth,U.status,R.name as rolename,D.name as deptname FROM Department D, User U, Role R WHERE R.rid = U.rid AND D.did = R.did AND U.rid != '{$login_rid}' ".$where." LIMIT ".(($page-1)*$config['per_page']).",".$config['per_page']."");
+		$data = $query->result();
+		
+		$cnt_query = $this->db->query("SELECT COUNT(1) as cnt FROM User $where");
+		$cnt_data = $cnt_query->row_array();
 		//page
+		
 		$this->load->library('pagination');
 		$config['base_url'] = site_url("info/user/index");
 		$config['total_rows'] = $cnt_data['cnt'];
@@ -28,14 +38,6 @@ class User extends CI_Controller {
 		$config['use_page_numbers'] = TRUE;
 		$this->pagination->initialize($config);
 		
-		$role_dept_query = $this->db->query("Select did,name as rolename from Role R WHERE R.rid = '{$login_rid}'");
-		$role_dept_data = $role_dept_query->row_array();
-		$rolename = $role_dept_data['rolename'];
-		$deptid = $role_dept_data['did'];
-		
-		if($rolename=="Manager"){$where="";} else{$where = "AND D.did = $deptid";}
-		$query = $this->db->query("SELECT U.uid,U.fullname,U.gender,U.email,U.phone,U.birth,U.status,R.name as rolename,D.name as deptname FROM Department D, User U, Role R WHERE R.rid = U.rid AND D.did = R.did AND U.rid != '{$login_rid}' ".$where." LIMIT ".(($page-1)*$config['per_page']).",".$config['per_page']."");
-		$data = $query->result();
 		$this->load->view("info/user",array("data"=>$data));
 	}
 	/**
@@ -112,7 +114,7 @@ class User extends CI_Controller {
 	 
 	public function add(){
 		
-		$role_dept_query = $this->db->query("SELECT rid,R.name as rolename,D.name as deptname FROM Role R, Department D WHERE R.did = D.did AND status = 1 order by rid desc");
+		$role_dept_query = $this->db->query("SELECT rid,R.name as rolename,D.name as deptname FROM Role R, Department D WHERE R.did = D.did AND status = 1 ORDER BY level DESC");
 		$role_dept_data = $role_dept_query->result();
 		
 		$login_rid = rbac_conf(array('INFO','rid'));
