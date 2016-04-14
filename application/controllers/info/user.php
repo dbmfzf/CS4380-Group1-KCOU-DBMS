@@ -61,7 +61,6 @@ class User extends CI_Controller {
 		$data['phone'] = $user_data['phone'];
 		$data['birth'] = $user_data['birth'];
 		$data['status'] = $user_data['status'];
-		$data['rid'] = $user_data['rid'];
 		
 		$data['rolename'] = $current_role_dept_data['rolename'];
 		$data['rid'] = $current_role_dept_data['rid'];
