@@ -9,8 +9,11 @@
 	echo $gender_data;
 ?>
 $(function () {
+
+    $(document).ready(function () {
+
         // Build the chart
-        $('#gender').highcharts({
+        $('#container').highcharts({
             chart: {
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
@@ -18,7 +21,7 @@ $(function () {
                 type: 'pie'
             },
             title: {
-                text: 'Gender'
+                text: 'Browser market shares January, 2015 to May, 2015'
             },
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -36,10 +39,30 @@ $(function () {
             series: [{
                 name: 'Brands',
                 colorByPoint: true,
-                data: <?php echo $gender_data; ?>
+                data: [{
+                    name: 'Microsoft Internet Explorer',
+                    y: 56.33
+                }, {
+                    name: 'Chrome',
+                    y: 24.03,
+                    sliced: true,
+                    selected: true
+                }, {
+                    name: 'Firefox',
+                    y: 10.38
+                }, {
+                    name: 'Safari',
+                    y: 4.77
+                }, {
+                    name: 'Opera',
+                    y: 0.91
+                }, {
+                    name: 'Proprietary or Undetectable',
+                    y: 0.2
+                }]
             }]
         });
-});
+    });
 </script>
 <h1>Distribution of users</h1>
 <ul id="myTab" class="nav nav-tabs">
