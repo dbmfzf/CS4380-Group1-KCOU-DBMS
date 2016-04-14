@@ -19,7 +19,14 @@ class User extends CI_Controller {
 		$rolename = $role_dept_data['rolename'];
 		$deptid = $role_dept_data['did'];
 		
-		if($rolename=="Manager"){$where="";$where_cnt="";} else{$where = "AND D.did = $deptid";$where_cnt = "WHERE D.did = $deptid";}
+		if($rolename=="Manager"){
+			$where="";
+			$where_cnt="";
+		} 
+		else{
+			$where = "AND D.did = $deptid";
+			$where_cnt = "WHERE D.did = $deptid";
+		}
 		
 		$cnt_query = $this->db->query("SELECT COUNT(1) as cnt FROM User $where_cnt");
 		$cnt_data = $cnt_query->row_array();
