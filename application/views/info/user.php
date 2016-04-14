@@ -10,8 +10,7 @@
             <th>Email</th>
             <th>Phone</th>
             <th>Birthday</th>
-            <th>Role</th>
-            <th>Department</th>
+            <th>Role/Department</th>
             <th>Status</th>
             <th>Action</th>
           </tr>
@@ -26,8 +25,7 @@
 					<td>%s</td>
 					<td>%s</td>
 					<td>%s</td>
-					<td>%s</td>
-					<td>%s</td>
+					<td>%s(%s)</td>
 					<td>%s</td>
 					<td>
 						<div class="btn-group  btn-group-xs">
