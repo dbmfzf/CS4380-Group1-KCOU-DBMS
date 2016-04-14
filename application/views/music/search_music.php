@@ -55,9 +55,9 @@
 </style>
 <div class="well">
     <div class="well well-lg" id="searchBar">
-        <form role="form" class="form-inline collapse in" id="genericSearchForm">
+        <form role="form" class="form-horizontal collapse in" id="genericSearchForm">
                 <div class="form-group">
-                  <label for="genericSearch">Search for:</label>
+                  <label for="genericSearch" class="control-label">Search for:</label>
                    <input type="text" class="form-control" id="genericSearch" placeholder="Enter song name, artist name, or album name here"> 
                 </div>
                 <div class="form-group">
@@ -65,21 +65,21 @@
                 </div>
         </form>
         <button type="button" data-toggle="collapse" data-target=".form-inline" class="btn btn-primary" id="toggleSearch" onclick="toggleOptions()">Advanced Search<span class="glyphicon glyphicon-triangle-bottom"></span> </button>
-        <form role="form" class="form-inline collapse" id="advancedSearchForm">
+        <form role="form" class="form-horizontal collapse" id="advancedSearchForm">
                 <div class="form-group">
-                    <label for="songSearch">Song:</label>
+                    <label for="songSearch" class="control-label">Song:</label>
                     <input type="text" class="form-control" id="songSearch" placeholder="Song name">
                 </div>
                 <div class="form-group">
-                    <label for="artistSearch">Artist:</label>
+                    <label for="artistSearch" class="control-label">Artist:</label>
                     <input type="text" class="form-control" id="artistSearch" placeholder="Artist name">
                 </div>
                 <div class="form-group">
-                    <label for="albumSearch">Album:</label>
+                    <label for="albumSearch" class="control-label">Album:</label>
                     <input type="text" class="form-control" id="albumSearch" placeholder="Album name">
                 </div>
                 <div class="form-group">
-                    <label for="genreSearch">Genre:</label>
+                    <label for="genreSearch" class="control-label">Genre:</label>
                     <input type="text" class="form-control" id="genreSearch" placeholder="Genre">
                 </div>
                 <div class="form-group">
