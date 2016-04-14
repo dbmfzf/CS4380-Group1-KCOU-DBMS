@@ -28,13 +28,13 @@ class User extends CI_Controller {
 		$config['use_page_numbers'] = TRUE;
 		$this->pagination->initialize($config);
 		
-		$role_dept_query = $this->db->query("Select D.did as deptid,R.name as rolename from Department D, Role R WHERE R.rid = '{$login_rid}' and R.rid = D.rid");
+		$role_dept_query = $this->db->query("Select did Role R WHERE R.rid = '{$login_rid}'");
 		$role_dept_data = $role_dept_query->row_array();
 		$rolename = $role_dept_data['rolename'];
-		$deptid = $role_dept_data['deptid'];
+		$deptid = $role_dept_data['did'];
 		
 		if($rolename=="Manager"){$where="";} else{$where = "AND D.did = $deptid";}
-		$query = $this->db->query("SELECT U.uid,U.fullname,U.gender,U.email,U.phone,U.birth,U.status,R.name as rolename,D.name as deptname FROM Belongs_to B, Department D, User U, Role R WHERE R.rid = U.rid AND B.uid = U.uid AND B.did = D.did AND U.rid != '{$login_rid}' ".$where." LIMIT ".(($page-1)*$config['per_page']).",".$config['per_page']."");
+		$query = $this->db->query("SELECT U.uid,U.fullname,U.gender,U.email,U.phone,U.birth,U.status,R.name as rolename,D.name as deptname FROM Department D, User U, Role R WHERE R.rid = U.rid AND D.did = R.did AND U.rid != '{$login_rid}' ".$where." LIMIT ".(($page-1)*$config['per_page']).",".$config['per_page']."");
 		$data = $query->result();
 		$this->load->view("info/user",array("data"=>$data));
 	}
@@ -47,14 +47,11 @@ class User extends CI_Controller {
 		$user_query = $this->db->query("SELECT uid,fullname,gender,birth,email,phone,status FROM User WHERE uid = '".$uid."' limit 1");
 		$user_data = $user_query -> row_array();
 		 
-		$role = $this->db->query("SELECT R.rid,name from Role R, User U where U.rid = R.rid and U.uid = '".$uid."' limit 1");
-		$current_role = $role -> row_array();
-		
-		$dept = $this->db->query("SELECT D.did,name from Department D, Belongs_to B, User U where U.uid = B.uid and D.did = B.did and U.uid = '".$uid."' limit 1");
-		$current_dept = $dept -> row_array();
+		$current_role_dept_query = $this->db->query("SELECT R.rid,R.name as rolename,D.name as deptname FROM Role R, User U, Department D WHERE D.did = R.did AND U.rid = R.rid AND U.uid = '".$uid."' limit 1");
+		$current_role_dept_data = $current_role_dept_query -> row_array();
 		
 		$login_rid = rbac_conf(array('INFO','rid'));
-		$login_role_query = $this->db->query("SELECT name from Role where rid = '{$login_rid}'");
+		$login_role_query = $this->db->query("SELECT name as rolename from Role where rid = '{$login_rid}'");
 		$login_role = $login_role_query->row_array(); 
 		
 		$data['uid'] = $user_data['uid'];
@@ -65,18 +62,14 @@ class User extends CI_Controller {
 		$data['birth'] = $user_data['birth'];
 		$data['status'] = $user_data['status'];
 		
-		$data['role'] = $current_role['name'];
-		$data['rid'] = $current_role['rid'];
+		$data['rolename'] = $current_role_dept_data['rolename'];
+		$data['rid'] = $current_role_dept_data['rid'];
+		$data['deptname'] = $current_role_dept_data['deptname'];
 		
-		$data['dept'] = $current_dept['name'];
-		$data['did'] = $current_dept['did'];
+		$data['login_rolename'] = $login_role['rolename'];
 		
-		$data['login_rolename'] = $login_role['name'];
-		
-		$role_query = $this->db->query("SELECT rid,name FROM Role WHERE status = 1 order by rid desc");
-		$role_data = $role_query->result();
-		$dept_query = $this->db->query("SELECT did,name FROM Department order by did desc");
-		$dept_data = $dept_query->result();
+		$role_dept_query = $this->db->query("SELECT rid,R.name AS rolename, D.name AS deptname FROM Role R, Department D WHERE R.did = D.did AND status = 1 order by rid desc");
+		$role_dept_data = $role_query->result();
 		
 		if($data){
 			if($this->input->post()){
@@ -86,25 +79,16 @@ class User extends CI_Controller {
 				$phone = $this->input->post("phone");
 				$birth = $this->input->post("birth");
 				$role = $this->input->post("role");
-				
-				$role_dept_query = $this->db->query("SELECT did from Department WHERE rid = ".$role."");
-				$role_dept_data = $role_dept_query->row_array();
-				$did = $role_dept_data['did'];
-				
-				$dept = $this->input->post("dept");
 				$status = $this->input->post("status");
 				$password = $this->input->post("password");
 				$password2 = $this->input->post("password2");
 				if($uid!=""){
 					if($password==$password2){
 						if($uid&&$fullname&&$gender&&$email&&$phone&&$birth&&$role){
-							if($did==""){$newdept = $dept;}else{$newdept = $did;}
 							if($password){$newpass = ",password='".md5($password2)."'";}else{$newpass="";}
 							if($status){$newstat = ",status='1'";}else{$newstat = ",status='0'";}
 							$sql = "UPDATE User set fullname='{$fullname}',gender = '{$gender}',email='{$email}',phone = '{$phone}',birth = '{$birth}',rid='{$role}' {$newpass} {$newstat} WHERE uid = '{$uid}'";
 							$this->db->query($sql);
-							$dsql = "UPDATE Belongs_to set did = '{$newdept}' WHERE uid = '{$uid}'";
-							$this->db->query($dsql);
 							success_redirct("info/user/index","Edit successful!");
 						}else{
 							error_redirct("","The user's information is not complete!");
@@ -116,7 +100,7 @@ class User extends CI_Controller {
 					error_redirct("","No user is found!");
 				}
 			}
-			$this->load->view("info/user/edit",array("data"=>$data,"role_data"=>$role_data,"dept_data"=>$dept_data));
+			$this->load->view("info/user/edit",array("data"=>$data,"role_dept_data"=>$role_dept_data));
 		}else{
 			error_redirct("info/user/index","No user is found!");
 		}
@@ -128,22 +112,14 @@ class User extends CI_Controller {
 	 
 	public function add(){
 		
-		$role_query = $this->db->query("SELECT rid,name FROM Role WHERE status = 1 order by rid desc");
-		$role_data = $role_query->result();
-		
-		$dept_query = $this->db->query("SELECT did,name FROM Department order by did desc");
-		$dept_data = $dept_query->result();
+		$role_dept_query = $this->db->query("SELECT rid,R.name as rolename,D.name as deptname FROM Role R, Department D WHERE status = 1 order by rid desc");
+		$role_dept_data = $role_dept_query->result();
 		
 		$login_rid = rbac_conf(array('INFO','rid'));
-		$login_role_query = $this->db->query("SELECT name FROM Role WHERE rid = $login_rid");
+		$login_role_query = $this->db->query("SELECT name as rolename FROM Role WHERE rid = $login_rid");
 		$login_role = $login_role_query->row_array();
 		
-		$login_role_dept_query = $this->db->query("SELECT did,name FROM Department WHERE rid = $login_rid");
-		$login_role_dept = $login_role_dept_query->row_array();
-		
-		$data['login_rolename'] = $login_role['name'];
-		$data['did'] = $login_role_dept['did'];
-		$data['dept'] = $login_role_dept['name'];
+		$data['login_rolename'] = $login_role_data['rolename'];
 		
 		
 		if($this->input->post()){
@@ -153,13 +129,7 @@ class User extends CI_Controller {
 			$email = $this->input->post("email");
 			$phone = $this->input->post("phone");
 			$birth = $this->input->post("birth");
-			
 			$role = $this->input->post("role");
-			$role_dept_query = $this->db->query("SELECT did from Department WHERE rid = ".$role."");
-			$role_dept_data = $role_dept_query->row_array();
-			$did = $role_dept_data['did'];
-			
-			$dept = $this->input->post("dept");
 			$status = $this->input->post("status");
 			$password = $this->input->post("password");
 			$password2 = $this->input->post("password2");
@@ -171,13 +141,10 @@ class User extends CI_Controller {
 						$query = $this->db->query("SELECT * FROM User WHERE email = '".$email."'");
 						$data = $query->row_array();
 						if(!$data){
-							if($did==""){$newdept = $dept;}else{$newdept = $did;}
 							if(!$status){$newstat = "0";}else{$newstat = "1";}
 							$newpass = md5($password2);
 							$sql = "INSERT INTO User (uid,fullname,gender,email,phone,birth,password,rid,status) values('{$uid}','{$fullname}','{$gender}','{$email}','{$phone}','{$birth}','{$newpass}','{$role}', '{$newstat}')";
 							$this->db->query($sql);
-							$dsql = "INSERT INTO Belongs_to(uid,did) values('{$uid}','{$newdept}')";
-							$this->db->query($dsql);
 							success_redirct("info/user/index","Add successful!");
 						}else{
 							error_redirct("","The email already exists!");
@@ -193,7 +160,7 @@ class User extends CI_Controller {
 				error_redirct("","Repeat the wrong password!");
 			}
 		}
-		$this->load->view("info/user/add",array("data"=>$data,"role_data"=>$role_data,"dept_data"=>$dept_data));
+		$this->load->view("info/user/add",array("data"=>$data,"role_query_data"=>$role_query_data));
 	}
 	/**
 	 * Delete users
