@@ -1,10 +1,4 @@
 <?php
-        foreach($user_gender_data as $key){
-		 $gender[]=$key->gender;
-		 $gender_num[]=intval($key->gender_num);
-	}
-	$gender_data = array(array("name"=>$gender,"data"=>$gender_num));
-	$gender_data = json_encode($gender_data);
 	echo $gender_data;
 ?>
 <script>
