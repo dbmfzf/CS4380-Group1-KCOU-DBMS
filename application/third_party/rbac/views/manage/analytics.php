@@ -43,9 +43,8 @@ $(function () {
                     allowPointSelect: true,
                     cursor: 'pointer',
                     dataLabels: {
-                        enabled: false
-                    },
-                    showInLegend: true
+                        enabled: true
+                    }
                 }
             },
             series: [{
@@ -59,7 +58,7 @@ $(function () {
             chart: {
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
-                plotShadow: false,
+                plotShadow: true,
                 type: 'pie'
             },
             title: {
@@ -76,9 +75,8 @@ $(function () {
                     allowPointSelect: true,
                     cursor: 'pointer',
                     dataLabels: {
-                        enabled: false
-                    },
-                    showInLegend: true
+                        enabled: true
+                    }
                 }
             },
             series: [{
