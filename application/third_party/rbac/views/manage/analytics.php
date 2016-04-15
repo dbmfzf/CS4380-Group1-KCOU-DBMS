@@ -1,14 +1,14 @@
-          <?php 
-                //$genderarr =array(); 
-        		//$numberarr =array(); 
-               		foreach($user_gender_data as $row){ 
-        			$arr[] = array( 
-                                       "name"=> $row['gender'],"y"=>intval($row['user_num']) 
-                              ); 
-        		}
-        		$arr = json_encode($arr); 
-        		echo $arr;
-          ?>
+<?php 
+          $today = date("Y-m-d");
+     	foreach($user_gender_data as $row){
+     	          $gender_cnt[]= $row;
+        	          $arr[] = array( 
+                              "name"=> $row['gender'],"y"=>intval($row['user_num']) 
+                    ); 
+        	}
+        	$arr = json_encode($arr); 
+        	echo $arr;
+?>
 <script>
 $(function () {
 
@@ -23,7 +23,7 @@ $(function () {
                 type: 'pie'
             },
             title: {
-                text: 'Browser market shares January, 2015 to May, 2015'
+                text: 'Male:<?php echo $gender_cnt[0];?> Female:<?php echo $gender_cnt[1];?>'
             },
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
