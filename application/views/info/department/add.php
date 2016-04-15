@@ -9,16 +9,8 @@
             <td><input type="text" name="dname"</td>
         </tr>
         <tr>
-            <td class="tableleft">Role</td>
-            <td>
-                <select name="rname" id="role" class="form-control" >
-                  	<?php 
-                  		foreach($role_data as $vo){
-                  			echo "<option value='{$vo->rid}'>{$vo->rname}</option>";
-                  		}
-                  	?>
-                </select>
-            </td>
+         <td class="tableleft">description</td>
+            <td><input type="text" name="description"</td>
         </tr>
         
     </table>

@@ -5,7 +5,7 @@
 	<thead>
           <tr>
             <th>Department</th>
-            <th>Role</th>
+            <th>Description</th>
             <th></th>
           </tr>
         </thead>
@@ -21,7 +21,7 @@
 						  <a class="btn btn-danger" href="%s">Delete</a>
 						</div>
 					</td>
-				</tr>',$mb->dname,$mb->rname,site_url("info/department/edit/".$mb->did),site_url("info/department/delete/".$mb->did));
+				</tr>',$mb->dname,$mb->description,site_url("info/department/edit/".$mb->did),site_url("info/department/delete/".$mb->did));
 	}
 	?>
   </tbody>

@@ -21,41 +21,43 @@ class Department extends CI_Controller {
 		$config['uri_segment']= '4';
 		$config['use_page_numbers'] = TRUE;
 		$this->pagination->initialize($config);
-		$role_dept_query = $this->db->query("Select d.did, d.name as dname, d.rid, r.name as rname from department d, role r WHERE r.rid = d.rid");
-		$data = $role_dept_query->result();
+		$dept_query = $this->db->query("Select did, name as dname,description from department d");
+		$data = $dept_query->result();
 		$this->load->view("info/department",array("data"=>$data));
 	}
 	/**
 	 * Edit departments
 	 */
 	public function edit($did){
-		$department_query = $this->db->query("SELECT d.did,d.name as dname,d.rid FROM department d WHERE d.did = '".$did."' limit 1");
+		$department_query = $this->db->query("SELECT d.did,d.name as dname,description FROM department d WHERE d.did = '".$did."' limit 1");
 		$department_data = $department_query -> row_array();
 		 
-		$rolename = $this->db->query("SELECT r.rid, r.name as rname from role r, department d where d.rid = R.rid and d.did = '".$did."' limit 1");
-		$current_role = $rolename -> row_array();
+		//$rolename = $this->db->query("SELECT r.rid, r.name as rname from role r, department d where d.rid = R.rid and d.did = '".$did."' limit 1");
+		//$current_role = $rolename -> row_array();
 		
 		
 		$data['did'] = $department_data['did'];
 		$data['dname'] = $department_data['dname'];
+		$data['description'] = $department_data['dsecription'];
 		
-		$data['rname'] = $current_role['rname'];
-		$data['rid'] = $current_role['rid'];
+		//$data['rname'] = $current_role['rname'];
+		//$data['rid'] = $current_role['rid'];
 
 
 		
 		if($data){
 			if($this->input->post()){
 				$dname = $this->input->post("dname");
-				$rname = $this->input->post("rname");
+				$description = $this->input->post("description");
+				//$rname = $this->input->post("rname");
 				
-				$role_dept_query = $this->db->query("SELECT rid from role WHERE rname = ".$rname."");
-				$role_dept_data = $role_dept_query->row_array();
-				$rid = $role_dept_data['rid'];
+				//$role_dept_query = $this->db->query("SELECT rid from role WHERE rname = ".$rname."");
+				//$role_dept_data = $role_dept_query->row_array();
+				//$rid = $role_dept_data['rid'];
 
 				if($did!=""){
-					if($did&&$name&&$rname){
-						$rsql = "UPDATE department, set name='{$dname}' , rid='{$rid}' WHERE did = '{$did}'";
+					if($did&&$dname){
+						$rsql = "UPDATE department, set name='{$dname}' , description='{$description}' WHERE did = '{$did}'";
 						$this->db->query($sql);
 						success_redirct("info/department/index","Edit successful!");
 					}else{
@@ -75,25 +77,26 @@ class Department extends CI_Controller {
 	 */
 	public function add(){
 		
-		$role_query = $this->db->query("SELECT rid,name as rname FROM role order by rid desc");
-		$role_data = $role_query->result();
+		//$role_query = $this->db->query("SELECT rid,name as rname FROM role order by rid desc");
+		//$role_data = $role_query->result();
 		
-		$dept_query = $this->db->query("SELECT did,name as dname FROM department order by did desc");
+		$dept_query = $this->db->query("SELECT did,name as dname,description FROM department order by did desc");
 		$dept_data = $dept_query->result();
 		
 		if($this->input->post()){
 			$dname = $this->input->post("dname");
+			$description = $this->input->post("description");
 			
-			$rname = $this->input->post("rname");
-			$role_dept_query = $this->db->query("SELECT rid from role r WHERE name = ".$rname."");
-			$role_dept_data = $role_dept_query->row_array();
-			$rid = $role_dept_data['rid'];
+			//$rname = $this->input->post("rname");
+			//$role_dept_query = $this->db->query("SELECT rid from role r WHERE name = ".$rname."");
+			//$role_dept_data = $role_dept_query->row_array();
+			//$rid = $role_dept_data['rid'];
 		
-			if($dname&&$rolename){
+			if($dname){
 				$query = $this->db->query("SELECT * FROM department WHERE did = '".$did."'");
 				$data = $query->row_array();
 				if(!$data){
-					$sql = "INSERT INTO department (name,rid) values('{$dname}','{$rid}')";
+					$sql = "INSERT INTO department (name,description) values('{$dname}','{$description}')";
 					$this->db->query($sql);
 					success_redirct("info/department/index","Add successful!");
 					}else{

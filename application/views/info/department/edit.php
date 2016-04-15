@@ -9,17 +9,9 @@
             <td><input type="text" name="dname" value="<?php echo $data['dname'];?>"></td>
         </tr>
         <tr>
-            <td class="tableleft">Role</td>
-            <td>
-                <select name="rolename" id="rolename" onChange="check()"  class="form-control" >
-		    	<?php 
-		    		foreach($data as $vo){
-						$select = $data["rid"]==$vo->rid?"selected":"";
-		    			echo "<option value='{$vo->rid}' {$select} >{$vo->rname}</option>";
-		    		}
-		    	?>
-                </select>
-            </td>
+            <td class="tableleft">Description</td>
+            <td><input type="text" name="description" value="<?php echo $data['description'];?>"></td>
+            
         </tr>
     </table>
     <button type="submit" class="btn btn-success">Save</button> 
