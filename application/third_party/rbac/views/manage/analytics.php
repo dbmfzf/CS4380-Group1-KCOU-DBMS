@@ -10,7 +10,10 @@
         		echo $arr;
           ?>
 <script>
-$(function () 
+$(function () {
+
+    $(document).ready(function () {
+
         // Build the chart
         $('#dept').highcharts({
             chart: {
@@ -35,10 +38,34 @@ $(function ()
                     showInLegend: true
                 }
             },
-            series: <?php echo $arr; ?>
+            series: [{
+                name: 'Brands',
+                colorByPoint: true,
+                data: [{
+                    name: 'Microsoft Internet Explorer',
+                    y: 56.33
+                }, {
+                    name: 'Chrome',
+                    y: 24.03,
+                    sliced: true,
+                    selected: true
+                }, {
+                    name: 'Firefox',
+                    y: 10.38
+                }, {
+                    name: 'Safari',
+                    y: 4.77
+                }, {
+                    name: 'Opera',
+                    y: 0.91
+                }, {
+                    name: 'Proprietary or Undetectable',
+                    y: 0.2
+                }]
             }]
-          });
+        });
     });
+});
 </script>
 <h1>Distribution of users</h1>
 <ul id="myTab" class="nav nav-tabs">
