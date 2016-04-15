@@ -76,8 +76,8 @@ $(function () {
                 //$genderarr =array(); 
         		//$numberarr =array(); 
                		foreach($user_gender_data as $row){ 
-        			echo $row['gender']; 
-        			echo $row['user_num']; 
+        			$genderarr = $row['gender']; 
+        			$numberarr = $row['user_num']; 
         		} 
         		$arr = json_encode(array("name"=>$genderarr,"data"=>intval($numberarr))); 
         		echo $arr;
