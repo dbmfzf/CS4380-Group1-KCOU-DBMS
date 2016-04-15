@@ -165,12 +165,12 @@ $(function () {
 </ul>
 <div id="myTabContent" class="tab-content">
    <div class="tab-pane fade in active" id="home">
-      <div align ="center" id="dept" style="width: 600px; height: 600px; max-width: 800px; margin: 0 auto; padding-top:5%"></div>
+      <div align ="center" id="dept" style="min-width: 600px; height: 600px; max-width: 800px; margin: 0 auto; padding-top:5%"></div>
    </div>
    <div class="tab-pane fade" id="second">
-      <div align ="center" id="gender" style="width: 600px; height: 600px; max-width: 800px; margin: 0 auto; padding-top:5%"></div>
+      <div align ="center" id="gender" style="min-width: 600px; height: 600px; max-width: 800px; margin: 0 auto; padding-top:5%"></div>
    </div>
    <div  class="tab-pane fade" id="third">
-      <div align ="center" id="role" style="width: 600px; height: 600px; max-width: 800px; margin: 0 auto; padding-top:5%"></div>
+      <div align ="center" id="role" style="min-width: 600px; height: 600px; max-width: 800px; margin: 0 auto; padding-top:5%"></div>
    </div>
 </div>
