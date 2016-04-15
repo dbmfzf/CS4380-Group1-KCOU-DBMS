@@ -57,7 +57,7 @@ class Department extends CI_Controller {
 
 				if($did!=""){
 					if($did&&$dname){
-						$sql = "UPDATE department, set name='{$dname}' , description='{$description}' WHERE did = '{$did}'";
+						$sql = "UPDATE department set name='{$dname}' , description='{$description}' WHERE did = '{$did}'";
 						$this->db->query($sql);
 						success_redirct("info/department/index","Edit successful!");
 					}else{
