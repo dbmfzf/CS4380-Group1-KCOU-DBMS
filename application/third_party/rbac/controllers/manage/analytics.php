@@ -14,16 +14,12 @@ class Analytics extends CI_Controller {
 		
 		$user_gender_query = $this->db->query("SELECT gender,count(*) as user_num FROM USER GROUP BY gender");
 		$user_gender_data = $user_gender_query->result_array();
-		$arr =array();
-		foreach($user_gender_data as $row){
-			$arr = array_push($arr, $row);
-		}
-		$arr = json_encode($arr);
+
 		
 		$user_role_query = $this->db->query("SELECT count(*) as user_num, R.name as role_name FROM User U, Role R WHERE R.rid = U.rid GROUP BY R.rid");
 		$user_role_data = $user_role_query->result();
 		
-		$this->load->view("manage/analytics",$arr);
+		$this->load->view("manage/analytics",$user_gender_data);
 	}
 
 }
