@@ -41,7 +41,7 @@ $(function () {
             series: [{
                 name: 'Brands',
                 colorByPoint: true,
-                data: <?php echo $arr;>
+                data: <?php echo $arr;?>
             }]
         });
     });
