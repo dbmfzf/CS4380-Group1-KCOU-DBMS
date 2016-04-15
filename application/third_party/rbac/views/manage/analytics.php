@@ -3,7 +3,7 @@
         		//$numberarr =array(); 
                		foreach($user_gender_data as $row){ 
         			$arr[] = array( 
-                                        $row['gender'],intval($row['user_num']) 
+                                       "name"=> $row['gender'],"y"=>intval($row['user_num']) 
                               ); 
         		}
         		$arr = json_encode($arr); 
