@@ -71,7 +71,15 @@ $(function () {
       <div id="gender" style="min-width: 310px; height: 600px; max-width: 800px; margin: 0 auto; padding-top:5%"></div>
    </div>
    <div class="tab-pane fade" id="third">
-      <div id="role" style="min-width: 310px; height: 600px; max-width: 800px; margin: 0 auto; padding-top:5%"><?php echo $arr; ?>
+      <div id="role" style="min-width: 310px; height: 600px; max-width: 800px; margin: 0 auto; padding-top:5%">
+          <?php 
+                $arr =array();
+        		foreach($user_gender_data as $row){
+        			$arr = array_push($arr, $row);
+        		}
+        		$arr = json_encode($arr);
+        		echo $arr;
+          ?>
       </div>
    </div>
 </div>
