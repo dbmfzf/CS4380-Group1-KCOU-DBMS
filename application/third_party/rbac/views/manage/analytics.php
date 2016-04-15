@@ -2,12 +2,12 @@
           $today = date("Y-m-d");
      	foreach($user_gender_data as $row){
      	          $gender_cnt[]= $row;
-        	          $arr[] = array( 
+        	          $gender_arr[] = array( 
                               "name"=> $row['gender'],"y"=>intval($row['user_num']) 
                     ); 
         	}
-        	$arr = json_encode($arr); 
-        	echo $arr;
+        	$gender_data = json_encode($gender_arr); 
+        	echo $gender_data;
 ?>
 <script>
 $(function () {
@@ -41,7 +41,7 @@ $(function () {
             series: [{
                 name: 'Brands',
                 colorByPoint: true,
-                data: <?php echo $arr;?>
+                data: <?php echo $gender_data;?>
             }]
         });
     });
