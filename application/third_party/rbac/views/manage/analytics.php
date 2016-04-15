@@ -8,7 +8,7 @@
         	}
         	$gender_data = json_encode($gender_arr);
         	
-        	foreach($dept_gender_data as $row){
+        	foreach($user_dept_data as $row){
      	          $dept_cnt[]= $row['user_num'];
         	          $dept_arr[] = array( 
                               "name"=> $row['dept'],"y"=>intval($row['user_num']) 
