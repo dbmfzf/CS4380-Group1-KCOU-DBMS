@@ -15,7 +15,7 @@ $(function () {
     $(document).ready(function () {
 
         // Build the chart
-        $('#gender').highcharts({
+        $('#dept').highcharts({
             chart: {
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
