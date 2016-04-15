@@ -73,47 +73,7 @@ $(function () {
             }]
         });
         
-        $('#role').highcharts({
-            chart: {
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: true,
-                type: 'pie'
-            },
-            title: {
-                text: 'KCOU'
-            },
-            subtitle: {
-                text: '<?php echo $today;?>'
-            },
-            tooltip: {
-                 formatter: function() {
-                         return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.y, 0, ',');
-                 }
-            },
-            plotOptions: {
-                pie: {
-                    size: 200,
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: true,
-                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                        style: {
-                              color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                        },
-                        connectorColor: 'silver'
-                    }
-                }
-            },
-            series: [{
-                name: 'Brands',
-                colorByPoint: true,
-                data: <?php echo $role_data;?>
-            }]
-        });
-        
-                $('#gender').highcharts({
+        $('#gender').highcharts({
             chart: {
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
@@ -150,6 +110,43 @@ $(function () {
                 name: 'Brands',
                 colorByPoint: true,
                 data: <?php echo $gender_data;?>
+            }]
+        });
+        
+          $('#role').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: true,
+                type: 'pie'
+            },
+            title: {
+                text: 'KCOU'
+            },
+            subtitle: {
+                text: '<?php echo $today;?>'
+            },
+            tooltip: {
+                 formatter: function() {
+                    return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 1) +'% (Amount:'+
+                    Highcharts.numberFormat(this.y, 0, ',') +')';
+                 }
+            },
+            plotOptions: {
+                pie: {
+                    size: 200,
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                name: 'Role name',
+                colorByPoint: true,
+                data: <?php echo $role_data;?>
             }]
         });
         
