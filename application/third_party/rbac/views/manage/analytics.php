@@ -6,8 +6,15 @@
                               "name"=> $row['gender'],"y"=>intval($row['user_num']) 
                     ); 
         	}
-        	$gender_data = json_encode($gender_arr); 
-        	echo $gender_data;
+        	$gender_data = json_encode($gender_arr);
+        	
+        	foreach($dept_gender_data as $row){
+     	          $dept_cnt[]= $row['user_num'];
+        	          $dept_arr[] = array( 
+                              "name"=> $row['dept'],"y"=>intval($row['user_num']) 
+                    ); 
+        	}
+        	$dept_data = json_encode($dept_arr);
 ?>
 <script>
 $(function () {
@@ -44,6 +51,37 @@ $(function () {
                 data: <?php echo $gender_data;?>
             }]
         });
+        
+        $('#dept').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Department'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                name: 'Brands',
+                colorByPoint: true,
+                data: <?php echo $dept_data;?>
+            }]
+        });
+        
     });
 });
 </script>
@@ -56,13 +94,13 @@ $(function () {
 </ul>
 <div id="myTabContent" class="tab-content">
    <div class="tab-pane fade in active" id="home">
-      <div id="dept" style="min-width: 310px; height: 600px; max-width: 800px; margin: 0 auto; padding-top:5%"></div>
+      <div align ="center" id="dept" style="min-width: 310px; height: 600px; max-width: 800px; margin: 0 auto; padding-top:5%"></div>
    </div>
    <div class="tab-pane fade" id="second">
       <div align ="center" id="gender" style="min-width: 310px; height: 600px; max-width: 800px; margin: 0 auto; padding-top:5%"></div>
    </div>
-   <div class="tab-pane fade" id="third">
-      <div id="role" style="min-width: 310px; height: 600px; max-width: 800px; margin: 0 auto; padding-top:5%">
+   <div  class="tab-pane fade" id="third">
+      <div align ="center" id="role" style="min-width: 310px; height: 600px; max-width: 800px; margin: 0 auto; padding-top:5%">
 
      </div>
    </div>
