@@ -79,7 +79,7 @@ $(function () {
         			$genderarr[] = $row['gender']; 
         			$numberarr[] = $row['user_num']; 
         		} 
-        		$genderarr = json_encode(array($arr)); 
+        		$arr = json_encode(array("name"=>$genderarr,"data"=>intval($numberarr))); 
         		echo $arr;
           ?>
       </div>
