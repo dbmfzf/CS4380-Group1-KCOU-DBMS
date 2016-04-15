@@ -32,6 +32,9 @@ $(function () {
             title: {
                 text: 'Male:<?php echo $gender_cnt[0];?> Female:<?php echo $gender_cnt[1];?>'
             },
+            subtitle: {
+                text: '<?php echo $today;?>'
+            },
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
             },
@@ -61,6 +64,9 @@ $(function () {
             },
             title: {
                 text: 'Department'
+            },
+            subtitle: {
+                text: '<?php echo $today;?>'
             },
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -104,5 +110,4 @@ $(function () {
 
      </div>
    </div>
-   <div align = "center"><?php echo $today; ?></div>
 </div>
