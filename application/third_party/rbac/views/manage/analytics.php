@@ -10,10 +10,7 @@
         		echo $arr;
           ?>
 <script>
-$(function () {
-
-    $(document).ready(function () {
-
+$(function () 
         // Build the chart
         $('#dept').highcharts({
             chart: {
@@ -40,7 +37,7 @@ $(function () {
             },
             series: <?php echo $arr; ?>
             }]
-        });
+          });
     });
 </script>
 <h1>Distribution of users</h1>
