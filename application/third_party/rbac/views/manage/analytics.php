@@ -2,10 +2,11 @@
                 //$genderarr =array(); 
         		//$numberarr =array(); 
                		foreach($user_gender_data as $row){ 
-        			$genderarr[] = $row['gender']; 
-        			$numberarr[] = intval($row['user_num']); 
+        			$arr[] = array( 
+                                        $row['gender'],intval($row['user_num']) 
+                              ); 
         		}
-        		$arr = json_encode(array(array("name"=>$genderarr,"data"=>$numberarr))); 
+        		$arr = json_encode($arr); 
         		echo $arr;
           ?>
 <script>
