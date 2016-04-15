@@ -11,7 +11,7 @@
         	foreach($user_dept_data as $row){
      	          $dept_cnt[]= $row['user_num'];
         	          $dept_arr[] = array( 
-                              "name"=> $row['dept'],"y"=>intval($row['user_num']) 
+                              "name"=> $row['dept_name'],"y"=>intval($row['user_num']) 
                     ); 
         	}
         	$dept_data = json_encode($dept_arr);
