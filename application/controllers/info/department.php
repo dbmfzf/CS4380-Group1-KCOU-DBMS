@@ -100,7 +100,7 @@ class Department extends CI_Controller {
 						error_redirct("","The department already exists!");
 					}		
 		}
-		$this->load->view("info/department/add",array("role_data"=>$role_data,"dept_data"=>$dept_data));
+		$this->load->view("info/department/add",array("dept_data"=>$dept_data));
 	}
 	
 	/**
