@@ -29,7 +29,7 @@ class Department extends CI_Controller {
 	 * Edit departments
 	 */
 	public function edit($did){
-		$department_query = $this->db->query("SELECT d.did,d.name as dname,description FROM department d WHERE d.did = '".$did."' limit 1");
+		$department_query = $this->db->query("SELECT d.did,d.name as dname,d.description FROM department d WHERE d.did = '".$did."' limit 1");
 		$department_data = $department_query -> row_array();
 		 
 		//$rolename = $this->db->query("SELECT r.rid, r.name as rname from role r, department d where d.rid = R.rid and d.did = '".$did."' limit 1");
@@ -57,7 +57,7 @@ class Department extends CI_Controller {
 
 				if($did!=""){
 					if($did&&$dname){
-						$rsql = "UPDATE department, set name='{$dname}' , description='{$description}' WHERE did = '{$did}'";
+						$sql = "UPDATE department, set name='{$dname}' , description='{$description}' WHERE did = '{$did}'";
 						$this->db->query($sql);
 						success_redirct("info/department/index","Edit successful!");
 					}else{
@@ -93,18 +93,12 @@ class Department extends CI_Controller {
 			//$rid = $role_dept_data['rid'];
 		
 			if($dname){
-				$query = $this->db->query("SELECT * FROM department WHERE did = '".$did."'");
-				$data = $query->row_array();
-				if(!$data){
 					$sql = "INSERT INTO department (name,description) values('{$dname}','{$description}')";
 					$this->db->query($sql);
 					success_redirct("info/department/index","Add successful!");
 					}else{
 						error_redirct("","The department already exists!");
 					}		
-				}else{
-					error_redirct("","The department's information is not complete!");
-			}
 		}
 		$this->load->view("info/department/add",array("role_data"=>$role_data,"dept_data"=>$dept_data));
 	}
