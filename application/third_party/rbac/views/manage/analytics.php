@@ -5,7 +5,7 @@ $(function () {
     $(document).ready(function () {
 
         // Build the chart
-        $('#container').highcharts({
+        $('#gender').highcharts({
             chart: {
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
