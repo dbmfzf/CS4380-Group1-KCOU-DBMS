@@ -36,7 +36,8 @@ $(function () {
                 text: '<?php echo $today;?>'
             },
             tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 1) +'% ('+
+                         Highcharts.numberFormat(this.y, 0, ',') +')';
             },
             plotOptions: {
                 pie: {
