@@ -1,7 +1,7 @@
 <?php 
           $today = date("Y-m-d");
      	foreach($user_gender_data as $row){
-     	          $gender_cnt[]= $row;
+     	          $gender_cnt[]= $row['user_num'];
         	          $gender_arr[] = array( 
                               "name"=> $row['gender'],"y"=>intval($row['user_num']) 
                     ); 
