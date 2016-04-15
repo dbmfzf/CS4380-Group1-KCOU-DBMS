@@ -38,7 +38,7 @@ class Department extends CI_Controller {
 		
 		$data['did'] = $department_data['did'];
 		$data['dname'] = $department_data['dname'];
-		$data['description'] = $department_data['dsecription'];
+		$data['description'] = $department_data['description'];
 		
 		//$data['rname'] = $current_role['rname'];
 		//$data['rid'] = $current_role['rid'];
