@@ -53,7 +53,7 @@ $(function () {
             },
             plotOptions: {
                 pie: {
-                    size: 100,
+                    size: 200,
                     allowPointSelect: true,
                     cursor: 'pointer',
                     dataLabels: {
@@ -93,7 +93,7 @@ $(function () {
             },
             plotOptions: {
                 pie: {
-                    size: 100,
+                    size: 200,
                     allowPointSelect: true,
                     cursor: 'pointer',
                     dataLabels: {
@@ -133,7 +133,7 @@ $(function () {
             },
             plotOptions: {
                 pie: {
-                    size: 100,
+                    size: 200,
                     allowPointSelect: true,
                     cursor: 'pointer',
                     dataLabels: {
