@@ -1,4 +1,13 @@
-
+          <?php 
+                //$genderarr =array(); 
+        		//$numberarr =array(); 
+               		foreach($user_gender_data as $row){ 
+        			$genderarr[] = $row['gender']; 
+        			$numberarr[] = intval($row['user_num']); 
+        		}
+        		$arr = json_encode(array(array("name"=>$genderarr,"data"=>$numberarr))); 
+        		echo $arr;
+          ?>
 <script>
 $(function () {
 
@@ -28,30 +37,7 @@ $(function () {
                     showInLegend: true
                 }
             },
-            series: [{
-                name: 'Brands',
-                colorByPoint: true,
-                data: [{
-                    name: 'Microsoft Internet Explorer',
-                    y: 56.33
-                }, {
-                    name: 'Chrome',
-                    y: 24.03,
-                    sliced: true,
-                    selected: true
-                }, {
-                    name: 'Firefox',
-                    y: 10.38
-                }, {
-                    name: 'Safari',
-                    y: 4.77
-                }, {
-                    name: 'Opera',
-                    y: 0.91
-                }, {
-                    name: 'Proprietary or Undetectable',
-                    y: 0.2
-                }]
+            series: <?php echo $arr; ?>
             }]
         });
     });
@@ -72,17 +58,7 @@ $(function () {
    </div>
    <div class="tab-pane fade" id="third">
       <div id="role" style="min-width: 310px; height: 600px; max-width: 800px; margin: 0 auto; padding-top:5%">
-          <?php 
-                //$genderarr =array(); 
-        		//$numberarr =array(); 
-               		foreach($user_gender_data as $row){ 
-        			$genderarr[] = $row['gender']; 
-        			$numberarr[] = intval($row['user_num']); 
-        		}
-        		echo $genderarr[0]; echo$genderarr[1];
-        		$arr = json_encode(array(array("name"=>$genderarr,"data"=>$numberarr))); 
-        		echo $arr;
-          ?>
+
       </div>
    </div>
 </div>
