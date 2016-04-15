@@ -73,11 +73,11 @@ $(function () {
    <div class="tab-pane fade" id="third">
       <div id="role" style="min-width: 310px; height: 600px; max-width: 800px; margin: 0 auto; padding-top:5%">
           <?php 
-                $genderarr =array(); 
-        		$numberarr =array(); 
+                //$genderarr =array(); 
+        		//$numberarr =array(); 
                		foreach($user_gender_data as $row){ 
-        			$genderarr[] = $row['gender']; 
-        			$numberarr[] = $row['user_num']; 
+        			echo $row['gender']; 
+        			echo = $row['user_num']; 
         		} 
         		$arr = json_encode(array("name"=>$genderarr,"data"=>intval($numberarr))); 
         		echo $arr;
