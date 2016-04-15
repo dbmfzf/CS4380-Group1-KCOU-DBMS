@@ -1,10 +1,7 @@
 <script>
-    $(document).ready(function(){
-        /*var searchWidth = $("#advancedOptions").innerWidth();
-        $("#genericSearch").width(searchWidth);*/
-    });
-
-
+    $(function() {
+        console.dir("DOM loaded");
+    }
 
     function searchMusic(searchType){
         switch(searchType){
@@ -19,6 +16,18 @@
             default:
                 break;
         }
+        
+    var toggleSearch = false;
+    function toggleOptions(){
+        var basicSearch = "Basic Search <span class=\"glyphicon glyphicon-triangle-top\"></span>";
+        var advancedSearch = "Advanced Search <span class=\"glyphicon glyphicon-triangle-bottom\"></span>";
+        if(!toggleSearch){
+            $("#toggleSearch").val(basicSearch);
+        }else{
+            $("#toggleSearch").val(advancedSearch);
+        }
+        toggleSearch != toggleSearch;
+    }
 }
 </script>
 <style>
@@ -35,26 +44,47 @@
     #searchBar {
         background-color: #AAA;
     }
-
+    #toggleSearch {
+        margin: 5px 0;
+    }
+    /*
+    if I can't fix the position of the search button then this will do it just as well
+    works for both search buttons
+    {margin-top: 25px}
+    */
 </style>
 <div class="well">
     <div class="well well-lg" id="searchBar">
-        <form role="form" class="form-inline" id="searchForm">
-             <span class="form-group">
-                <span class="collapse in advancedSearch">
-                    <input type="text" class="form-control" id="genericSearch" placeholder="Enter song name, artist name, or album name here">
-                </span>
-                <span class="collapse advancedSearch" id="advancedOptions">
+        <form role="form" class="form-inline collapse in" id="genericSearchForm">
+                <div class="form-group">
+                  <label for="genericSearch">Search for:</label>
+                   <input type="text" class="form-control" id="genericSearch" placeholder="Enter song name, artist name, or album name here"> 
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary" onclick="searchMusic('generic')"><span class="glyphicon glyphicon-search"></span>  Search</button>
+                </div>
+        </form>
+        <button type="button" data-toggle="collapse" data-target=".form-inline" class="btn btn-primary" id="toggleSearch" onclick="toggleOptions()">Advanced Search<span class="glyphicon glyphicon-triangle-bottom"></span> </button>
+        <form role="form" class="form-inline collapse" id="advancedSearchForm">
+                <div class="form-group">
+                    <label for="songSearch">Song:</label>
                     <input type="text" class="form-control" id="songSearch" placeholder="Song name">
+                </div>
+                <div class="form-group">
+                    <label for="artistSearch">Artist:</label>
                     <input type="text" class="form-control" id="artistSearch" placeholder="Artist name">
+                </div>
+                <div class="form-group">
+                    <label for="albumSearch">Album:</label>
                     <input type="text" class="form-control" id="albumSearch" placeholder="Album name">
+                </div>
+                <div class="form-group">
+                    <label for="genreSearch">Genre:</label>
                     <input type="text" class="form-control" id="genreSearch" placeholder="Genre">
-                </span>
-            </span>
-            <div class="btn-group">
-                <button data-toggle="collapse" data-target=".advancedSearch" class="btn btn-primary form-control">Advanced Options...</button>
-                <button type="button" class="btn btn-primary form-control" onclick="searchMusic('generic')"><span class="glyphicon glyphicon-search"></span>  Search</button>
-            </div>
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary" onclick="searchMusic('advanced')"><span class="glyphicon glyphicon-search"></span>  Search</button>
+                </div>
         </form>
     </div>
     <div id="resultArea">

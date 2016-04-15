@@ -1,10 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-/**
- * CI RBAC
- * RBAC管理后台中用户模块
- * @author		toryzen
- * @link		http://www.toryzen.com
- */
+
 class Profile extends CI_Controller {
 	
 	function __construct(){
@@ -25,8 +20,9 @@ class Profile extends CI_Controller {
 		$role_query = $this->db->query("SELECT name from Role R, User U where U.rid = R.rid and U.uid = '".$uid."' limit 1");
 		$role_data = $role_query -> row_array();
 		
-		$dept_query = $this->db->query("SELECT name from Department D, Belongs_to B, User U where U.uid = B.uid and D.did = B.did and U.uid = '".$uid."' limit 1");
-		$dept_data = $dept_query -> row_array();
+		$rid = rbac_conf(array('INFO','rid'));
+		$role_dept_query = $this->db->query("SELECT R.name as rolename, D.name as deptname from Role R, Department D where D.did = R.did and R.rid = '".$rid."' limit 1");
+		$role_dept_data = $role_dept_query -> row_array();
 		
 		$login_query = $this->db->query("SELECT * FROM Login_record WHERE uid = '".$uid."' AND log_id != (SELECT MAX(log_id) FROM Login_record WHERE uid = '".$uid."') order by log_id desc limit 1");
 		$login_data = $login_query -> row_array();
@@ -35,9 +31,8 @@ class Profile extends CI_Controller {
 		$data['gender'] = $user_data['gender'];
 		$data['email'] = $user_data['email'];
 		$data['phone'] = $user_data['phone'];
-		$data['role'] = $role_data['name'];
+		$data['role_dept'] = $role_dept_data['rolename']."(".$role_dept_data['deptname'].")";
 		$data['birth'] = $user_data['birth'];
-		$dept_data['name'] == NULL?$data['dept'] = "No department!":$data['dept'] = $dept_data['name'];
 		$login_data['date_time'] ==NULL?$data['last_login_time'] = "First login!":$data['last_login_time'] = $login_data['date_time'];
 		$login_data['ip']== NULL?$data['last_login_ip'] = "First login!":$data['last_login_ip'] = $login_data['ip'];
 		

@@ -32,38 +32,18 @@
             <td><input name="birth" type="date" class="form-control" placeholder="Please input or select birthday here"></td>
         </tr>
         <tr>
-            <td class="tableleft">Role</td>
+            <td class="tableleft">Role(Department)</td>
             <td>
-                <select name="role" id="role" class="form-control" onchange="check()" >
+                <select name="role" id="role" class="form-control" >
                   	<?php 
-    		    		if($data['login_rolename']!= "Manager")
-    		    		{
-    		    			echo "<option value='4' selected >Volunteer</option>";
-    		    		}
-    		    		else{
-    			    		foreach($role_data as $vo){
-    						$select = $data["rid"]==$vo->rid?"selected":"";
-    			    			echo "<option value='{$vo->rid}' {$select} >{$vo->name}</option>";
-    			    		}
-    		    		}
-                  	?>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td class="tableleft">Department</td>
-            <td>
-                <select name="dept" id="dept" class="form-control" >
-                  	<?php 
-                  		$did = $data['did'];
-		    		    $dname = $data['dept'];
     		    		if($data['login_rolename']!= "Manager"){
-    		    			echo "<option value='{$did}' selected >{$dname}</option>";
+    		    			foreach($role_level_data as $key){
+    		    			    printf('<option value ="%s">%s(%s)</oprtion>',$key->rid,$key->rolename,$key->deptname);
+    		    			}
     		    		}
     		    		else{
-    			    		foreach($dept_data as $vo){
-    							$select = $data["did"]==$vo->did?"selected":"";
-    			    			echo "<option value='{$vo->did}' {$select} >{$vo->name}</option>";
+    			    		foreach($role_dept_data as $key){
+    			    			printf('<option value = "%s"> %s(%s) </option>',$key->rid,$key->rolename,$key->deptname);
     			    		}
     		    		}
                   	?>
@@ -86,39 +66,3 @@
     <button type="submit" class="btn btn-success">Save</button> 
      <a class="btn btn-danger" href="<?php echo site_url('info/user/index'); ?>">Cancel</a> 
 </form>
-<script >
-    $(document).ready(function() {
-    	var login_rolename = "<?php echo $data['login_rolename'] ?>";
-        var dept = document.getElementById('dept');
-        var role = document.getElementById('role');
-        if(login_rolename == "Manager"){
-	        var index = role.selectedIndex;
-	        var rolename = role.options[index].text;
-	        if(rolename!="Volunteer"){
-	            dept.style.display='none';
-	            dept.disabled = true;
-	        }
-	        else{
-	            dept.getElementById('dept').style.display='block';
-	            dept.disabled = false;
-	        }
-        }
-    })
-    function check(){
-        var login_rolename = "<?php echo $data['login_rolename'] ?>";
-        var dept = document.getElementById('dept')
-        var role = document.getElementById('role');
-        if(login_rolename == "Manager"){
-            var index = role.selectedIndex;
-            var rolename = role.options[index].text;
-            if(rolename!="Volunteer"){
-                dept.style.display='none';
-                dept.disabled = true;
-            }
-            else{
-                dept.style.display='block';
-                dept.disabled = false;
-            }
-        }
-    }
-</script>
