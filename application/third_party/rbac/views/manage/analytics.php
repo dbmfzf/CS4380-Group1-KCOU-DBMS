@@ -76,10 +76,10 @@ $(function () {
                 //$genderarr =array(); 
         		//$numberarr =array(); 
                		foreach($user_gender_data as $row){ 
-        			$genderarr = $row['gender']; 
-        			$numberarr = $row['user_num']; 
+        			$genderarr[] = $row['gender']; 
+        			$numberarr[] = intval($row['user_num']); 
         		} 
-        		$arr = json_encode(array("name"=>$genderarr,"data"=>intval($numberarr))); 
+        		$arr = json_encode(array(array("name"=>$genderarr,"data"=>$numberarr))); 
         		echo $arr;
           ?>
       </div>
