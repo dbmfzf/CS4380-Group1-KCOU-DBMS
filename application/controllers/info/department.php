@@ -26,6 +26,7 @@ class Department extends CI_Controller {
 		$this->load->view("info/department",array("data"=>$data));
 	}
 	
+	
 	public function see_all($did)
 	{
 		$department_query = $this->db->query("SELECT d.did,d.name as dname,d.description, r.rid, r.name as rname, u.uid, u.fullname as uname, u.gender, u.birth, u.email, u.phone FROM department d, role r, user u WHERE d.did = '".$did."' and d.did = r.did and r.rid = u.rid limit 1");
@@ -102,7 +103,7 @@ class Department extends CI_Controller {
 				}else{
 					error_redirct("","No department is found!");
 				}
-			}
+
 			$this->load->view("info/department/edit",array("data"=>$data ));
 		}else{
 			error_redirct("info/department/index","No department is found!");
@@ -138,7 +139,6 @@ class Department extends CI_Controller {
 		}
 		$this->load->view("info/department/add",array("dept_data"=>$dept_data));
 	}
-	
 	/**
 	 * Delete departments
 	 */
@@ -155,12 +155,33 @@ class Department extends CI_Controller {
 				}else{
 					error_redirct("info/department/index","Delete failed!");
 				}
-			}
 			$this->load->view("info/department/delete",array("data"=>$data));
 		}else{
 			error_redirct("info/department/index","No department is found!");
 		}
 	}
-}
+	}
+	/**
+	 * Delete departments
+	 */
+	public function user_delete($uid){
+		$query = $this->db->query("SELECT * FROM user u WHERE u.uid = '".$uid."' ");
+		$data = $query->row_array();
+		if($data){
+			if($this->input->post()){
+				$verfiy = $this->input->post("verfiy");
+				if($verfiy){
+					$sql = "DELETE FROM user WHERE uid = '".$uid."' ";
+					$this->db->query($sql);
+					success_redirct("info/department/see_all","Delete successful!");
+				}else{
+					error_redirct("info/department/see_all","Delete failed!");
+				}
+			$this->load->view("info/department/user_delete",array("data"=>$data));
+		}else{
+			error_redirct("info/department/see_all","No department is found!");
+		}
+	}
+	}
 
-	
+
