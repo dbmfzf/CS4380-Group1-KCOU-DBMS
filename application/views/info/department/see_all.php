@@ -39,5 +39,4 @@
 </table>
 <hr/>
 
-<?php echo '<a class="btn btn-success pull-right" href="'.site_url("info/department/user_add").'">Add new volunteer</a>'; ?>
 <?php echo $this->pagination->create_links(); ?>
