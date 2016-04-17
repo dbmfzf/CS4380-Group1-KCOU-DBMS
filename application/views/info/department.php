@@ -19,6 +19,7 @@
 						<div class="btn-group  btn-group-xs">
 						  <a class="btn btn-warning btn-xs" href="%s">Edit</a>
 						  <a class="btn btn-danger" href="%s">Delete</a>
+						  <a class="btn btn-warning btn-xs" href="%s">See_all_Volunteers</a>
 						</div>
 					</td>
 				</tr>',$mb->dname,$mb->description,site_url("info/department/edit/".$mb->did),site_url("info/department/delete/".$mb->did),site_url("info/department/see_all/".$mb->did));
