@@ -32,12 +32,12 @@
 						  <a class="btn btn-danger" href="%s">Delete</a>
 						</div>
 					</td>
-				</tr>',$mb->dname,$mb->uid,$mb->uname,$mb->rname,$mb->gender,$mb->birth,$mb->email,$mb->phone,site_url("info/department/edit/".$mb->did),site_url("info/department/delete/".$mb->did));
+				</tr>',$mb->dname,$mb->uid,$mb->uname,$mb->rname,$mb->gender,$mb->birth,$mb->email,$mb->phone,site_url("info/department/user_edit/".$mb->did),site_url("info/department/user_delete/".$mb->did));
 	}
 	?>
   </tbody>
 </table>
 <hr/>
 
-<?php echo '<a class="btn btn-success pull-right" href="'.site_url("info/department/add").'">Add new department</a>'; ?>
+<?php echo '<a class="btn btn-success pull-right" href="'.site_url("info/department/user_add").'">Add new volunteer</a>'; ?>
 <?php echo $this->pagination->create_links(); ?>

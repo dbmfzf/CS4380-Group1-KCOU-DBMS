@@ -127,7 +127,8 @@ class Department extends CI_Controller {
 	}
 }
 
-	public function see_all($did){
+	function see_all($did)
+	{
 		$department_query = $this->db->query("SELECT d.did,d.name as dname,d.description, r.rid, r.name as rname, u.uid, u.fullname as uname, u.gender, u.birth, u.email, u.phone FROM department d, role r, user u WHERE d.did = '".$did."' and d.did = r.did and r.rid = u.rid limit 1");
 		$department_data = $department_query -> row_array();
 		
@@ -146,18 +147,17 @@ class Department extends CI_Controller {
 	//$data['phone'] = $department_data['phone'];
 
 
-	if($data){
-		$dept_query = $this->db->query("SELECT d.did,d.name as dname,d.description, r.rid, r.name as rname, u.uid, u.fullname as uname, u.gender, u.birth, u.email, u.phone FROM department d, role r, user u WHERE d.did = '".$did."' and d.did = r.did and r.rid = u.rid ");
-		$data = $dept_query->result();
-		$this->load->view("info/department/see_all",array("data"=>$data));
-			//$rname = $this->input->post("rname");
-
-			//$role_dept_query = $this->db->query("SELECT rid from role WHERE rname = ".$rname."");
-			//$role_dept_data = $role_dept_query->row_array();
-			//$rid = $role_dept_data['rid'];
-
-	}else{
-		error_redirct("info/department/index","No department is found!");
+		if($department_data){
+			$dept_query = $this->db->query("SELECT d.did,d.name as dname,d.description, r.rid, r.name as rname, u.uid, u.fullname as uname, u.gender, u.birth, u.email, u.phone FROM department d, role r, user u WHERE d.did = '".$did."' and d.did = r.did and r.rid = u.rid ");
+			$data = $dept_query->result();
+			$this->load->view("info/department/see_all",array("data"=>$data));
+				//$rname = $this->input->post("rname");
+	
+				//$role_dept_query = $this->db->query("SELECT rid from role WHERE rname = ".$rname."");
+				//$role_dept_data = $role_dept_query->row_array();
+				//$rid = $role_dept_data['rid'];
+	
+		}else{
+			error_redirct("info/department/index","No department is found!");
+		}
 	}
-
-}
