@@ -10,7 +10,7 @@
         </tr>
         <tr>
          <td class="tableleft">description</td>
-            <td><input type="text" name="description"</td>
+            <td><textarea name="description"</textarea></td>
         </tr>
         
     </table>
