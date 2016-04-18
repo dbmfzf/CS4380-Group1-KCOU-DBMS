@@ -5,7 +5,7 @@ class messageController extends CI_Controller {
 
     public function __construct(){
         parent::__construct();
-        $this->load->model("music_model");
+        $this->load->model("message_model");
         $this->load->helper('html');
         $this->load->library('javascript');
     }

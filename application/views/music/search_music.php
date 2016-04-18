@@ -62,9 +62,6 @@
     #toggleSearch {
         margin: 5px 0;
     }
-    #genericSearch {
-        width: 340px;
-    }
 </style>
 <div class="well">
     <div class="well well-lg" id="searchBar">
@@ -72,7 +69,7 @@
             <div class="hbox">
                 <div class="form-group">
                   <label for="genericSearch">Search for:</label>
-                   <input type="text" class="form-control" id="genericSearch" placeholder="Enter song name, artist name, or album name here"> 
+                   <input type="text" class="form-control" id="genericSearch" placeholder="Enter song, album, or artist"> 
                 </div>
                 <div class="form-group">
                     <button type="button" class="btn btn-primary" onclick="searchMusic('generic')"><span class="glyphicon glyphicon-search"></span>  Search</button>
