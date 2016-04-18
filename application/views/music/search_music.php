@@ -1,9 +1,7 @@
 <script>
-    $(function() {
-        console.dir("DOM loaded");
-    }
 
     function searchMusic(searchType){
+        console.dir("searchMusic");
         switch(searchType){
             case 'generic':
                 $.getJSON("../../../controllers/music/search_music/genericSearchHandler",
