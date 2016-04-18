@@ -32,8 +32,6 @@ class Department extends CI_Controller {
 		$department_query = $this->db->query("SELECT d.did,d.name as dname,d.description, r.rid, r.name as rname, u.uid, u.fullname as uname, u.gender, u.birth, u.email, u.phone FROM department d, role r, user u WHERE d.did = '".$did."' and d.did = r.did and r.rid = u.rid limit 1");
 		$department_data = $department_query -> row_array();
 	
-	
-	
 		//$data['did'] = $department_data['did'];
 		//$data['dname'] = $department_data['dname'];
 		//$data['description'] = $department_data['description'];
@@ -48,7 +46,7 @@ class Department extends CI_Controller {
 	
 	
 		if($department_data){
-			$dept_query = $this->db->query("SELECT d.did,d.name as dname,d.description, r.rid, r.name as rname, u.uid, u.fullname as uname, u.gender, u.birth, u.email, u.phone FROM department d, role r, user u WHERE d.did = '".$did."' and d.did = r.did and r.rid = u.rid ");
+			$dept_query = $this->db->query("SELECT d.did,d.name as dname,d.description, r.rid, r.name as rname, u.uid, u.fullname as uname, u.gender, u.birth, u.email, u.phone, u.status FROM department d, role r, user u WHERE d.did = '".$did."' and d.did = r.did and r.rid = u.rid ");
 			$data = $dept_query->result();
 			$this->load->view("info/department/see_all",array("data"=>$data));
 			//$rname = $this->input->post("rname");
@@ -58,7 +56,7 @@ class Department extends CI_Controller {
 			//$rid = $role_dept_data['rid'];
 	
 		}else{
-			error_redirct("info/department/index","No department is found!");
+			error_redirct("info/department/index","No user in this department!");
 		}
 	}
 	

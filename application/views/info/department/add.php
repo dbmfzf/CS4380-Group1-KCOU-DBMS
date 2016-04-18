@@ -1,5 +1,6 @@
 <style>
 .tableleft{font-weight:bold;background-color:#F5F5F5;}
+.textarea{ width:500px; height:250px}
 </style>
 <h1>Add new department</h1>
 <form action="" method="post"> 
@@ -10,7 +11,7 @@
         </tr>
         <tr>
          <td class="tableleft">description</td>
-            <td><textarea name="description" width = "300px" height = "200px"></textarea></td>
+            <td><textarea class= "textarea" name="description" width = "300px" height = "200px"></textarea></td>
         </tr>
         
     </table>
