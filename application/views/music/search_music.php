@@ -20,9 +20,9 @@
         var basicSearch = "Basic Search <span class=\"glyphicon glyphicon-triangle-top\"></span>";
         var advancedSearch = "Advanced Search <span class=\"glyphicon glyphicon-triangle-bottom\"></span>";
         if(!toggleSearch){
-            $("#toggleSearch").prop('value', basicSearch);
+            $("#toggleSearch").html(basicSearch);
         }else{
-            $("#toggleSearch").prop('value', advancedSearch);
+            $("#toggleSearch").html(advancedSearch);
         }
         toggleSearch = !toggleSearch;
     }
