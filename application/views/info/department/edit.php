@@ -10,7 +10,7 @@
         </tr>
         <tr>
             <td class="tableleft">Description</td>
-            <td><textarea name="description" value="<?php echo $data['description'];?>"</textarea></td>
+            <td><textarea name="description" width = "300px" height = "200px" value="<?php echo $data['description'];?>"></textarea></td>
             
         </tr>
     </table>
