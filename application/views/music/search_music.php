@@ -37,7 +37,6 @@
             $("#toggleSearch").attr("searchType", "Advanced");
         }
     }
-}
 </script>
 <style>
     .songContent {
