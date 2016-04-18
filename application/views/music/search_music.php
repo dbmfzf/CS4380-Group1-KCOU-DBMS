@@ -24,7 +24,7 @@
         }else{
             $("#toggleSearch").val(advancedSearch);
         }
-        toggleSearch != toggleSearch;
+        toggleSearch = !toggleSearch;
     }
 }
 </script>
