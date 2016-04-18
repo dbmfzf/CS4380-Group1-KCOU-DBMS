@@ -1,34 +1,49 @@
 <script>
-    $(function() {
-        console.dir("DOM loaded");
-    }
 
     function searchMusic(searchType){
+        console.dir("searchMusic called");
         switch(searchType){
             case 'generic':
-                $.getJSON("../../../controllers/music/search_music/genericSearchHandler",
-                    $("#genericSearch").val(), function(){
-                        //parse the json
-                    });
+                $.getJSON("../../../index.php/music/search_music/genericSearchHandler",
+                        {"searchString" : $("#genericSearch").val()}, 
+                        function ( data ){
+                            console.dir("inside of anonymous function");
+                            fillResult( data );
+                });
                 break;
             case 'advanced':
+                $.getJSON("../../../index.php/music/search_music/advancedSearchHandler",
+                         {
+                            "songName" : $("#songSearch").val(),
+                            "artistName" : $("#artistSearch").val(),
+                            "albumName" : $("#albumSearch").val(),
+                            "genreName" : $("#genreSearch").val()
+                         }, 
+                         function ( data ){
+                            console.dir("inside of anonymous function");
+                            fillResult( data );
+                });
                 break;
             default:
                 break;
         }
-        
-    var toggleSearch = false;
-    function toggleOptions(){
-        var basicSearch = "Basic Search <span class=\"glyphicon glyphicon-triangle-top\"></span>";
-        var advancedSearch = "Advanced Search <span class=\"glyphicon glyphicon-triangle-bottom\"></span>";
-        if(!toggleSearch){
-            $("#toggleSearch").val(basicSearch);
-        }else{
-            $("#toggleSearch").val(advancedSearch);
-        }
-        toggleSearch != toggleSearch;
     }
-}
+     
+    function fillResult(musicArray){
+        console.dir("fillResult called");
+    }
+    
+    function toggleOptions(){
+        var basicSearch = "Basic Search <span class=\"glyphicon glyphicon-menu-up\"></span>";
+        var advancedSearch = "Advanced Search <span class=\"glyphicon glyphicon-menu-down\"></span>";
+        if($("#toggleSearch").attr("searchType") == "Advanced"){
+            $("#toggleSearch").html(basicSearch);
+            $("#toggleSearch").attr("searchType", "Basic");
+        }else{
+            $("#toggleSearch").html(advancedSearch);
+            $("#toggleSearch").attr("searchType", "Advanced");
+        }
+    }
 </script>
 <style>
     .songContent {
@@ -64,7 +79,7 @@
                     <button type="button" class="btn btn-primary" onclick="searchMusic('generic')"><span class="glyphicon glyphicon-search"></span>  Search</button>
                 </div>
         </form>
-        <button type="button" data-toggle="collapse" data-target=".form-inline" class="btn btn-primary" id="toggleSearch" onclick="toggleOptions()">Advanced Search<span class="glyphicon glyphicon-triangle-bottom"></span> </button>
+        <button type="button" data-toggle="collapse" data-target=".form-inline" class="btn btn-primary" id="toggleSearch" searchType="Advanced" onclick="toggleOptions()">Advanced Search<span class="glyphicon glyphicon-menu-down"></span> </button>
         <form role="form" class="form-inline collapse" id="advancedSearchForm">
                 <div class="form-group">
                     <label for="songSearch">Song:</label>
