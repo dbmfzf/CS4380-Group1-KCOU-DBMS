@@ -35,7 +35,7 @@
 						  <a class="btn btn-danger" href="%s">Delete</a>
 						</div>
 					</td>
-				</tr>',$mb->dname,$mb->uid,$mb->uname,$mb->gender,$mb->email,$mb->phone,$mb->birth,$mb->rname,($mb->status==1?"Enable":"Disable"),site_url("info/user/edit/".$mb->uid),site_url("info/user/delete/".$mb->uid));
+				</tr>',$mb->dname,$mb->uid,$mb->uname,$mb->gender,$mb->email,$mb->phone,$mb->birth,$mb->rname,($mb->status==1?"Enable":"Disable"),site_url("info/department/user_edit/".$mb->uid),site_url("info/department/user_delete/".$mb->uid));
 	}
 	?>
   </tbody>
