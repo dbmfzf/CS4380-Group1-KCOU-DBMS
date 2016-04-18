@@ -62,7 +62,7 @@
                     <button type="button" class="btn btn-primary" onclick="searchMusic('generic')"><span class="glyphicon glyphicon-search"></span>  Search</button>
                 </div>
         </form>
-        <button type="button" data-toggle="collapse" data-target=".form-inline" class="btn btn-primary" id="toggleSearch" searchType="Advanced" onclick="toggleOptions()">Advanced Search<span class="glyphicon glyphicon-triangle-bottom"></span> </button>
+        <button type="button" data-toggle="collapse" data-target=".form-inline" class="btn btn-primary" id="toggleSearch" searchType="Advanced" onclick="toggleOptions">Advanced Search<span class="glyphicon glyphicon-triangle-bottom"></span> </button>
         <form role="form" class="form-inline collapse" id="advancedSearchForm">
                 <div class="form-group">
                     <label for="songSearch">Song:</label>
