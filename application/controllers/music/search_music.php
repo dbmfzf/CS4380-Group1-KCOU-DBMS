@@ -20,6 +20,14 @@ class search_music extends CI_Controller {
     }
     
     public function advancedSearchHandler(){
+        $JSONArtist = $this->music_model->searchByArtist($this->input->get('artistName'));
+        $JSONAlbum = $this->music_model->searchByAlbum($this->input->get('albumName'));
+        $JSONSong = $this->music_model->searchBySong($this->input->get('songName'));
+        $JSONGenre = $this->music_model->searchByGenre($this->input->get('genreName'));
         
+        $JSON1 = array_merge($JSONArtist, $JSONAlbum);
+        $JSON2 = array_merge($JSONSong, $JSONGenre);
+        
+        echo(array_merge($JSON1, $JSON2));
     }
 }

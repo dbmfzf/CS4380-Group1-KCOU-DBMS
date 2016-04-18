@@ -5,13 +5,21 @@
         switch(searchType){
             case 'generic':
                 $.getJSON("../../../index.php/music/search_music/genericSearchHandler",
-                        {
-                          "searchString": $("#genericSearch").val()
-                        }, function(){
+                        {"searchString" : $("#genericSearch").val()}, 
+                        function(){
                         //parse the json
                     });
                 break;
             case 'advanced':
+                $.getJSON("../../../index.php/music/search_music/advancedSearchHandler",
+                         {
+                            "songName" : $("#songSearch").val(),
+                            "artistName" : $("#artistSearch").val(),
+                            "albumName" : $("#albumSearch").val(),
+                            "genreName" : $("#genreSearch").val()
+                         }, function(){
+                            //do callback function things
+                    });
                 break;
             default:
                 break;
