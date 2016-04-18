@@ -103,6 +103,7 @@ class Department extends CI_Controller {
 				}else{
 					error_redirct("","No department is found!");
 				}
+			}
 
 			$this->load->view("info/department/edit",array("data"=>$data ));
 		}else{
@@ -155,11 +156,11 @@ class Department extends CI_Controller {
 				}else{
 					error_redirct("info/department/index","Delete failed!");
 				}
+			}
 			$this->load->view("info/department/delete",array("data"=>$data));
 		}else{
 			error_redirct("info/department/index","No department is found!");
 		}
-	}
 	}
 	/**
 	 * Delete departments
@@ -177,6 +178,7 @@ class Department extends CI_Controller {
 				}else{
 					error_redirct("info/department/see_all","Delete failed!");
 				}
+			}
 			$this->load->view("info/department/user_delete",array("data"=>$data));
 		}else{
 			error_redirct("info/department/see_all","No department is found!");
