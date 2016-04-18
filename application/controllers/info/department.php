@@ -25,7 +25,9 @@ class Department extends CI_Controller {
 		$data = $dept_query->result();
 		$this->load->view("info/department",array("data"=>$data));
 	}
-	
+	/**
+	 * See all users
+	 */
 	
 	public function see_all($did)
 	{
@@ -161,7 +163,66 @@ class Department extends CI_Controller {
 		}
 	}
 	/**
-	 * Delete departments
+	 * User edit
+	 */
+	
+	public function user_edit($uid){
+	
+		$user_query = $this->db->query("SELECT uid,fullname,gender,birth,email,phone,status FROM User WHERE uid = '".$uid."' limit 1");
+		$user_data = $user_query -> row_array();
+			
+		$current_role_dept_query = $this->db->query("SELECT R.rid,R.name as rolename,D.name as deptname FROM Role R, User U, Department D WHERE D.did = R.did AND U.rid = R.rid AND U.uid = '".$uid."' limit 1");
+		$current_role_dept_data = $current_role_dept_query -> row_array();
+
+	
+		$data['uid'] = $user_data['uid'];
+		$data['fullname'] = $user_data['fullname'];
+		$data['gender'] = $user_data['gender'];
+		$data['email'] = $user_data['email'];
+		$data['phone'] = $user_data['phone'];
+		$data['birth'] = $user_data['birth'];
+		$data['status'] = $user_data['status'];
+	
+		$data['rolename'] = $current_role_dept_data['rolename'];
+		$data['rid'] = $current_role_dept_data['rid'];
+		$data['deptname'] = $current_role_dept_data['deptname'];
+	
+		$role_dept_query = $this->db->query("SELECT rid,R.name AS rolename, D.name AS deptname FROM Role R, Department D WHERE R.did = D.did and D.did = '".$did."' AND status = 1 order by rid desc");
+		$role_dept_data = $role_dept_query->result();
+	
+		if($data){
+			if($this->input->post()){
+				$fullname = $this->input->post("fullname");
+				$gender = $this->input->post("gender");
+				$email = $this->input->post("email");
+				$phone = $this->input->post("phone");
+				$birth = $this->input->post("birth");
+				$role = $this->input->post("role");
+				$status = $this->input->post("status");
+				if($uid!=""){
+					if($uid&&$fullname&&$gender&&$email&&$phone&&$birth&&$role){
+						if($status){$newstat = ",status='1'";}else{$newstat = ",status='0'";}
+						$sql = "UPDATE User set fullname='{$fullname}',gender = '{$gender}',email='{$email}',phone = '{$phone}',birth = '{$birth}',rid='{$role}',{$newstat} WHERE uid = '{$uid}'";
+						$this->db->query($sql);
+						success_redirct("info/department/see_all","Edit successful!");
+					}else{
+						error_redirct("","The user's information is not complete!");
+					}
+				}else{
+					error_redirct("","No user is found!");
+				}
+			}
+			$this->load->view("info/user/edit",array("data"=>$data,"role_dept_data"=>$role_dept_data));
+		}else{
+			error_redirct("info/user/index","No user is found!");
+		}
+	}
+	
+	
+	
+	
+	/**
+	 * Delete users
 	 */
 	public function user_delete($uid){
 		$query = $this->db->query("SELECT * FROM user u WHERE u.uid = '".$uid."' ");
@@ -183,5 +244,5 @@ class Department extends CI_Controller {
 		}
 	}
 	}
-
-
+	
+	

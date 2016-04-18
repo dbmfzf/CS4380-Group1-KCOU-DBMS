@@ -5,13 +5,13 @@
 	<thead>
           <tr>
           	<th>Department</th>
+          	<th>Role</th>
             <th>User ID</th>
             <th>User name</th>
             <th>Gender</th>
             <th>Email</th>
             <th>Phone</th>
             <th>Birthday</th>
-            <th>Role</th>
             <th>Status</th>
             <th>Action</th>
           </tr>
@@ -35,10 +35,12 @@
 						  <a class="btn btn-danger" href="%s">Delete</a>
 						</div>
 					</td>
-				</tr>',$mb->dname,$mb->uid,$mb->uname,$mb->gender,$mb->email,$mb->phone,$mb->birth,$mb->rname,($mb->status==1?"Enable":"Disable"),site_url("info/user/edit/".$mb->uid),site_url("info/user/delete/".$mb->uid));
+				</tr>',$mb->dname,$mb->rname,$mb->uid,$mb->uname,$mb->gender,$mb->email,$mb->phone,$mb->birth,($mb->status==1?"Enable":"Disable"),site_url("info/department/user_edit/".$mb->uid),site_url("info/department/user_delete/".$mb->uid));
 	}
 	?>
   </tbody>
 </table>
 <hr/>
+
+
 

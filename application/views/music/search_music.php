@@ -34,8 +34,8 @@
     }
     
     function toggleOptions(){
-        var basicSearch = "Basic Search <span class=\"glyphicon glyphicon-menu-up\"></span>";
-        var advancedSearch = "Advanced Search <span class=\"glyphicon glyphicon-menu-down\"></span>";
+        var basicSearch = "Basic Search <span class=\"glyphicon glyphicon-triangle-top\"></span>";
+        var advancedSearch = "Advanced Search <span class=\"glyphicon glyphicon-triangle-bottom\"></span>";
         if($("#toggleSearch").attr("searchType") == "Advanced"){
             $("#toggleSearch").html(basicSearch);
             $("#toggleSearch").attr("searchType", "Basic");
@@ -61,12 +61,11 @@
     }
     #toggleSearch {
         margin: 5px 0;
+        margin-left: 90%;
     }
-    /*
-    if I can't fix the position of the search button then this will do it just as well
-    works for both search buttons
-    {margin-top: 25px}
-    */
+    #genericSearch {
+        width: 345px;
+    }
 </style>
 <div class="well">
     <div class="well well-lg" id="searchBar">
@@ -81,7 +80,7 @@
                 </div>
             </div>
         </form>
-        <button type="button" data-toggle="collapse" data-target=".form-inline" class="btn btn-primary" id="toggleSearch" searchType="Advanced" onclick="toggleOptions()">Advanced Search<span class="glyphicon glyphicon-menu-down"></span> </button>
+        <button type="button" data-toggle="collapse" data-target=".form-inline" class="btn btn-primary" id="toggleSearch" searchType="Advanced" onclick="toggleOptions()">Advanced Search <span class="glyphicon glyphicon-triangle-bottom"></span> </button>
         <form role="form" class="form-inline collapse" id="advancedSearchForm">
                 <div class="form-group">
                     <label for="songSearch">Song:</label>
