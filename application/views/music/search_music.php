@@ -45,6 +45,13 @@
         }
     }
 </script>
+<script>
+    var nearToBottom = 100;
+    
+    if ($(window).scrollTop() + $(window).height() > $(document).height() - nearToBottom) { 
+        alert("near bottom of the page");
+    } 
+</script>
 <style>
     .songContent {
         margin: 0px;
