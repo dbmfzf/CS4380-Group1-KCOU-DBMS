@@ -5,7 +5,9 @@
         switch(searchType){
             case 'generic':
                 $.getJSON("../../../index.php/music/search_music/genericSearchHandler",
-                    $("#genericSearch").val(), function(){
+                        {
+                          "searchString": $("#genericSearch").val()
+                        }, function(){
                         //parse the json
                     });
                 break;
