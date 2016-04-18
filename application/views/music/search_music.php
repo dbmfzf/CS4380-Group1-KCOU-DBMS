@@ -1,12 +1,14 @@
 <script>
 
     function searchMusic(searchType){
-        console.dir("searchMusic");
+        console.dir("searchMusic called");
         switch(searchType){
             case 'generic':
                 $.getJSON("../../../index.php/music/search_music/genericSearchHandler",
                         {"searchString" : $("#genericSearch").val()}, 
-                        fillResult( data ));
+                        function ( data ){
+                            fillResult( data );
+                });
                 break;
             case 'advanced':
                 $.getJSON("../../../index.php/music/search_music/advancedSearchHandler",
@@ -15,7 +17,10 @@
                             "artistName" : $("#artistSearch").val(),
                             "albumName" : $("#albumSearch").val(),
                             "genreName" : $("#genreSearch").val()
-                         }, fillResult( data ));
+                         }, 
+                         function ( data ){
+                            fillResult( data );
+                });
                 break;
             default:
                 break;
@@ -23,7 +28,7 @@
     }
      
     function fillResult(musicArray){
-        console.dir("in fillResult");
+        console.dir("fillResult called");
     }
     
     function toggleOptions(){
