@@ -61,9 +61,10 @@
     }
     #toggleSearch {
         margin: 5px 0;
+        margin-left: 90%;
     }
     #genericSearch {
-        width: 340px;
+        width: 345px;
     }
 </style>
 <div class="well">
