@@ -25,7 +25,9 @@ class Department extends CI_Controller {
 		$data = $dept_query->result();
 		$this->load->view("info/department",array("data"=>$data));
 	}
-	
+	/**
+	 * See all users
+	 */
 	
 	public function see_all($did)
 	{
@@ -160,6 +162,9 @@ class Department extends CI_Controller {
 			error_redirct("info/department/index","No department is found!");
 		}
 	}
+	/**
+	 * User edit
+	 */
 	
 	public function user_edit($uid){
 	
@@ -217,7 +222,7 @@ class Department extends CI_Controller {
 	
 	
 	/**
-	 * Delete departments
+	 * Delete users
 	 */
 	public function user_delete($uid){
 		$query = $this->db->query("SELECT * FROM user u WHERE u.uid = '".$uid."' ");
