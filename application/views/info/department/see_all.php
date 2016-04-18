@@ -1,5 +1,5 @@
 <style>
-.table td:nth-child(11){width:15%}
+.table td:nth-child(10){width:15%}
 </style>
 <table class="table  table-bordered well">
 	<thead>
@@ -42,4 +42,3 @@
 </table>
 <hr/>
 
-<?php echo $this->pagination->create_links(); ?>
