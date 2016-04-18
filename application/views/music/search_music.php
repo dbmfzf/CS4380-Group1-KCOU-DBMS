@@ -4,7 +4,7 @@
         console.dir("searchMusic");
         switch(searchType){
             case 'generic':
-                $.getJSON("../../../controllers/music/search_music/genericSearchHandler",
+                $.getJSON("../../../index.php/music/search_music/genericSearchHandler",
                     $("#genericSearch").val(), function(){
                         //parse the json
                     });
