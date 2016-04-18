@@ -62,11 +62,9 @@
     #toggleSearch {
         margin: 5px 0;
     }
-    /*
-    if I can't fix the position of the search button then this will do it just as well
-    works for both search buttons
-    {margin-top: 25px}
-    */
+    #genericSearch {
+        width: 340px;
+    }
 </style>
 <div class="well">
     <div class="well well-lg" id="searchBar">
