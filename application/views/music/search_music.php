@@ -18,12 +18,12 @@
     function toggleOptions(){
         var basicSearch = "Basic Search <span class=\"glyphicon glyphicon-triangle-top\"></span>";
         var advancedSearch = "Advanced Search <span class=\"glyphicon glyphicon-triangle-bottom\"></span>";
-        if($("#toggleSearch").attr('searchType') == "Advanced"){
+        if($("#toggleSearch").attr("searchType") == "Advanced"){
             $("#toggleSearch").html(basicSearch);
-            $("#toggleSearch").attr('searchType', 'Basic');
+            $("#toggleSearch").attr("searchType", "Basic");
         }else{
             $("#toggleSearch").html(advancedSearch);
-            $("#toggleSearch").attr('searchType', 'Advanced');
+            $("#toggleSearch").attr("searchType", "Advanced");
         }
     }
 }
