@@ -7,6 +7,7 @@
                 $.getJSON("../../../index.php/music/search_music/genericSearchHandler",
                         {"searchString" : $("#genericSearch").val()}, 
                         function ( data ){
+                            console.dir("inside of anonymous function");
                             fillResult( data );
                 });
                 break;
@@ -19,6 +20,7 @@
                             "genreName" : $("#genreSearch").val()
                          }, 
                          function ( data ){
+                            console.dir("inside of anonymous function");
                             fillResult( data );
                 });
                 break;
