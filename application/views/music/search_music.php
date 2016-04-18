@@ -24,6 +24,7 @@
             default:
                 break;
         }
+    }
         
     function toggleOptions(){
         var basicSearch = "Basic Search <span class=\"glyphicon glyphicon-menu-up\"></span>";
