@@ -6,9 +6,7 @@
             case 'generic':
                 $.getJSON("../../../index.php/music/search_music/genericSearchHandler",
                         {"searchString" : $("#genericSearch").val()}, 
-                        function(){
-                        //parse the json
-                    });
+                        fillResult( data ));
                 break;
             case 'advanced':
                 $.getJSON("../../../index.php/music/search_music/advancedSearchHandler",
@@ -17,15 +15,17 @@
                             "artistName" : $("#artistSearch").val(),
                             "albumName" : $("#albumSearch").val(),
                             "genreName" : $("#genreSearch").val()
-                         }, function(){
-                            //do callback function things
-                    });
+                         }, fillResult( data ));
                 break;
             default:
                 break;
         }
     }
-        
+     
+    function fillResult(musicArray){
+        console.dir("in fillResult");
+    }
+    
     function toggleOptions(){
         var basicSearch = "Basic Search <span class=\"glyphicon glyphicon-menu-up\"></span>";
         var advancedSearch = "Advanced Search <span class=\"glyphicon glyphicon-menu-down\"></span>";
