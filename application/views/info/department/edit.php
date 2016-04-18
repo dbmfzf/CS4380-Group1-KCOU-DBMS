@@ -1,6 +1,6 @@
 <style>
 .tableleft{font-weight:bold;background-color:#F5F5F5;}
-.textare{ width:500px; height:250px}
+.textarea{ width:500px; height:250px}
 </style>
 <h1>Edit Department</h1>
 <form action="" method="post"> 
@@ -11,7 +11,7 @@
         </tr>
         <tr>
             <td class="tableleft">Description</td>
-            <td><textarea name="description" > <?php echo $data['description'];?></textarea></td>
+            <td><textarea class= "textarea" name="description" > <?php echo $data['description'];?></textarea></td>
             
         </tr>
     </table>
