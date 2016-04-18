@@ -171,7 +171,7 @@ class Department extends CI_Controller {
 		$user_query = $this->db->query("SELECT uid,fullname,gender,birth,email,phone,status FROM User WHERE uid = '".$uid."' limit 1");
 		$user_data = $user_query -> row_array();
 			
-		$current_role_dept_query = $this->db->query("SELECT R.rid,R.name as rolename,D.name as deptname FROM Role R, User U, Department D WHERE D.did = R.did AND U.rid = R.rid AND U.uid = '".$uid."' limit 1");
+		$current_role_dept_query = $this->db->query("SELECT R.rid,R.name, as rolename,D.name as deptname, D.did FROM Role R, User U, Department D WHERE D.did = R.did AND U.rid = R.rid AND U.uid = '".$uid."' limit 1");
 		$current_role_dept_data = $current_role_dept_query -> row_array();
 
 	
@@ -186,8 +186,9 @@ class Department extends CI_Controller {
 		$data['rolename'] = $current_role_dept_data['rolename'];
 		$data['rid'] = $current_role_dept_data['rid'];
 		$data['deptname'] = $current_role_dept_data['deptname'];
-	
-		$role_dept_query = $this->db->query("SELECT rid,R.name AS rolename, D.name AS deptname FROM Role R, Department D WHERE R.did = D.did and D.did = '".$did."' AND status = 1 order by rid desc");
+		$data['did'] = $current_role_dept_data['did'];
+		
+		$role_dept_query = $this->db->query("SELECT rid,R.name AS rolename, D.name AS deptname FROM Role R, Department D WHERE R.did = D.did and D.did = '".$data['did']."' AND status = 1 order by rid desc");
 		$role_dept_data = $role_dept_query->result();
 	
 		if($data){

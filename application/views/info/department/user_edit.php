@@ -10,7 +10,7 @@
         </tr>
         <tr>
             <td width = "15%" class="tableleft">Department</td>
-            <td><input type="text" name="uid" disabled value="<?php echo $data['deptname'];?>"></td>
+            <td><input type="text" name="deptname" disabled value="<?php echo $data['deptname'];?>"></td>
         </tr>
         <tr>
             <td class="tableleft">Full name</td>
@@ -42,6 +42,7 @@
 		    	<?php
 		    		$rid = $data['rid'];
 		    		$rolename = $data['rolename'];
+		    		$deptname = $data['deptname'];
 			    		foreach($role_dept_data as $key){
 						$select = $rid==$key->rid?"selected":"";
 						printf('<option value = "%s" %s> %s </option>',$key->rid,$select,$key->rolename);
