@@ -71,6 +71,7 @@
 <div class="well">
     <div class="well well-lg" id="searchBar">
         <form role="form" class="form-inline collapse in" id="genericSearchForm">
+            <div class="hbox">
                 <div class="form-group">
                   <label for="genericSearch">Search for:</label>
                    <input type="text" class="form-control" id="genericSearch" placeholder="Enter song name, artist name, or album name here"> 
@@ -78,6 +79,7 @@
                 <div class="form-group">
                     <button type="button" class="btn btn-primary" onclick="searchMusic('generic')"><span class="glyphicon glyphicon-search"></span>  Search</button>
                 </div>
+            </div>
         </form>
         <button type="button" data-toggle="collapse" data-target=".form-inline" class="btn btn-primary" id="toggleSearch" searchType="Advanced" onclick="toggleOptions()">Advanced Search<span class="glyphicon glyphicon-menu-down"></span> </button>
         <form role="form" class="form-inline collapse" id="advancedSearchForm">

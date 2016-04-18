@@ -10,7 +10,7 @@
         </tr>
         <tr>
          <td class="tableleft">description</td>
-            <td><input type="text" name="description"</td>
+            <td><textarea name="description" width = "300px" height = "200px"></textarea></td>
         </tr>
         
     </table>
