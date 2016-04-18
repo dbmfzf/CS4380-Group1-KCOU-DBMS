@@ -213,9 +213,9 @@ class Department extends CI_Controller {
 					error_redirct("","No user is found!");
 				}
 			}
-			$this->load->view("info/user/edit",array("data"=>$data,"role_dept_data"=>$role_dept_data));
+			$this->load->view("info/department/user_edit",array("data"=>$data,"role_dept_data"=>$role_dept_data));
 		}else{
-			error_redirct("info/user/index","No user is found!");
+			error_redirct("info/department/see_all","No user is found!");
 		}
 	}
 	
