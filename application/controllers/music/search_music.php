@@ -14,11 +14,15 @@ class search_music extends CI_Controller {
         $this->load->view("music/search_music.php");
     }
     
+    //Input: get request from the ajax in the search_music view
+    //Output: JSON array of the song information
     public function genericSearchHandler(){
         $JSONstring = $this->music_model->genericSearch($this->input->get('searchString'));
         echo"$JSONstring";
     }
     
+    //Input: get request from ajax in the search_music view
+    //Output: JSON array of song information
     public function advancedSearchHandler(){
         $JSONArtist = $this->music_model->searchByArtist($this->input->get('artistName'));
         $JSONAlbum = $this->music_model->searchByAlbum($this->input->get('albumName'));

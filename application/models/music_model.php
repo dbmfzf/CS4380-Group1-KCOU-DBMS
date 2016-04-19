@@ -77,6 +77,29 @@ class Music_model extends CI_Model {
         $queryObj = $this->db->query($sql);
         return json_encode($queryObj->result());
     }
+    
+    //Input: data is an array containing the uid of the user and the string that was searched for
+    //Output: none
+    public function searchAlbum($data){
+        $uid = htmlspecialchars($data['uid']);
+        $searchString = htmlspecialchars($data['searchString']);
+        $sql = "";
+        $this->db->query($sql);
+    }
+    
+    public function searchSong($data){
+        $uid = htmlspecialchars($data['uid']);
+        $searchString = htmlspecialchars($data['searchString']);
+        $sql = "";
+        $this->db->query($sql);
+    }
+    
+    public function searchArtist($data){
+        $uid = htmlspecialchars($data['uid']);
+        $searchString = htmlspecialchars($data['searchString']);
+        $sql = "";
+        $this->db->query($sql);
+    }
 
 }
 
