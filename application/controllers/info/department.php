@@ -171,7 +171,7 @@ class Department extends CI_Controller {
 		$user_query = $this->db->query("SELECT uid,fullname,gender,birth,email,phone,status FROM User WHERE uid = '".$uid."' limit 1");
 		$user_data = $user_query -> row_array();
 			
-		$current_role_dept_query = $this->db->query("SELECT R.rid,R.name, as rolename,D.name as deptname, D.did FROM Role R, User U, Department D WHERE D.did = R.did AND U.rid = R.rid AND U.uid = '".$uid."' limit 1");
+		$current_role_dept_query = $this->db->query("SELECT R.rid,R.name as rolename,D.name as deptname, D.did FROM Role R, User U, Department D WHERE D.did = R.did AND U.rid = R.rid AND U.uid = '".$uid."' limit 1");
 		$current_role_dept_data = $current_role_dept_query -> row_array();
 
 	
