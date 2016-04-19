@@ -45,6 +45,15 @@
         }
     }
 </script>
+<script>
+    //Gives a notification when scrolling near the bottom of the page
+    //replace anonymous function with loading more songs
+    var nearToBottom = 100;
+    
+    if ($(window).scrollTop() + $(window).height() > $(document).height() - nearToBottom) { 
+        alert("near bottom of the page");
+    } 
+</script>
 <style>
     .songContent {
         margin: 0px;
