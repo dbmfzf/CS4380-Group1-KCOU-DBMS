@@ -1,45 +1,40 @@
-<!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta charset="UTF-8">
-<title>kindeditor</title>
-
-<!-- 在这里引入css文件 -->
-<link rel="stylesheet" href="<?php echo base_url();?>kindeditor/themes/default/default.css" />
-<link rel="stylesheet" href="<?php echo base_url();?>kindeditor/plugins/code/prettify.css" />
-</head>
-<body>
-    <form action="Diary.php" name="myform" method="post">
-     <textarea name="content" style="width:930px; height:630px; margin-top:50px;">
-    </textarea>
-  </form>
-</div>
-
-<!-- 在这里引入JavaScript文件，这些文件都是你下载控件里面的文件，直接引用即可，注意路径一定要正确 -->
-<script charset="utf-8" src="kindeditor/kindeditor.js"></script>
-<script charset="utf-8" src="kindeditor/lang/zh_CN.js"></script>
-<script charset="utf-8" src="kindeditor/plugins/code/prettify.js"></script>
-<script>
-   KindEditor.ready(function(K) {//kindeditor控件调用
-       var editor1=K.create('textarea[name="content"]',{//name=form中textarea的name属性
-           cssPath : '<?php echo base_url();?>kindeditor/plugins/code/prettify.css',
-           uploadJson : <?php echo base_url();?>kindeditor/php/upload_json.php',
-           fileManagerJson : '<?php echo base_url();?>kindeditor/php/file_manager_json.php',
-           allowFileManager : true,
-           afterCreate : function() {
-               var self = this;
-               K.ctrl(document, 13, function() {
-                   self.sync();
-                   K('form[name=myform]')[0].submit(); // name=form表单的name属性
-               });
-               K.ctrl(self.edit.doc, 13, function() {
-                   self.sync();
-                   K('form[name=myform]')[0].submit(); // name=form表单的name属性
-               });
-           }
-       });
-       prettyPrint();
-   });
-</script>
+</body>
+</html>
+<html>
+    <head>
+        <title>PHP点点通（http://www.phpddt.com）演示教程</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="./ueditor.config.js"></script>  
+        <script type="text/javascript" src="./ueditor.all.min.js"></script>
+    </head>
+    <body>
+    <style>
+.tableleft{font-weight:bold;background-color:#F5F5F5;}
+</style>
+<h1>News Submission</h1>
+<form action="" method="post"> 
+    <table class="table table-bordered table-hover definewidth m10">
+        <tr>
+            <td width = "15%" class="tableleft">News ID</td>
+            <td><input type="text" name="dname" value="<?php echo $data['dname'];?>"></td>
+        </tr>
+        <tr>
+            <td width = "15%" class="tableleft">Title</td>
+            <td><input type="text" name="dname" value="<?php echo $data['dname'];?>"></td>
+        </tr>
+        <tr>
+            <td width = "15%" class="tableleft">Type</td>
+            <td><input type="text" name="dname" value="<?php echo $data['dname'];?>"></td>
+        </tr>
+        <tr>
+        	<script type="text/javascript">
+            	UE.getEditor('myEditor')
+        	</script>
+        	<textarea name="content" id="myEditor"><?php echo $data['description'];?>这里写你的初始化内容</textarea></td>
+        </tr>
+    </table>
+    <button type="submit" class="btn btn-success">Submit</button> 
+     <a class="btn btn-danger" href="<?php echo site_url('info/news/index'); ?>">Cancel</a> 
+</form>
 </body>
 </html>

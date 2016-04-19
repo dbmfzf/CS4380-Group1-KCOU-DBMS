@@ -1,35 +1,40 @@
-<style>
-.table td:nth-child(10){width:15%}
+</body>
+</html>
+<html>
+    <head>
+        <title>PHP点点通（http://www.phpddt.com）演示教程</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="./ueditor.config.js"></script>  
+        <script type="text/javascript" src="./ueditor.all.min.js"></script>
+    </head>
+    <body>
+    <style>
+.tableleft{font-weight:bold;background-color:#F5F5F5;}
 </style>
-<table class="table  table-bordered well">
-	<thead>
-          <tr>
-            <th>News ID</th>
-            <th>Title</th>
-            <th>Type</th>
-            <th>Content</th>
-            <th></th>
-          </tr>
-        </thead>
-   <tbody>
-	<?php 
-	foreach($data as $mb){
-		printf('<tr>
-					<td>%s</td>
-					<td>%s</td>
-					<td>
-						<div class="btn-group  btn-group-xs">
-						  <a class="btn btn-warning btn-xs" href="%s">Edit</a>
-						  <a class="btn btn-danger" href="%s">Delete</a>
-						</div>
-					</td>
-				</tr>',$mb->dname,$mb->rname,site_url("info/department/edit/".$mb->did),site_url("info/department/delete/".$mb->did));
-	}
-	?>
-  </tbody>
-</table>
-<hr/>
-<?php echo '<a class="btn btn-success pull-right" href="'.site_url("info/news/add").'">Add new news</a>'; ?>
-<?php echo $this->pagination->create_links(); ?>
+<h1>News Submission</h1>
+<form action="" method="post"> 
+    <table class="table table-bordered table-hover definewidth m10">
+        <tr>
+            <td width = "15%" class="tableleft">News ID</td>
+            <td><input type="text" name="dname" value="<?php echo $data['dname'];?>"></td>
+        </tr>
+        <tr>
+            <td width = "15%" class="tableleft">Title</td>
+            <td><input type="text" name="dname" value="<?php echo $data['dname'];?>"></td>
+        </tr>
+        <tr>
+            <td width = "15%" class="tableleft">Type</td>
+            <td><input type="text" name="dname" value="<?php echo $data['dname'];?>"></td>
+        </tr>
+        <tr>
+        	<script type="text/javascript">
+            	UE.getEditor('myEditor')
+        	</script>
+        	<textarea name="content" id="myEditor"><?php echo $data['description'];?>这里写你的初始化内容</textarea></td>
+        </tr>
+    </table>
+    <button type="submit" class="btn btn-success">Submit</button> 
+     <a class="btn btn-danger" href="<?php echo site_url('info/news/index'); ?>">Cancel</a> 
+</form>
 </body>
 </html>
