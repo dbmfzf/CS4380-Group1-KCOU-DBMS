@@ -9,7 +9,7 @@ class news extends CI_Controller {
 	/**
 	 * 	News submission
 	 */
-	public function submission($page=1)
+	public function index($page=1)
 	{
 		
 		$department_query = $this->db->query("SELECT d.did,d.name as dname,d.rid FROM department d WHERE d.did = '".$did."' limit 1");
