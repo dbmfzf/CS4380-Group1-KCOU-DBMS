@@ -205,7 +205,7 @@ class Department extends CI_Controller {
 						if($status){$newstat = ",status='1'";}else{$newstat = ",status='0'";}
 						$sql = "UPDATE User set fullname='{$fullname}',gender = '{$gender}',email='{$email}',phone = '{$phone}',birth = '{$birth}',rid='{$role}'{$newstat} WHERE uid = '{$uid}'";
 						$this->db->query($sql);
-						success_redirct("info/department/see_all/".$department_data['did']."","Edit successful!");
+						success_redirct("info/department/see_all/".$data['did']."","Edit successful!");
 					}else{
 						error_redirct("","The user's information is not complete!");
 					}
