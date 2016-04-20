@@ -58,7 +58,7 @@
         </tr> 
     </table>
     <button type="submit" class="btn btn-success">Save</button> 
-     <a class="btn btn-danger" href="<?php echo site_url('info/department/see_all'); ?>">Cancel</a> 
+     <a class="btn btn-danger" href="<?php echo site_url('info/department/see_all/'.$data['did']); ?>">Cancel</a> 
 </form>
 
 
