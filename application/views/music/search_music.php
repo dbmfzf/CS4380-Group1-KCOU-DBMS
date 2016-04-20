@@ -48,11 +48,11 @@
 <script>
     //Gives a notification when scrolling near the bottom of the page
     //replace anonymous function with loading more songs
-    var nearToBottom = 100;
+    /*var nearToBottom = 100;
     
     if ($(window).scrollTop() + $(window).height() > $(document).height() - nearToBottom) { 
         alert("near bottom of the page");
-    } 
+    } */
 </script>
 <style>
     .songContent {
@@ -110,10 +110,19 @@
     </div>
     <div id="resultArea">
         <?php
-        for($i = 0; $i < 15; $i++){
-            echo "<div class=\"songContent well\"></div>\n\t\t";
-        }
-    ?>
+            for($i = 0; $i < 15; $i++){
+                echo "\n\t\t<div class=\"songContent well\"></div>";
+            }
+        ?>
+        <div>
+            <ul class="pagination pagination-lg">
+              <li><a id="pagePrev">Previous</a></li>
+              <li><a id="page1">1</a></li>
+              <li><a id="page2">2</a></li>
+              <li><a id="page3">3</a></li>
+              <li><a id="pageNext">Next</a></li>
+            </ul>
+        </div>
     </div>
 </div>
 

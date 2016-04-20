@@ -19,6 +19,7 @@ class search_music extends CI_Controller {
     public function genericSearchHandler(){
         $JSONstring = $this->music_model->genericSearch($this->input->get('searchString'));
         echo"$JSONstring";
+        return;
     }
     
     //Input: get request from ajax in the search_music view
@@ -33,5 +34,6 @@ class search_music extends CI_Controller {
         $JSON2 = array_merge($JSONSong, $JSONGenre);
         
         echo(array_merge($JSON1, $JSON2));
+        return;
     }
 }
