@@ -218,7 +218,43 @@ class Department extends CI_Controller {
 			error_redirct("info/department/see_all","No user is found!");
 		}
 	}
+	/**
+	 * Add users
+	 */
+	public function user_add($did){
 	
+		//$role_query = $this->db->query("SELECT rid,name as rname FROM role order by rid desc");
+		//$role_data = $role_query->result();
+			
+		$current_role_dept_query = $this->db->query("SELECT D.name as deptname, D.did FROM Department D WHERE D.did = '".$did."' limit 1");
+		$current_role_dept_data = $current_role_dept_query -> row_array();
+	
+		if($this->input->post()){
+			$uid = $this->input->post("uid");
+			$uname = $this->input->post("fullname");
+			$gender = $this->input->post("gender");
+			$email = $this->input->post("email");
+			$phone = $this->input->post("phone");
+			$birth = $this->input->post("birth");
+			$role = $this->input->post("rolename");
+			$status = $this->input->post("status");
+			
+			$role_dept_query = $this->db->query("SELECT rid from role r WHERE name = ".$role."");
+			$role_dept_data = $role_dept_query->row_array();
+			$rid = $role_dept_data['rid'];
+	
+			if($uid&&$fullname&&$gender&&$email&&$phone&&$birth&&$role){
+				if(!$status){$newstat = "0";}else{$newstat = "1";}
+				
+				$sql = "INSERT INTO User (uid,fullname,gender,email,phone,birth,rid,status) values('{$uid}','{$fullname}','{$gender}','{$email}','{$phone}','{$birth}','{$rid}', '{$newstat}')";
+				$this->db->query($sql);
+				success_redirct("info/department/see_all/".$data['did']."","Add successful!");
+			}else{
+				error_redirct("","The user already exists!");
+			}
+		}
+		$this->load->view("info/department/user_add",array("role_dept_data"=>$role_dept_data,"current_role_dept_data"=>$current_role_dept_data));
+	}
 	
 	
 	

@@ -42,5 +42,8 @@
 </table>
 <hr/>
 
+<?php echo '<a class="btn btn-success pull-right" href="'.site_url("info/department/user_add".$data[did]).'">Add new user for this department</a>'; ?>
+
+
 
 
