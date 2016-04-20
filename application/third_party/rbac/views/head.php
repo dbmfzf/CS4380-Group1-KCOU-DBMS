@@ -9,9 +9,7 @@
         <title>KCOU management system</title>
         <script src="<?php echo base_url();?>static/jquery.js"></script>
 	<script src="<?php echo base_url();?>static/bootstrap/js/bootstrap.min.js"></script>
-        <!--<script src="<?php echo base_url();?>static/bootstrap/js/respond.min.js"></script>-->
-        <script src="<?php echo base_url();?>static/bootstrap/fonts/glyphicons-halflings-regular.woff2"></script>
-	<script src="<?php echo base_url();?>static/bootstrap/fonts/glyphicons-halflings-regular.woff"></script>
+        <script src="<?php echo base_url();?>static/bootstrap/js/respond.min.js"></script>
 	<script src="<?php echo base_url();?>static/highcharts/js/highcharts.js"></script>
 	<script src="<?php echo base_url();?>static/highcharts/js/modules/exporting.js"></script>
     </head>
