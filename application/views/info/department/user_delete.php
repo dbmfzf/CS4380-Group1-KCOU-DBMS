@@ -7,5 +7,5 @@
 <form method="POST" action="">
 	<input type="hidden" name="verfiy" value="1" >
 	<input class="btn btn-success"  type="submit" value="OK">
-	<a class="btn btn-danger" href="<?php echo site_url('info/department/see_all'); ?>">Cancel</a>
+	<a class="btn btn-danger" href="<?php echo site_url('info/department/see_all'.$department_data['did']); ?>">Cancel</a>
 </form>

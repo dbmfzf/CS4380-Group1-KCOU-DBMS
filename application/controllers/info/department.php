@@ -228,6 +228,8 @@ class Department extends CI_Controller {
 	public function user_delete($uid){
 		$query = $this->db->query("SELECT * FROM user u WHERE u.uid = '".$uid."' ");
 		$data = $query->row_array();
+		$department_query = $this->db->query("SELECT d.did,d.name as dname,d.description, r.rid, r.name as rname, u.uid, u.fullname as uname, u.gender, u.birth, u.email, u.phone FROM department d, role r, user u WHERE and d.did = r.did and r.rid = u.rid and u.uid = '".$uid."' limit 1");
+		$department_data = $department_query -> row_array();
 		if($data){
 			if($this->input->post()){
 				$verfiy = $this->input->post("verfiy");
@@ -239,7 +241,7 @@ class Department extends CI_Controller {
 					error_redirct("info/department/see_all","Delete failed!");
 				}
 			}
-			$this->load->view("info/department/user_delete",array("data"=>$data));
+			$this->load->view("info/department/user_delete",array("data"=>$data,"department_data"=>$department_data));
 		}else{
 			error_redirct("info/department/see_all","No department is found!");
 		}
