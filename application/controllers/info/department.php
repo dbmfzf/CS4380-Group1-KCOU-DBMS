@@ -213,9 +213,9 @@ class Department extends CI_Controller {
 					error_redirct("","No user is found!");
 				}
 			}
-			$this->load->view("info/department/user_edit/",array("data"=>$data,"role_dept_data"=>$role_dept_data));
+			$this->load->view("info/department/user_edit",array("data"=>$data,"role_dept_data"=>$role_dept_data));
 		}else{
-			error_redirct("info/department/see_all/","No user is found!");
+			error_redirct("info/department/see_all","No user is found!");
 		}
 	}
 	
@@ -236,14 +236,14 @@ class Department extends CI_Controller {
 				if($verfiy){
 					$sql = "DELETE FROM user WHERE uid = '".$uid."' ";
 					$this->db->query($sql);
-					success_redirct("info/department/see_all/","Delete successful!");
+					success_redirct("info/department/see_all","Delete successful!");
 				}else{
-					error_redirct("info/department/see_all/","Delete failed!");
+					error_redirct("info/department/see_all","Delete failed!");
 				}
 			}
-			$this->load->view("info/department/user_delete/",array("data"=>$data,"department_data"=>$department_data));
+			$this->load->view("info/department/user_delete",array("data"=>$data,"department_data"=>$department_data));
 		}else{
-			error_redirct("info/department/see_all/","No department is found!");
+			error_redirct("info/department/see_all","No department is found!");
 		}
 	}
 	}
