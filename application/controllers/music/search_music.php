@@ -45,6 +45,7 @@ class search_music extends CI_Controller {
         
         //If all the arrays are empty then we exit
         if(sizeof($arrsToMerge) == 0){
+            echo"sizeof(arrsToMerge) == 0";
             return;
         }
         
