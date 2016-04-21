@@ -236,10 +236,10 @@ class Department extends CI_Controller {
 			$email = $this->input->post("email");
 			$phone = $this->input->post("phone");
 			$birth = $this->input->post("birth");
-			$role = $this->input->post("rolename");
+			$rolename = $this->input->post("rolename");
 			$status = $this->input->post("status");
 			
-			$role_dept_query = $this->db->query("SELECT rid from role r WHERE name = ".$role."");
+			$role_dept_query = $this->db->query("SELECT r.rid from role r WHERE r.name = ".$rolename."");
 			$role_dept_data = $role_dept_query->row_array();
 			$rid = $role_dept_data['rid'];
 	

@@ -8,7 +8,7 @@
 
         <tr>
             <td width = "15%" class="tableleft">Department</td>
-            <td><input type="text" name="deptname" disabled value="<?php echo $data['deptname'];?>"></td>
+            <td><input type="text" name="deptname" disabled value="<?php echo $current_role_dept_data['deptname'];?>"></td>
         </tr>
              <tr>
             <td width = "15%" class="tableleft">User ID</td>
@@ -57,6 +57,6 @@
         </tr> 
     </table>
     <button type="submit" class="btn btn-success">Save</button> 
-     <a class="btn btn-danger" href="<?php echo site_url('info/department/see_all/'.$data['did']); ?>">Cancel</a> 
+     <a class="btn btn-danger" href="<?php echo site_url('info/department/see_all/'.$current_role_dept_data['did']); ?>">Cancel</a> 
 </form>
 
