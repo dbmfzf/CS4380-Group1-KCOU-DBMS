@@ -26,9 +26,9 @@ class search_music extends CI_Controller {
     //Output: JSON array of song information
     public function advancedSearchHandler(){
         $JSONArtist = strlen($this->input->get('artistName')) > 0 ? $this->music_model->searchByArtist($this->input->get('artistName')): "";
-        $JSONAlbum = !empty($this->input->get('albumName')) ? $this->music_model->searchByAlbum($this->input->get('albumName')) : "";
-        $JSONSong = !empty($this->input->get('songName')) ? $this->music_model->searchBySong($this->input->get('songName')) : "";
-        $JSONGenre = !empty($this->input->get('genreName')) ? $this->music_model->searchByGenre($this->input->get('genreName')) : "";
+        $JSONAlbum = strlen($this->input->get('albumName')) > 0 ? $this->music_model->searchByAlbum($this->input->get('albumName')) : "";
+        $JSONSong = strlen($this->input->get('songName')) > 0 ? $this->music_model->searchBySong($this->input->get('songName')) : "";
+        $JSONGenre = strlen($this->input->get('genreName')) > 0 ? $this->music_model->searchByGenre($this->input->get('genreName')) : "";
         
         
         echo(json_encode(array_unique(array_merge_recursive($JSONAlbum, $JSONArtist, $JSONGenre, $JSONSong), SORT_REGULAR)));
