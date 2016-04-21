@@ -7,36 +7,58 @@ class news extends CI_Controller {
 		$this->load->database();
 	}
 	/**
-	 * 	News submission
+	 * news index
 	 */
 	public function index($page=1)
 	{
+		$login_uid = rbac_conf(array('INFO','uid'));
 		
-		$department_query = $this->db->query("SELECT d.did,d.name as dname,d.rid FROM department d WHERE d.did = '".$did."' limit 1");
-		$department_data = $department_query -> row_array();
+		$query = $this->db->query("SELECT COUNT(1) as cnt FROM news n, submits s WHERE s.uid = '{$login_rid}'");
+		$cnt_data = $query->row_array();
+		//page
+		$this->load->library('pagination');
+		$config['base_url'] = site_url("info/department/index");
+		$config['total_rows'] = $cnt_data['cnt'];
+		$config['per_page']   = 5;
+		$config['uri_segment']= '4';
+		$config['use_page_numbers'] = TRUE;
+		$this->pagination->initialize($config);
+		$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid, s.uid = '{$login_uid}'");
+		$news_data = $query->result();
+		$this->load->view("info/department",array("data"=>$data));
+	}
+	/**
+	 * 	News edit
+	 */
+	public function edit($nid)
+	{
+		
+		$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = '".$nid."'");
+		$news_data = $query->result();
 		 
-		$rolename = $this->db->query("SELECT r.rid, r.name as rname from role r, department d where d.rid = R.rid and d.did = '".$did."' limit 1");
-		$current_role = $rolename -> row_array();
 		
 		
-		$data['did'] = $department_data['did'];
-		$data['dname'] = $department_data['dname'];
+		$data['nid'] = $news_data['nid'];
+		$data['title'] = $news_data['title'];
+		$data['type'] = $news_data['type'];
+		$data['content'] = $news_data['content'];
+		$data['last_modified_time'] = $news_data['last_modified_time'];
+		$data['submit_time'] = $news_data['submit_time'];
 		
-		$data['rname'] = $current_role['rname'];
-		$data['rid'] = $current_role['rid'];
 
 
 		
 		if($data){
 			if($this->input->post()){
-				$dname = $this->input->post("dname");
-				$rname = $this->input->post("rname");
+				$nid = $this->input->post("nid");
+				$title = $this->input->post("title");
+				$type = $this->input->post("type");
+				$content = $this->input->post("content");
+				$last_modified_time = $this->input->post("last_modified_time");
+				$submit_time = $this->input->post("submit_time");
 				
-				$role_dept_query = $this->db->query("SELECT rid from role WHERE rname = ".$rname."");
-				$role_dept_data = $role_dept_query->row_array();
-				$rid = $role_dept_data['rid'];
 
-				if($did!=""){
+				if($uid!=""){
 					if($did&&$name&&$rname){
 						$rsql = "UPDATE department, set name='{$dname}' , rid='{$rid}' WHERE did = '{$did}'";
 						$this->db->query($sql);
@@ -92,23 +114,23 @@ class news extends CI_Controller {
 	/**
 	 * Delete departments
 	 */
-	public function delete($did){
-		$query = $this->db->query("SELECT * FROM department WHERE did = '".$did."' ");
+	public function delete($nid){
+		$query = $this->db->query("SELECT * FROM news WHERE nid = '".$nid."' ");
 		$data = $query->row_array();
 		if($data){
 			if($this->input->post()){
 				$verfiy = $this->input->post("verfiy");
 				if($verfiy){
-					$sql = "DELETE FROM department WHERE did = '".$did."' ";
+					$sql = "DELETE FROM news WHERE did = '".$nid."' ";
 					$this->db->query($sql);
-					success_redirct("info/department/index","Delete successful!");
+					success_redirct("info/news/index","Delete successful!");
 				}else{
-					error_redirct("info/department/index","Delete failed!");
+					error_redirct("info/news/index","Delete failed!");
 				}
 			}
-			$this->load->view("info/department/delete",array("data"=>$data));
+			$this->load->view("info/news/delete",array("data"=>$data));
 		}else{
-			error_redirct("info/department/index","No department is found!");
+			error_redirct("info/news/index","No department is found!");
 		}
 	}
 }

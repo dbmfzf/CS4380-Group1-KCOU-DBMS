@@ -16,21 +16,21 @@
     <table class="table table-bordered table-hover definewidth m10">
         <tr>
             <td width = "15%" class="tableleft">News ID</td>
-            <td><input type="text" name="dname" value="<?php echo $data['dname'];?>"></td>
+            <td><input type="text" name="dname" ></td>
         </tr>
         <tr>
             <td width = "15%" class="tableleft">Title</td>
-            <td><input type="text" name="dname" value="<?php echo $data['dname'];?>"></td>
+            <td><input type="text" name="dname" ></td>
         </tr>
         <tr>
             <td width = "15%" class="tableleft">Type</td>
-            <td><input type="text" name="dname" value="<?php echo $data['dname'];?>"></td>
+            <td><input type="text" name="dname" ></td>
         </tr>
         <tr>
         	<script type="text/javascript">
             	UE.getEditor('myEditor')
         	</script>
-        	<textarea name="content" id="myEditor"><?php echo $data['description'];?>这里写你的初始化内容</textarea></td>
+        	<textarea name="content" id="myEditor">这里写你的初始化内容</textarea></td>
         </tr>
     </table>
     <button type="submit" class="btn btn-success">Submit</button> 
