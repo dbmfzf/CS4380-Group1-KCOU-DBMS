@@ -15,7 +15,7 @@ var se = d.getSeconds();
 s=vYear+(vMon<10 ? "0" + vMon : vMon)+(vDay<10 ? "0"+ vDay : vDay)+(h<10 ? "0"+ h : h)+(m<10 ? "0" + m : m)+(se<10 ? "0" +se : se);
 $.ajax({
      type: 'POST',
-     url: ,
+     url: "<?php echo base_url(); ?>index.php/message/messageController/getUnreadMessageCount",
     data: {'currentTime',s},
     success: function(data) {
     	document.write(data);
