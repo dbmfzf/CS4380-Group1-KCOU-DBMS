@@ -25,10 +25,10 @@ class search_music extends CI_Controller {
     //Input: get request from ajax in the search_music view
     //Output: JSON array of song information
     public function advancedSearchHandler(){
-        $JSONArtist = !empty($this->input->get('artistName')) ? $this->music_model->searchByArtist($this->input->get('artistName')): NULL;
-        $JSONAlbum = !empty($this->input->get('albumName')) ? $this->music_model->searchByAlbum($this->input->get('albumName')) : NULL;
-        $JSONSong = !empty($this->input->get('songName')) ? $this->music_model->searchBySong($this->input->get('songName')) : NULL;
-        $JSONGenre = !empty($this->input->get('genreName')) ? $this->music_model->searchByGenre($this->input->get('genreName')) : NULL;
+        $JSONArtist = strlen($this->input->get('artistName')) > 0 ? $this->music_model->searchByArtist($this->input->get('artistName')): "";
+        $JSONAlbum = !empty($this->input->get('albumName')) ? $this->music_model->searchByAlbum($this->input->get('albumName')) : "";
+        $JSONSong = !empty($this->input->get('songName')) ? $this->music_model->searchBySong($this->input->get('songName')) : "";
+        $JSONGenre = !empty($this->input->get('genreName')) ? $this->music_model->searchByGenre($this->input->get('genreName')) : "";
         
         
         echo(json_encode(array_unique(array_merge_recursive($JSONAlbum, $JSONArtist, $JSONGenre, $JSONSong), SORT_REGULAR)));
