@@ -221,7 +221,7 @@ class Department extends CI_Controller {
 	/**
 	 * Add users
 	 */
-	public function user_add($did){
+	public function user_add(){
 	
 		//$role_query = $this->db->query("SELECT rid,name as rname FROM role order by rid desc");
 		//$role_data = $role_query->result();
