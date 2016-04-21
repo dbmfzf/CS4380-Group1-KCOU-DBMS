@@ -28,15 +28,10 @@ class Message_model extends CI_Model {
         return json_encode($queryObj->result());
     }
     
-    public function searchByArtist($artistName){
-        $artistName = htmlspecialchars($artistName);
-        $sql = "SELECT s.title AS Song_title, ar.name AS Artist, al.title AS Album, s.category AS Genre
-        FROM Song s, Artist_produces_song aps, Artist ar, Releases r,  Album al
-        WHERE ar.name LIKE '%" . $this->db->escape_like_str($artistName) . 
-        "%' AND aps.sid = s.sid AND ar.artistID = aps.artistID AND ar.artistID = r.artistID AND al.albumID = r.albumID;";
-        
-        $queryObj = $this->db->query($sql);
-        return json_encode($queryObj->result());
+    public function searchMessageCount($startTime){
+       $sql = "select count(*) from posts where date_time >= '2016-04-20';";
+	   $queryObj = $this->db->query($sql);
+	   return $queryObj->result();
     }
     
     public function searchByAlbum($albumName){

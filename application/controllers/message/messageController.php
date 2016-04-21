@@ -21,7 +21,8 @@ class messageController extends CI_Controller {
     
 	public function getUnreadMessageCount(){
 		$time = $this->input->post('currentTime');
-		echo $time;
+		$count = $this->message_model->searchMessageCount($time);
+		echo $count;
 		return;
 	}
     public function getMessageProfile(){
