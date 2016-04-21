@@ -13,6 +13,18 @@ class news extends CI_Controller {
 	{
 		$login_uid = rbac_conf(array('INFO','uid'));
 		
+		if($uid=="Manager"){
+			$where="";
+			$cnt_query = $this->db->query("SELECT COUNT(*) as cnt FROM User WHERE rid != $login_rid");
+				
+		
+		}
+		else{
+			$where = "AND R.did = $deptid AND level > $level";
+			$cnt_query = $this->db->query("select count(*) as cnt FROM User U, Role R, Department D where U.rid = R.rid AND D.did = R.did AND D.did = $deptid AND level > $level;");
+				
+		}
+		
 		$query = $this->db->query("SELECT COUNT(1) as cnt FROM news n, submits s WHERE s.uid = '{$login_rid}'");
 		$cnt_data = $query->row_array();
 		//page
@@ -23,7 +35,7 @@ class news extends CI_Controller {
 		$config['uri_segment']= '4';
 		$config['use_page_numbers'] = TRUE;
 		$this->pagination->initialize($config);
-		$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid, s.uid = '{$login_uid}'");
+		$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid and s.uid = '{$login_uid}'");
 		$news_data = $query->result();
 		$this->load->view("info/department",array("data"=>$data));
 	}
