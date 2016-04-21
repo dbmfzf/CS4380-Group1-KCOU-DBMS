@@ -33,7 +33,7 @@ class search_music extends CI_Controller {
         $JSON1 = array_merge($JSONArtist, $JSONAlbum);
         $JSON2 = array_merge($JSONSong, $JSONGenre);
         
-        echo(array_merge($JSON1, $JSON2));
+        echo(json_encode(array_merge($JSON1, $JSON2)));
         return;
     }
 }
