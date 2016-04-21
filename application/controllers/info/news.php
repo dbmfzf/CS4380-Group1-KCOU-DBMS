@@ -12,17 +12,19 @@ class news extends CI_Controller {
 	public function index($page=1)
 	{
 		$login_uid = rbac_conf(array('INFO','uid'));
+		$login_rid = rbac_conf(array('INFO','rid'));
 		
-		if($uid=="Manager"){
+		if($rid=="Manager"){
 			$where="";
 			$cnt_query = $this->db->query("SELECT COUNT(*) as cnt FROM User WHERE rid != $login_rid");
 				
 		
-		}
-		else{
+		}elseif ($rid=="Manager"){
 			$where = "AND R.did = $deptid AND level > $level";
 			$cnt_query = $this->db->query("select count(*) as cnt FROM User U, Role R, Department D where U.rid = R.rid AND D.did = R.did AND D.did = $deptid AND level > $level;");
 				
+		}else{
+			
 		}
 		
 		$query = $this->db->query("SELECT COUNT(1) as cnt FROM news n, submits s WHERE s.uid = '{$login_rid}'");
