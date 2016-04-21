@@ -29,7 +29,7 @@ class Message_model extends CI_Model {
     }
     
     public function searchMessageCount($startTime){
-       $sql = "select count(*) from posts where date_time >= '2016-04-20';";
+       $sql = "select count(*) c from posts where date_time >= '2016-04-20';";
 	   $queryObj = $this->db->query($sql);
 	   return json_encode($queryObj->result());
     }

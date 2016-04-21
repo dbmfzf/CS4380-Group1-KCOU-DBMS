@@ -1,6 +1,6 @@
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
-<script language="javascript">
+<script type="text/javascript">
 var d = new Date();
 var vYear = d.getFullYear();
 var vMon = d.getMonth()+1;
@@ -12,7 +12,7 @@ s=vYear+(vMon<10 ? "0" + vMon : vMon)+(vDay<10 ? "0"+ vDay : vDay)+(h<10 ? "0"+ 
 $.ajax({
      type: 'POST',
      url: "<?php echo base_url(); ?>index.php/message/messageController/getUnreadMessageCount",
-    data: {'currentTime',s},
+    data: {'currentTime','2016-04-12'},
     success: function(data) {
     	document.write(data);
     },
