@@ -8,7 +8,7 @@
                         {"searchString" : $("#genericSearch").val()}, 
                         function ( data ){
                             console.dir("inside of anonymous function");
-                            fillResult( data );
+                            console.dir( data );
                 });
                 break;
             case 'advanced':
@@ -21,16 +21,12 @@
                          }, 
                          function ( data ){
                             console.dir("inside of anonymous function");
-                            fillResult( data );
+                            console.dir( data );
                 });
                 break;
             default:
                 break;
         }
-    }
-     
-    function fillResult(musicArray){
-        console.dir("fillResult called");
     }
     
     function toggleOptions(){
