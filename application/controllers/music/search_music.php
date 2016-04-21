@@ -51,6 +51,7 @@ class search_music extends CI_Controller {
         //Merge all of the query results into $mergedArr
         $mergedArr = array();
         for($i = 0; $i < sizeof($arrsToMerge); $i++){
+            echo(json_encode($arrsToMerge[$i]));
             $mergedArr = array_merge($mergedArr, $arrsToMerge[$i]);
         }
         
