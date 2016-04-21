@@ -31,7 +31,7 @@ class search_music extends CI_Controller {
         $JSONGenre = $this->music_model->searchByGenre($this->input->get('genreName'));
         
         
-        echo(json_encode(array_merge_recursive($JSONAlbum, $JSONArtist, $JSONGenre, $JSONSong)));
+        echo(json_encode(array_unique(array_merge_recursive($JSONAlbum, $JSONArtist, $JSONGenre, $JSONSong))));
         return;
     }
 }
