@@ -31,7 +31,7 @@ class Message_model extends CI_Model {
     public function searchMessageCount($startTime){
        $sql = "select count(*) from posts where date_time >= '2016-04-20';";
 	   $queryObj = $this->db->query($sql);
-	   return $queryObj->result();
+	   return json_encode($queryObj->result());
     }
     
     public function searchByAlbum($albumName){
