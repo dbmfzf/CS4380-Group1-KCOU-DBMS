@@ -60,7 +60,7 @@ class Department extends CI_Controller {
 	
 		//}else{
 			//error_redirct("info/department/index","No user in this department!");
-		}
+		//}
 	}
 	
 	/**
