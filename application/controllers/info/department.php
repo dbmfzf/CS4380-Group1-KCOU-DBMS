@@ -241,8 +241,12 @@ class Department extends CI_Controller {
 			$birth = $this->input->post("birth");
 			$rolename = $this->input->post("rolename");
 			$status = $this->input->post("status");
-			
-
+			$user_query = $this->db->query("SELECT * from user WHERE uid = '".$uid."'");
+			$user_data = $user_query->result();
+			if ($user_data)
+			{
+				error_redirct("","The user already exists!");
+			}
 	
 			if($uid&&$fullname&&$gender&&$email&&$phone&&$birth&&$role){
 				if(!$status){$newstat = "0";}else{$newstat = "1";}
@@ -251,7 +255,7 @@ class Department extends CI_Controller {
 				$this->db->query($sql);
 				success_redirct("info/department/see_all/".$data['did']."","Add successful!");
 			}else{
-				error_redirct("","The user already exists!");
+				error_redirct("","The user information is not completed!");
 			}
 		}
 		$this->load->view("info/department/user_add",array("role_dept_data"=>$role_dept_data,"current_role_dept_data"=>$current_role_dept_data));
