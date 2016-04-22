@@ -15,7 +15,7 @@
         </thead>
    <tbody>
 	<?php 
-	foreach($data as $mb){
+	foreach($news_data as $mb){
 		printf('<tr>
 					<td>%s</td>
 					<td>%s</td>
@@ -35,3 +35,5 @@
   </tbody>
 </table>
 <hr/>
+
+<?php echo '<a class="btn btn-success pull-right" href="'.site_url("info/news/add").'">Add news</a>'; ?>
