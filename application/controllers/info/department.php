@@ -230,7 +230,7 @@ class Department extends CI_Controller {
 		$current_role_dept_query = $this->db->query("SELECT D.name as deptname, D.did FROM Department D WHERE D.did = '".$did."' limit 1");
 		$current_role_dept_data = $current_role_dept_query -> row_array();
 	
-		$role_dept_query = $this->db->query("SELECT r.rid from role r WHERE r.did = '".$did."'");
+		$role_dept_query = $this->db->query("SELECT r.rid,r.name as rolename from role r WHERE r.did = '".$did."'");
 		$role_dept_data = $role_dept_query->result();
 		if($this->input->post()){
 			$uid = $this->input->post("uid");
