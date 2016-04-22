@@ -111,7 +111,7 @@ class news extends CI_Controller {
 			success_redirct("info/news/index","Add successful!");	
 	
 		}else{
-			$this->load->view("info/news/add",array("role_data"=>$role_data,"dept_data"=>$dept_data));
+			$this->load->view("info/news/add");
 		}
 	}
 	
