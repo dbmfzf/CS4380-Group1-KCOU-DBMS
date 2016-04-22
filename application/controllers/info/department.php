@@ -31,7 +31,7 @@ class Department extends CI_Controller {
 	
 	public function see_all($did)
 	{
-		$department_query = $this->db->query("SELECT d.did,d.name as dname,d.description, r.rid, r.name as rname, u.uid, u.fullname as uname, u.gender, u.birth, u.email, u.phone FROM department d, role r, user u WHERE d.did = '".$did."' and d.did = r.did and r.rid = u.rid limit 1");
+		$department_query = $this->db->query("SELECT d.did,d.name as dname FROM department d WHERE d.did = '".$did."' limit 1");
 		$department_data = $department_query -> row_array();
 	
 		//$data['did'] = $department_data['did'];
