@@ -14,11 +14,11 @@ class news extends CI_Controller {
 		$login_uid = rbac_conf(array('INFO','uid'));
 		$login_rid = rbac_conf(array('INFO','rid'));
 		
-		$query = $this->db->query("SELECT COUNT(1) as cnt FROM news n, submits s WHERE s.uid = '{$login_rid}'");
+		$query = $this->db->query("SELECT COUNT(1) as cnt FROM news n, submits s WHERE s.uid = '{$login_uid}'");
 		$cnt_data = $query->row_array();
 		//page
 		$this->load->library('pagination');
-		$config['base_url'] = site_url("info/department/index");
+		$config['base_url'] = site_url("info/news/index");
 		$config['total_rows'] = $cnt_data['cnt'];
 		$config['per_page']   = 5;
 		$config['uri_segment']= '4';
@@ -28,16 +28,16 @@ class news extends CI_Controller {
 		if($rid=="Manager"){
 			$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid");
 			$news_data = $query->result();
-			$this->load->view("info/department",array("data"=>$data));
+			$this->load->view("info/department",array("news_data"=>$news_data));
 		
 		}elseif ($rid=="News dept leader"){
 			$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid");
 			$news_data = $query->result();
-			$this->load->view("info/department",array("data"=>$data));
+			$this->load->view("info/department",array("news_data"=>$news_data));
 		}else{
 			$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid and s.uid = '{$login_uid}'");
 			$news_data = $query->result();
-			$this->load->view("info/department",array("data"=>$data));
+			$this->load->view("info/department",array("news_data"=>$news_data));
 		}
 		
 
