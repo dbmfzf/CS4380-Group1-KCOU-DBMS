@@ -30,7 +30,7 @@
         	<script type="text/javascript">
             	UE.getEditor('myEditor')
         	</script>
-        	<textarea name="content" id="myEditor">这里写你的初始化内容</textarea></td>
+        	<textarea name="content" id="myEditor">Please enter the news</textarea></td>
         </tr>
     </table>
     <button type="submit" class="btn btn-success">Submit</button> 
