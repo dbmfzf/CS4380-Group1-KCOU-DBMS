@@ -101,7 +101,7 @@ class news extends CI_Controller {
 			$nid = $this->input->post("nid");
 			$title = $this->input->post("title");
 			$type = $this->input->post("type");
-			$content = $_POST["content"];
+			$content = $this->input->post["content"];
 			$last_modified_time = date('Y-m-d H:i:s',time());
 			$submit_time = date('Y-m-d H:i:s',time());
 			//SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid

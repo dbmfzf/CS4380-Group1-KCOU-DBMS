@@ -4,8 +4,8 @@
     <head>
         <title>PHP点点通（http://www.phpddt.com）演示教程</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script type="text/javascript" src="./ueditor.config.js"></script>  
-        <script type="text/javascript" src="./ueditor.all.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url;?>ueditor.config.js"></script>  
+        <script type="text/javascript" src="<?php echo base_url;?>ueditor.all.min.js"></script>
     </head>
     <body>
     <style>
