@@ -98,7 +98,6 @@ class news extends CI_Controller {
 	 */
 	public function add(){
 		
-		if($this->input->post()){
 			$nid = $this->input->post("nid");
 			$title = $this->input->post("title");
 			$type = $this->input->post("type");
@@ -110,9 +109,7 @@ class news extends CI_Controller {
 			$this->db->query($sql);
 			$sub_sql = "INSERT INTO news (last_modified_time, submit_time) values('{$last_modified_time}','{$submit_time}')";
 			success_redirct("info/news/index","Add successful!");	
-		}else{
-			error_redirct("","The news information is not complete!");
-		}
+	
 		$this->load->view("info/news/add",array("role_data"=>$role_data,"dept_data"=>$dept_data));
 	}
 	
