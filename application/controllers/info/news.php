@@ -25,19 +25,19 @@ class news extends CI_Controller {
 		$config['use_page_numbers'] = TRUE;
 		$this->pagination->initialize($config);
 		
-		if($rid=="Manager"){
+		if($login_rid=="Manager"){
 			$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid");
 			$news_data = $query->result();
-			$this->load->view("info/department",array("news_data"=>$news_data));
+			$this->load->view("info/news",array("news_data"=>$news_data));
 		
-		}elseif ($rid=="News dept leader"){
+		}elseif ($login_rid=="News dept leader"){
 			$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid");
 			$news_data = $query->result();
-			$this->load->view("info/department",array("news_data"=>$news_data));
+			$this->load->view("info/news",array("news_data"=>$news_data));
 		}else{
 			$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid and s.uid = '{$login_uid}'");
 			$news_data = $query->result();
-			$this->load->view("info/department",array("news_data"=>$news_data));
+			$this->load->view("info/news",array("news_data"=>$news_data));
 		}
 		
 
