@@ -13,6 +13,9 @@ class news extends CI_Controller {
 	{
 		$login_uid = rbac_conf(array('INFO','uid'));
 		$login_rid = rbac_conf(array('INFO','rid'));
+		$role_query = $this->db->query("SELECT r.name as rname from role r WHERE r.rid = '".$login_rid."'");
+		$role_data = $role_query->row_array();
+		$login_rname = $role_data['rname'];
 		
 		$query = $this->db->query("SELECT COUNT(1) as cnt FROM news n, submits s WHERE s.uid = '{$login_uid}'");
 		$cnt_data = $query->row_array();
@@ -25,12 +28,12 @@ class news extends CI_Controller {
 		$config['use_page_numbers'] = TRUE;
 		$this->pagination->initialize($config);
 		
-		if($login_rid=="Manager"){
+		if($login_rname=="Manager"){
 			$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid");
 			$news_data = $query->result();
 			$this->load->view("info/news",array("news_data"=>$news_data));
 		
-		}elseif ($login_rid=="News dept leader"){
+		}elseif ($login_name=="News dept leader"){
 			$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid");
 			$news_data = $query->result();
 			$this->load->view("info/news",array("news_data"=>$news_data));
