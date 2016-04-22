@@ -98,35 +98,22 @@ class news extends CI_Controller {
 	 */
 	public function add(){
 		
-		$role_query = $this->db->query("SELECT rid,name as rname FROM role order by rid desc");
-		$role_data = $role_query->result();
-		
-		$dept_query = $this->db->query("SELECT did,name as dname FROM department order by did desc");
-		$dept_data = $dept_query->result();
-		
 		if($this->input->post()){
-			$dname = $this->input->post("dname");
-			
-			$rname = $this->input->post("rname");
-			$role_dept_query = $this->db->query("SELECT rid from role r WHERE name = ".$rname."");
-			$role_dept_data = $role_dept_query->row_array();
-			$rid = $role_dept_data['rid'];
-		
-			if($dname&&$rolename){
-				$query = $this->db->query("SELECT * FROM department WHERE did = '".$did."'");
-				$data = $query->row_array();
-				if(!$data){
-					$sql = "INSERT INTO department (name,rid) values('{$dname}','{$rid}')";
-					$this->db->query($sql);
-					success_redirct("info/department/index","Add successful!");
-					}else{
-						error_redirct("","The department already exists!");
-					}		
-				}else{
-					error_redirct("","The department's information is not complete!");
-			}
+			$nid = $this->input->post("nid");
+			$title = $this->input->post("title");
+			$type = $this->input->post("type");
+			$content = $this->input->post("content");
+			$last_modified_time = date('Y-m-d H:i:s',time());
+			$submit_time = date('Y-m-d H:i:s',time());
+			//SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid
+			$sql = "INSERT INTO news (nid, title, type, content) values('{$nid}','{$title}','{$type}','{$content}')";
+			$this->db->query($sql);
+			$sub_sql = "INSERT INTO news (last_modified_time, submit_time) values('{$last_modified_time}','{$submit_time}')";
+			success_redirct("info/news/index","Add successful!");	
+		}else{
+					error_redirct("","The news information is not complete!");
 		}
-		$this->load->view("info/department/add",array("role_data"=>$role_data,"dept_data"=>$dept_data));
+		$this->load->view("info/news/add",array("role_data"=>$role_data,"dept_data"=>$dept_data));
 	}
 	
 	/**
