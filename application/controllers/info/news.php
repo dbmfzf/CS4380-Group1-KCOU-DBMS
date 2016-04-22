@@ -97,7 +97,7 @@ class news extends CI_Controller {
 	 * Add departments
 	 */
 	public function add(){
-		
+		if($this->input->post()){
 			$nid = $this->input->post("nid");
 			$title = $this->input->post("title");
 			$type = $this->input->post("type");
@@ -110,7 +110,9 @@ class news extends CI_Controller {
 			$sub_sql = "INSERT INTO news (last_modified_time, submit_time) values('{$last_modified_time}','{$submit_time}')";
 			success_redirct("info/news/index","Add successful!");	
 	
-		$this->load->view("info/news/add",array("role_data"=>$role_data,"dept_data"=>$dept_data));
+		}else{
+			$this->load->view("info/news/add",array("role_data"=>$role_data,"dept_data"=>$dept_data));
+		}
 	}
 	
 	/**
