@@ -1,13 +1,13 @@
 
-<script type="text/javascript">
-            	UE.getEditor('myEditor');
-        	</script>
 
 
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
         <script type="text/javascript" src="<?php echo base_url();?>ueditor.config.js"></script>  
         <script type="text/javascript" src="<?php echo base_url();?>ueditor.all.min.js"></script>
 
+<script type="text/javascript">
+            	UE.getEditor('myEditor');
+        	</script>
  <style>
 .tableleft{font-weight:bold;background-color:#F5F5F5;}
 </style>
