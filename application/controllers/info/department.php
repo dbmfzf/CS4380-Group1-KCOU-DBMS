@@ -47,10 +47,10 @@ class Department extends CI_Controller {
 		//$data['phone'] = $department_data['phone'];
 	
 	
-		if($department_data){
+		//if($department_data){
 			$dept_query = $this->db->query("SELECT d.did,d.name as dname,d.description, r.rid, r.name as rname, u.uid, u.fullname as uname, u.gender, u.birth, u.email, u.phone, u.status FROM department d, role r, user u WHERE d.did = '".$did."' and d.did = r.did and r.rid = u.rid ");
 			$data = $dept_query->result();
-			$this->load->view("info/department/see_all",array("data"=>$data));
+			$this->load->view("info/department/see_all",array("data"=>$data, "department_data"=>$department_data));
 			
 			//$rname = $this->input->post("rname");
 	
@@ -58,8 +58,8 @@ class Department extends CI_Controller {
 			//$role_dept_data = $role_dept_query->row_array();
 			//$rid = $role_dept_data['rid'];
 	
-		}else{
-			error_redirct("info/department/index","No user in this department!");
+		//}else{
+			//error_redirct("info/department/index","No user in this department!");
 		}
 	}
 	
