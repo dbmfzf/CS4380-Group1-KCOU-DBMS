@@ -8,7 +8,7 @@
     <table class="table table-bordered table-hover definewidth m10">
         <tr>
             <td width = "15%" class="tableleft">News ID</td>
-            <td><input type="text" name="nid" value="<?php echo $data['nid'];?>" ></td>
+            <td><input type="text" name="nid" disabled  value="<?php echo $data['nid'];?>" ></td>
         </tr>
         <tr>
             <td width = "15%" class="tableleft">Title</td>
