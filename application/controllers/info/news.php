@@ -58,6 +58,7 @@ class news extends CI_Controller {
 		$data['nid'] = $news_data['nid'];
 		$data['title'] = $news_data['title'];
 		$data['type'] = $news_data['type'];
+		$submit_time = $news_data['submit_time'];
 		$content = $news_data['content'];
 		
 
@@ -73,7 +74,7 @@ class news extends CI_Controller {
 						$this->db->query($sql);
 						$sub_sql = "update submits set uid = '{$login_uid}', last_modified_time = '{$last_modified_time}', submit_time = '{$submit_time}' where nid = '{$nid}'";
 						$this->db->query($sub_sql);
-						success_redirct("info/department/index","Edit successful!");
+						success_redirct("info/news/index","Edit successful!");
 			}
 			$this->load->view("info/news/edit",array("data"=>$data ));
 		}else{
