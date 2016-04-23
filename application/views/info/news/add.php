@@ -12,15 +12,21 @@
     <table class="table table-bordered table-hover definewidth m10">
         <tr>
             <td width = "15%" class="tableleft">News ID</td>
-            <td><input type="text" name="dname" ></td>
+            <td><input type="text" name="nid" ></td>
         </tr>
         <tr>
             <td width = "15%" class="tableleft">Title</td>
-            <td><input type="text" name="dname" ></td>
+            <td><input type="text" name="title" ></td>
         </tr>
         <tr>
             <td width = "15%" class="tableleft">Type</td>
-            <td><input type="text" name="dname" ></td>
+            <td><input type="text" name="type" >
+            <select>
+  			<option value="Sports">Sports</option>
+  			<option value="Academic">Academic</option>
+	  		<option value="Social">Social</option>
+	  		<option value="International">International</option>
+		</select></td>
         </tr>
 
     </table>
