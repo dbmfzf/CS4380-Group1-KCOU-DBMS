@@ -95,6 +95,7 @@ class news extends CI_Controller {
 	 * Edit Content
 	 */
 	public function edit_content($nid){
+		$login_uid = rbac_conf(array('INFO','uid'));
 		if($this->input->post()){
 			$content = $this->input->post["content"];
 			$last_modified_time = date('Y-m-d H:i:s',time());
@@ -107,7 +108,7 @@ class news extends CI_Controller {
 			//SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid
 			$sql = "update news set title = '{$title}',type = '{$type}',content = '{$content}' where nid = '{$nid}')";
 			$this->db->query($sql);
-			$sub_sql = "update submits set last_modified_time = '{$last_modified_time}' where submit_time = '{$submit_time}')";
+			$sub_sql = "update submits set uid = '{$login_uid}', nid = '{$nid}', last_modified_time = '{$last_modified_time}' where submit_time = '{$submit_time}')";
 			$this->db->query($sub_sql);
 			success_redirct("info/news/index","Edit successful!");
 	
@@ -119,6 +120,7 @@ class news extends CI_Controller {
 	 * Add news
 	 */
 	public function add(){
+		$login_uid = rbac_conf(array('INFO','uid'));
 		if($this->input->post()){
 			$nid = $this->input->post("nid");
 			$title = $this->input->post("title");
@@ -128,7 +130,7 @@ class news extends CI_Controller {
 			//SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid
 			$sql = "INSERT INTO news (nid, title, type,content) values('{$nid}','{$title}','{$type}','')";
 			$this->db->query($sql);
-			$sub_sql = "INSERT INTO submits (last_modified_time, submit_time) values('{$last_modified_time}','{$submit_time}')";
+			$sub_sql = "INSERT INTO submits (nid, uid, last_modified_time, submit_time) values('{$login_uid}','{$nid}','{$last_modified_time}','{$submit_time}')";
 			$this->db->query($sub_sql);
 			success_redirct("info/news/index","Add successful!");	
 	
