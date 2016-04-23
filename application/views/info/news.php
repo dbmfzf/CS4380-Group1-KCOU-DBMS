@@ -20,7 +20,11 @@
 					<td>%s</td>
 					<td>%s</td>
 					<td>%s</td>
-					<td>%s</td>
+					<td>
+						<div class="btn-group  btn-group-xs">
+						  <a class="btn btn-info btn-xs" href="%s">Edit Content</a>
+						</div>
+					</td>
 					<td>%s</td>
 					<td>%s</td>
 					<td>
@@ -29,7 +33,7 @@
 						  <a class="btn btn-danger" href="%s">Delete</a> 
 						</div>
 					</td>
-				</tr>',$mb->nid,$mb->title,$mb->type,$mb->content,$mb->last_modified_time,$mb->submit_time,site_url("info/news/edit/".$mb->nid),site_url("info/news/delete/".$mb->nid));
+				</tr>',$mb->nid,$mb->title,$mb->type,site_url("info/news/Content/".$mb->nid),$mb->last_modified_time,$mb->submit_time,site_url("info/news/edit_content/".$mb->nid),site_url("info/news/delete/".$mb->nid));
 	}
 	?>
   </tbody>

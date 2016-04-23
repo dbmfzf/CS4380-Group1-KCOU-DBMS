@@ -51,7 +51,7 @@ class news extends CI_Controller {
 	public function edit($nid)
 	{
 		
-		$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = '".$nid."'");
+		$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid and n.nid = '".$nid."'");
 		$news_data = $query->result();
 		 
 		
@@ -71,14 +71,12 @@ class news extends CI_Controller {
 				$nid = $this->input->post("nid");
 				$title = $this->input->post("title");
 				$type = $this->input->post("type");
-				$content = $this->input->post("content");
-				$last_modified_time = $this->input->post("last_modified_time");
-				$submit_time = $this->input->post("submit_time");
+				$last_modified_time = date('Y-m-d H:i:s',time());
 				
 
 				if($uid!=""){
 					if($did&&$name&&$rname){
-						$rsql = "UPDATE department, set name='{$dname}' , rid='{$rid}' WHERE did = '{$did}'";
+						$rsql = "UPDATE department set name='{$dname}' , rid='{$rid}' WHERE did = '{$did}'";
 						$this->db->query($sql);
 						success_redirct("info/department/index","Edit successful!");
 					}else{
@@ -94,20 +92,44 @@ class news extends CI_Controller {
 		}
 	}
 	/**
-	 * Add departments
+	 * Edit Content
+	 */
+	public function edit_content($nid){
+		if($this->input->post()){
+			$content = $this->input->post["content"];
+			$last_modified_time = date('Y-m-d H:i:s',time());
+			$news_query = $this->db->query("SELECT n.nid, n.title, n.type, s.last_modified_time, s.submit_time FROM news n, submits s WHERE s.nid = n.nid and n.nid = '".$nid."'");
+			$news_data = $query->row_array();
+			$title = $news_data['title'];
+			$type = $news_data['type'];
+			$submit_time = $news_data['submit_time'];
+			
+			//SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid
+			$sql = "update news set title = '{$title}',type = '{$type}',content = '{$content}' where nid = '{$nid}')";
+			$this->db->query($sql);
+			$sub_sql = "update submits set last_modified_time = '{$last_modified_time}' where submit_time = '{$submit_time}')";
+			$this->db->query($sub_sql);
+			success_redirct("info/news/index","Edit successful!");
+	
+		}else{
+			$this->load->view("info/news/content");
+		}
+	}
+	/**
+	 * Add news
 	 */
 	public function add(){
 		if($this->input->post()){
 			$nid = $this->input->post("nid");
 			$title = $this->input->post("title");
 			$type = $this->input->post("type");
-			$content = $this->input->post["content"];
 			$last_modified_time = date('Y-m-d H:i:s',time());
 			$submit_time = date('Y-m-d H:i:s',time());
 			//SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid
-			$sql = "INSERT INTO news (nid, title, type, content) values('{$nid}','{$title}','{$type}','{$content}')";
+			$sql = "INSERT INTO news (nid, title, type,content) values('{$nid}','{$title}','{$type}','')";
 			$this->db->query($sql);
-			$sub_sql = "INSERT INTO news (last_modified_time, submit_time) values('{$last_modified_time}','{$submit_time}')";
+			$sub_sql = "INSERT INTO submits (last_modified_time, submit_time) values('{$last_modified_time}','{$submit_time}')";
+			$this->db->query($sub_sql);
 			success_redirct("info/news/index","Add successful!");	
 	
 		}else{
