@@ -21,12 +21,12 @@
         <tr>
             <td width = "15%" class="tableleft">Type</td>
             <td>
-            <select>
+            <select name="type">
   			<option value="Sports">Sports</option>
   			<option value="Academic">Academic</option>
 	  		<option value="Social">Social</option>
 	  		<option value="International">International</option>
-		</select></td>
+		</select></br></td>
         </tr>
 
     </table>

@@ -50,8 +50,12 @@ class Department extends CI_Controller {
 		//if($department_data){
 			$dept_query = $this->db->query("SELECT d.did,d.name as dname,d.description, r.rid, r.name as rname, u.uid, u.fullname as uname, u.gender, u.birth, u.email, u.phone, u.status FROM department d, role r, user u WHERE d.did = '".$did."' and d.did = r.did and r.rid = u.rid ");
 			$data = $dept_query->result();
-			$this->load->view("info/department/see_all",array("data"=>$data, "department_data"=>$department_data));
-			
+			if ($data)
+			{
+				$this->load->view("info/department/see_all",array("data"=>$data, "department_data"=>$department_data));
+			}else{
+				error_redirct("info/department/index","No user in this department!");
+			}
 			//$rname = $this->input->post("rname");
 	
 			//$role_dept_query = $this->db->query("SELECT rid from role WHERE rname = ".$rname."");
@@ -155,7 +159,7 @@ class Department extends CI_Controller {
 					$this->db->query($sql);
 					success_redirct("info/department/index","Delete successful!");
 				}else{
-					error_redirct("info/department/index","Delete failed!");
+					error_redirct("info/department/index","Delete cancelled!");
 				}
 			}
 			$this->load->view("info/department/delete",array("data"=>$data));
@@ -279,7 +283,7 @@ class Department extends CI_Controller {
 					$this->db->query($sql);
 					success_redirct("info/department/see_all/'".$department_data['did']."'","Delete successful!");
 				}else{
-					error_redirct("info/department/see_all","Delete failed!");
+					error_redirct("info/department/see_all","Delete cancelled!");
 				}
 			}
 			$this->load->view("info/department/user_delete",array("data"=>$data,"department_data"=>$department_data));

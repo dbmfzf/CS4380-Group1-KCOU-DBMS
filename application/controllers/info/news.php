@@ -130,8 +130,8 @@ class news extends CI_Controller {
 			//SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid
 			$sql = "INSERT INTO news (nid, title, type,content) values('{$nid}','{$title}','{$type}','')";
 			$this->db->query($sql);
-			//$sub_sql = "INSERT INTO submits (nid, uid, last_modified_time, submit_time) values('{$login_uid}','{$nid}','{$last_modified_time}','{$submit_time}')";
-			//$this->db->query($sub_sql);
+			$sub_sql = "INSERT INTO submits (nid, uid, last_modified_time, submit_time) values('{$nid}', '{$login_uid}','{$last_modified_time}','{$submit_time}')";
+			$this->db->query($sub_sql);
 			success_redirct("info/news/index","Add successful!");	
 	
 		}else{
