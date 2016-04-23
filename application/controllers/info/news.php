@@ -90,7 +90,7 @@ class news extends CI_Controller {
 			$content = $this->input->post["content"];
 			$last_modified_time = date('Y-m-d H:i:s',time());
 			$news_query = $this->db->query("SELECT n.nid, n.title, n.type, s.last_modified_time, s.submit_time FROM news n, submits s WHERE s.nid = n.nid and n.nid = '".$nid."'");
-			$news_data = $query->row_array();
+			$news_data = $news_query->row_array();
 			$title = $news_data['title'];
 			$type = $news_data['type'];
 			$submit_time = $news_data['submit_time'];
