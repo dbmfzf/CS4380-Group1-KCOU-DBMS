@@ -69,9 +69,9 @@ class news extends CI_Controller {
 				$type = $this->input->post("type");
 				$last_modified_time = date('Y-m-d H:i:s',time());
 				
-						$sql = "update news set title = '{$title}',type = '{$type}',content = '{$content}' where nid = '{$nid}')";
+						$sql = "update news set title = '{$title}',type = '{$type}',content = '{$content}' where nid = '{$nid}'";
 						$this->db->query($sql);
-						$sub_sql = "update submits set uid = '{$login_uid}', last_modified_time = '{$last_modified_time}', submit_time = '{$submit_time}' where nid = '{$nid}')";
+						$sub_sql = "update submits set uid = '{$login_uid}', last_modified_time = '{$last_modified_time}', submit_time = '{$submit_time}' where nid = '{$nid}'";
 						$this->db->query($sub_sql);
 						success_redirct("info/department/index","Edit successful!");
 			}
