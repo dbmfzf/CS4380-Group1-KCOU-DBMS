@@ -1,6 +1,7 @@
 
 <script type="text/javascript" src="<?php echo base_url();?>static/ueditor/ueditor.config.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>static/ueditor/ueditor.all.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>static/ueditor/lang/en/en.js"></script>
 <script type="text/javascript">UE.getEditor('container');
 </script>    
 
