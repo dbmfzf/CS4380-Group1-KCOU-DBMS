@@ -85,25 +85,30 @@ class news extends CI_Controller {
 	 * Edit Content
 	 */
 	public function edit_content($nid){
+		$news_query = $this->db->query("SELECT n.nid FROM news n WHERE n.nid = '".$nid."'");
+		$news_data = $news_query->row_array();
+		//$title = $news_data['title'];
+		//$type = $news_data['type'];
+		//$submit_time = $news_data['submit_time'];
 		$login_uid = rbac_conf(array('INFO','uid'));
 		if($this->input->post()){
 			$content = $this->input->post["content"];
 			$last_modified_time = date('Y-m-d H:i:s',time());
-			$news_query = $this->db->query("SELECT n.nid, n.title, n.type, s.last_modified_time, s.submit_time FROM news n, submits s WHERE s.nid = n.nid and n.nid = '".$nid."'");
-			$news_data = $news_query->row_array();
-			$title = $news_data['title'];
-			$type = $news_data['type'];
-			$submit_time = $news_data['submit_time'];
+			
 			
 			//SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid
-			$sql = "update news set title = '{$title}',type = '{$type}',content = '{$content}' where nid = '{$nid}'";
+			//$sql = "update news set title = '{$title}',type = '{$type}',content = '{$content}' where nid = '{$nid}'";
+			//$this->db->query($sql);
+			$sql = "update news set content = '{$content}' where nid = '{$nid}'";
 			$this->db->query($sql);
-			$sub_sql = "update submits set uid = '{$login_uid}', last_modified_time = '{$last_modified_time}', submit_time = '{$submit_time}' where nid = '{$nid}'";
+			//$sub_sql = "update submits set uid = '{$login_uid}', last_modified_time = '{$last_modified_time}', submit_time = '{$submit_time}' where nid = '{$nid}'";
+			//$this->db->query($sub_sql);
+			$sub_sql = "update submits set last_modified_time = '{$last_modified_time}' where nid = '{$nid}'";
 			$this->db->query($sub_sql);
 			success_redirct("info/news/index","Edit successful!");
 	
 		}else{
-			$this->load->view("info/news/edit_content");
+			$this->load->view("info/news/edit_content",array("news_data"=>$news_data));
 		}
 	}
 	/**

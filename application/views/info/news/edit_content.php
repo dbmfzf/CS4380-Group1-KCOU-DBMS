@@ -6,7 +6,7 @@
 
 <h1>News Content</h1>
 <form action="" method="post"> 
-	<script id="container" name="content" type="text/plain">Enter news</script>
+	<script id="container" name="content" type="text/plain" value="<?php echo $news_data['content'];?>>Enter news</script>
 
     <button type="submit" class="btn btn-success">Submit</button> 
     <a class="btn btn-danger" href="<?php echo site_url('info/news/index'); ?>">Cancel</a> 
