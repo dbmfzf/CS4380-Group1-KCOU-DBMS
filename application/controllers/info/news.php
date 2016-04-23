@@ -52,7 +52,7 @@ class news extends CI_Controller {
 	{
 		$login_uid = rbac_conf(array('INFO','uid'));
 		$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid and n.nid = '".$nid."'");
-		$news_data = $query->row_array();
+		$news_data = $news_query->row_array();
 		 
 		
 		$data['nid'] = $news_data['nid'];
