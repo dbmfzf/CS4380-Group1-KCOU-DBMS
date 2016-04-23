@@ -138,10 +138,11 @@ class news extends CI_Controller {
 			if($this->input->post()){
 				$verfiy = $this->input->post("verfiy");
 				if($verfiy){
-					$sql = "DELETE FROM news WHERE nid = '".$nid."' ";
-					$this->db->query($sql);
 					$sub_sql = "DELETE FROM submits WHERE nid = '".$nid."' ";
 					$this->db->query($sub_sql);
+					$sql = "DELETE FROM news WHERE nid = '".$nid."' ";
+					$this->db->query($sql);
+					
 					success_redirct("info/news/index","Delete successful!");
 				}else{
 					error_redirct("info/news/index","Delete cancelled!");
