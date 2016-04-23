@@ -20,7 +20,7 @@
         </tr>
         <tr>
             <td width = "15%" class="tableleft">Type</td>
-            <td><input type="text" name="type" >
+            <td>
             <select>
   			<option value="Sports">Sports</option>
   			<option value="Academic">Academic</option>
