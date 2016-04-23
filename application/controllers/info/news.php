@@ -85,7 +85,7 @@ class news extends CI_Controller {
 	 * Edit Content
 	 */
 	public function edit_content($nid){
-		$news_query = $this->db->query("SELECT n.nid FROM news n WHERE n.nid = '".$nid."'");
+		$news_query = $this->db->query("SELECT n.nid, n.content FROM news n WHERE n.nid = '".$nid."'");
 		$news_data = $news_query->row_array();
 		//$title = $news_data['title'];
 		//$type = $news_data['type'];
