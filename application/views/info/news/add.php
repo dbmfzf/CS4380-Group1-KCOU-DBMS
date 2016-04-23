@@ -5,7 +5,7 @@
  <style>
 .tableleft{font-weight:bold;background-color:#F5F5F5;}
 </style>
-<h1>News Submission</h1>
+<h1>News Info</h1>
 <form action="" method="post"> 
 
 

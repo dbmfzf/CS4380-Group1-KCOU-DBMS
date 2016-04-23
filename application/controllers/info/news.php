@@ -50,45 +50,34 @@ class news extends CI_Controller {
 	 */
 	public function edit($nid)
 	{
-		
+		$login_uid = rbac_conf(array('INFO','uid'));
 		$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid and n.nid = '".$nid."'");
-		$news_data = $query->result();
+		$news_data = $query->row_array();
 		 
-		
 		
 		$data['nid'] = $news_data['nid'];
 		$data['title'] = $news_data['title'];
 		$data['type'] = $news_data['type'];
-		$data['content'] = $news_data['content'];
-		$data['last_modified_time'] = $news_data['last_modified_time'];
-		$data['submit_time'] = $news_data['submit_time'];
+		$content = $news_data['content'];
 		
 
 
 		
 		if($data){
 			if($this->input->post()){
-				$nid = $this->input->post("nid");
 				$title = $this->input->post("title");
 				$type = $this->input->post("type");
 				$last_modified_time = date('Y-m-d H:i:s',time());
 				
-
-				if($uid!=""){
-					if($did&&$name&&$rname){
-						$rsql = "UPDATE department set name='{$dname}' , rid='{$rid}' WHERE did = '{$did}'";
+						$sql = "update news set title = '{$title}',type = '{$type}',content = '{$content}' where nid = '{$nid}')";
 						$this->db->query($sql);
+						$sub_sql = "update submits set uid = '{$login_uid}', last_modified_time = '{$last_modified_time}', submit_time = '{$submit_time}' where nid = '{$nid}')";
+						$this->db->query($sub_sql);
 						success_redirct("info/department/index","Edit successful!");
-					}else{
-						error_redirct("","The department's information is not complete!");
-					}
-				}else{
-					error_redirct("","No department is found!");
-				}
 			}
-			$this->load->view("info/department/edit",array("data"=>$data ));
+			$this->load->view("info/news/edit",array("data"=>$data ));
 		}else{
-			error_redirct("info/department/index","No user is found!");
+			error_redirct("info/news/index","No news is found!");
 		}
 	}
 	/**
@@ -108,7 +97,7 @@ class news extends CI_Controller {
 			//SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid
 			$sql = "update news set title = '{$title}',type = '{$type}',content = '{$content}' where nid = '{$nid}')";
 			$this->db->query($sql);
-			$sub_sql = "update submits set uid = '{$login_uid}', nid = '{$nid}', last_modified_time = '{$last_modified_time}' where submit_time = '{$submit_time}')";
+			$sub_sql = "update submits set uid = '{$login_uid}', last_modified_time = '{$last_modified_time}', submit_time = '{$submit_time}' where nid = '{$nid}')";
 			$this->db->query($sub_sql);
 			success_redirct("info/news/index","Edit successful!");
 	
@@ -149,11 +138,11 @@ class news extends CI_Controller {
 			if($this->input->post()){
 				$verfiy = $this->input->post("verfiy");
 				if($verfiy){
-					$sql = "DELETE FROM news WHERE did = '".$nid."' ";
+					$sql = "DELETE FROM news WHERE nid = '".$nid."' ";
 					$this->db->query($sql);
 					success_redirct("info/news/index","Delete successful!");
 				}else{
-					error_redirct("info/news/index","Delete failed!");
+					error_redirct("info/news/index","Delete cancelled!");
 				}
 			}
 			$this->load->view("info/news/delete",array("data"=>$data));
