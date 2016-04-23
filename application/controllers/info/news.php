@@ -113,7 +113,7 @@ class news extends CI_Controller {
 			success_redirct("info/news/index","Edit successful!");
 	
 		}else{
-			$this->load->view("info/news/content");
+			$this->load->view("info/news/edit_content");
 		}
 	}
 	/**
