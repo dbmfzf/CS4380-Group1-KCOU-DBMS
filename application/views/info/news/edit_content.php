@@ -11,8 +11,7 @@
     <!-- ±à¼­Æ÷Ô´ÂëÎÄ¼þ -->
     <script type="text/javascript" src="<?php echo base_url();?>ueditor.all.js"></script>
     <!-- ÊµÀý»¯±à¼­Æ÷ -->
-    <script type="text/javascript">
-        var ue = UE.getEditor('container');
+    <script type="text/javascript">UE.getEditor('container');
     </script>    
  <style>
 .tableleft{font-weight:bold;background-color:#F5F5F5;}
@@ -21,16 +20,11 @@
 <form action="" method="post"> 
 
 
-    <table class="table table-bordered table-hover definewidth m10">
-
-        <tr>
-        	<td>
+    
         	<!-- ¼ÓÔØ±à¼­Æ÷µÄÈÝÆ÷ -->
     		<script id="container" name="content" type="text/plain">Enter news</script>
     		</script>
-    		</td>
-        </tr>
-    </table>
+
     <button type="submit" class="btn btn-success">Submit</button> 
      <a class="btn btn-danger" href="<?php echo site_url('info/news/index'); ?>">Cancel</a> 
 </form>
