@@ -105,11 +105,13 @@
         </form>
     </div>
     <div id="resultArea">
-        <?php
-            for($i = 0; $i < 15; $i++){
-                echo "\n\t\t<div class=\"songContent well\"></div>";
-            }
-        ?>
+        <div>
+            <?php
+                for($i = 0; $i < 15; $i++){
+                    echo "\n\t\t<div class=\"songContent well\" id=\"songContent$i\"></div>";
+                }
+            ?>
+        </div>
         <div>
             <ul class="pagination pagination-lg">
               <li><a id="pagePrev">Previous</a></li>

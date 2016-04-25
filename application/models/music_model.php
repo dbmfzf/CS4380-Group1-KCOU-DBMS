@@ -16,7 +16,7 @@ class Music_model extends CI_Model {
         //SQL string
         $sql = "SELECT s.title AS Song_title, ar.name AS Artist, al.title AS Album, s.category AS Genre
         FROM song s, produces aps, artist ar, releases r,  album al
-        WHERE s.title LIKE '" . $this->db->escape_like_str($songName) . 
+        WHERE s.title LIKE '%" . $this->db->escape_like_str($songName) . 
         "%' AND aps.sid = s.sid AND ar.artist_id = aps.artist_id AND ar.artist_id = r.artist_id AND al.album_id = r.album_id;";
         
         //used to prevent sql injection attacks
@@ -71,8 +71,8 @@ class Music_model extends CI_Model {
         
         $sql = "SELECT s.title AS Song_title, ar.name AS Artist, al.title AS Album, s.category AS Genre
         FROM song s, produces aps, artist ar, releases r,  album al
-        WHERE s.category = '" . $this->db->escape($genre) 
-        . "' AND aps.sid = s.sid AND ar.artist_id = aps.artist_id AND ar.artist_id = r.artist_id AND al.album_id = r.album_id;";
+        WHERE s.category = " . $this->db->escape($genre) 
+        . " AND aps.sid = s.sid AND ar.artist_id = aps.artist_id AND ar.artist_id = r.artist_id AND al.album_id = r.album_id;";
         
         $queryObj = $this->db->query($sql);
         return $queryObj->result_array();
