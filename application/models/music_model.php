@@ -100,6 +100,12 @@ class Music_model extends CI_Model {
         $sql = "";
         $this->db->query($sql);
     }
+    
+    /*public function advancedSearch($data){
+        switch($data){
+            case
+        }
+    }*/
 
 }
 

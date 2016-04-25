@@ -24,6 +24,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = 'http://webapp-group1.azurewebsites.net/';
+//Don't delete this comment:
+//$config['base_url'] = 'http://localhost/CS4380_Group1/CS4380-Group1-KCOU-DBMS/';
 
 /*
 |--------------------------------------------------------------------------
