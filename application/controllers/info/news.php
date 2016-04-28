@@ -166,7 +166,7 @@ class news extends CI_Controller {
 		$news_data = $news_query->result_array();
 		
 		
-		$this->load->view("infor/news/analytics",array("news_data"=>$news_data));
+		$this->load->view("infor/news/analysis",array("news_data"=>$news_data));
 	}
 }
 
