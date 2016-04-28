@@ -9,7 +9,7 @@ editor.render("myEditor");
 
 <h1>News Content</h1>
 <form action="" method="post">
-	<textarea  name="content" id="myEditor" ><?php echo $news_data['content'];?></textarea>
+	<textarea height="600px"  name="content" id="myEditor" ><?php echo $news_data['content'];?></textarea>
 
     <button type="submit" class="btn btn-success">Submit</button> 
     <a class="btn btn-danger" href="<?php echo site_url('info/news/index'); ?>">Cancel</a> 
