@@ -159,7 +159,6 @@ class news extends CI_Controller {
 			error_redirct("info/news/index","No department is found!");
 		}
 	}
-}
 
 	public function analysis()
 	{
