@@ -3,7 +3,7 @@
 <script type="text/javascript" src="<?php echo base_url();?>static/ueditor/ueditor.all.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>static/ueditor/lang/en/en.js"></script>
 <script type="text/javascript">
-var editor = new baidu.editor.ui.Editor();
+var editor = new UE.ui.Editor({initialFrameHeight:600});
 editor.render("myEditor");
 </script>    
 
