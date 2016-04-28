@@ -41,3 +41,4 @@
 <hr/>
 
 <?php echo '<a class="btn btn-success pull-right" href="'.site_url("info/news/add").'">Add news</a>'; ?>
+<?php echo '<a class="btn btn-primary pull-left" href="'.site_url("info/news/analysis").'">Top 3 contributors</a>'; ?>
