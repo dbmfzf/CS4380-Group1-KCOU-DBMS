@@ -168,3 +168,5 @@ class news extends CI_Controller {
 		
 		$this->load->view("infor/news/analytics",array("news_data"=>$news_data));
 	}
+}
+
