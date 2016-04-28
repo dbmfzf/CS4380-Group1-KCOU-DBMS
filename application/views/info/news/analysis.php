@@ -2,11 +2,11 @@
 
           foreach($news_data as $row){
      	          $news_count[]= $row['news_num'];
-        	          $dept_arr[] = array( 
+        	          $news_arr[] = array( 
                               "name"=> $row['fullname'],"y"=>intval($row['news_num']) 
                     ); 
         	}
-        	$dept_data = json_encode($dept_arr);
+        	$news_data = json_encode($news_arr);
         	
 
 ?>
@@ -21,10 +21,7 @@ $(function () {
             type: 'column'
         },
         title: {
-            text: 'World\'s largest cities per 2014'
-        },
-        subtitle: {
-            text: 'TOP CONTRIBUTORS'
+            text: 'Top Contributors'
         },
         xAxis: {
             labels: {
@@ -35,23 +32,23 @@ $(function () {
                 }
             }
             title: {
-                text: 'News Submitted'
+                text: 'Name'
             }
         },
         yAxis: {
             min: 0,
             title: {
-                text: 'Name'
+                text: 'News Submitted'
             }
         },
         legend: {
             enabled: false
         },
         tooltip: {
-            pointFormat: 'Population in 2008: <b>{point.y:.1f} millions</b>'
+            pointFormat: 'This volunteer submitted <b>{point.y:.1f} piece(s) of news</b>'
         },
         series: [{
-            name: 'Population',
+            name: 'News submission',
             data: [<?php echo $news_data;?>
             ],
             dataLabels: {
@@ -69,3 +66,4 @@ $(function () {
         }]
     });
 });
+</script>
