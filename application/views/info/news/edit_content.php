@@ -11,6 +11,7 @@ editor.render("myEditor");
 <form action="" method="post">
 	<textarea height="600px"  name="content" id="myEditor" ><?php echo $news_data['content'];?></textarea>
 
+    <div height = "10px"></div>
     <button type="submit" class="btn btn-success">Submit</button> 
     <a class="btn btn-danger" href="<?php echo site_url('info/news/index'); ?>">Cancel</a> 
 </form>
