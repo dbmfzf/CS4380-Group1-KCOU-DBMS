@@ -31,7 +31,7 @@ $(function () {
         },
         xAxis: {
             type: 'category',
-            category :<?php echo $volunteer_name;?>
+          
             ,
             labels: {
                 rotation: -45,
@@ -58,7 +58,7 @@ $(function () {
         },
         series: [{
             name: 'News submission',
-            data: <?php echo $news_cnt;?>
+          
             ,
             dataLabels: {
                 enabled: true,
@@ -75,6 +75,7 @@ $(function () {
         }]
     });
 });
+*/
 $(function () {
     $('#container').highcharts({
         chart: {
@@ -147,6 +148,5 @@ $(function () {
         }]
     });
 });
-*/
 </script>
 
