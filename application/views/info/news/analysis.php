@@ -66,7 +66,7 @@ $(function () {
         },
         series: [{
             name: 'News submission',
-            data: ds,
+            data: [['admin',2]],
             dataLabels: {
                 enabled: true,
                 rotation: -90,
