@@ -11,7 +11,7 @@ foreach($news_data as $row){
         $news_data = json_encode($news_arr);
         $news_cnt[]= json_encode($news_count);
         $volunteer_name[]= json_encode($user_name);
-        echo $news_arr;
+        echo $news_data;
 ?>
 
 <div id="container" style="min-width: 300px; height: 400px; margin: 0 auto"></div>
