@@ -117,9 +117,7 @@ $(function () {
         },
         series: [{
             name: 'Population',
-            data: [
-                ['Admin', 2]
-            ],
+            data: <?php echo $news_data; ?>,
             dataLabels: {
                 enabled: true,
                 rotation: -90,
