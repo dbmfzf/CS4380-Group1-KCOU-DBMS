@@ -101,7 +101,7 @@ $(function () {
         },
         yAxis: {
             min: 0,
-            tickPixelInterval: 1;
+            tickPixelInterval: 1,
             title: {
                 text: 'News submission'
             }
