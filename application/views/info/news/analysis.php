@@ -30,8 +30,8 @@ $(function () {
         },
         xAxis: {
             type: 'category',
-            category :[<?php echo $volunteer_name;?>
-            ],
+            category :<?php echo $volunteer_name;?>
+            ,
             labels: {
                 rotation: -45,
                 style: {
@@ -57,8 +57,8 @@ $(function () {
         },
         series: [{
             name: 'News submission',
-            data: [<?php echo $news_cnt;?>
-            ],
+            data: <?php echo $news_cnt;?>
+            ,
             dataLabels: {
                 enabled: true,
                 rotation: -90,
