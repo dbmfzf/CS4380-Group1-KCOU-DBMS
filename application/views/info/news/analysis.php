@@ -101,6 +101,7 @@ $(function () {
         },
         yAxis: {
             min: 0,
+            tickPixelInterval: 1;
             title: {
                 text: 'News submission'
             }
@@ -117,7 +118,7 @@ $(function () {
             dataLabels: {
                 enabled: true,
                 color: '#FFFFFF',
-                align: 'right',
+                align: 'center',
                 //format: '{point.y:.1f}', // one decimal
                 y: 10, // 10 pixels down from the top
                 style: {
