@@ -21,7 +21,7 @@
 <div id="container" style="min-width: 300px; height: 400px; margin: 0 auto"></div>
 
 <script>
-var arr = <?php echo $volunteer_name[];?>;
+var arr = <?php echo $news_data;?>;
   var ds=[]
   for(var k in arr){
       ds.push( typeof(arr[k])=='object'?arr[k]:[k,arr[k]])
