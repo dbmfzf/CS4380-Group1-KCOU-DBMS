@@ -33,7 +33,7 @@ class news extends CI_Controller {
 			$news_data = $news_query->result();
 			$this->load->view("info/news",array("news_data"=>$news_data));
 		
-		}elseif ($login_name=="News dept leader"){
+		}elseif ($login_rname=="News dept leader"){
 			$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid");
 			$news_data = $news_query->result();
 			$this->load->view("info/news",array("news_data"=>$news_data));
