@@ -92,7 +92,7 @@ $(function () {
         xAxis: {
             type: 'category',
             labels: {
-                rotation: -45,
+                rotation: 0,
                 style: {
                     fontSize: '13px',
                     fontFamily: 'Verdana, sans-serif'
@@ -101,7 +101,7 @@ $(function () {
         },
         yAxis: {
             min: 0,
-            tickPixelInterval: 1,
+            allowDecimals:false,
             title: {
                 text: 'News submission'
             }
