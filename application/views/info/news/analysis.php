@@ -41,6 +41,7 @@ $(function () {
         },
         xAxis: {
             type: 'category',
+            category: ['admin', 'aa']
             labels: {
                 rotation: -45,
                 style: {
@@ -66,7 +67,7 @@ $(function () {
         },
         series: [{
             name: 'News submission',
-            data: [['admin', 2],['aa', 1]],
+            data: [2, 1],
             dataLabels: {
                 enabled: true,
                 rotation: -90,
