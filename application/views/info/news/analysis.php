@@ -57,6 +57,7 @@ $(function () {
         series: [{
             name: 'News submission',
             data: <?php echo $news_data;?>
+            ,
             dataLabels: {
                 enabled: true,
                 rotation: -90,
