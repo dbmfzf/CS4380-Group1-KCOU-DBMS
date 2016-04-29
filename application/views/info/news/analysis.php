@@ -20,7 +20,6 @@
 <div id="container" style="min-width: 300px; height: 400px; margin: 0 auto"></div>
 
 <script>
-
 $(function () {
     $('#container').highcharts({
         chart: {
@@ -56,7 +55,7 @@ $(function () {
         },
         series: [{
             name: 'News submission',
-            data: <?php echo $news_data;?>,
+            data: <?php echo $news_arr;?>,
             dataLabels: {
                 enabled: true,
                 rotation: -90,
