@@ -21,6 +21,12 @@
 <div id="container" style="min-width: 300px; height: 400px; margin: 0 auto"></div>
 
 <script>
+var arr = <?php echo $volunteer_name[];?>;
+var str = JSON.stringify(arr);
+var newArr = JSON.parse(str);
+while (newArr.length > 0) {
+    newArr.pop();
+}
 $(function () {
     $('#container').highcharts({
         chart: {
