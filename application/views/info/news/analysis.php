@@ -110,7 +110,7 @@ $(function () {
             enabled: false
         },
         tooltip: {
-            pointFormat: 'This user submitted <b>{point.y:.d} piece(s) of news</b>'
+            pointFormat: 'This user submitted <b>{point.y} piece(s) of news</b>'
         },
         series: [{
             name: 'Name',
