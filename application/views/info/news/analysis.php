@@ -22,11 +22,15 @@
 
 <script>
 var arr = <?php echo $volunteer_name[];?>;
-var str = JSON.stringify(arr);
-var newArr = JSON.parse(str);
-while (newArr.length > 0) {
-    newArr.pop();
-}
+  var ds=[]
+  for(var k in arr){
+      ds.push( typeof(arr[k])=='object'?arr[k]:[k,arr[k]])
+  }
+//var str = JSON.stringify(arr);
+//var newArr = JSON.parse(str);
+//while (newArr.length > 0) {
+  //  newArr.pop();
+//}
 $(function () {
     $('#container').highcharts({
         chart: {
@@ -62,7 +66,7 @@ $(function () {
         },
         series: [{
             name: 'News submission',
-            data: <?php echo $news_data;?>,
+            data: ds,
             dataLabels: {
                 enabled: true,
                 rotation: -90,
