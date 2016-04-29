@@ -5,7 +5,7 @@
      	          $user_name[]= $row['fullname'];
      	          $name = $row['fullname'];
         	          $news_arr[] = array( 
-                               'name',  intval($row['news_num']) 
+                               $row['fullname'],  intval($row['news_num']) 
                     ); 
         	}
         	$news_data = json_encode($news_arr);
