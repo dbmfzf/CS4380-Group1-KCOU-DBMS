@@ -95,7 +95,7 @@ $(function () {
                 rotation: -45,
                 style: {
                     fontSize: '13px',
-                    fontFamily: '微软雅黑'
+                    fontFamily: 'Verdana, sans-serif'
                 }
             }
         },
@@ -109,21 +109,20 @@ $(function () {
             enabled: false
         },
         tooltip: {
-            pointFormat: 'This user submitted <b>{point.y:.1f} piece(s) of news</b>'
+            pointFormat: 'This user submitted <b>{point.y:.d} piece(s) of news</b>'
         },
         series: [{
             name: 'Name',
             data: <?php echo $news_data; ?>,
             dataLabels: {
                 enabled: true,
-                rotation: -90,
                 color: '#FFFFFF',
                 align: 'right',
                 //format: '{point.y:.1f}', // one decimal
                 y: 10, // 10 pixels down from the top
                 style: {
                     fontSize: '13px',
-                    fontFamily: '微软雅黑'
+                    fontFamily: 'Verdana, sans-serif'
                 }
             }
         }]
