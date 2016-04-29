@@ -15,7 +15,7 @@
 <script type="text/javascript" src="<?php echo base_url();?>static/highcharts/js/exporting.js"></script>
 
 <div id="container" style="min-width: 300px; height: 400px; margin: 0 auto"></div>
-
+<script>
 $(function () {
     $('#container').highcharts({
         chart: {
@@ -88,3 +88,4 @@ $(function () {
         }]
     });
 });
+</script>
