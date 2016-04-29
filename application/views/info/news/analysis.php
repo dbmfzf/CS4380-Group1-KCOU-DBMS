@@ -11,17 +11,16 @@ foreach($news_data as $row){
         $news_data = json_encode($news_arr);
         $news_cnt[]= json_encode($news_count);
         $volunteer_name[]= json_encode($user_name);
-        echo $news_data;
 ?>
 
 <div id="container" style="min-width: 300px; height: 400px; margin: 0 auto"></div>
 
 <script>
-  var arr = <?php echo $news_data;?>;
-  var ds=[]
-  for(var k in arr){
-      ds.push( typeof(arr[k])=='object'?arr[k]:[k,arr[k]])
-  }
+  //var arr = <?php echo $news_data;?>;
+  //var ds=[]
+  //for(var k in arr){
+      //ds.push( typeof(arr[k])=='object'?arr[k]:[k,arr[k]])
+  //}
 //var str = JSON.stringify(arr);
 //var newArr = JSON.parse(str);
 //while (newArr.length > 0) {
