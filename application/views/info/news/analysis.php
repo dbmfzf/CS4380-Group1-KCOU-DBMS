@@ -4,7 +4,7 @@
      	          $news_count[]= $row['news_num'];
      	          $user_name[]= $row['fullname'];
         	          $news_arr[] = array( 
-                               $row['fullname'],  intval($row['news_num']) 
+                               '$row['fullname']',  intval($row['news_num']) 
                     ); 
         	}
         	$news_data = json_encode($news_arr);
