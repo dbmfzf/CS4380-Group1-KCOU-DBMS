@@ -88,10 +88,7 @@ $(function () {
             type: 'column'
         },
         title: {
-            text: 'World\'s largest cities per 2014'
-        },
-        subtitle: {
-            text: 'Source: <a href="http://en.wikipedia.org/wiki/List_of_cities_proper_by_population">Wikipedia</a>'
+            text: 'Top3 Contributor'
         },
         xAxis: {
             type: 'category',
@@ -106,17 +103,17 @@ $(function () {
         yAxis: {
             min: 0,
             title: {
-                text: 'Population (millions)'
+                text: 'News submission'
             }
         },
         legend: {
             enabled: false
         },
         tooltip: {
-            pointFormat: 'Population in 2008: <b>{point.y:.1f} millions</b>'
+            pointFormat: 'This user submitted <b>{point.y:.1f} piece(s) of news</b>'
         },
         series: [{
-            name: 'Population',
+            name: 'Name',
             data: <?php echo $news_data; ?>,
             dataLabels: {
                 enabled: true,
