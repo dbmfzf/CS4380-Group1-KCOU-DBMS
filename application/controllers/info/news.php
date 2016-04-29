@@ -162,7 +162,7 @@ class news extends CI_Controller {
 
 	public function analysis()
 	{
-		$news_query = $this->db->query("SELECT u.fullname, count(*) as news_num FROM submits s, user u where u.uid = s.uid GROUP BY s.uid");
+		$news_query = $this->db->query("SELECT u.fullname, count(*) as news_num FROM submits s, user u where u.uid = s.uid GROUP BY s.uid order by news_num limit 3");
 		$news_data = $news_query->result_array();
 		
 		
