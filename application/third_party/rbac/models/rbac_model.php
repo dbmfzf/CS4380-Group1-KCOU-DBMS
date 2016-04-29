@@ -11,7 +11,7 @@ class Rbac_model extends CI_Model{
 	 * Get privileges list
 	*/
 	public function get_acl($role_id){
-		$query = $this->db->query("SELECT node_id,directory,controller,func FROM Node WHERE node_id in (SELECT node_id FROM Authorizes WHERE rid = ".$role_id.")");
+		$query = $this->db->query("SELECT N.node_id,N.directory,N.controller,N.func FROM Node N, Authorizes A WHERE N.node_id = A.node_id AND rid = '{$role_id}'");
 		$role_data = $query->result();
 		foreach($role_data as $vo){
 			$Tmp_role[$vo->directory][$vo->controller][$vo->func] = TRUE;
