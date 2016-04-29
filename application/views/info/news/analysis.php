@@ -20,7 +20,7 @@
 <div id="container" style="min-width: 300px; height: 400px; margin: 0 auto"></div>
 
 <script>
-/*
+
 $(function () {
     $('#container').highcharts({
         chart: {
@@ -31,8 +31,6 @@ $(function () {
         },
         xAxis: {
             type: 'category',
-          
-            ,
             labels: {
                 rotation: -45,
                 style: {
@@ -58,8 +56,7 @@ $(function () {
         },
         series: [{
             name: 'News submission',
-          
-            ,
+            data: <?php echo $news_data;?>
             dataLabels: {
                 enabled: true,
                 rotation: -90,
@@ -75,7 +72,7 @@ $(function () {
         }]
     });
 });
-*/
+/*
 $(function () {
     $('#container').highcharts({
         chart: {
@@ -148,5 +145,6 @@ $(function () {
         }]
     });
 });
+*/
 </script>
 
