@@ -118,8 +118,7 @@ $(function () {
         series: [{
             name: 'Population',
             data: [
-                ['Shanghai', 23.7],
-                ['Lagos', 16.1]
+                ['Admin', 2]
             ],
             dataLabels: {
                 enabled: true,
