@@ -85,45 +85,60 @@ $(function () {
             type: 'column'
         },
         title: {
-            text: 'Top3 Contributor'
+            text: 'Stacked column chart'
         },
         xAxis: {
-            type: 'category',
-            labels: {
-                rotation: 0,
-                style: {
-                    fontSize: '18px',
-                    fontFamily: 'Verdana, sans-serif'
-                }
-            }
+            categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
         },
         yAxis: {
             min: 0,
-            allowDecimals:false,
             title: {
-                text: 'News submission'
+                text: 'Total fruit consumption'
+            },
+            stackLabels: {
+                enabled: true,
+                style: {
+                    fontWeight: 'bold',
+                    color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                }
             }
         },
         legend: {
-            enabled: false
+            align: 'right',
+            x: -30,
+            verticalAlign: 'top',
+            y: 25,
+            floating: true,
+            backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+            borderColor: '#CCC',
+            borderWidth: 1,
+            shadow: false
         },
         tooltip: {
-            pointFormat: 'This user submitted <b>{point.y} piece(s) of news</b>'
+            headerFormat: '<b>{point.x}</b><br/>',
+            pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
         },
-        series: [{
-            name: 'Name',
-            data: <?php echo $news_data; ?>,
-            dataLabels: {
-                enabled: true,
-                color: '#FFFFFF',
-                align: 'center',
-                //format: '{point.y:.1f}', // one decimal
-                y: 10, // 10 pixels down from the top
-                style: {
-                    fontSize: '18px',
-                    fontFamily: 'Verdana, sans-serif'
+        plotOptions: {
+            column: {
+                stacking: 'normal',
+                dataLabels: {
+                    enabled: true,
+                    color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                    style: {
+                        textShadow: '0 0 3px black'
+                    }
                 }
             }
+        },
+        series: [{
+            name: 'John',
+            data: [5, 3, 4, 7, 2]
+        }, {
+            name: 'Jane',
+            data: [2, 2, 3, 2, 1]
+        }, {
+            name: 'Joe',
+            data: [3, 4, 4, 2, 5]
         }]
     });
     
