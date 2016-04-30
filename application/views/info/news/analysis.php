@@ -15,10 +15,10 @@ foreach($news_data as $row){
 
 <h1>Rankings!</h1>
 <ul id="myTab" class="nav nav-tabs">
-   <li class="active"><a href="#home" data-toggle="tab">Top 3 contributor</a>
+   <li class="active"><a href="#home" data-toggle="tab">Top3 contributor</a>
    </li>
-   <li><a href="#second" data-toggle="tab">By gender</a></li>
-   <li><a href="#third" data-toggle="tab">By role</a></li>
+   <li><a href="#second" data-toggle="tab">Kazuya</a></li>
+   <li><a href="#third" data-toggle="tab">Kame</a></li>
 </ul>
 <div id="myTabContent" class="tab-content">
    <div class="tab-pane fade in active" id="home">
