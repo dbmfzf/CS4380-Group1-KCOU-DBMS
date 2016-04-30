@@ -1,16 +1,16 @@
 <?php 
 
 foreach($news_data as $row){
-               $news_count[]= $row['news_num'];
-               $user_name[]= $row['fullname'];
-               $name = $row['fullname'];
-                  $news_arr[] = array( 
-                     $row['fullname'],  intval($row['news_num']) 
-          ); 
-        }
-        $news_data = json_encode($news_arr);
-        $news_cnt[]= json_encode($news_count);
-        $volunteer_name[]= json_encode($user_name);
+    $news_count[]= $row['news_num'];
+    $user_name[]= $row['fullname'];
+    $name = $row['fullname'];
+    $news_arr[] = array( 
+      $row['fullname'],  intval($row['news_num']) 
+    ); 
+}
+$news_data = json_encode($news_arr);
+$news_cnt[]= json_encode($news_count);
+$volunteer_name[]= json_encode($user_name);
 ?>
 
 <h1>Rankings!</h1>
