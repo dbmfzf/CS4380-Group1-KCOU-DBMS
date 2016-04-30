@@ -13,19 +13,26 @@ foreach($news_data as $row){
         $volunteer_name[]= json_encode($user_name);
 ?>
 
-<div id="container" style="min-width: 300px; height: 400px; margin: 0 auto"></div>
+<h1>Rankings!</h1>
+<ul id="myTab" class="nav nav-tabs">
+   <li class="active"><a href="#home" data-toggle="tab">By department</a>
+   </li>
+   <li><a href="#second" data-toggle="tab">By gender</a></li>
+   <li><a href="#third" data-toggle="tab">By role</a></li>
+</ul>
+<div id="myTabContent" class="tab-content">
+   <div class="tab-pane fade in active" id="home">
+      <div align ="center" id="container" style="min-width: 600px; height: 450px; max-width: 800px; margin: 0 auto; padding-top:5%"></div>
+   </div>
+   <div class="tab-pane fade" id="second">
+      <div align ="center" id="gender" style="min-width: 600px; height: 450px; max-width: 800px; margin: 0 auto; padding-top:5%"></div>
+   </div>
+   <div  class="tab-pane fade" id="third">
+      <div align ="center" id="role" style="min-width: 600px; height: 450px; max-width: 800px; margin: 0 auto; padding-top:5%"></div>
+   </div>
+</div>
 
 <script>
-  //var arr = <?php echo $news_data;?>;
-  //var ds=[]
-  //for(var k in arr){
-      //ds.push( typeof(arr[k])=='object'?arr[k]:[k,arr[k]])
-  //}
-//var str = JSON.stringify(arr);
-//var newArr = JSON.parse(str);
-//while (newArr.length > 0) {
-  //  newArr.pop();
-//}
 /*
 $(function () {
     $('#container').highcharts({
