@@ -1,32 +1,30 @@
 <?php 
+$today = date("Y-m-d");
+foreach($user_dept_data as $row){
+     $dept_cnt[]= $row['user_num'];
+        $dept_arr[] = array( 
+          "name"=> $row['dept_name'],"y"=>intval($row['user_num']) 
+); 
+}
+$dept_data = json_encode($dept_arr);
 
-          $today = date("Y-m-d");
-          foreach($user_dept_data as $row){
-     	          $dept_cnt[]= $row['user_num'];
-        	          $dept_arr[] = array( 
-                              "name"=> $row['dept_name'],"y"=>intval($row['user_num']) 
-                    ); 
-        	}
-        	$dept_data = json_encode($dept_arr);
-          
-     	foreach($user_gender_data as $row){
-     	          $gender_cnt[]= $row['user_num'];
-        	          $gender_arr[] = array( 
-                              "name"=> $row['gender'],"y"=>intval($row['user_num']) 
-                    ); 
-        	}
-        	$gender_data = json_encode($gender_arr);
-        	
-        	foreach($user_role_data as $row){
-     	          $role_cnt[]= $row['user_num'];
-        	          $role_arr[] = array( 
-                              "name"=> $row['role_name'],"y"=>intval($row['user_num']) 
-                    ); 
-        	}
-        	$role_data = json_encode($role_arr);
-        	
+foreach($user_gender_data as $row){
+     $gender_cnt[]= $row['user_num'];
+        $gender_arr[] = array( 
+          "name"=> $row['gender'],"y"=>intval($row['user_num']) 
+); 
+}
+$gender_data = json_encode($gender_arr);
 
+foreach($user_role_data as $row){
+     $role_cnt[]= $row['user_num'];
+        $role_arr[] = array( 
+          "name"=> $row['role_name'],"y"=>intval($row['user_num']) 
+); 
+}
+$role_data = json_encode($role_arr);
 ?>
+
 <script>
 $(function () {
 
