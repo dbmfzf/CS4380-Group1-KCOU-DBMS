@@ -63,7 +63,7 @@ class Music_model extends CI_Model {
         "%') AND aps.sid = s.sid AND ar.artist_id = aps.artist_id AND ar.artist_id = r.artist_id AND al.album_id = r.album_id;";
         
         $queryObj = $this->db->query($sql);
-        return json_encode($queryObj->result());
+        return $queryObj->result_array();
     }
     //Input: a genre of music that is exact
     public function searchByGenre($genre){

@@ -4,15 +4,16 @@
         console.dir("searchMusic called");
         switch(searchType){
             case 'generic':
-                $.getJSON("<?php echo base_url(); ?>index.php/music/search_music/genericSearchHandler",
+                /*$.getJSON("<?php //echo base_url(); ?>index.php/music/search_music/genericSearchHandler",
                         {"searchString" : $("#genericSearch").val()}, 
                         function ( data ){
                             console.dir("inside of anonymous function");
                             console.dir( data );
-                });
+                });*/
+                window.location.href = "<?php echo base_url(); ?>index.php/music/search_music/?searchString=" + $("#genericSearch").val();
                 break;
             case 'advanced':
-                $.getJSON("<?php echo base_url(); ?>index.php/music/search_music/advancedSearchHandler",
+                /*$.getJSON("<?php //echo base_url(); ?>index.php/music/search_music/advancedSearchHandler",
                          {
                             "songName" : $("#songSearch").val(),
                             "artistName" : $("#artistSearch").val(),
@@ -22,7 +23,8 @@
                          function ( data ){
                             console.dir("inside of anonymous function");
                             console.dir( data );
-                });
+                });*/
+                window.location.href = "<?php echo base_url(); ?>index.php/music/search_music/?songName=" + $("#songSearch").val() + "&artistName=" + $("#artistSearch").val() + "&albumName=" + $("#albumSearch").val() + "&genreName=" + $("#genreSearch").val();
                 break;
             default:
                 break;
@@ -51,16 +53,6 @@
     } */
 </script>
 <style>
-    .songContent {
-        margin: 0px;
-        height: 150px;
-    }
-    .songContent:nth-child(even) {
-        background: #DDD;
-    }
-    .songContent:nth-child(odd) {
-        background: #FAFAFA;
-    }
     #searchBar {
         background-color: #AAA;
     }
@@ -74,7 +66,7 @@
             <div class="hbox">
                 <div class="form-group">
                   <label for="genericSearch">Search for:</label>
-                   <input type="text" class="form-control" id="genericSearch" placeholder="Enter song, album, or artist"> 
+                   <input type="text" class="form-control" id="genericSearch" placeholder="Song, album, or artist"> 
                 </div>
                 <div class="form-group">
                     <button type="button" class="btn btn-primary" onclick="searchMusic('generic')"><span class="glyphicon glyphicon-search"></span>  Search</button>
@@ -106,20 +98,30 @@
     </div>
     <div id="resultArea">
         <div>
-            <?php
-                for($i = 0; $i < 15; $i++){
-                    echo "\n\t\t<div class=\"songContent well\" id=\"songContent$i\"></div>";
-                }
-            ?>
-        </div>
-        <div>
-            <ul class="pagination pagination-lg">
-              <li><a id="pagePrev">Previous</a></li>
-              <li><a id="page1">1</a></li>
-              <li><a id="page2">2</a></li>
-              <li><a id="page3">3</a></li>
-              <li><a id="pageNext">Next</a></li>
-            </ul>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Song</th>
+                        <th>Artist</th>
+                        <th>Album</th>
+                        <th>Genre</th>    
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        $arrayOfSongs = json_decode($searchValues);
+                        for($i = 0; $i < sizeof($arrayOfSongs); $i++){
+                            echo("\t<tr>\n");
+                            echo("\t\t<td>" . $arrayOfSongs[$i]->Song_title . "</td>\n");
+                            echo("\t\t<td>" . $arrayOfSongs[$i]->Artist . "</td>\n");
+                            echo("\t\t<td>" . $arrayOfSongs[$i]->Album . "</td>\n");
+                            echo("\t\t<td>" . $arrayOfSongs[$i]->Genre . "</td>\n");
+                            echo("\t</tr>\n");
+                            
+                        }
+                    ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
