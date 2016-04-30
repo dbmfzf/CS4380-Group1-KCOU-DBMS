@@ -1,5 +1,4 @@
 <?php 
-
 foreach($news_data as $row){
     $news_count[]= $row['news_num'];
     $user_name[]= $row['fullname'];
