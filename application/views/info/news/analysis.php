@@ -101,7 +101,7 @@ $(function () {
             labels: {
                 rotation: 0,
                 style: {
-                    fontSize: '13px',
+                    fontSize: '18px',
                     fontFamily: 'Verdana, sans-serif'
                 }
             }
@@ -129,7 +129,7 @@ $(function () {
                 //format: '{point.y:.1f}', // one decimal
                 y: 10, // 10 pixels down from the top
                 style: {
-                    fontSize: '13px',
+                    fontSize: '18px',
                     fontFamily: 'Verdana, sans-serif'
                 }
             }
