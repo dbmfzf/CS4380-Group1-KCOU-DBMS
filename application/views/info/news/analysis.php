@@ -33,60 +33,6 @@ $volunteer_name[]= json_encode($user_name);
 </div>
 
 <script>
-/*
-$(function () {
-    $('#container').highcharts({
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'Top Contributors'
-        },
-        xAxis: {
-            type: 'category',
-            category: ['admin', 'aa']
-            labels: {
-                rotation: -45,
-                style: {
-                    fontSize: '13px',
-                    fontFamily: 'Verdana, sans-serif'
-                }
-            }
-            title: {
-                text: 'Name'
-            }
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'News Submitted'
-            }
-        },
-        legend: {
-            enabled: false
-        },
-        tooltip: {
-            pointFormat: 'This volunteer submitted <b>{point.y:.1f} piece(s) of news</b>'
-        },
-        series: [{
-            name: 'News submission',
-            data: [2, 1],
-            dataLabels: {
-                enabled: true,
-                rotation: -90,
-                color: '#FFFFFF',
-                align: 'right',
-                format: '{point.y:.1f}', // one decimal
-                y: 10, // 10 pixels down from the top
-                style: {
-                    fontSize: '13px',
-                    fontFamily: 'Verdana, sans-serif'
-                }
-            }
-        }]
-    });
-});
-*/
 
 $(function () {
     $('#container').highcharts({
