@@ -21,20 +21,20 @@ $volunteer_name[]= json_encode($user_name);
 </ul>
 <div id="myTabContent" class="tab-content">
    <div class="tab-pane fade in active" id="home">
-      <div align ="center" id="container" style="min-width: 600px; height: 450px; max-width: 800px; margin: 0 auto; padding-top:5%"></div>
+      <div align ="center" id="container1" style="min-width: 600px; height: 450px; max-width: 800px; margin: 0 auto; padding-top:5%"></div>
    </div>
    <div class="tab-pane fade" id="second">
-      <div align ="center" id="gender" style="min-width: 600px; height: 450px; max-width: 800px; margin: 0 auto; padding-top:5%"></div>
+      <div align ="center" id="container2" style="min-width: 600px; height: 450px; max-width: 800px; margin: 0 auto; padding-top:5%"></div>
    </div>
    <div  class="tab-pane fade" id="third">
-      <div align ="center" id="role" style="min-width: 600px; height: 450px; max-width: 800px; margin: 0 auto; padding-top:5%"></div>
+      <div align ="center" id="container3" style="min-width: 600px; height: 450px; max-width: 800px; margin: 0 auto; padding-top:5%"></div>
    </div>
 </div>
 
 <script>
 
 $(function () {
-    $('#container').highcharts({
+    $('#container1').highcharts({
         chart: {
             type: 'column'
         },
@@ -80,6 +80,101 @@ $(function () {
             }
         }]
     });
+    
+    $('#container2').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Top3 Contributor'
+        },
+        xAxis: {
+            type: 'category',
+            labels: {
+                rotation: 0,
+                style: {
+                    fontSize: '18px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        },
+        yAxis: {
+            min: 0,
+            allowDecimals:false,
+            title: {
+                text: 'News submission'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            pointFormat: 'This user submitted <b>{point.y} piece(s) of news</b>'
+        },
+        series: [{
+            name: 'Name',
+            data: <?php echo $news_data; ?>,
+            dataLabels: {
+                enabled: true,
+                color: '#FFFFFF',
+                align: 'center',
+                //format: '{point.y:.1f}', // one decimal
+                y: 10, // 10 pixels down from the top
+                style: {
+                    fontSize: '18px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        }]
+    });
+    
+    $('#container3').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Top3 Contributor'
+        },
+        xAxis: {
+            type: 'category',
+            labels: {
+                rotation: 0,
+                style: {
+                    fontSize: '18px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        },
+        yAxis: {
+            min: 0,
+            allowDecimals:false,
+            title: {
+                text: 'News submission'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            pointFormat: 'This user submitted <b>{point.y} piece(s) of news</b>'
+        },
+        series: [{
+            name: 'Name',
+            data: <?php echo $news_data; ?>,
+            dataLabels: {
+                enabled: true,
+                color: '#FFFFFF',
+                align: 'center',
+                //format: '{point.y:.1f}', // one decimal
+                y: 10, // 10 pixels down from the top
+                style: {
+                    fontSize: '18px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        }]
+    });
+    
 });
 
 </script>
