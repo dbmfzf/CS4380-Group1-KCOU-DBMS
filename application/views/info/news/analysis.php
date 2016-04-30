@@ -8,13 +8,12 @@ foreach($news_data as $row){
     ); 
 }
 $news_data = json_encode($news_arr);
-$news_cnt[]= json_encode($news_count);
-$volunteer_name[]= json_encode($user_name);
+
 ?>
 
 <h1>Rankings!</h1>
 <ul id="myTab" class="nav nav-tabs">
-   <li class="active"><a href="#home" data-toggle="tab">Top3 contributor</a>
+   <li class="active"><a href="#home" data-toggle="tab">Top3 contributors</a>
    </li>
    <li><a href="#second" data-toggle="tab">Kazuya</a></li>
    <li><a href="#third" data-toggle="tab">Kame</a></li>
@@ -39,7 +38,7 @@ $(function () {
             type: 'column'
         },
         title: {
-            text: 'Top3 Contributor'
+            text: 'Top3 Contributors'
         },
         xAxis: {
             type: 'category',
