@@ -8,7 +8,15 @@ foreach($news_data as $row){
     ); 
 }
 
+foreach($news_type_data as $row){
+    $news_type_arr[] = array( 
+      $row['type']) 
+    ); 
+    
+}
+
 $news_data = json_encode($news_arr);
+$news_type_data = json_encode($news_type_arr);
 echo $news_type_data;
 
 ?>
