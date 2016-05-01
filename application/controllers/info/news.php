@@ -165,10 +165,11 @@ class news extends CI_Controller {
 		$news_query = $this->db->query("SELECT u.fullname, count(*) as news_num FROM submits s, user u where u.uid = s.uid GROUP BY s.uid order by news_num desc limit 3");
 		$news_data = $news_query->result_array();
 		
-		$news_type = this->db->query("SELECT DISTINCT catagory FROM News");
-		$news_type_data = $new_data -> result_array();
+		$news_type = this->db->query("SELECT DISTINCT uid FROM News");
+		$news_type_data = $new_type -> result_array();
+		$news_type_data = json_encode($news_type_data);
 		
-		$this->load->view("info/news/analysis",array("news_data"=>$news_data));
+		$this->load->view("info/news/analysis",array("news_data"=>$news_data),$news_type_data);
 	}
 }
 
