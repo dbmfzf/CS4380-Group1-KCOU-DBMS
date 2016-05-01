@@ -1,13 +1,15 @@
 <?php 
 foreach($news_data as $row){
-    $news_count[]= $row['news_num'];
-    $user_name[]= $row['fullname'];
-    $name = $row['fullname'];
+    //$news_count[]= $row['news_num'];
+    //$user_name[]= $row['fullname'];
+    //$name = $row['fullname'];
     $news_arr[] = array( 
       $row['fullname'],  intval($row['news_num']) 
     ); 
 }
+
 $news_data = json_encode($news_arr);
+echo $news_type_data;
 
 ?>
 
