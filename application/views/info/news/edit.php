@@ -17,7 +17,7 @@
         <tr>
             <td width = "15%" class="tableleft">Type</td>
             <td>
-            <select name="type" value="<?php echo $data['type'];?>">
+            <select name="type" id = "type">
   			<option value="Sports">Sports</option>
   			<option value="Academic">Academic</option>
 	  		<option value="Social">Social</option>
@@ -29,3 +29,18 @@
     <button type="submit" class="btn btn-success">Submit</button> 
      <a class="btn btn-danger" href="<?php echo site_url('info/news/index'); ?>">Cancel</a> 
 </form>
+<script>
+ $(document).ready(function() {
+	 var type = "<?php echo $data['type']?>"";
+	 var opt = document.getElementById('type');
+	 var leng= opt.options.length;
+	 for(var i=0;i<leng; i++){  
+        	var tempValue = opt.options[i].value;  
+	        if(tempValue == type)  
+	        {  
+	            opt.options[i].selected = true;  
+	        }  
+    }  
+	
+ })
+</script>
