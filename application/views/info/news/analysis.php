@@ -10,7 +10,7 @@ foreach($news_data as $row){
 
 foreach($news_type_data as $row){
     $news_type_arr[] = array(
-        $row['type'],intval($row['news_cnt')
+        $row['type'],intval($row['news_cnt'])
     );
     
 }
