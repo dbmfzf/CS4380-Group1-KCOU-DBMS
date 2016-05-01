@@ -166,7 +166,7 @@ class news extends CI_Controller {
 		$news_data = $news_query->result_array();
 		
 		$news_type = $this->db->query("SELECT DISTINCT type FROM News");
-		$news_type_data = $new_type -> result_array();
+		$news_type_data = $news_type -> result_array();
 		$news_type_data = json_encode($news_type_data);
 		
 		$this->load->view("info/news/analysis",array("news_data"=>$news_data),$news_type_data);
