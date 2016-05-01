@@ -23,10 +23,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-//$config['base_url'] = 'http://webapp-group1.azurewebsites.net/';
+$config['base_url'] = 'http://webapp-group1.azurewebsites.net/';
 //Don't delete these comments:
 //$config['base_url'] = 'http://localhost/CS4380_Group1/CS4380-Group1-KCOU-DBMS/';
-$config['base_url'] = 'http://localhost/CS4380Group1/CS4380-Group1-KCOU-DBMS/';
+//$config['base_url'] = 'http://localhost/CS4380Group1/CS4380-Group1-KCOU-DBMS/';
 
 /*
 |--------------------------------------------------------------------------
