@@ -1,8 +1,5 @@
 <?php 
 foreach($news_data as $row){
-    //$news_count[]= $row['news_num'];
-    //$user_name[]= $row['fullname'];
-    //$name = $row['fullname'];
     $news_arr[] = array( 
       $row['fullname'],  intval($row['news_num']) 
     ); 
@@ -22,16 +19,16 @@ $news_type_data = json_encode($news_type_arr);
 
 <h1>Rankings!</h1>
 <ul id="myTab" class="nav nav-tabs">
-   <li class="active"><a href="#home" data-toggle="tab">Top3 contributors</a>
+   <li class="active"><a href="#home" data-toggle="tab">Contributors</a>
    </li>
    <li><a href="#second" data-toggle="tab">News types</a></li>
 </ul>
 <div id="myTabContent" class="tab-content">
    <div class="tab-pane fade in active" id="home">
-      <div align ="center" id="container1" style="width: 600px; height: 450px; max-width: 800px; margin: 0 auto; padding-top:5%"></div>
+      <div align ="center" id="container1" style="min-width: 600px; height: 450px; max-width: 800px; margin: 0 auto; padding-top:5%"></div>
    </div>
    <div class="tab-pane fade" id="second">
-      <div align ="center" id="container2" style="width: 600px; height: 450px; max-width: 800px; margin: 0 auto; padding-top:5%"></div>
+      <div align ="center" id="container2" style="min-width: 600px; height: 450px; max-width: 800px; margin: 0 auto; padding-top:5%"></div>
    </div>
 </div>
 
@@ -44,7 +41,7 @@ $(function () {
             width: 400
         },
         title: {
-            text: 'Top3 Contributors'
+            text: 'Contributors'
         },
         xAxis: {
             type: 'category',
@@ -60,7 +57,7 @@ $(function () {
             min: 0,
             allowDecimals:false,
             title: {
-                text: 'News submission'
+                text: 'Submission amount'
             }
         },
         legend: {
@@ -109,7 +106,7 @@ $(function () {
             min: 0,
             allowDecimals:false,
             title: {
-                text: 'Amount'
+                text: 'News amount'
             }
         },
         legend: {
