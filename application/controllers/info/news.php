@@ -167,6 +167,14 @@ class news extends CI_Controller {
 		
 		$news_type = $this->db->query("SELECT DISTINCT type FROM News");
 		$news_type_data = $news_type -> result_array();
+		foreach($news_type_data as $row){
+			$query = $this->db->query("SELECT U.fullname, count(*) AS news_cnt from News N, Submits S, User U WHERE N.nid = S.nid AND S.nid = U.uid AND N.type = '{$row['type']}' GROUP BY S.uid");
+			$news_type_count[] = array(
+					"fullname"=>$row['fullname'],"news_cnt"=>$row['news_cnt']
+				);
+			
+		}
+		echo json_encode($news_type_count);
 		
 		$this->load->view("info/news/analysis",array("news_data"=>$news_data,"news_type_data"=>$news_type_data));
 	}
