@@ -82,22 +82,25 @@ class Music_model extends CI_Model {
     //Output: none
     public function searchAlbum($data){
         $uid = htmlspecialchars($data['uid']);
-        $searchString = htmlspecialchars($data['searchString']);
-        $sql = "";
+        $albumName = htmlspecialchars($data['albumName']);
+        $albumID = "select album_id FROM album WHERE title='" . $this->db->escape($albumName) . "';";
+        $sql = "INSERT INTO search_album (uid, album_id, date_time) VALUES ('" . $this->db->escape($uid) . "'," . $albumID . ", NOW());";
         $this->db->query($sql);
     }
     
     public function searchSong($data){
         $uid = htmlspecialchars($data['uid']);
-        $searchString = htmlspecialchars($data['searchString']);
-        $sql = "";
+        $songName = htmlspecialchars($data['songName']);
+        $songID = "select sid FROM song WHERE title='" . $this->db->escape($songName) . "';";
+        $sql = "INSERT INTO search_song (uid, sid, date_time) VALUES ('" . $this->db->escape($uid) . "'," . $songID . ", NOW());";
         $this->db->query($sql);
     }
     
     public function searchArtist($data){
         $uid = htmlspecialchars($data['uid']);
-        $searchString = htmlspecialchars($data['searchString']);
-        $sql = "";
+        $artistName = htmlspecialchars($data['artistName']);
+        $artistID = "select artist_id FROM artist WHERE name='" . $this->db->escape($artistName) . "';";
+        $sql = "INSERT INTO search_artist (uid, artist_id, date_time) VALUES ('" . $this->db->escape($uid) . "'," . $artistID . ", NOW());";
         $this->db->query($sql);
     }
     

@@ -31,7 +31,7 @@ class search_music extends CI_Controller {
     private function genericSearchHandler($input){
         $JSONstring = strlen($input['searchString']) > 0 ? $this->music_model->genericSearch($input['searchString']) : "";
         //echo empty($JSONstring) ? "" : "$JSONstring";
-        return json_encode($JSONstring);
+        return empty($JSONstring) ? "" : json_encode($JSONstring);
     }
     
     //Input: get request from ajax in the search_music view
