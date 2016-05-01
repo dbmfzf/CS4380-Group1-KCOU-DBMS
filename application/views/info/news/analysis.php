@@ -40,7 +40,8 @@ $news_type_data = json_encode($news_type_arr);
 $(function () {
     $('#container1').highcharts({
         chart: {
-            type: 'column'
+            type: 'column',
+            width: 400
         },
         title: {
             text: 'Top3 Contributors'
@@ -88,7 +89,8 @@ $(function () {
     
     $('#container2').highcharts({
         chart: {
-            type: 'column'
+            type: 'column',
+            width: 400
         },
         title: {
             text: 'News types'
