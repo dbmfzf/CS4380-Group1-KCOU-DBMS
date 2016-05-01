@@ -9,13 +9,14 @@ foreach($news_data as $row){
 }
 
 foreach($news_type_data as $row){
-    $news_type_arr[] = $row['type'];
+    $news_type_arr[] = array(
+        $row['type'],intval($row['news_cnt')
+    );
     
 }
 
 $news_data = json_encode($news_arr);
 $news_type_data = json_encode($news_type_arr);
-echo $news_type_data;
 
 ?>
 
@@ -88,69 +89,54 @@ $(function () {
         }]
     });
     
-    $('#container2').highcharts({
+    
+    $('#container3').highcharts({
         chart: {
             type: 'column'
         },
         title: {
-            text: 'Stacked column chart'
+            text: 'Top3 news type'
         },
         xAxis: {
-            categories: <?php echo $news_type_data; ?>
+            type: 'category',
+            labels: {
+                rotation: 0,
+                style: {
+                    fontSize: '18px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
         },
         yAxis: {
             min: 0,
-            title: {
-                text: 'Total fruit consumption'
-            },
-            stackLabels: {
-                enabled: true,
-                style: {
-                    fontWeight: 'bold',
-                    color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
-                }
-            }
+            allowDecimals:false,
         },
         legend: {
-            align: 'right',
-            x: -30,
-            verticalAlign: 'top',
-            y: 25,
-            floating: true,
-            backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
-            borderColor: '#CCC',
-            borderWidth: 1,
-            shadow: false
+            enabled: false
         },
         tooltip: {
-            headerFormat: '<b>{point.x}</b><br/>',
-            pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
-        },
-        plotOptions: {
-            column: {
-                stacking: 'normal',
-                dataLabels: {
-                    enabled: true,
-                    color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
-                    style: {
-                        textShadow: '0 0 3px black'
-                    }
-                }
-            }
+            pointFormat: 'We have{point.y} piece(s) of news in this type</b>'
         },
         series: [{
-            name: 'John',
-            data: [5, 3]
-        }, {
-            name: 'Jane',
-            data: [2, 2]
-        }, {
-            name: 'Joe',
-            data: [3, 4]
+            name: 'Name',
+            data: <?php echo $news_type_data; ?>,
+            dataLabels: {
+                enabled: true,
+                color: '#FFFFFF',
+                align: 'center',
+                //format: '{point.y:.1f}', // one decimal
+                y: 10, // 10 pixels down from the top
+                style: {
+                    fontSize: '18px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
         }]
     });
     
-    $('#container3').highcharts({
+
+    
+    $('#container2').highcharts({
         chart: {
             type: 'column'
         },
