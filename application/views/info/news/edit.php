@@ -31,7 +31,7 @@
 </form>
 <script>
  $(document).ready(function() {
-	 var type = "<?php echo $data['type']?>"";
+	 var type = "<?php echo $data['type'];?>";
 	 var opt = document.getElementById('type');
 	 var leng= opt.options.length;
 	 for(var i=0;i<leng; i++){  
