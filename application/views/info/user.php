@@ -25,12 +25,10 @@
     <div class="hbox">
 	<div class="form-group">
 	  <label >Advanced search</label>
-	  <p>
-          <select name="dept" class="form-control" >
-          	<option value = ""> Not selected </option>
+	  <p><b>Department:</b>
           	<?php 
 			foreach($dept_data as $key){
-			    printf('<option value ="%s">%s</oprtion>',$key->did,$key->deptname);
+			    echo "<input value=''{$key['did']}'' name="leader" type="checkbox"> '{$key['dept']}'";
 			}
     	    
           	?>
