@@ -60,7 +60,7 @@
    <tbody>
 	<?php 
 	foreach($data as $row){
-		if($key->name =="Manager"){ 			
+		if($row->rolename =="Manager"){ 			
 			$disable = "disabled"; 		
 			
 		}else
