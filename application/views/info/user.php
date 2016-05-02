@@ -29,7 +29,7 @@
 			foreach($dept_data as $key){
 				$did_string = $key["did"];
 				$dname_string = $key["deptname"];
-			    echo "<input value='$did_string' name='leader' type='checkbox'> $dname_string";
+			    echo "<input value='$did_string' name='leader' type='checkbox'> $dname_string ";
 			}
     	    
           	?>
