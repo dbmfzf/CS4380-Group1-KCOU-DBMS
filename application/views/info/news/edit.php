@@ -22,6 +22,7 @@
   			<option value="Academic">Academic</option>
 	  		<option value="Social">Social</option>
 	  		<option value="International">International</option>
+	  		<option value="Others">Others</option>
 		</select></br></td>
         </tr>
 
