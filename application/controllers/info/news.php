@@ -41,7 +41,7 @@ class news extends CI_Controller {
 				$news_data = $news_query->result();
 			}else{
 				
-				if($type){$where_type = "AND type in '(".$type.")'";}else{$where_type = "";}
+				if($type){$where_type = "AND type in (".$type.")";}else{$where_type = "";}
 				if($submit_start){$where_start = "AND s.submit_time > '{$submit_start}'";}else{$where_start = "";}
 				if($submit_end){$where_end = "AND s.submit_time < '{$submit_end}'";}else{$where_end = "";}
 				$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid {$where_type} {$where_start} {$where_end}");
