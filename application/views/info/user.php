@@ -60,6 +60,13 @@
    <tbody>
 	<?php 
 	foreach($data as $row){
+		if($key->name =="Manager"){ 			
+			$disable = "disabled"; 		
+			
+		}else
+		{ 
+			$disable = ""; 
+		}
 		printf('<tr>
 			<td>%s</td>
 			<td>%s</td>
@@ -71,16 +78,17 @@
 			<td>%s</td>
 			<td>
 				<div class="btn-group  btn-group-xs">
-				  <a class="btn btn-warning btn-xs" href="%s">Edit</a>
-				  <a class="btn btn-danger" href="%s">Delete</a>
+				  <a class="btn btn-warning btn-xs" href="%s" %s>Edit</a>
+				  <a class="btn btn-danger" href="%s" %s>Delete</a>
 				</div>
 			</td>
-		</tr>',$row->uid,$row->fullname,$row->gender,$row->email,$row->phone,$row->birth,$row->rolename,$row->deptname,($row->status==1?"Enable":"Disable"),site_url("info/user/edit/".$row->uid),site_url("info/user/delete/".$row->uid));
+		</tr>',$row->uid,$row->fullname,$row->gender,$row->email,$row->phone,$row->birth,$row->rolename,$row->deptname,($row->status==1?"Enable":"Disable"),site_url("info/user/edit/".$row->uid),$disable,site_url("info/user/delete/".$row->uid),$disable);
 	}
 	?>
   </tbody>
 </table>
 <hr/>
+<>
 
 <?php echo '<a class="btn btn-success pull-right" href="'.site_url("info/user/add").'">Add new user</a>'; ?>
-<?php echo "";//$this->pagination->create_links(); ?>
+<?php if($flag['pagination']=="enable") echo $this->pagination->create_links(); ?>
