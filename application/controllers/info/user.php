@@ -47,7 +47,7 @@ class User extends CI_Controller {
 				if($is_leader&&(!$is_volunteer)){$where_role = "AND R.name like '%leader%'";}else if((!$is_leader)&&$is_volunteer){$where_role = "AND R.name like '%volunteer%'";}else{$where_role = "";}
 				if($is_male&&(!$is_female)){$where_gender = "AND U.gender='Male'";}else if((!$is_male)&&$is_female){$where_gender = "AND U.gender='Female'";}else{$where_gender = "";}
 				if($is_enable&&($is_disable)){$where_status = "AND U.status='1'";}else if((!$is_enable)&&$is_disable){$where_status = "AND U.status='0'";}else{$where_status = "";}
-				if($order){$order_by = "ORDER BY {$order};"}else{$order_by = "";}
+				if($order){$order_by = "ORDER BY ".$order."";}else{$order_by = "";}
 				$query = $this->db->query("SELECT U.uid,U.fullname,U.gender,U.email,U.phone,U.birth,U.status,R.name as rolename,D.name as deptname FROM Department D, User U, Role R WHERE R.rid = U.rid AND D.did = R.did {$where_did} {$where_role} {$where_gender} {$where_status} {$order_by}");
 				$data = $query->result();
 				$this->load->view("info/user",array("data"=>$data,"dept_data"=>$dept_data,"flag"=>$flag));
