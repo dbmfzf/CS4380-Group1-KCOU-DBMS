@@ -1,7 +1,15 @@
 <style>
 .table td:nth-child(9){width:12%}
 </style>
-<div id = "Searching">
+<script>
+	$(document).ready(function() {
+		var rolename = "<?php echo flag['rolename'];?>";
+		if(rolename == "Manager"){
+			$("#searching").hide();
+		}
+	})
+</script>
+<div id = "searching">
 <form method = "post">
     <div class="hbox">
 	<div class="form-group">
