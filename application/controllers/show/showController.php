@@ -16,7 +16,7 @@ class showController extends CI_Controller {
 	}
 
 	public function genericSearchHandler() {
-		require base_url() . 'static/full-calendar/utils.php';
+		//require base_url() . 'static/full-calendar/utils.php';
 
 		// Short-circuit if the client did not give us a date range.
 		/*if (!isset($_GET['start']) || !isset($_GET['end'])) {
