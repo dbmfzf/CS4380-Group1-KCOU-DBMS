@@ -1,5 +1,5 @@
 <style>
-.table td:nth-child(9){width:10%}
+.table td:nth-child(9){width:12%}
 </style>
 <div id = "Searching">
 <form method = "post">
