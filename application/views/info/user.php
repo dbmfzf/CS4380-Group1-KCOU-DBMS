@@ -1,6 +1,7 @@
 <style>
 .table td:nth-child(10){width:15%}
 </style>
+<div id = "Searching">
 <form method = "post">
     <div class="hbox">
 	<div class="form-group">
@@ -18,9 +19,10 @@
 	  <label >Advanced search</label>
 	  <p>
           <select name="dept" id="dept" class="form-control" >
+          	<option value = "none"> Not selected </option>
           	<?php 
 			foreach($dept_data as $key){
-			    printf('<option value ="%s">%s(%s)</oprtion>',$key->rid,$key->rolename,$key->deptname);
+			    printf('<option value ="%s">%s</oprtion>',$key->did,$key->deptname);
 			}
     	    
           	?>
@@ -31,6 +33,8 @@
         	<input value="1" name="volunteer" type = "checkbox"> Volunteer
         	<input value="1" name="male" type="checkbox" > Male
         	<input value="1" name="female" type="checkbox" > Female
+        	<input value="1" name= "enable" type ="checkbox"> Enable
+        	<input value="1" name= "disable" type ="checkbox"> Disable
         </p>
 	</div>
 	<div class="form-group">
@@ -38,6 +42,7 @@
 	</div>
   </div>
 </form>
+</div>
 <table class="table  table-bordered well">
 	<thead>
           <tr>
