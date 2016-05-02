@@ -31,9 +31,9 @@ class Index extends CI_Controller {
 			$STATUS = $this->rbac_model->check_user($uid,md5($password));
 			if($STATUS===TRUE){
 				
-				//$date_time = date('Y-m-d H:i:s',time());
+				$date_time = date('Y-m-d H:i:s',time());
 				$login_ip = $_SERVER["REMOTE_ADDR"];
-				$sql = "INSERT INTO Login_record(uid,date_time,ip) values('{$uid}',NOW(),'{$login_ip}')";
+				$sql = "INSERT INTO Login_record(uid,date_time,ip) values('{$uid}','{$date_time}','{$login_ip}')";
 				$this->db->query($sql);
 
 				success_redirct($this->config->item('rbac_default_index'),"Login successful!");
