@@ -27,11 +27,11 @@
      <div class="form-group">
 	  <label >Advanced search</label>
 	  <p>
-        	<input value="Sports" name="type[]" type="checkbox"> Sports
-        	<input value="Academic" name="type[]" type = "checkbox"> Academic
-        	<input value="Social" name="type[]" type="checkbox" > Social
-        	<input value="International" name="type[]" type="checkbox" > International
-        	<input value="Others" name= "type[]" type ="checkbox"> Others
+        	<input value="'Sports'" name="type[]" type="checkbox"> Sports
+        	<input value="'Academic'" name="type[]" type = "checkbox"> Academic
+        	<input value="'Social'" name="type[]" type="checkbox" > Social
+        	<input value="'International'" name="type[]" type="checkbox" > International
+        	<input value="'Others'" name= "type[]" type ="checkbox"> Others
          </p>
 	<div class="hbox">
 		<div class = "flex1"><b>Submitted date</b></div>
