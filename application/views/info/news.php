@@ -1,5 +1,7 @@
 <style>
 .table td:nth-child(7){width:30%}
+.hbox .flex1{width:20%;}
+.hbox .flex2{width:5%;}
 </style>
 <script>
 	$(document).ready(function() {
@@ -35,8 +37,10 @@
          </select>
          </p>
 	<div class="form-group">
-	Submitted date from <input type = "date" style="width:20%" name = "submit_start" class="form-control" >
-	to <input type = "date" style="width:20%" name = "submit_end" class="form-control" >
+	<div class = "flex1">Submitted date from </div>
+	<div class = "flex1"><input type = "date" style="width:100%" name = "submit_start" class="form-control" ></div>
+	<div class = "flex2">to</div>
+	<div class = "flex1"><input type = "date" style="width:20%" name = "submit_end" class="form-control" ></div>
 	</div>
 	</div>
 	<div class="form-group">
