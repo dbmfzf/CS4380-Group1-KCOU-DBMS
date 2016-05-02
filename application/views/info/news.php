@@ -5,7 +5,7 @@
 </style>
 <script>
 	$(document).ready(function() {
-		var rolename = "<?php echo $flag['rolename'];?>";
+		var rolename = "<?php echo $role_data['rolename'];?>";
 		if(rolename != "Manager" || rolename!= "News dept leader"){
 			$("#searching").hide();
 		}
@@ -62,23 +62,23 @@
 	<?php 
 	foreach($news_data as $mb){
 		printf('<tr>
-					<td>%s</td>
-					<td>%s</td>
-					<td>%s</td>
-					<td>
-						<div class="btn-group  btn-group-xs">
-						  <a class="btn btn-info btn-xs" href="%s">Edit Content</a>
-						</div>
-					</td>
-					<td>%s</td>
-					<td>%s</td>
-					<td>
-						<div class="btn-group  btn-group-xs">
-						  <a class="btn btn-warning btn-xs" href="%s">Edit</a>
-						  <a class="btn btn-danger" href="%s">Delete</a> 
-						</div>
-					</td>
-				</tr>',$mb->nid,$mb->title,$mb->type,site_url("info/news/edit_content/".$mb->nid),$mb->last_modified_time,$mb->submit_time,site_url("info/news/edit/".$mb->nid),site_url("info/news/delete/".$mb->nid));
+			<td>%s</td>
+			<td>%s</td>
+			<td>%s</td>
+			<td>
+				<div class="btn-group  btn-group-xs">
+				  <a class="btn btn-info btn-xs" href="%s">Edit Content</a>
+				</div>
+			</td>
+			<td>%s</td>
+			<td>%s</td>
+			<td>
+				<div class="btn-group  btn-group-xs">
+				  <a class="btn btn-warning btn-xs" href="%s">Edit</a>
+				  <a class="btn btn-danger" href="%s">Delete</a> 
+				</div>
+			</td>
+		</tr>',$mb->nid,$mb->title,$mb->type,site_url("info/news/edit_content/".$mb->nid),$mb->last_modified_time,$mb->submit_time,site_url("info/news/edit/".$mb->nid),site_url("info/news/delete/".$mb->nid));
 	}
 	?>
   </tbody>
