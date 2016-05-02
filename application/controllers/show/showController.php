@@ -12,7 +12,7 @@ class showController extends CI_Controller {
 	}
 
 	public function index() {
-		$this -> load -> view("view/show.php");
+		$this -> load -> view("show/show_calander.php");
 	}
 
 	public function genericSearchHandler() {
