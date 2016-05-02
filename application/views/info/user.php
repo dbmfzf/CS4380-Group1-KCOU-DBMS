@@ -5,8 +5,8 @@
 <form method = "post">
     <div class="hbox">
 	<div class="form-group">
-	  <label for="genericSearch">Search by pawprint</label>
-	   <input type="text" class="form-control" id="genericSearch" placeholder="Enter pawprint here"> 
+	  <label>Search by user ID</label>
+	   <input type="text" name = "uid" class="form-control" placeholder="Enter ID here"> 
 	</div>
 	<div class="form-group">
 	    <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>  Search</button>
