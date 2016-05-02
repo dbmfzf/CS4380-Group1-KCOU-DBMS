@@ -50,11 +50,11 @@ class Playlist extends CI_Controller {
 		if($this->input->post()){
 			$name = $this->input->post("name");
 			if($name){
-				$query = $this->db->query("SELECT * FROM Playlist WHERE uid = '{$login_uid}' AND name = '{$name}'");
+				$query = $this->db->query("SELECT * FROM Playlist WHERE uid = '{$login_uid}' AND name = '{$name}' AND pid!='{$pid}'");
 				$data = $query->row_array();
 				if(!$data){
 					$created_date = date('Y-m-d');
-					$sql = "INSERT INTO Playlist (uid,name,created_date) values('{$uid}','{$name}','{$created_date}')";
+					$sql = "update Playlist set name = '{$name}'";
 					$this->db->query($sql);
 					success_redirct("playlist/playlist/index","Add successful!");
 					
