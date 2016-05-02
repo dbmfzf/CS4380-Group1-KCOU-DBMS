@@ -28,7 +28,7 @@
 	  <p><b>Department:</b>
           	<?php 
 			foreach($dept_data as $key){
-			    echo "<input value=''{$key['did']}'' name="leader" type="checkbox"> '{$key['dept']}'";
+			    echo "<input value='{$key['did']}' name="leader" type="checkbox"> {$key['dept']}";
 			}
     	    
           	?>
