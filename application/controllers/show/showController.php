@@ -16,12 +16,12 @@ class showController extends CI_Controller {
 	}
 
 	public function genericSearchHandler() {
-		require base_url() . '/utils.php';
+		require base_url() . 'static/full-calendar/utils.php';
 
 		// Short-circuit if the client did not give us a date range.
-		if (!isset($_GET['start']) || !isset($_GET['end'])) {
+		/*if (!isset($_GET['start']) || !isset($_GET['end'])) {
 			die("Please provide a date range.");
-		}
+		}*/
 
 		// Parse the start/end parameters.
 		// These are assumed to be ISO8601 strings with no time nor timezone, like "2013-12-29".
@@ -36,7 +36,7 @@ class showController extends CI_Controller {
 		}
 
 		// Read and parse our events JSON file into an array of event data arrays.
-		$jsondata = base_url()."static/full-calendar/events.json";
+		$jsondata = base_url().'static/full-calendar/events.json';
 		$json = file_get_contents($jsondata);
 		$input_arrays = json_decode($json, true);
 
