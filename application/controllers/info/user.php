@@ -13,44 +13,77 @@ class User extends CI_Controller {
 	public function index($page=1)
 	{
 		$login_rid = rbac_conf(array('INFO','rid'));
-		
-		$role_dept_query = $this->db->query("Select level,did,name as rolename from Role R WHERE R.rid = '{$login_rid}'");
-		$role_dept_data = $role_dept_query->row_array();
-		$rolename = $role_dept_data['rolename'];
-		$deptid = $role_dept_data['did'];
-		$level = $role_dept_data['level'];
-		
-		if($rolename=="Manager"){
-			$where="";
-			$cnt_query = $this->db->query("SELECT COUNT(*) as cnt FROM User WHERE rid != $login_rid");
+		$login_uid = rbac_conf(array('INFO','uid'));
+		$dept_query = $this->db->query("did, name as deptname FROM Department");
+		$dept_data = $dept_query->result();
+		if(this->input->post()){
+			$uid = $this->input->post("uid");
+			$did = $this ->input->post("dept");
+			$is_leader = $this->input->post("leader");
+			$is_volunteer = $this->input->post("volunteer");
+			$is_male = $this->input->post("male");
+			$is_female = $this->input->post("female");
+			$is_enable = $this->input->post("enable");
+			$is_disable = $this->input->post("disable");
 			
+			if($uid){
+				$query = $this->db->query("SELECT U.uid,U.fullname,U.gender,U.email,U.phone,U.birth,U.status,R.name as rolename,D.name as deptname FROM Department D, User U, Role R WHERE R.rid = U.rid AND D.did = R.did");
+				$data = $query->result();
+				$this->load->view("info/user",array("data"=>$data,"dept_data"=>$dept_data));
+			}else{
+				if($did)){$where_leader = "AND D.did = '{$did}'";}else{$where_did="";}
+				if($is_leader){$where_leader = "AND R.name like '%leader%'";}else{$where_leader="";}
+				if($is_volunteer){$where_leader = "AND R.name like '%volunteer%'";}else{$where_volunteer="";}
+				if($is_male){$where_male = "AND U.gender='Male'";}else{$where_male = "";}
+				if($is_female){$where_female = "AND U.gender='Female'";}else{$where_female = "";}
+				if($is_enable){$where_enable = "AND U.status='1'";}else{$where_enable = "";}
+				if($is_disable){$where_disable = "AND U.status='0'";}else{$where_disable = "";}
+				
+				$query = $this->db->query("SELECT U.uid,U.fullname,U.gender,U.email,U.phone,U.birth,U.status,R.name as rolename,D.name as deptname FROM Department D, User U, Role R WHERE R.rid = U.rid AND D.did = R.did {$where_leader} {$where_volunteer} {$where_male} {$where_female} {$where_enable} {$where_disable}");
+				$data = $query->result();
+				$this->load->view("info/user",array("data"=>$data,"dept_data"=>$dept_data));
 
-		} 
-		else{
-			$where = "AND R.did = $deptid AND level > $level";
-			$cnt_query = $this->db->query("select count(*) as cnt FROM User U, Role R, Department D where U.rid = R.rid AND D.did = R.did AND D.did = $deptid AND level > $level;");
+			}
 			
+			
+		}else{
+			$role_dept_query = $this->db->query("Select level,did,name as rolename from Role R WHERE R.rid = '{$login_rid}'");
+			$role_dept_data = $role_dept_query->row_array();
+			$rolename = $role_dept_data['rolename'];
+			$deptid = $role_dept_data['did'];
+			$level = $role_dept_data['level'];
+			
+			if($rolename=="Manager"){
+				$where="";
+				$cnt_query = $this->db->query("SELECT COUNT(*) as cnt FROM User");
+				
+	
+			} 
+			else{
+				$where = "AND R.did = $deptid AND level > $level";
+				$cnt_query = $this->db->query("select count(*) as cnt FROM User U, Role R, Department D where U.rid = R.rid AND D.did = R.did AND D.did = $deptid AND level > $level;");
+				
+			}
+			
+			$cnt_data = $cnt_query->row_array();
+			//page
+			
+			$this->load->library('pagination');
+			$config['base_url'] = site_url("info/user/index");
+			$config['total_rows'] = $cnt_data['cnt'];
+			$config['per_page']   = 10;
+			$config['uri_segment']= '4';
+			$config['num_links']='2';
+			$config['first_link'] = 'First';
+			$config['last_link'] = 'last';
+			$config['use_page_numbers'] = TRUE;
+			$this->pagination->initialize($config);
+			
+			$query = $this->db->query("SELECT U.uid,U.fullname,U.gender,U.email,U.phone,U.birth,U.status,R.name as rolename,D.name as deptname FROM Department D, User U, Role R WHERE R.rid = U.rid AND D.did = R.did AND U.rid != '{$login_rid}' ".$where." LIMIT ".(($page-1)*$config['per_page']).",".$config['per_page']."");
+			$data = $query->result();
+			
+			$this->load->view("info/user",array("data"=>$data,"dept_data"=>$dept_data));
 		}
-		
-		
-		$cnt_data = $cnt_query->row_array();
-		//page
-		
-		$this->load->library('pagination');
-		$config['base_url'] = site_url("info/user/index");
-		$config['total_rows'] = $cnt_data['cnt'];
-		$config['per_page']   = 10;
-		$config['uri_segment']= '4';
-		$config['num_links']='2';
-		$config['first_link'] = 'First';
-		$config['last_link'] = 'last';
-		$config['use_page_numbers'] = TRUE;
-		$this->pagination->initialize($config);
-		
-		$query = $this->db->query("SELECT U.uid,U.fullname,U.gender,U.email,U.phone,U.birth,U.status,R.name as rolename,D.name as deptname FROM Department D, User U, Role R WHERE R.rid = U.rid AND D.did = R.did AND U.rid != '{$login_rid}' ".$where." LIMIT ".(($page-1)*$config['per_page']).",".$config['per_page']."");
-		$data = $query->result();
-		
-		$this->load->view("info/user",array("data"=>$data));
 	}
 	/**
 	 * Edit users
