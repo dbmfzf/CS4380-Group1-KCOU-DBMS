@@ -83,25 +83,37 @@ class Music_model extends CI_Model {
     public function searchAlbum($data){
         $uid = htmlspecialchars($data['uid']);
         $albumName = htmlspecialchars($data['albumName']);
-        $albumID = "select album_id FROM album WHERE title='" . $this->db->escape($albumName) . "';";
-        $sql = "INSERT INTO search_album (uid, album_id, date_time) VALUES ('" . $this->db->escape($uid) . "'," . $albumID . ", NOW());";
-        $this->db->query($sql);
+        $albumID = "select album_id FROM album WHERE title=" . $this->db->escape($albumName) . ";";
+        $albumIDs = $this->db->query($albumID);
+        for($i = 0; $i < $albumIDs->num_rows(); $i++){
+            $albumID = $albumIDs->row($i)->album_id;
+            $sql = "INSERT INTO search_album (uid, album_id, date_time) VALUES (" . $this->db->escape($uid) . ",'" . $albumID . "', NOW());";
+            $this->db->query($sql);
+        }
     }
     
     public function searchSong($data){
         $uid = htmlspecialchars($data['uid']);
         $songName = htmlspecialchars($data['songName']);
-        $songID = "select sid FROM song WHERE title='" . $this->db->escape($songName) . "';";
-        $sql = "INSERT INTO search_song (uid, sid, date_time) VALUES ('" . $this->db->escape($uid) . "'," . $songID . ", NOW());";
-        $this->db->query($sql);
+        $songID = "select sid FROM song WHERE title=" . $this->db->escape($songName) . ";";
+        $songIDs = $this->db->query($songID);
+        for($i = 0; $i < $songIDs->num_rows(); $i++){
+            $songID = $songIDs->row($i)->sid;
+            $sql = "INSERT INTO search_song (uid, sid, date_time) VALUES (" . $this->db->escape($uid) . ",'" . $songID . "', NOW());";
+            $this->db->query($sql);
+        }
     }
     
     public function searchArtist($data){
         $uid = htmlspecialchars($data['uid']);
         $artistName = htmlspecialchars($data['artistName']);
-        $artistID = "select artist_id FROM artist WHERE name='" . $this->db->escape($artistName) . "';";
-        $sql = "INSERT INTO search_artist (uid, artist_id, date_time) VALUES ('" . $this->db->escape($uid) . "'," . $artistID . ", NOW());";
-        $this->db->query($sql);
+        $artistID = "select artist_id FROM artist WHERE name=" . $this->db->escape($artistName) . ";";
+        $artistIDs = $this->db->query($artistID);
+        for($i = 0; $i < $artistIDs->num_rows(); $i++){
+            $artistID = $artistIDs->row($i)->artist_id;
+            $sql = "INSERT INTO search_artist (uid, artist_id, date_time) VALUES (" . $this->db->escape($uid) . ",'" . $artistID . "', NOW());";
+            $this->db->query($sql);
+        }
     }
     
     /*public function advancedSearch($data){

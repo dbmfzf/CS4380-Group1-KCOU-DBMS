@@ -23,6 +23,10 @@ class search_music extends CI_Controller {
             $data['searchValues'] = NULL;
         }
         print_r($data);
+        //Insert the songs that we found into their respective logs
+        if(!empty($data['searchValues'])){
+            $this->logSearch($data['searchValues']);
+        }
         $this->load->view("music/search_music.php", $data);
     }
     
@@ -68,5 +72,40 @@ class search_music extends CI_Controller {
         
         //echo(json_encode(array_unique($mergedArr, SORT_REGULAR)));
         return json_encode(array_unique($mergedArr, SORT_REGULAR));
+    }
+    
+    //takes in json representation of of the song object and inserts those values into the database
+    private function logSearch($logData){
+        $arrayOfSongs = json_decode($logData);
+            //echo("printing array of objects:\n");
+            print_r($arrayOfSongs);
+            //print("logged in as uid: " . rbac_conf(array('INFO','uid')));
+            //Insert each song/artist/album name once
+            $songs = array();
+            $artists = array();
+            $albums = array();
+            //add song names, artist names, and album names to their respective arrays
+            for($i = 0; $i < sizeof($arrayOfSongs); $i++){
+                //print_r($song[$i]);
+                array_push($songs, $arrayOfSongs[$i]->Song_title);
+                array_push($artists, $arrayOfSongs[$i]->Artist);
+                array_push($albums, $arrayOfSongs[$i]->Album); 
+            }
+            //remove duplicates
+            array_unique($songs, SORT_REGULAR);
+            array_unique($artists, SORT_REGULAR);
+            array_unique($albums, SORT_REGULAR);
+            $this->music_model->searchSong(array(
+                    'songName' => $arrayOfSongs[$i]->Song_title,
+                    'uid' => rbac_conf(array('INFO','uid'))
+                ));
+                $this->music_model->searchArtist(array(
+                    'artistName' => $arrayOfSongs[$i]->Artist, 
+                    'uid' => rbac_conf(array('INFO','uid'))
+                ));
+                $this->music_model->searchAlbum(array(
+                    'albumName' => $arrayOfSongs[$i]->Album, 
+                    'uid' => rbac_conf(array('INFO','uid'))
+                ));
     }
 }
