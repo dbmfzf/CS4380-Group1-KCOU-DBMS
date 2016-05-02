@@ -37,7 +37,7 @@ class news extends CI_Controller {
 			$submit_end = $this->input->post("submit_end");
 			
 			if($news){
-				$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid AND n.nid = '{$news}' or N.title ='{$news}' ");
+				$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid AND (n.nid = '{$news}' OR N.title ='{$news}') ");
 				$news_data = $news_query->result();
 			}else{
 				
