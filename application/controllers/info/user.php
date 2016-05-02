@@ -15,6 +15,8 @@ class User extends CI_Controller {
 		$login_rid = rbac_conf(array('INFO','rid'));
 		$login_uid = rbac_conf(array('INFO','uid'));
 		$dept_query = $this->db->query("SELECT did, name as deptname FROM Department");
+		$dept_data = $dept_query->result();
+		
 		$role_dept_query = $this->db->query("Select level,did,name as rolename from Role R WHERE R.rid = '{$login_rid}'");
 		$role_dept_data = $role_dept_query->row_array();
 		$rolename = $role_dept_data['rolename'];
