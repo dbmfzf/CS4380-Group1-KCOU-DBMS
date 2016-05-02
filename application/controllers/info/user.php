@@ -54,7 +54,7 @@ class User extends CI_Controller {
 			
 			}else{
 			
-			$flag['pagenation'] = "enable";
+			$flag['pagination'] = "enable";
 			if($rolename=="Manager"){
 				$where="";
 				$cnt_query = $this->db->query("SELECT COUNT(*) as cnt FROM User");
