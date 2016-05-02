@@ -55,7 +55,7 @@
             <th>Content</th>
             <th>Last modified time</th>
             <th>Submit time</th>
-            <th></th>
+            <th>Action</th>
           </tr>
         </thead>
    <tbody>
