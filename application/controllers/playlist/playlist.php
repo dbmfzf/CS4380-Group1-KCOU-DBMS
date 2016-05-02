@@ -48,9 +48,9 @@ class Playlist extends CI_Controller {
 		$name_query = $this->db->query("SELECT name FROM Playlist WHERE uid = '{$login_uid}'");
 		$name_data = $name_query->row_array();
 		if($this->input->post()){
-			$fullname = $this->input->post("name");
+			$name = $this->input->post("name");
 			if($name){
-				$query = $this->db->query("SELECT * FROM Playlist WHERE uid = '{$uid}'");
+				$query = $this->db->query("SELECT * FROM Playlist WHERE uid = '{$login_uid}'");
 				$data = $query->row_array();
 				if(!$data){
 					$created_date = date('Y-m-d');
