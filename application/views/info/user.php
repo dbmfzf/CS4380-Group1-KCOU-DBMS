@@ -4,7 +4,7 @@
 <script>
 	$(document).ready(function() {
 		var rolename = "<?php echo $flag['rolename'];?>";
-		if(rolename == "Manager"){
+		if(rolename != "Manager"){
 			$("#searching").hide();
 		}
 	})
