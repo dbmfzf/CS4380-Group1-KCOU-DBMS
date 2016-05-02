@@ -31,15 +31,12 @@ class User extends CI_Controller {
 				$data = $query->result();
 				$this->load->view("info/user",array("data"=>$data,"dept_data"=>$dept_data));
 			}else{
-				if($did){$where_leader = "AND D.did = '{$did}'";}else{$where_did="";}
-				if($is_leader){$where_leader = "AND R.name like '%leader%'";}else{$where_leader="";}
-				if($is_volunteer){$where_volunteer = "AND R.name like '%volunteer%'";}else{$where_volunteer="";}
-				if($is_male){$where_male = "AND U.gender='Male'";}else{$where_male = "";}
-				if($is_female){$where_female = "AND U.gender='Female'";}else{$where_female = "";}
-				if($is_enable){$where_enable = "AND U.status='1'";}else{$where_enable = "";}
-				if($is_disable){$where_disable = "AND U.status='0'";}else{$where_disable = "";}
+				if($did){$where_did = "AND D.did = '{$did}'";}else{$where_did="";}
+				if($is_leader&&(!$is_volunteer)){$where_role = "AND R.name like '%leader%'";}else if((!$is_leader)&&$is_volunteer){$where_role = "AND R.name like '%volunteer%'";}else{$where_role = "";}
+				if($is_male&&(!$is_female)){$where_gender = "AND U.gender='Male'";}else if((!$is_male)&&$is_female){$where_gender = "AND U.gender='Female'";}else{$where_gender = "";}
+				if($is_enable&&($is_disable)){$where_status = "AND U.status='1'";}else if((!$is_enable)&&$is_disable){$where_status = "AND U.status='0'";}else{$where_status = "";}
 				
-				$query = $this->db->query("SELECT U.uid,U.fullname,U.gender,U.email,U.phone,U.birth,U.status,R.name as rolename,D.name as deptname FROM Department D, User U, Role R WHERE R.rid = U.rid AND D.did = R.did {$where_leader} {$where_volunteer} {$where_male} {$where_female} {$where_enable} {$where_disable}");
+				$query = $this->db->query("SELECT U.uid,U.fullname,U.gender,U.email,U.phone,U.birth,U.status,R.name as rolename,D.name as deptname FROM Department D, User U, Role R WHERE R.rid = U.rid AND D.did = R.did {$where_role} {$where_gender} {$where_statue}");
 				$data = $query->result();
 				$this->load->view("info/user",array("data"=>$data,"dept_data"=>$dept_data));
 
