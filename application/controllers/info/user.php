@@ -39,7 +39,7 @@ class User extends CI_Controller {
 		$this->load->library('pagination');
 		$config['base_url'] = site_url("info/user/index");
 		$config['total_rows'] = $cnt_data['cnt'];
-		$config['per_page']   = 2;
+		$config['per_page']   = 10;
 		$config['uri_segment']= '4';
 		$config['num_links']='2';
 		$config['first_link'] = 'First';
