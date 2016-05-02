@@ -27,7 +27,7 @@
 	  <label >Advanced search</label>
 	  <p>
           <select name="type" class="form-control">
-  	        <option value = ""> Not selected </option>
+  	        <option value = "">---selecte types---</option>
   		<option value="Sports">Sports</option>
   		<option value="Academic">Academic</option>
   		<option value="Social">Social</option>
