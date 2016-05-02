@@ -47,6 +47,13 @@
         	<input value="1" name= "enable" type ="checkbox"> Enable
         	<input value="1" name= "disable" type ="checkbox"> Disable
         </p>
+        <p>Order by:
+        	<input value="uid" name="order[]" type="checkbox"> User ID
+        	<input value="fullname" name="order[]" type = "checkbox"> Fullname
+        	<input value="'gender" name="order[]" type="checkbox" > Gender
+        	<input value="birth" name="order[]" type="checkbox" > Birthday
+        	<input value="name" name= "order[]" type ="checkbox"> Role name
+        </p>
 	</div>
 	<div class="form-group">
 	    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>  Search</button>
