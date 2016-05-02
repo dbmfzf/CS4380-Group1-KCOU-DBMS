@@ -33,7 +33,7 @@ class User extends CI_Controller {
 			}else{
 				if($did){$where_leader = "AND D.did = '{$did}'";}else{$where_did="";}
 				if($is_leader){$where_leader = "AND R.name like '%leader%'";}else{$where_leader="";}
-				if($is_volunteer){$where_leader = "AND R.name like '%volunteer%'";}else{$where_volunteer="";}
+				if($is_volunteer){$where_volunteer = "AND R.name like '%volunteer%'";}else{$where_volunteer="";}
 				if($is_male){$where_male = "AND U.gender='Male'";}else{$where_male = "";}
 				if($is_female){$where_female = "AND U.gender='Female'";}else{$where_female = "";}
 				if($is_enable){$where_enable = "AND U.status='1'";}else{$where_enable = "";}
