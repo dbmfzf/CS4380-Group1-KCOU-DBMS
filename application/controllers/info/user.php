@@ -16,7 +16,7 @@ class User extends CI_Controller {
 		$login_uid = rbac_conf(array('INFO','uid'));
 		$dept_query = $this->db->query("did, name as deptname FROM Department");
 		$dept_data = $dept_query->result();
-		if(this->input->post()){
+		if($this->input->post()){
 			$uid = $this->input->post("uid");
 			$did = $this ->input->post("dept");
 			$is_leader = $this->input->post("leader");
