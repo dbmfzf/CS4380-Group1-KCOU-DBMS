@@ -9,7 +9,7 @@
 	   <input type="text" name = "uid" class="form-control" placeholder="Enter ID here"> 
 	</div>
 	<div class="form-group">
-	    <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>  Search</button>
+	    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>  Search</button>
 	</div>
   </div>
 </form>
@@ -38,7 +38,7 @@
         </p>
 	</div>
 	<div class="form-group">
-	    <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>  Search</button>
+	    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>  Search</button>
 	</div>
   </div>
 </form>
