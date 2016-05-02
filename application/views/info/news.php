@@ -1,7 +1,7 @@
 <style>
 .table td:nth-child(7){width:30%}
 .hbox .flex1{width:20%;}
-.hbox .flex2{width:5%;}
+.hbox .flex2{width:10%;}
 </style>
 <script>
 	$(document).ready(function() {
@@ -24,8 +24,7 @@
   </div>
 </form>
 <form method = "post">
-    <div class="hbox">
-	<div class="form-group">
+     <div class="form-group">
 	  <label >Advanced search</label>
 	  <p>
           <select name="type" class="form-control">
@@ -36,17 +35,17 @@
   		<option value="International">International</option>
          </select>
          </p>
-	<div class="form-group">
-	<div class = "flex1">Submitted date from </div>
-	<div class = "flex1"><input type = "date" style="width:100%" name = "submit_start" class="form-control" ></div>
-	<div class = "flex2">to</div>
-	<div class = "flex1"><input type = "date" style="width:20%" name = "submit_end" class="form-control" ></div>
+	<div class="hbox">
+		<div class = "flex1"><b>Submitted date</b></div>
+		<div class = "flex2">from</div>
+		<div class = "flex1"><input type = "date" name = "submit_start" class="form-control" ></div>
+		<div class = "flex2">to</div>
+		<div class = "flex1"><input type = "date" name = "submit_end" class="form-control" ></div>
 	</div>
 	</div>
 	<div class="form-group">
 	    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>  Search</button>
-	</div>
-  </div>
+    </div>
 </form>
 </div>
 <table class="table  table-bordered well">
