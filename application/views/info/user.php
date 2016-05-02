@@ -36,11 +36,14 @@
           	?>
          </select>
          </p>
-         <p>
+         <p>Role
         	<input value="1" name="leader" type="checkbox"> Leader
         	<input value="1" name="volunteer" type = "checkbox"> Volunteer
-        	<input value="1" name="male" type="checkbox" > Male
+        </p>Gender
+        <p>	<input value="1" name="male" type="checkbox" > Male
         	<input value="1" name="female" type="checkbox" > Female
+        </p>
+        <p>Stauts
         	<input value="1" name= "enable" type ="checkbox"> Enable
         	<input value="1" name= "disable" type ="checkbox"> Disable
         </p>
