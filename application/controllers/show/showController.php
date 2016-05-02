@@ -6,7 +6,7 @@ class showController extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		//$this -> load -> model("show_model");
+		$this -> load -> model("show_model");
 		$this -> load -> helper('html');
 		$this -> load -> library('javascript');
 	}
@@ -16,12 +16,16 @@ class showController extends CI_Controller {
 	}
 
 	public function genericSearchHandler() {
-		//require base_url() . 'static/full-calendar/utils.php';
+		$startdate = $this->load->get("start");
+		$enddate = $this->load->get("end");
+		echo json_encode($startdate.$enddate);
+		return;
+		/*require base_url() . 'static/full-calendar/utils.php';
 
 		// Short-circuit if the client did not give us a date range.
-		/*if (!isset($_GET['start']) || !isset($_GET['end'])) {
+		if (!isset($_GET['start']) || !isset($_GET['end'])) {
 			die("Please provide a date range.");
-		}*/
+		}
 
 		// Parse the start/end parameters.
 		// These are assumed to be ISO8601 strings with no time nor timezone, like "2013-12-29".
@@ -55,7 +59,8 @@ class showController extends CI_Controller {
 
 		// Send JSON to the client.
 		echo json_encode($output_arrays);
-		return;
+		return;*/
+		
 	}
 
 	public function getUnreadMessageCount() {
