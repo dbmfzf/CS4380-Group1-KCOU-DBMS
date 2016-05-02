@@ -66,7 +66,7 @@ class Playlist extends CI_Controller {
 				error_redirct("","The playlist's information is not complete!");
 			}
 		}else{
-			$this->load->view("playlist/playlist/edit",array("name_data"=>$name_data));
+			$this->load->view("playlist/edit",array("name_data"=>$name_data));
 		}
 
 	}
