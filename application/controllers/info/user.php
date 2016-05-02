@@ -21,10 +21,10 @@ class User extends CI_Controller {
 		$deptid = $role_dept_data['did'];
 		$level = $role_dept_data['level'];
 		
-		$flag['rolename'] = $rolename;
+		
 		
 		if($this->input->post()){
-			
+			$flag['pagination'] = "disable";
 			$uid = $this->input->post("uid");
 			$did = $this ->input->post("dept");
 			$is_leader = $this->input->post("leader");
