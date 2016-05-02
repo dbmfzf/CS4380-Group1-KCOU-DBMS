@@ -6,7 +6,7 @@ class showController extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this -> load -> model("show_model");
+		//$this -> load -> model("show_model");
 		$this -> load -> helper('html');
 		$this -> load -> library('javascript');
 	}
