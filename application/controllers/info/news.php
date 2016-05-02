@@ -32,7 +32,7 @@ class news extends CI_Controller {
 		if($this->input->post()){
 			
 			$news = $this->input->post("news");
-			if($this->input->post("type")){$type = implode(',',$this->input->post("type"));}else{$type=null;}
+			if($this->input->post("type")){$type = implode(',','".$this->input->post("type")."');}else{$type=null;}
 			$submit_start = $this->input->post("submit_start");
 			$submit_end = $this->input->post("submit_end");
 			
