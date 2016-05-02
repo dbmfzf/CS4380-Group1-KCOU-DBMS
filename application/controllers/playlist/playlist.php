@@ -78,7 +78,7 @@ class Playlist extends CI_Controller {
 	public function add(){
 		
 		if($this->input->post()){
-			$fullname = $this->input->post("name");
+			$name = $this->input->post("name");
 			if($name){
 				$query = $this->db->query("SELECT * FROM Playlist WHERE uid = '{$uid}'");
 				$data = $query->row_array();
