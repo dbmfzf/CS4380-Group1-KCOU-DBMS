@@ -83,4 +83,4 @@
 <hr/>
 
 <?php echo '<a class="btn btn-success pull-right" href="'.site_url("info/user/add").'">Add new user</a>'; ?>
-<?php echo $this->pagination->create_links(); ?>
+<?php echo "";//$this->pagination->create_links(); ?>
