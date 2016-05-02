@@ -24,12 +24,11 @@
 <form method = "post">
     <div class="hbox">
 	<div class="form-group">
-	  <label >Advanced search</label>
 	  <p><b>Department:</b>
           	<?php 
 			foreach($dept_data as $key){
 				$did_string = $key["did"];
-			    echo '<input value="$did_string" name="leader" type="checkbox"> $key["dept"]';
+			    echo '<input value='$did_string' name='leader' type='checkbox'> '$key["dept"]'';
 			}
     	    
           	?>
