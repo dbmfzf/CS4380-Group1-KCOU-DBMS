@@ -18,8 +18,8 @@
 	<div class="form-group">
 	  <label >Advanced search</label>
 	  <p>
-          <select name="dept" id="dept" class="form-control" >
-          	<option value = "none"> Not selected </option>
+          <select name="dept" class="form-control" >
+          	<option value = ""> Not selected </option>
           	<?php 
 			foreach($dept_data as $key){
 			    printf('<option value ="%s">%s</oprtion>',$key->did,$key->deptname);
