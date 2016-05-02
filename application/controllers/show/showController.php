@@ -36,7 +36,8 @@ class showController extends CI_Controller {
 		}
 
 		// Read and parse our events JSON file into an array of event data arrays.
-		$json = file_get_contents(dirname(__FILE__) . '/../json/events.json');
+		$jsondata = base_url()."static/full-calendar/events.json";
+		$json = file_get_contents($jsondata);
 		$input_arrays = json_decode($json, true);
 
 		// Accumulate an output array of event data arrays.
