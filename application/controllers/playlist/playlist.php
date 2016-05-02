@@ -97,7 +97,7 @@ class Playlist extends CI_Controller {
 			}
 		}
 		else{
-			$this->load->view("playlist/playlist/add");
+			$this->load->view("playlist/add");
 		}
 	}
 	/**
