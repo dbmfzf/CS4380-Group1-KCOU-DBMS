@@ -76,15 +76,15 @@ class Playlist extends CI_Controller {
 	 */
 	 
 	public function add(){
-		
+		$login_uid = rbac_conf(array('INFO','uid'));  
 		if($this->input->post()){
 			$name = $this->input->post("name");
 			if($name){
-				$query = $this->db->query("SELECT * FROM Playlist WHERE uid = '{$uid}'");
+				$query = $this->db->query("SELECT * FROM Playlist WHERE uid = '{$login_uid}'");
 				$data = $query->row_array();
 				if(!$data){
 					$created_date = date('Y-m-d');
-					$sql = "INSERT INTO Playlist (uid,name,created_date) values('{$uid}','{$name}','{$created_date}')";
+					$sql = "INSERT INTO Playlist (uid,name,created_date) values('{$login_uid}','{$name}','{$created_date}')";
 					$this->db->query($sql);
 					success_redirct("playlist/playlist/index","Add successful!");
 					
