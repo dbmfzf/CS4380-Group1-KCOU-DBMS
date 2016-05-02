@@ -34,9 +34,9 @@
   		<option value="International">International</option>
          </select>
          </p>
-         <p>
-		Submitted date from <input type = "date" name = "submit_start" class="form-control" >to  <input type = "date" name = "submit_end" class="form-control" >
-        </p>
+	<div class= "hbox">
+	Submitted date from <input type = "date" name = "submit_start" class="form-control" >to  <input type = "date" name = "submit_end" class="form-control" >
+	</div>
 	</div>
 	<div class="form-group">
 	    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>  Search</button>
