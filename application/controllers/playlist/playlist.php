@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class User extends CI_Controller {
+class Playlist extends CI_Controller {
 	
 	function __construct(){
 		parent::__construct();
@@ -11,33 +11,16 @@ class User extends CI_Controller {
 	 */
 	public function index($page=1)
 	{
-		$login_rid = rbac_conf(array('INFO','rid'));
-		
-		$role_dept_query = $this->db->query("Select level,did,name as rolename from Role R WHERE R.rid = '{$login_rid}'");
-		$role_dept_data = $role_dept_query->row_array();
-		$rolename = $role_dept_data['rolename'];
-		$deptid = $role_dept_data['did'];
-		$level = $role_dept_data['level'];
-		
-		if($rolename=="Manager"){
-			$where="";
-			$cnt_query = $this->db->query("SELECT COUNT(*) as cnt FROM User WHERE rid != $login_rid");
-			
-		} 
-		else{
-			$where = "AND R.did = $deptid AND level > $level";
-			$cnt_query = $this->db->query("select count(*) as cnt FROM User U, Role R, Department D where U.rid = R.rid AND D.did = R.did AND D.did = $deptid AND level > $level;");
-			
-		}
-		
-		
+		$login_uid = rbac_conf(array('INFO','uid')); 
+
+		$cnt_query = $this->db->query("SELECT COUNT(*) AS cnt FROM Playlist WHERE uid = '{$login_uid}'");
 		$cnt_data = $cnt_query->row_array();
 		//page
 		
 		$this->load->library('pagination');
-		$config['base_url'] = site_url("info/user/index");
+		$config['base_url'] = site_url("playlist/playlist/index");
 		$config['total_rows'] = $cnt_data['cnt'];
-		$config['per_page']   = 2;
+		$config['per_page']   = 10;
 		$config['uri_segment']= '4';
 		$config['num_links']='2';
 		$config['first_link'] = 'First';
@@ -45,77 +28,47 @@ class User extends CI_Controller {
 		$config['use_page_numbers'] = TRUE;
 		$this->pagination->initialize($config);
 		
-		$query = $this->db->query("SELECT U.uid,U.fullname,U.gender,U.email,U.phone,U.birth,U.status,R.name as rolename,D.name as deptname FROM Department D, User U, Role R WHERE R.rid = U.rid AND D.did = R.did AND U.rid != '{$login_rid}' ".$where." LIMIT ".(($page-1)*$config['per_page']).",".$config['per_page']."");
+		$query = $this->db->query("SELECT * FROM Playlist WHERE uid = '{$login_uid}' LIMIT ".(($page-1)*$config['per_page']).",".$config['per_page']."");
 		$data = $query->result();
 		
-		$this->load->view("info/user",array("data"=>$data));
+		$this->load->view("playlist/index",array("data"=>$data));
 	}
 	/**
 	 * Edit users
 	 * @param number $uid
 	 */
-	public function edit($uid){
-		
-		$user_query = $this->db->query("SELECT uid,fullname,gender,birth,email,phone,status FROM User WHERE uid = '".$uid."' limit 1");
-		$user_data = $user_query -> row_array();
-		 
-		$current_role_dept_query = $this->db->query("SELECT R.rid,R.name as rolename,D.name as deptname FROM Role R, User U, Department D WHERE D.did = R.did AND U.rid = R.rid AND U.uid = '".$uid."' limit 1");
-		$current_role_dept_data = $current_role_dept_query -> row_array();
-		
-		$login_rid = rbac_conf(array('INFO','rid'));
-		$login_role_query = $this->db->query("SELECT name as rolename from Role where rid = '{$login_rid}'");
-		$login_role = $login_role_query->row_array(); 
-		
-		$data['uid'] = $user_data['uid'];
-		$data['fullname'] = $user_data['fullname'];
-		$data['gender'] = $user_data['gender'];
-		$data['email'] = $user_data['email'];
-		$data['phone'] = $user_data['phone'];
-		$data['birth'] = $user_data['birth'];
-		$data['status'] = $user_data['status'];
-		
-		$data['rolename'] = $current_role_dept_data['rolename'];
-		$data['rid'] = $current_role_dept_data['rid'];
-		$data['deptname'] = $current_role_dept_data['deptname'];
-		
-		$data['login_rolename'] = $login_role['rolename'];
-		
-		$role_dept_query = $this->db->query("SELECT rid,R.name AS rolename, D.name AS deptname FROM Role R, Department D WHERE R.did = D.did AND status = 1 order by rid desc");
-		$role_dept_data = $role_dept_query->result();
-		
-		if($data){
-			if($this->input->post()){
-				$fullname = $this->input->post("fullname");
-				$gender = $this->input->post("gender");
-				$email = $this->input->post("email");
-				$phone = $this->input->post("phone");
-				$birth = $this->input->post("birth");
-				$role = $this->input->post("role");
-				$status = $this->input->post("status");
-				$password = $this->input->post("password");
-				$password2 = $this->input->post("password2");
-				if($uid!=""){
-					if($password==$password2){
-						if($uid&&$fullname&&$gender&&$email&&$phone&&$birth&&$role){
-							if($password){$newpass = ",password='".md5($password2)."'";}else{$newpass="";}
-							if($status){$newstat = ",status='1'";}else{$newstat = ",status='0'";}
-							$sql = "UPDATE User set fullname='{$fullname}',gender = '{$gender}',email='{$email}',phone = '{$phone}',birth = '{$birth}',rid='{$role}' {$newpass} {$newstat} WHERE uid = '{$uid}'";
-							$this->db->query($sql);
-							success_redirct("info/user/index","Edit successful!");
-						}else{
-							error_redirct("","The user's information is not complete!");
-						}
-					}else{
-						error_redirct("","Repeat the wrong password!");
-					}
+	
+	public function see_all_songs($pid){
+		$query = $this->db->query("");
+
+	}
+	 
+	public function edit($pid){
+		$login_uid = rbac_conf(array('INFO','uid')); 
+		$name_query = $this->db->query("SELECT name FROM Playlist WHERE uid = '{$login_uid}'");
+		$name_data = $name_query->row_array();
+		if($this->input->post()){
+			$fullname = $this->input->post("name");
+			if($name){
+				$query = $this->db->query("SELECT * FROM Playlist WHERE uid = '{$uid}'");
+				$data = $query->row_array();
+				if(!$data){
+					$created_date = date('Y-m-d');
+					$sql = "INSERT INTO Playlist (uid,name,created_date) values('{$uid}','{$name}','{$created_date}')";
+					$this->db->query($sql);
+					success_redirct("playlist/playlist/index","Add successful!");
+					
 				}else{
-					error_redirct("","No user is found!");
+					error_redirct("","The playlist's name already exists!");
 				}
+				
+			}else{
+				error_redirct("","The playlist's information is not complete!");
 			}
-			$this->load->view("info/user/edit",array("data"=>$data,"role_dept_data"=>$role_dept_data));
 		}else{
-			error_redirct("info/user/index","No user is found!");
+			$this->load->view("playlist/playlist/edit",array("name_data"=>$info_data));
 		}
+
 	}
 	
 	/**
@@ -124,82 +77,50 @@ class User extends CI_Controller {
 	 
 	public function add(){
 		
-		$role_dept_query = $this->db->query("SELECT rid,R.name as rolename,D.name as deptname FROM Role R, Department D WHERE R.did = D.did AND status = 1 ORDER BY level DESC");
-		$role_dept_data = $role_dept_query->result();
-		
-		$login_rid = rbac_conf(array('INFO','rid'));
-		$login_role_query = $this->db->query("SELECT name as rolename FROM Role WHERE rid = $login_rid");
-		$login_role = $login_role_query->row_array();
-		
-		$data['login_rolename'] = $login_role['rolename'];
-		
-		//role and dept info for department leaders;
-		
-		$role_level_query = $this->db->query("select R.rid,R.name as rolename,D.name as deptname from Role R, Department D where D.did = R.did AND R.rid != $login_rid and D.did = (select did from Role where rid = $login_rid) and level > (select level from Role where rid =$login_rid);");
-		$role_level_data = $role_level_query->result();
-		
-		
 		if($this->input->post()){
-			$uid = $this->input->post("uid");
-			$fullname = $this->input->post("fullname");
-			$gender = $this->input->post("gender");
-			$email = $this->input->post("email");
-			$phone = $this->input->post("phone");
-			$birth = $this->input->post("birth");
-			$role = $this->input->post("role");
-			$status = $this->input->post("status");
-			$password = $this->input->post("password");
-			$password2 = $this->input->post("password2");
-			if($password==$password2){
-				if($uid&&$fullname&&$gender&&$email&&$phone&&$birth&&$role){
-					$query = $this->db->query("SELECT * FROM User WHERE uid = '".$uid."'");
-					$data = $query->row_array();
-					if(!$data){
-						$query = $this->db->query("SELECT * FROM User WHERE email = '".$email."'");
-						$data = $query->row_array();
-						if(!$data){
-							if(!$status){$newstat = "0";}else{$newstat = "1";}
-							$newpass = md5($password2);
-							$sql = "INSERT INTO User (uid,fullname,gender,email,phone,birth,password,rid,status) values('{$uid}','{$fullname}','{$gender}','{$email}','{$phone}','{$birth}','{$newpass}','{$role}', '{$newstat}')";
-							$this->db->query($sql);
-							success_redirct("info/user/index","Add successful!");
-						}else{
-							error_redirct("","The email already exists!");
-						}
-					}else{
-						error_redirct("","The user ID already exists!");
-					}
+			$fullname = $this->input->post("name");
+			if($name){
+				$query = $this->db->query("SELECT * FROM Playlist WHERE uid = '{$uid}'");
+				$data = $query->row_array();
+				if(!$data){
+					$created_date = date('Y-m-d');
+					$sql = "INSERT INTO Playlist (uid,name,created_date) values('{$uid}','{$name}','{$created_date}')";
+					$this->db->query($sql);
+					success_redirct("playlist/playlist/index","Add successful!");
 					
 				}else{
-					error_redirct("","The user's information is not complete!");
+					error_redirct("","The playlist's name already exists!");
 				}
+				
 			}else{
-				error_redirct("","Repeat the wrong password!");
+				error_redirct("","The playlist's information is not complete!");
 			}
 		}
-		$this->load->view("info/user/add",array("data"=>$data,"role_dept_data"=>$role_dept_data,"role_level_data"=>$role_level_data));
+		else{
+			$this->load->view("playlist/playlist/add");
+		}
 	}
 	/**
-	 * Delete users
+	 * Delete playlists
 	 * @param number $id
 	 */
-	public function delete($uid){
-		$query = $this->db->query("SELECT * FROM User WHERE uid = '".$uid."' ");
+	public function delete($pid){
+		$query = $this->db->query("SELECT * FROM Playlist WHERE pid = '{$pid}'");
 		$data = $query->row_array();
 		if($data){
 			if($this->input->post()){
 				$verfiy = $this->input->post("verfiy");
 				if($verfiy){
-					$sql = "DELETE FROM User WHERE uid = '".$uid."' ";
+					$sql = "DELETE FROM Playlist WHERE pid = '{$pid}'";
 					$this->db->query($sql);
-					success_redirct("info/user/index","Delete successful!");
+					success_redirct("playlist/playlist/index","Delete successful!");
 				}else{
-					error_redirct("info/user/index","Delete failed!");
+					error_redirct("playlist/playlist/index","Delete failed!");
 				}
 			}
-			$this->load->view("info/user/delete",array("data"=>$data));
+			$this->load->view("playlist/delete",array("data"=>$data));
 		}else{
-			error_redirct("info/user/index","No user is found!");
+			error_redirct("playlist/playlist/index","No playlist is found!");
 		}
 	}
 }
