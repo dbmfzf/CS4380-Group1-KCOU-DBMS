@@ -75,7 +75,7 @@ class User extends CI_Controller {
 			$config['total_rows'] = $cnt_data['cnt'];
 			$config['per_page']   = 10;
 			$config['uri_segment']= '4';
-			$config['num_links']='2';
+			//$config['num_links']='2';
 			$config['first_link'] = 'First';
 			$config['last_link'] = 'last';
 			$config['use_page_numbers'] = TRUE;
