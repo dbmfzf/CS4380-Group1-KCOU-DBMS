@@ -17,6 +17,7 @@ class news extends CI_Controller {
 		$role_data = $role_query->row_array();
 		$login_rname = $role_data['rname'];
 		
+		/*
 		$query = $this->db->query("SELECT COUNT(1) as cnt FROM news n, submits s WHERE s.uid = '{$login_uid}'");
 		$cnt_data = $query->row_array();
 		//page
@@ -27,23 +28,42 @@ class news extends CI_Controller {
 		$config['uri_segment']= '4';
 		$config['use_page_numbers'] = TRUE;
 		$this->pagination->initialize($config);
-		
-		if($login_rname=="Manager"){
-			$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid");
-			$news_data = $news_query->result();
-			$this->load->view("info/news",array("news_data"=>$news_data));
-		
-		}elseif ($login_rname=="News dept leader"){
-			$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid");
-			$news_data = $news_query->result();
-			$this->load->view("info/news",array("news_data"=>$news_data));
+		*/
+		if($this->input->post()){
+			
+			$news = $this->input->post("news");
+			if($this->input->post("type")){$type = implode(',',$this->input->post("type"));}else{$type=null;}
+			$submit_start = $this->input->post("submit_start");
+			$submit_end = $this->input->post("submit_end");
+			
+			if($news){
+				$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid AND n.nid = '{$news}' or N.title ='{$news}' ");
+				$news_data = $news_query->result();
+			}else{
+				
+				if($type){$where_type = "AND type in '(".$type.")'";}else{$where_type = "";}
+				if($submit_start){$where_start = "AND s.submit_time > '{$submit_start}'"}else{$where_start = "";}
+				if($submit_end){$where_end = "AND s.submit_time < '{$submit_end}'"}else{$where_end = "";}
+				$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid {$where_type} {$where_start} {$where_end}");
+				$news_data = $news_query->result();
+			}
+			
 		}else{
-			$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid and s.uid = '{$login_uid}'");
-			$news_data = $news_query->result();
-			$this->load->view("info/news",array("news_data"=>$news_data));
-		}
 		
-
+			if($login_rname=="Manager"){
+				$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid");
+				$news_data = $news_query->result();
+			
+			}else if($login_rname=="News dept leader"){
+				$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid");
+				$news_data = $news_query->result();
+			}else{
+				$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid and s.uid = '{$login_uid}'");
+				$news_data = $news_query->result();
+				
+			}
+		}
+		$this->load->view("info/news",array("news_data"=>$news_data,"role_data"=>$role_data));
 	}
 	/**
 	 * 	News edit
@@ -60,9 +80,6 @@ class news extends CI_Controller {
 		$data['type'] = $news_data['type'];
 		$submit_time = $news_data['submit_time'];
 		$content = $news_data['content'];
-		
-
-
 		
 		if($data){
 			if($this->input->post()){
