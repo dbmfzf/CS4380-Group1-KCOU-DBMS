@@ -28,7 +28,7 @@
 	  <p><b>Department:</b>
           	<?php 
 			foreach($dept_data as $key){
-				$did_string = '$key['did']';
+				$did_string = "'"".$key['did']"."'";
 			    echo "<input value='$did_string' name='leader' type='checkbox'> $key['dept']";
 			}
     	    
