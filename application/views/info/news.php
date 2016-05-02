@@ -34,8 +34,11 @@
   		<option value="International">International</option>
          </select>
          </p>
-	<div class= "hbox">
-	Submitted date from <input type = "date" name = "submit_start" class="form-control" >to  <input type = "date" name = "submit_end" class="form-control" >
+	<div class="form-group">
+	Submitted date from <input type = "date" name = "submit_start" class="form-control" >
+	</div>
+	<div class="form-group">
+	to <input type = "date" name = "submit_end" class="form-control" >
 	</div>
 	</div>
 	<div class="form-group">
