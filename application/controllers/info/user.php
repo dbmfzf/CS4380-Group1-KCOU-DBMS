@@ -42,7 +42,7 @@ class User extends CI_Controller {
 				$data = $query->result();
 				$this->load->view("info/user",array("data"=>$data,"dept_data"=>$dept_data,"flag"=>$flag));
 			}else{
-				if($did){$where_did = "AND D.did = in (".$did.")";}else{$where_did="";}
+				if($did){$where_did = "AND D.did in (".$did.")";}else{$where_did="";}
 				if($is_leader&&(!$is_volunteer)){$where_role = "AND R.name like '%leader%'";}else if((!$is_leader)&&$is_volunteer){$where_role = "AND R.name like '%volunteer%'";}else{$where_role = "";}
 				if($is_male&&(!$is_female)){$where_gender = "AND U.gender='Male'";}else if((!$is_male)&&$is_female){$where_gender = "AND U.gender='Female'";}else{$where_gender = "";}
 				if($is_enable&&($is_disable)){$where_status = "AND U.status='1'";}else if((!$is_enable)&&$is_disable){$where_status = "AND U.status='0'";}else{$where_status = "";}
