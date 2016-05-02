@@ -35,10 +35,8 @@
          </select>
          </p>
 	<div class="form-group">
-	Submitted date from <input type = "date" name = "submit_start" class="form-control" >
-	</div>
-	<div class="form-group">
-	to <input type = "date" name = "submit_end" class="form-control" >
+	Submitted date from <input type = "date" width ="20%" name = "submit_start" class="form-control" >
+	to <input type = "date" width = "20%" name = "submit_end" class="form-control" >
 	</div>
 	</div>
 	<div class="form-group">
