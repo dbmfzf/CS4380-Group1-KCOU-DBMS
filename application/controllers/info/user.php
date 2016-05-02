@@ -29,7 +29,7 @@ class User extends CI_Controller {
 			if($uid){
 				$query = $this->db->query("SELECT U.uid,U.fullname,U.gender,U.email,U.phone,U.birth,U.status,R.name as rolename,D.name as deptname FROM Department D, User U, Role R WHERE R.rid = U.rid AND D.did = R.did AND U.uid = '{$uid}');
 				$data = $query->result();
-				$this->load->view("info/user",array("data"=>$data,"dept_data"=>$dept_data));
+			
 			}else{
 				if($did){$where_leader = "AND D.did = '{$did}'";}else{$where_did="";}
 				if($is_leader){$where_leader = "AND R.name like '%leader%'";}else{$where_leader="";}
