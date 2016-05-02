@@ -23,6 +23,7 @@ class User extends CI_Controller {
 		$deptid = $role_dept_data['did'];
 		$level = $role_dept_data['level'];
 		
+		$flag['rolename'] = $rolename;
 		
 		
 		if($this->input->post()){
