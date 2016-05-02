@@ -1,6 +1,49 @@
 <style>
 .table td:nth-child(7){width:30%}
 </style>
+<script>
+	$(document).ready(function() {
+		var rolename = "<?php echo $flag['rolename'];?>";
+		if(rolename != "Manager" || rolename!= "News dept leader"){
+			$("#searching").hide();
+		}
+	})
+</script>
+<div id = "searching">
+<form method = "post">
+    <div class="hbox">
+	<div class="form-group">
+	  <label>Search by news ID or news title</label>
+	   <input type="text" name ="news" class="form-control" placeholder="Enter ID/title here"> 
+	</div>
+	<div class="form-group">
+	    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>  Search</button>
+	</div>
+  </div>
+</form>
+<form method = "post">
+    <div class="hbox">
+	<div class="form-group">
+	  <label >Advanced search</label>
+	  <p>
+          <select name="type" class="form-control">
+  	        <option value = ""> Not selected </option>
+  		<option value="Sports">Sports</option>
+  		<option value="Academic">Academic</option>
+  		<option value="Social">Social</option>
+  		<option value="International">International</option>
+         </select>
+         </p>
+         <p>
+		Submitted date from <input type = "date" name = "submit_start" class="form-control" >to  <input type = "date" name = "submit_end" class="form-control" >
+        </p>
+	</div>
+	<div class="form-group">
+	    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>  Search</button>
+	</div>
+  </div>
+</form>
+</div>
 <table class="table  table-bordered well">
 	<thead>
           <tr>
