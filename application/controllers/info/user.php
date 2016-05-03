@@ -136,11 +136,17 @@ class User extends CI_Controller {
 				if($uid!=""){
 					if($password==$password2){
 						if($uid&&$fullname&&$gender&&$email&&$phone&&$birth&&$role){
-							if($password){$newpass = ",password='".md5($password2)."'";}else{$newpass="";}
-							if($status){$newstat = ",status='1'";}else{$newstat = ",status='0'";}
-							$sql = "UPDATE User set fullname='{$fullname}',gender = '{$gender}',email='{$email}',phone = '{$phone}',birth = '{$birth}',rid='{$role}' {$newpass} {$newstat} WHERE uid = '{$uid}'";
-							$this->db->query($sql);
-							success_redirct("info/user/index","Edit successful!");
+							$query = $this->db->query("SELECT * FROM User WHERE email = '".$email." OR phone = '{$phone}'");
+							$data = $query->row_array();
+							if(!data){
+								if($password){$newpass = ",password='".md5($password2)."'";}else{$newpass="";}
+								if($status){$newstat = ",status='1'";}else{$newstat = ",status='0'";}
+								$sql = "UPDATE User set fullname='{$fullname}',gender = '{$gender}',email='{$email}',phone = '{$phone}',birth = '{$birth}',rid='{$role}' {$newpass} {$newstat} WHERE uid = '{$uid}'";
+								$this->db->query($sql);
+								success_redirct("info/user/index","Edit successful!");
+							}else{
+								error_redirct("","The email or phone number already exists!");
+							}
 						}else{
 							error_redirct("","The user's information is not complete!");
 						}
@@ -194,7 +200,7 @@ class User extends CI_Controller {
 					$query = $this->db->query("SELECT * FROM User WHERE uid = '".$uid."'");
 					$data = $query->row_array();
 					if(!$data){
-						$query = $this->db->query("SELECT * FROM User WHERE email = '".$email."'");
+						$query = $this->db->query("SELECT * FROM User WHERE email = '".$email." OR phone = '{$phone}'");
 						$data = $query->row_array();
 						if(!$data){
 							if(!$status){$newstat = "0";}else{$newstat = "1";}
@@ -203,7 +209,7 @@ class User extends CI_Controller {
 							$this->db->query($sql);
 							success_redirct("info/user/index","Add successful!");
 						}else{
-							error_redirct("","The email already exists!");
+							error_redirct("","The email or phone number already exists!");
 						}
 					}else{
 						error_redirct("","The user ID already exists!");
