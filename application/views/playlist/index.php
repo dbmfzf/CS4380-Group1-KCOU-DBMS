@@ -1,5 +1,5 @@
 <style>
-.table td:nth-child(10){width:15%}
+.table td:nth-child(2){width:30%}
 </style>
 <h1>Playlist</h1>
 <table class="table  table-bordered well">
