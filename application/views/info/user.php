@@ -56,7 +56,7 @@
         </p>
 	</div>
 	<div class="form-group">
-	    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>  Search</button>
+	    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>  Filter</button>
 	</div>
   </div>
 </form>
