@@ -22,7 +22,7 @@ class showController extends CI_Controller {
 		if($this->input->post()){
 			
 			$shows = $this->input->post("shows");
-			//if($this->input->post("type")){$type = implode(',',$this->input->post("type"));}else{$type=null;}
+			if($this->input->post("type")){$type = implode(',',$this->input->post("type"));}else{$type=null;}
 			$day =  $this->input->post("day");
 			if($this->input->post("order")){$order = implode(',',$this->input->post("order"));}else{$order=null;}
 			
@@ -31,10 +31,10 @@ class showController extends CI_Controller {
 				$shows_data = $shows_query->result();
 			}else{
 				
-				//if($type){$where_type = "AND s.category in (".$type.")";}else{$where_type = "";}
-				if($day){$where_day = "AND day in (".$day.")";}else{$where_day = "";}
+				if($type){$where_type = "AND s.category in (".$type.")";}else{$where_type = "";}
+				//if($day){$where_day = "AND day in (".$day.")";}else{$where_day = "";}
 				if($order){$order_by = "ORDER BY ".$order."";}else{$order_by = "";}
-				$shows_query = $this->db->query("SELECT s.show_id, s.title, s.category, description, u.fullname as actor, r.start_time, r.end_time,day FROM shows s, responses r,user u where u.uid = r.uid AND s.show_id = r.show_id {$where_type} {$where_day} {$order_by}");
+				$shows_query = $this->db->query("SELECT s.show_id, s.title, s.category, description, u.fullname as actor, r.start_time, r.end_time,day FROM shows s, responses r,user u where u.uid = r.uid AND s.show_id = r.show_id {$where_type} {$order_by}");
 				$shows_data = $shows_query->result();
 			}
 			
