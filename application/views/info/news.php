@@ -5,7 +5,7 @@
 </style>
 <script>
 	$(document).ready(function() {
-		var rolename = "<?php echo $role_data['rolename'];?>";
+		var rolename = "<?php echo $role_data['rname'];?>";
 		if(rolename != "Manager" || rolename!= "News dept leader"){
 			$("#searching").hide();
 		}
