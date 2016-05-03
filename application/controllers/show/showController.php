@@ -55,7 +55,7 @@ class showController extends CI_Controller {
 				
 			}
 		}
-		$this->load->view("show/showInfo",array("news_data"=>$shows_data,"role_data"=>$role_data));
+		$this->load->view("show/showInfo",array("shows_data"=>$shows_data,"role_data"=>$role_data));
 	}
 
 
