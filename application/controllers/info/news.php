@@ -38,7 +38,7 @@ class news extends CI_Controller {
 			if($this->input->post("order")){$order = implode(',',$this->input->post("order"));}else{$order=null;}
 			
 			if($news){
-				$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time, u.fullname as author FROM news n, submits s，user u WHERE u.uid = s.uid AND n.nid = s.nid AND (n.nid = '{$news}' OR N.title like '%{$news}%') ");
+				$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time, u.fullname as author FROM news n, submits s，user u WHERE u.uid = s.uid AND n.nid = s.nid AND (n.nid = '{$news}' OR n.title like '%{$news}%' ORFER BY n.nid)");
 				$news_data = $news_query->result();
 			}else{
 				
@@ -53,14 +53,14 @@ class news extends CI_Controller {
 		}else{
 		
 			if($login_rname=="Manager"){
-				$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time, u.fullname as author FROM user u, news n, submits s WHERE u.uid = s.uid AND n.nid = s.nid");
+				$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time, u.fullname as author FROM user u, news n, submits s WHERE u.uid = s.uid AND n.nid = s.nid ORDER BY n.nid");
 				$news_data = $news_query->result();
 			
 			}else if($login_rname=="News dept leader"){
-				$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time, u.fullname as author FROM user u, news n, submits s WHERE u.uid = s.uid AND n.nid = s.nid");
+				$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time, u.fullname as author FROM user u, news n, submits s WHERE u.uid = s.uid AND n.nid = s.nid ORDER BY n.nid");
 				$news_data = $news_query->result();
 			}else{
-				$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time,u.fullname as author FROM user u, news n, submits s WHERE u.uid =s.uid AND n.nid = s.nid AND s.uid = '{$login_uid}'");
+				$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time,u.fullname as author FROM user u, news n, submits s WHERE u.uid =s.uid AND n.nid = s.nid AND s.uid = '{$login_uid}' ORDER BY n.nid");
 				$news_data = $news_query->result();
 				
 			}
