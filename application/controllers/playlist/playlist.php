@@ -48,7 +48,7 @@ class Playlist extends CI_Controller {
 			$pid = $this->input->post("pid");
 			echo $pid;
 			if($pid){
-				$query = $this->db->query("SELECT * FROM Playlist P, User U, Song_in_playlist S WHERE S.pid = P.pid AND P.uid = U.uid AND uid = '{$login_uid}' AND sid = '{$sid}'");
+				$query = $this->db->query("SELECT * FROM Playlist P, User U, Song_in_playlist S WHERE S.pid = P.pid AND P.uid = U.uid AND U.uid = '{$login_uid}' AND S.sid = '{$sid}'");
 				$data = $query->row_array();
 				if(!$data){
 					$sql = "INSERT INTO Song_in_playlist(pid,sid) values('{$pid}','{$sid}')";
