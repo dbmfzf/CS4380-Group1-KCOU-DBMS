@@ -51,11 +51,11 @@
 		</select></br></td>
 	</div>
 		<p><b>Order by: </b>
-			<input value="nid" name="order[]" type="checkbox" > Shows ID
+			<input value="show_id" name="order[]" type="checkbox" > Shows ID
 			<input value="title" name="order[]" type="checkbox" > Shows title
-	        	<input value="author" name= "order[]" type ="checkbox"> Actor name
-	        	<input value="submit_time" name="order[]" type="checkbox"> start time
-	        	<input value="last_modified_time" name="order[]" type = "checkbox"> end time
+	        	<input value="fullname" name= "order[]" type ="checkbox"> Actor name
+	        	<input value="start_time" name="order[]" type="checkbox"> start time
+	        	<input value="end_time" name="order[]" type = "checkbox"> end time
 	       
 	    </p>
 	</div>
