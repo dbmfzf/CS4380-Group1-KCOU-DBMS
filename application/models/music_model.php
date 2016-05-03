@@ -147,5 +147,9 @@ class Music_model extends CI_Model {
         }
         return $resultArr;
     }
+    
+    public function getWeekOfSearches(){
+        //select count(*), date(date_time) AS date from search_album WHERE date(date_time) between date('2016-05-02') and date('2016-05-03') group by date(date_time)  order by date_time desc;
+    }
 }
 

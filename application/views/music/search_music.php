@@ -100,11 +100,6 @@
                             <input type=\"hidden\" name=\"sid\" value=\"" . openssl_encrypt($arrayOfSongs[$i]->sid, 'aes128', 'CS4380G1', OPENSSL_RAW_DATA, '6871358468913485') . "\">
                             <input type=\"submit\" value=\"Add\" class=\"btn btn-primary\"></form></td>\n");
                             echo("\t</tr>\n");
-                            $encrypted = openssl_encrypt($arrayOfSongs[$i]->sid, 'aes128', 'CS4380G1', OPENSSL_RAW_DATA, '6871358468913485');
-                            
-                            echo("sid without encryption/decryption: " . $arrayOfSongs[$i]->sid);
-
-                            echo("sid with encryption/decryption: " . openssl_decrypt($encrypted, 'aes128', 'CS4380G1', OPENSSL_RAW_DATA, '6871358468913485'));
                         }
                     ?>
                 </tbody>
