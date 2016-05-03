@@ -38,7 +38,7 @@ class User extends CI_Controller {
 			$is_disable = $this->input->post("disable");
 			if($this->input->post("order")){$order = implode(',',$this->input->post("order"));}else{$order=null;}
 			
-			if($uid){
+			if($user_info){
 				$query = $this->db->query("SELECT U.uid,U.fullname,U.gender,U.email,U.phone,U.birth,U.status,R.name as rolename,D.name as deptname FROM Department D, User U, Role R WHERE R.rid = U.rid AND D.did = R.did AND (U.uid = '{$user_info}' OR U.email = '{$user_info}' OR U.phone = '{$user_info}')");
 				$data = $query->result();
 				$this->load->view("info/user",array("data"=>$data,"dept_data"=>$dept_data,"flag"=>$flag));
