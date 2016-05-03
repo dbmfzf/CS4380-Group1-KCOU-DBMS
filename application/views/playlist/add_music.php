@@ -11,7 +11,7 @@
               <?php
     		      foreach($playlist_data as $key){
 		  	     printf('<option value = "%s"> %s </option>',$key->pid,$key->name);
-		  	     echo $pid;
+		  	     
     		      }
 		?>
 	       </select>
