@@ -73,7 +73,7 @@ class Role extends CI_Controller {
 	 * @param number $rid
 	 */
 	public function add(){
-		$dept_query = $this->db->query("SELECT D.did, D.name as deptname FROM Department");
+		$dept_query = $this->db->query("SELECT D.did, D.name as deptname FROM Department D");
 		$dept_data = $dept_query->result();
 		if($this->input->post()){
 			$level = $this->input->post("level");
