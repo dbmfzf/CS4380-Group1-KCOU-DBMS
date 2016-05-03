@@ -27,6 +27,10 @@ class search_music extends CI_Controller {
         if(!empty($data['searchValues'])){
             $this->logSearch($data['searchValues']);
         }
+        $popular['songs'] = $this->music_model->getPopularSongs(10);
+        $popular['artists'] = $this->music_model->getPopularArtists(10);
+        $popular['albums'] = $this->music_model->getPopularAlbums(10);
+        $this->load->view("music/master_music.php", $popular);
         $this->load->view("music/search_music.php", $data);
     }
     
@@ -77,35 +81,44 @@ class search_music extends CI_Controller {
     //takes in json representation of of the song object and inserts those values into the database
     private function logSearch($logData){
         $arrayOfSongs = json_decode($logData);
-            //echo("printing array of objects:\n");
-            print_r($arrayOfSongs);
-            //print("logged in as uid: " . rbac_conf(array('INFO','uid')));
-            //Insert each song/artist/album name once
-            $songs = array();
-            $artists = array();
-            $albums = array();
-            //add song names, artist names, and album names to their respective arrays
-            for($i = 0; $i < sizeof($arrayOfSongs); $i++){
-                //print_r($song[$i]);
-                array_push($songs, $arrayOfSongs[$i]->Song_title);
-                array_push($artists, $arrayOfSongs[$i]->Artist);
-                array_push($albums, $arrayOfSongs[$i]->Album); 
-            }
-            //remove duplicates
-            array_unique($songs, SORT_REGULAR);
-            array_unique($artists, SORT_REGULAR);
-            array_unique($albums, SORT_REGULAR);
+        //echo("printing array of objects:\n");
+        print_r($arrayOfSongs);
+        //print("logged in as uid: " . rbac_conf(array('INFO','uid')));
+        //Insert each song/artist/album name once
+        $songs = array();
+        $artists = array();
+        $albums = array();
+        //add song names, artist names, and album names to their respective arrays
+        for($i = 0; $i < sizeof($arrayOfSongs); $i++){
+            //print_r($song[$i]);
+            array_push($songs, $arrayOfSongs[$i]->Song_title);
+            array_push($artists, $arrayOfSongs[$i]->Artist);
+            array_push($albums, $arrayOfSongs[$i]->Album); 
+        }
+        //remove duplicates
+        $songs = array_unique($songs, SORT_STRING);
+        $artists = array_unique($artists, SORT_STRING);
+        $albums = array_unique($albums, SORT_STRING);
+        
+        //enter songs, artists, and albums into database
+        for($i = 0; $i < sizeof($songs); $i++){
             $this->music_model->searchSong(array(
-                    'songName' => $arrayOfSongs[$i]->Song_title,
-                    'uid' => rbac_conf(array('INFO','uid'))
-                ));
-                $this->music_model->searchArtist(array(
-                    'artistName' => $arrayOfSongs[$i]->Artist, 
-                    'uid' => rbac_conf(array('INFO','uid'))
-                ));
-                $this->music_model->searchAlbum(array(
-                    'albumName' => $arrayOfSongs[$i]->Album, 
-                    'uid' => rbac_conf(array('INFO','uid'))
-                ));
+                'songName' => $songs[$i],
+                'uid' => rbac_conf(array('INFO','uid'))
+            ));
+        }
+        for($i = 0; $i < sizeof($artists); $i++){
+            $this->music_model->searchArtist(array(
+                'artistName' => $artists[$i], 
+                'uid' => rbac_conf(array('INFO','uid'))
+            ));
+        }
+        for($i = 0; $i < sizeof($albums); $i++){
+            $this->music_model->searchAlbum(array(
+                'albumName' => $albums[$i], 
+                'uid' => rbac_conf(array('INFO','uid'))
+            ));
+        }  
     }
+    
 }

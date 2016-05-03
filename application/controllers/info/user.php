@@ -15,7 +15,7 @@ class User extends CI_Controller {
 		$login_rid = rbac_conf(array('INFO','rid'));
 		$login_uid = rbac_conf(array('INFO','uid'));
 		$dept_query = $this->db->query("SELECT did, name as deptname FROM Department");
-		$dept_data = $dept_query->result();
+		$dept_data = $dept_query->result_array();
 		
 		$role_dept_query = $this->db->query("Select level,did,name as rolename from Role R WHERE R.rid = '{$login_rid}'");
 		$role_dept_data = $role_dept_query->row_array();
@@ -29,25 +29,26 @@ class User extends CI_Controller {
 		if($this->input->post()){
 			$flag['pagination'] = "disable";
 			$uid = $this->input->post("uid");
-			$did = $this ->input->post("dept");
+			if($this->input->post("dept")){$did = implode(',',$this->input->post("dept"));}else{$did=null;}
 			$is_leader = $this->input->post("leader");
 			$is_volunteer = $this->input->post("volunteer");
 			$is_male = $this->input->post("male");
 			$is_female = $this->input->post("female");
 			$is_enable = $this->input->post("enable");
 			$is_disable = $this->input->post("disable");
+			if($this->input->post("order")){$order = implode(',',$this->input->post("order"));}else{$order=null;}
 			
 			if($uid){
 				$query = $this->db->query("SELECT U.uid,U.fullname,U.gender,U.email,U.phone,U.birth,U.status,R.name as rolename,D.name as deptname FROM Department D, User U, Role R WHERE R.rid = U.rid AND D.did = R.did AND U.uid = '{$uid}'");
 				$data = $query->result();
 				$this->load->view("info/user",array("data"=>$data,"dept_data"=>$dept_data,"flag"=>$flag));
 			}else{
-				if($did){$where_did = "AND D.did = '{$did}'";}else{$where_did="";}
+				if($did){$where_did = "AND D.did in (".$did.")";}else{$where_did="";}
 				if($is_leader&&(!$is_volunteer)){$where_role = "AND R.name like '%leader%'";}else if((!$is_leader)&&$is_volunteer){$where_role = "AND R.name like '%volunteer%'";}else{$where_role = "";}
 				if($is_male&&(!$is_female)){$where_gender = "AND U.gender='Male'";}else if((!$is_male)&&$is_female){$where_gender = "AND U.gender='Female'";}else{$where_gender = "";}
 				if($is_enable&&($is_disable)){$where_status = "AND U.status='1'";}else if((!$is_enable)&&$is_disable){$where_status = "AND U.status='0'";}else{$where_status = "";}
-				
-				$query = $this->db->query("SELECT U.uid,U.fullname,U.gender,U.email,U.phone,U.birth,U.status,R.name as rolename,D.name as deptname FROM Department D, User U, Role R WHERE R.rid = U.rid AND D.did = R.did {$where_did} {$where_role} {$where_gender} {$where_status}");
+				if($order){$order_by = "ORDER BY ".$order."";}else{$order_by = "";}
+				$query = $this->db->query("SELECT U.uid,U.fullname,U.gender,U.email,U.phone,U.birth,U.status,R.name as rolename,D.name as deptname FROM Department D, User U, Role R WHERE R.rid = U.rid AND D.did = R.did {$where_did} {$where_role} {$where_gender} {$where_status} {$order_by}");
 				$data = $query->result();
 				$this->load->view("info/user",array("data"=>$data,"dept_data"=>$dept_data,"flag"=>$flag));
 
@@ -82,7 +83,7 @@ class User extends CI_Controller {
 			$config['use_page_numbers'] = TRUE;
 			$this->pagination->initialize($config);
 			
-			$query = $this->db->query("SELECT U.uid,U.fullname,U.gender,U.email,U.phone,U.birth,U.status,R.name as rolename,D.name as deptname FROM Department D, User U, Role R WHERE R.rid = U.rid AND D.did = R.did AND U.rid != '{$login_rid}' ".$where." LIMIT ".(($page-1)*$config['per_page']).",".$config['per_page']."");
+			$query = $this->db->query("SELECT U.uid,U.fullname,U.gender,U.email,U.phone,U.birth,U.status,R.name as rolename,D.name as deptname FROM Department D, User U, Role R WHERE R.rid = U.rid AND D.did = R.did ".$where." LIMIT ".(($page-1)*$config['per_page']).",".$config['per_page']."");
 			$data = $query->result();
 			
 			$this->load->view("info/user",array("data"=>$data,"dept_data"=>$dept_data,"flag"=>$flag));

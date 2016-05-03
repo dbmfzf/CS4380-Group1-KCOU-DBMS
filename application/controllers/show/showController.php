@@ -8,15 +8,20 @@ class showController extends CI_Controller {
 		parent::__construct();
 		$this -> load -> model("show_model");
 		$this -> load -> helper('html');
+		$this -> load -> helper('url');
 		$this -> load -> library('javascript');
 	}
 
 	public function index() {
-		$this -> load -> view("view/show.php");
+		$this -> load -> view("show/show_calander.php");
 	}
 
 	public function genericSearchHandler() {
-		require base_url() . '/utils.php';
+		$startdate = $this->input->get("start");
+		$enddate = $this->input->get("end");
+		echo json_encode($startdate.$enddate);
+		return;
+		/*require base_url() . 'static/full-calendar/utils.php';
 
 		// Short-circuit if the client did not give us a date range.
 		if (!isset($_GET['start']) || !isset($_GET['end'])) {
@@ -36,7 +41,8 @@ class showController extends CI_Controller {
 		}
 
 		// Read and parse our events JSON file into an array of event data arrays.
-		$json = file_get_contents(dirname(__FILE__) . '/../json/events.json');
+		$jsondata = base_url().'static/full-calendar/events.json';
+		$json = file_get_contents($jsondata);
 		$input_arrays = json_decode($json, true);
 
 		// Accumulate an output array of event data arrays.
@@ -54,7 +60,8 @@ class showController extends CI_Controller {
 
 		// Send JSON to the client.
 		echo json_encode($output_arrays);
-		return;
+		return;*/
+		
 	}
 
 	public function getUnreadMessageCount() {

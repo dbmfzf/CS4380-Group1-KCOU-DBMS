@@ -24,13 +24,12 @@
 <form method = "post">
     <div class="hbox">
 	<div class="form-group">
-	  <label >Advanced search</label>
-	  <p>
-          <select name="dept" class="form-control" >
-          	<option value = ""> Not selected </option>
+	  <p><b>Department:</b>
           	<?php 
 			foreach($dept_data as $key){
-			    printf('<option value ="%s">%s</oprtion>',$key->did,$key->deptname);
+				$did_string = $key["did"];
+				$dname_string = $key["deptname"];
+			    echo "<input value='$did_string' name='dept[]' type='checkbox'> $dname_string ";
 			}
     	    
           	?>
@@ -48,9 +47,16 @@
         	<input value="1" name= "enable" type ="checkbox"> Enable
         	<input value="1" name= "disable" type ="checkbox"> Disable
         </p>
+        <p><b>Order by: </b>
+        	<input value="uid" name="order[]" type="checkbox"> User ID
+        	<input value="fullname" name="order[]" type = "checkbox"> Fullname
+        	<input value="'gender" name="order[]" type="checkbox" > Gender
+        	<input value="birth" name="order[]" type="checkbox" > Birthday
+        	<input value="name" name= "order[]" type ="checkbox"> Role name
+        </p>
 	</div>
 	<div class="form-group">
-	    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>  Search</button>
+	    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>  Filter</button>
 	</div>
   </div>
 </form>

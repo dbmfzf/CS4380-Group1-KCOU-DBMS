@@ -1,12 +1,14 @@
 <style>
-.table td:nth-child(7){width:30%}
+.table td:nth-child(6){width:20%}
+.table td:nth-child(7){width:20%}
+.table td:nth-child(8){width:12%}
 .hbox .flex1{width:20%;}
 .hbox .flex2{width:10%;}
 </style>
 <script>
 	$(document).ready(function() {
-		var rolename = "<?php echo $role_data['rolename'];?>";
-		if(rolename != "Manager" || rolename!= "News dept leader"){
+		var rolename = "<?php echo $role_data['rname'];?>";
+		if(rolename != "Manager" && rolename!= "News dept leader"){
 			$("#searching").hide();
 		}
 	})
@@ -16,7 +18,7 @@
     <div class="hbox">
 	<div class="form-group">
 	  <label>Search by news ID or news title</label>
-	   <input type="text" name ="news" class="form-control" placeholder="Enter ID/title here"> 
+	   <input type="text" name ="news" class="form-control" placeholder="Enter exact ID or part of title name here"> 
 	</div>
 	<div class="form-group">
 	    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>  Search</button>
@@ -25,8 +27,7 @@
 </form>
 <form method = "post">
      <div class="form-group">
-	  <label >Advanced search</label>
-	  <p>
+	  <p><b>News type:</b>
         	<input value="'Sports'" name="type[]" type="checkbox"> Sports
         	<input value="'Academic'" name="type[]" type = "checkbox"> Academic
         	<input value="'Social'" name="type[]" type="checkbox" > Social
@@ -40,9 +41,17 @@
 		<div class = "flex2">to</div>
 		<div class = "flex1"><input type = "date" name = "submit_end" class="form-control" ></div>
 	</div>
+	<p><b>Order by: </b>
+		<input value="nid" name="order[]" type="checkbox" > News ID
+		<input value="title" name="order[]" type="checkbox" > News title
+        	<input value="author" name= "order[]" type ="checkbox"> Author name
+        	<input value="submit_time" name="order[]" type="checkbox"> submited time
+        	<input value="last_modified_time" name="order[]" type = "checkbox"> modified time
+       
+        </p>
 	</div>
 	<div class="form-group">
-	    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>  Search</button>
+	    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>  Filter</button>
     </div>
 </form>
 </div>
@@ -52,6 +61,7 @@
             <th>News ID</th>
             <th>Title</th>
             <th>Type</th>
+            <th>Author</th>
             <th>Content</th>
             <th>Last modified time</th>
             <th>Submit time</th>
@@ -60,8 +70,9 @@
         </thead>
    <tbody>
 	<?php 
-	foreach($news_data as $mb){
+	foreach($news_data as $row){
 		printf('<tr>
+			<td>%s</td>
 			<td>%s</td>
 			<td>%s</td>
 			<td>%s</td>
@@ -78,7 +89,7 @@
 				  <a class="btn btn-danger" href="%s">Delete</a> 
 				</div>
 			</td>
-		</tr>',$mb->nid,$mb->title,$mb->type,site_url("info/news/edit_content/".$mb->nid),$mb->last_modified_time,$mb->submit_time,site_url("info/news/edit/".$mb->nid),site_url("info/news/delete/".$mb->nid));
+		</tr>',$row->nid,$row->title,$row->type,$row->author,site_url("info/news/edit_content/".$row->nid),$row->last_modified_time,$row->submit_time,site_url("info/news/edit/".$row->nid),site_url("info/news/delete/".$row->nid));
 	}
 	?>
   </tbody>

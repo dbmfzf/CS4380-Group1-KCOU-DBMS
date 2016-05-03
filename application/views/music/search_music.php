@@ -4,26 +4,9 @@
         console.dir("searchMusic called");
         switch(searchType){
             case 'generic':
-                /*$.getJSON("<?php //echo base_url(); ?>index.php/music/search_music/genericSearchHandler",
-                        {"searchString" : $("#genericSearch").val()}, 
-                        function ( data ){
-                            console.dir("inside of anonymous function");
-                            console.dir( data );
-                });*/
                 window.location.href = "<?php echo base_url(); ?>index.php/music/search_music/?searchString=" + $("#genericSearch").val();
                 break;
             case 'advanced':
-                /*$.getJSON("<?php //echo base_url(); ?>index.php/music/search_music/advancedSearchHandler",
-                         {
-                            "songName" : $("#songSearch").val(),
-                            "artistName" : $("#artistSearch").val(),
-                            "albumName" : $("#albumSearch").val(),
-                            "genreName" : $("#genreSearch").val()
-                         }, 
-                         function ( data ){
-                            console.dir("inside of anonymous function");
-                            console.dir( data );
-                });*/
                 window.location.href = "<?php echo base_url(); ?>index.php/music/search_music/?songName=" + $("#songSearch").val() + "&artistName=" + $("#artistSearch").val() + "&albumName=" + $("#albumSearch").val() + "&genreName=" + $("#genreSearch").val();
                 break;
             default:
@@ -43,15 +26,6 @@
         }
     }
 </script>
-<script>
-    //Gives a notification when scrolling near the bottom of the page
-    //replace anonymous function with loading more songs
-    /*var nearToBottom = 100;
-    
-    if ($(window).scrollTop() + $(window).height() > $(document).height() - nearToBottom) { 
-        alert("near bottom of the page");
-    } */
-</script>
 <style>
     #searchBar {
         background-color: #AAA;
@@ -60,7 +34,7 @@
         margin: 5px 0;
     }
 </style>
-<div class="well">
+<div class="well" id="searchMusic">
     <div class="well well-lg" id="searchBar">
         <form role="form" class="form-inline collapse in" id="genericSearchForm">
             <div class="hbox">

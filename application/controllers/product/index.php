@@ -10,20 +10,20 @@ class Index extends CI_Controller {
 		//cancel rewrite VIEW
 		//$this->view_override = FALSE;
 		$uid = rbac_conf(array('INFO','uid'));
-		$user_query = $this->db->query("SELECT fullname,gender FROM User WHERE uid = '".$uid."' limit 1");
+		$user_query = $this->db->query("SELECT fullname,gender FROM User WHERE uid = '{$uid}' limit 1");
 		$user_data = $user_query -> row_array();
 		
 		$rid = rbac_conf(array('INFO','rid'));
 		$role_dept_query = $this->db->query("SELECT R.name as rolename, D.name as deptname from Role R, Department D where D.did = R.did and R.rid = '".$rid."' limit 1");
 		$role_dept_data = $role_dept_query -> row_array();
 		
-		$login_query = $this->db->query("SELECT * FROM Login_record WHERE uid = '".$uid."' AND log_id != (SELECT MAX(log_id) FROM Login_record WHERE uid = '".$uid."') order by log_id desc limit 1");
+		$login_query = $this->db->query("SELECT * FROM Login_record WHERE uid = '{$uid}' AND log_id != (SELECT MAX(log_id) FROM Login_record WHERE uid = '".$uid."') order by log_id desc limit 1");
 		$login_data = $login_query -> row_array();
 		
-		$recent_query = $this->db->query("SELECT S.path as song_path,S.title as song_title FROM Search_song SS,Song S WHERE S.sid = SS.sid AND SS.uid = '".$uid."' order by date_time desc limit 1");
+		$recent_query = $this->db->query("SELECT S.path as song_path,S.title as song_title FROM Search_song SS,Song S WHERE S.sid = SS.sid AND SS.uid = '{$uid}' order by date_time desc limit 1");
 		$most_recently_searched = $recent_query->row_array();
 		
-		$most_query = $this->db->query("SELECT S.path as song_path, S.title as song_title FROM Search_song S1, Song S WHERE S1.sid = S.sid AND S1.uid = '".$uid."' group by S1.sid having count(*) = (SELECT MAX(S2.sid) FROM Search_song S2 WHERE S2.uid = '".$uid."' group by S2.sid) order by S1.date_time desc limit 1");
+		$most_query = $this->db->query("SELECT S.path as song_path, S.title as song_title FROM Search_song S1, Song S WHERE S1.sid = S.sid AND S1.uid = '{$uid}' group by S1.sid having count(*) = (SELECT count(*) as cnt FROM Search_song S2 WHERE S2.uid = '{$uid}' group by S2.sid ORDER BY date_time limit 1) order by S1.date_time desc limit 1");
 		$most_searched = $most_query->row_array();
 		
 		//$message_query = $this->db->query();
