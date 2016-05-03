@@ -94,7 +94,7 @@ class news extends CI_Controller {
 					$this->db->query($sub_sql);
 					success_redirct("info/news/index","Edit successful!");
 				}else{
-					error_redirct("info/news/edit/".$uid."","The news information is not complete!");	
+					error_redirct("info/news/edit/".$nid."","The news information is not complete!");	
 				}
 			}
 				$this->load->view("info/news/edit",array("data"=>$data ));
