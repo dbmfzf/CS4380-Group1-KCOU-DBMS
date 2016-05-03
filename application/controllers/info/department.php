@@ -21,7 +21,7 @@ class Department extends CI_Controller {
 		$config['uri_segment']= '4';
 		$config['use_page_numbers'] = TRUE;
 		$this->pagination->initialize($config);
-		$dept_query = $this->db->query("Select did, name as dname,description from department d");
+		$dept_query = $this->db->query("Select did, name as dname,description from department ORDER BY dname");
 		$data = $dept_query->result();
 		$this->load->view("info/department",array("data"=>$data));
 	}
@@ -48,7 +48,7 @@ class Department extends CI_Controller {
 	
 	
 		//if($department_data){
-			$dept_query = $this->db->query("SELECT d.did,d.name as dname,d.description, r.rid, r.name as rname, u.uid, u.fullname as uname, u.gender, u.birth, u.email, u.phone, u.status FROM department d, role r, user u WHERE d.did = '".$did."' and d.did = r.did and r.rid = u.rid ");
+			$dept_query = $this->db->query("SELECT d.did,d.name as dname,d.description, r.rid, r.name as rname, u.uid, u.fullname as uname, u.gender, u.birth, u.email, u.phone, u.status FROM department d, role r, user u WHERE d.did = '".$did."' and d.did = r.did and r.rid = u.rid ORDER BY U.uid");
 			$data = $dept_query->result();
 			//if ($data)
 			//{
