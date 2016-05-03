@@ -41,7 +41,7 @@
 	</div>
 	<p><b>Order by: </b>
 		<input value="nid" name="order[]" type="checkbox" > News ID
-		<input value="title" name="order[]" type="checkbox" > Birthday
+		<input value="title" name="order[]" type="checkbox" > News title
         	<input value="author" name= "order[]" type ="checkbox"> Author name
         	<input value="submit_time" name="order[]" type="checkbox"> submited time
         	<input value="last_modified_time" name="order[]" type = "checkbox"> modified time
