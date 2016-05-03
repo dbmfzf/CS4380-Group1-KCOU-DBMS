@@ -11,7 +11,6 @@
 		}
 	})
 </script>
-<?php echo $role_data['rname'];?>
 <div id = "searching">
 <form method = "post">
     <div class="hbox">
