@@ -100,7 +100,7 @@
                             //<input type=\"hidden\" name=\"sid\" value=\"" . openssl_encrypt($arrayOfSongs[$i]->sid, 'aes128', 'CS4380G1', OPENSSL_RAW_DATA, '6871358468913485') . "\">
                             //<input type=\"submit\" value=\"Add\" class=\"btn btn-primary\"></form></td>\n");
                             echo "<td>";
-                            echo '<a class="btn btn-primary" href="'.site_url("info/playlist/playlist/add_music/".$arrayOfSongs[$i]->sid).'">Add to...</a>';
+                            echo '<a class="btn btn-primary" href="'.site_url("playlist/playlist/add_music/".$arrayOfSongs[$i]->sid).'">Add to...</a>';
                             echo "</td>";
                             echo("\t</tr>\n");
                         }
