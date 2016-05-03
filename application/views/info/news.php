@@ -59,6 +59,7 @@
             <th>News ID</th>
             <th>Title</th>
             <th>Type</th>
+            <th>Author</th>
             <th>Content</th>
             <th>Last modified time</th>
             <th>Submit time</th>
@@ -67,8 +68,9 @@
         </thead>
    <tbody>
 	<?php 
-	foreach($news_data as $mb){
+	foreach($news_data as $row){
 		printf('<tr>
+			<td>%s</td>
 			<td>%s</td>
 			<td>%s</td>
 			<td>%s</td>
@@ -85,7 +87,7 @@
 				  <a class="btn btn-danger" href="%s">Delete</a> 
 				</div>
 			</td>
-		</tr>',$mb->nid,$mb->title,$mb->type,site_url("info/news/edit_content/".$mb->nid),$mb->last_modified_time,$mb->submit_time,site_url("info/news/edit/".$mb->nid),site_url("info/news/delete/".$mb->nid));
+		</tr>',$row->nid,$row->title,$row->type,$row->author,site_url("info/news/edit_content/".$row->nid),$row->last_modified_time,$row->submit_time,site_url("info/news/edit/".$row->nid),site_url("info/news/delete/".$row->nid));
 	}
 	?>
   </tbody>
