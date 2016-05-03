@@ -37,6 +37,35 @@ class Playlist extends CI_Controller {
 	 * Edit users
 	 * @param number $uid
 	 */
+	 
+	public function add_music($sid){
+		$login_uid = rbac_conf(array('INFO','uid'));
+		$song_query = $this -> db ->query("SELECT title FROM Song WHERE sid = '{$sid}'");
+		$song_data = $query-> row_array();
+		$playlist_query = $this -> db ->query("SELECT name FROM playlist P, User U WHERE P.uid = U.uid AND U.uid = '{$login_uid}'");
+		$playlist_data = $query ->result();
+			if($this->input->post()){
+			$pid = $this->input->post("pid");
+			if($playlist_name){
+				$query = $this->db->query("SELECT * FROM Playlist P, User U, Song_in_playlist S WHERE S.pid = P.pid AND P.uid = U.uid AND uid = '{$login_uid}' AND sid = '{$sid}'");
+				$data = $query->row_array();
+				if(!$data){
+					$sql = "INSERT INTO Song_in_playlist(pid,sid) values('{$pid}','{$sid}')";
+					$this->db->query($sql);
+					success_redirct("playlist/playlist/index","Add successful!");
+					
+				}else{
+					error_redirct("","The song has already been added to this playlist!");
+				}
+				
+			}else{
+				error_redirct("","The playlist doesn't exist!");
+			}
+		}
+		else{
+			$this->load->view("playlist/add_songs",array("playlist_data"=>$playlist_data,"song_data"=>$song_data));
+		}
+	}
 	
 	public function see_all_songs($pid){
 		$query = $this->db->query("");
