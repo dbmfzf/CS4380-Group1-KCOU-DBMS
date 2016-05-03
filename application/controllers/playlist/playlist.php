@@ -45,8 +45,8 @@ class Playlist extends CI_Controller {
 	 
 	public function edit($pid){
 		$login_uid = rbac_conf(array('INFO','uid')); 
-		$name_query = $this->db->query("SELECT name FROM Playlist WHERE uid = '{$login_uid}'");
-		$name_data = $name_query->row_array();
+		$query = $this->db->query("SELECT name,memo FROM Playlist WHERE uid = '{$login_uid}'");
+		$data = $query->row_array();
 		if($this->input->post()){
 			$name = $this->input->post("name");
 			if($name){
@@ -54,7 +54,7 @@ class Playlist extends CI_Controller {
 				$data = $query->row_array();
 				if(!$data){
 					$created_date = date('Y-m-d');
-					$sql = "update Playlist set name = '{$name}'";
+					$sql = "update Playlist set name = '{$name}',memo = '{$memo}'";
 					$this->db->query($sql);
 					success_redirct("playlist/playlist/index","Add successful!");
 					
@@ -66,7 +66,7 @@ class Playlist extends CI_Controller {
 				error_redirct("","The playlist's information is not complete!");
 			}
 		}else{
-			$this->load->view("playlist/edit",array("name_data"=>$name_data));
+			$this->load->view("playlist/edit",array("data"=>$data));
 		}
 
 	}
@@ -84,7 +84,7 @@ class Playlist extends CI_Controller {
 				$data = $query->row_array();
 				if(!$data){
 					$created_date = date('Y-m-d');
-					$sql = "INSERT INTO Playlist (uid,name,created_date) values('{$login_uid}','{$name}','{$created_date}')";
+					$sql = "INSERT INTO Playlist (uid,name,memo,created_date) values('{$login_uid}','{$name}',{$memo},'{$created_date}')";
 					$this->db->query($sql);
 					success_redirct("playlist/playlist/index","Add successful!");
 					
