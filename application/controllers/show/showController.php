@@ -32,11 +32,11 @@ class showController extends CI_Controller {
 				$shows_data = $shows_query->result();
 			}else{
 				
-				if($type){$where_type = "AND n.type in (".$type.")";}else{$where_type = "";}
-				if($submit_start){$where_start = "AND s.submit_time > '{$submit_start}'";}else{$where_start = "";}
-				if($submit_end){$where_end = "AND s.submit_time < '{$submit_end}'";}else{$where_end = "";}
+				if($type){$where_type = "AND s.type in (".$type.")";}else{$where_type = "";}
+				if($submit_start){$where_start = "AND r.start_time > '{$submit_start}'";}else{$where_start = "";}
+				if($submit_end){$where_end = "AND r.end_time < '{$submit_end}'";}else{$where_end = "";}
 				if($order){$order_by = "ORDER BY ".$order."";}else{$order_by = "";}
-				$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time, u.fullname as author FROM user u, news n, submits s WHERE u.uid = s.uid AND n.nid = s.nid {$where_type} {$where_start} {$where_end} {$order_by}");
+				$news_query = $this->db->query("SELECT s.show_id, s.title, s.category, description, u.fullname as actor, r.start_time, r.end_time FROM shows s, responses r, user u WHERE u.uid = r.uid AND s.show_id = r.show_id {$where_type} {$where_start} {$where_end} {$order_by}");
 				$news_data = $news_query->result();
 			}
 			
