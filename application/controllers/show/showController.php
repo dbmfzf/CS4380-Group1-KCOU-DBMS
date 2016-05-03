@@ -28,7 +28,7 @@ class showController extends CI_Controller {
 			if($this->input->post("order")){$order = implode(',',$this->input->post("order"));}else{$order=null;}
 			
 			if($shows){
-				$shows_query = $this->db->query("SELECT s.show_id, s.title, s.category, description, u.fullname as actor, r.start_time, r.end_time FROM shows s, responses r, user u WHERE u.uid = r.uid AND s.show_id = r.show_id AND (s.show_id = '{$shows}' OR s.title like '%{$shows}%') ");
+				$shows_query = $this->db->query("SELECT s.show_id, s.title, s.category, description, u.fullname as actor, r.start_time, r.end_time FROM shows s, responses r,user u where u.uid = r.uid AND s.show_id = r.show_id AND (s.show_id = '{$shows}' OR s.title like '%{$shows}%') ");
 				$shows_data = $shows_query->result();
 			}else{
 				
@@ -36,7 +36,7 @@ class showController extends CI_Controller {
 				if($submit_start){$where_start = "AND r.start_time > '{$submit_start}'";}else{$where_start = "";}
 				if($submit_end){$where_end = "AND r.end_time < '{$submit_end}'";}else{$where_end = "";}
 				if($order){$order_by = "ORDER BY ".$order."";}else{$order_by = "";}
-				$news_query = $this->db->query("SELECT s.show_id, s.title, s.category, description, u.fullname as actor, r.start_time, r.end_time FROM shows s, responses r, user u WHERE u.uid = r.uid AND s.show_id = r.show_id {$where_type} {$where_start} {$where_end} {$order_by}");
+				$news_query = $this->db->query("SELECT s.show_id, s.title, s.category, description, u.fullname as actor, r.start_time, r.end_time FROM shows s, responses r,user u where u.uid = r.uid AND s.show_id = r.show_id {$where_type} {$where_start} {$where_end} {$order_by}");
 				$news_data = $news_query->result();
 			}
 			
