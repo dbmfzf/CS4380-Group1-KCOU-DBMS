@@ -13,8 +13,51 @@ class showController extends CI_Controller {
 	}
 
 	public function index() {
-		$this -> load -> view("show/show_calander.php");
+		$login_uid = rbac_conf(array('INFO','uid'));
+		$login_rid = rbac_conf(array('INFO','rid'));
+		$role_query = $this->db->query("SELECT r.name as rname from role r WHERE r.rid = '".$login_rid."'");
+		$role_data = $role_query->row_array();
+		$login_rname = $role_data['rname'];
+		
+		if($this->input->post()){
+			
+			$news = $this->input->post("news");
+			if($this->input->post("type")){$type = implode(',',$this->input->post("type"));}else{$type=null;}
+			$submit_start = $this->input->post("submit_start");
+			$submit_end = $this->input->post("submit_end");
+			if($this->input->post("order")){$order = implode(',',$this->input->post("order"));}else{$order=null;}
+			
+			if($news){
+				$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time, u.fullname as author FROM news n, submits s，user u WHERE u.uid = s.uid AND n.nid = s.nid AND (n.nid = '{$news}' OR N.title like '%{$news}%') ");
+				$news_data = $news_query->result();
+			}else{
+				
+				if($type){$where_type = "AND n.type in (".$type.")";}else{$where_type = "";}
+				if($submit_start){$where_start = "AND s.submit_time > '{$submit_start}'";}else{$where_start = "";}
+				if($submit_end){$where_end = "AND s.submit_time < '{$submit_end}'";}else{$where_end = "";}
+				if($order){$order_by = "ORDER BY ".$order."";}else{$order_by = "";}
+				$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time, u.fullname as author FROM user u, news n, submits s WHERE u.uid = s.uid AND n.nid = s.nid {$where_type} {$where_start} {$where_end} {$order_by}");
+				$news_data = $news_query->result();
+			}
+			
+		}else{
+		
+			if($login_rname=="Manager"){
+				$news_query = $this->db->query("select s.show_id,title,category,description,u.fullname as actor, r.start_time, r.end_time, day from shows s, responses r, user u where u.uid = r.uid and s.show_id = r.show_id");
+				$news_data = $news_query->result();
+			
+			}else if($login_rname=="Shows dept leader"){
+				$news_query = $this->db->query("select s.show_id,title,category,description,u.fullname as actor, r.start_time, r.end_time, day from shows s, responses r, user u where u.uid = r.uid and s.show_id = r.show_id");
+				$news_data = $news_query->result();
+			}else{
+				$news_query = $this->db->query("select s.show_id,title,category,description,u.fullname as actor, r.start_time, r.end_time, day from shows s, responses r, user u where u.uid = r.uid and s.show_id = r.show_id AND r.uid = '{$login_uid}'");
+				$news_data = $news_query->result();
+				
+			}
+		}
+		$this->load->view("show/showInfo",array("news_data"=>$news_data,"role_data"=>$role_data));
 	}
+
 
 	public function genericSearchHandler() {
 		$startdate = parseDateTime($this->input->get("start",TRUE));
