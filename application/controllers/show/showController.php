@@ -28,7 +28,7 @@ class showController extends CI_Controller {
 			if($this->input->post("order")){$order = implode(',',$this->input->post("order"));}else{$order=null;}
 			
 			if($shows){
-				$shows_query = $this->db->query("SELECT s.show_id, s.title, s.category, description, u.fullname as actor, r.start_time, r.end_time FROM shows s, responses r，user u WHERE u.uid = r.uid AND s.show_id = r.show_id AND (s.show_id = '{$shows}' OR s.title like '%{$shows}%') ");
+				$shows_query = $this->db->query("SELECT s.show_id, s.title, s.category, description, u.fullname as actor, r.start_time, r.end_time FROM shows s, responses r, user u WHERE u.uid = r.uid AND s.show_id = r.show_id AND (s.show_id = '{$shows}' OR s.title like '%{$shows}%') ");
 				$shows_data = $shows_query->result();
 			}else{
 				
