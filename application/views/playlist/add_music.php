@@ -10,7 +10,7 @@
               <select name="pid">
               <?php
     		      foreach($playlist_data as $key){
-		  	          printf('<option value = "%s"> %s </option>',$key->pid,$key->name);
+		  	     printf('<option value = "%s"> %s </option>',$key->pid,$key->name);
     		      }
 		?>
 	       </select>
