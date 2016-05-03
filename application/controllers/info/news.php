@@ -96,10 +96,10 @@ class news extends CI_Controller {
 				}else{
 					error_redirct("info/news/index","The news information is not complete!");	
 				}
-				$this->load->view("info/news/edit",array("data"=>$data ));
-			}else{
-				error_redirct("info/news/index","No news is found!");
 			}
+				$this->load->view("info/news/edit",array("data"=>$data ));
+		}else{
+			error_redirct("info/news/index","No news is found!");
 		}
 	}
 	/**
