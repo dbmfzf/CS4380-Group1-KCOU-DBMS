@@ -99,9 +99,17 @@ class Department extends CI_Controller {
 
 				if($did!=""){
 					if($did&&$dname){
-						$sql = "UPDATE department set name='{$dname}' , description='{$description}' WHERE did = '{$did}'";
-						$this->db->query($sql);
-						success_redirct("info/department/index","Edit successful!");
+						$query = $this->db->query("SELECT * FROM departments WHERE dname = '{$dname}'");
+						$result = $query -> row_array();
+						if(!$result){
+							$sql = "UPDATE department set name='{$dname}' , description='{$description}' WHERE did = '{$did}'";
+							$this->db->query($sql);
+							$sql = "UPDATE role set dname = '{$dname}' WHERE did = '{$did}'";
+							$this->db->query($sql);
+							success_redirct("info/department/index","Edit successful!");
+						}else{
+							error_redirct("","The department's name already exist!");
+						}
 					}else{
 						error_redirct("","The department's information is not complete!");
 					}
@@ -136,12 +144,16 @@ class Department extends CI_Controller {
 			//$rid = $role_dept_data['rid'];
 		
 			if($dname){
+				$query = $this->db->query("SELECT * FROM departments WHERE dname = '{$dname}'");
+				$result = $query -> row_array();
+				if(!$result){
 					$sql = "INSERT INTO department (name,description) values('{$dname}','{$description}')";
 					$this->db->query($sql);
 					success_redirct("info/department/index","Add successful!");
-					}else{
-						error_redirct("","The department already exists!");
-					}		
+				}else{
+					error_redirct("","The department's name already exists!");
+				}
+			}
 		}
 		$this->load->view("info/department/add",array("dept_data"=>$dept_data));
 	}
