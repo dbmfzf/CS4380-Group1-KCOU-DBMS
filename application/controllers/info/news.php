@@ -60,7 +60,7 @@ class news extends CI_Controller {
 				$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time, u.fullname as author FROM user u, news n, submits s WHERE u.uid = s.uid AND n.nid = s.nid");
 				$news_data = $news_query->result();
 			}else{
-				$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time，u.fullname as author FROM user u, news n, submits s WHERE u.uid =s.uid AND n.nid = s.nid AND s.uid = '{$login_uid}'");
+				$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time,u.fullname as author FROM user u, news n, submits s WHERE u.uid =s.uid AND n.nid = s.nid AND s.uid = '{$login_uid}'");
 				$news_data = $news_query->result();
 				
 			}
