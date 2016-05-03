@@ -13,7 +13,7 @@ class news extends CI_Controller {
 	{
 		$login_uid = rbac_conf(array('INFO','uid'));
 		$login_rid = rbac_conf(array('INFO','rid'));
-		$role_query = $this->db->query("SELECT r.name as rname from role r WHERE r.rid = '".$login_rid."'");
+		$role_query = $this->db->query("SELECT r.name as rname from role r WHERE r.rid = '{$login_rid}'");
 		$role_data = $role_query->row_array();
 		$login_rname = $role_data['rname'];
 		
@@ -76,7 +76,6 @@ class news extends CI_Controller {
 		$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid and n.nid = '".$nid."'");
 		$news_data = $news_query->row_array();
 		 
-		
 		$data['nid'] = $news_data['nid'];
 		$data['title'] = $news_data['title'];
 		$data['type'] = $news_data['type'];
@@ -88,16 +87,19 @@ class news extends CI_Controller {
 				$title = $this->input->post("title");
 				$type = $this->input->post("type");
 				$last_modified_time = date('Y-m-d H:i:s',time());
-				
-						$sql = "update news set title = '{$title}',type = '{$type}',content = '{$content}' where nid = '{$nid}'";
-						$this->db->query($sql);
-						$sub_sql = "update submits set uid = '{$login_uid}', last_modified_time = '{$last_modified_time}', submit_time = '{$submit_time}' where nid = '{$nid}'";
-						$this->db->query($sub_sql);
-						success_redirct("info/news/index","Edit successful!");
+				if($title&&$type&&$last_modified_time){
+					$sql = "update news set title = '{$title}',type = '{$type}',content = '{$content}' where nid = '{$nid}'";
+					$this->db->query($sql);
+					$sub_sql = "update submits set uid = '{$login_uid}', last_modified_time = '{$last_modified_time}', submit_time = '{$submit_time}' where nid = '{$nid}'";
+					$this->db->query($sub_sql);
+					success_redirct("info/news/index","Edit successful!");
+				}else{
+					error_redirct("info/news/index","The news information is not complete!");	
+				}
+				$this->load->view("info/news/edit",array("data"=>$data ));
+			}else{
+				error_redirct("info/news/index","No news is found!");
 			}
-			$this->load->view("info/news/edit",array("data"=>$data ));
-		}else{
-			error_redirct("info/news/index","No news is found!");
 		}
 	}
 	/**
@@ -143,11 +145,22 @@ class news extends CI_Controller {
 			$last_modified_time = date('Y-m-d H:i:s',time());
 			$submit_time = date('Y-m-d H:i:s',time());
 			//SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid
-			$sql = "INSERT INTO news (nid, title, type,content) values('{$nid}','{$title}','{$type}','')";
-			$this->db->query($sql);
-			$sub_sql = "INSERT INTO submits (nid, uid, last_modified_time, submit_time) values('{$nid}', '{$login_uid}','{$last_modified_time}','{$submit_time}')";
-			$this->db->query($sub_sql);
-			success_redirct("info/news/index","Add successful!");	
+			if($nid&&$title&&$type){
+				$query = $this->db->query("SELECT * FROM News WHERE nid = '{$nid}'"); 
+				$result = $query->row_array();
+				if(!$result){
+					$sql = "INSERT INTO news (nid, title, type,content) values('{$nid}','{$title}','{$type}','')";
+					$this->db->query($sql);
+					$sub_sql = "INSERT INTO submits (nid, uid, last_modified_time, submit_time) values('{$nid}', '{$login_uid}','{$last_modified_time}','{$submit_time}')";
+					$this->db->query($sub_sql);
+					success_redirct("info/news/index","Add successful!");
+		
+				}else{
+					error_redirct("info/news/index","The news ID already exist!");
+				}
+			}else{
+				error_redirct("info/news/index","The news information is not complete!");
+			}
 	
 		}else{
 			$this->load->view("info/news/add");
