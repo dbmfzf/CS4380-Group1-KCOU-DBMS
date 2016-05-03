@@ -21,7 +21,7 @@
 			<td>%s</td>
 			<td>
 				<div class="btn-group  btn-group-xs">
-				  <a class="btn btn-warning btn-xs" href="%s">View all</a>
+				  <a class="btn btn-primary btn-xs" href="%s">View all</a>
 				</div>
 			</td>
 			<td>
