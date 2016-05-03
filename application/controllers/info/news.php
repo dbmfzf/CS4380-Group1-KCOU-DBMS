@@ -46,7 +46,7 @@ class news extends CI_Controller {
 				if($submit_start){$where_start = "AND s.submit_time > '{$submit_start}'";}else{$where_start = "";}
 				if($submit_end){$where_end = "AND s.submit_time < '{$submit_end}'";}else{$where_end = "";}
 				if($order){$order_by = "ORDER BY ".$order."";}else{$order_by = "";}
-				$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s, user u WHERE u.uid = s.uid AND n.nid = s.nid {$where_type} {$where_start} {$where_end} {$order_by}");
+				$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time, u.fullname as author FROM user u, news n, submits s, user u WHERE u.uid = s.uid AND n.nid = s.nid {$where_type} {$where_start} {$where_end} {$order_by}");
 				$news_data = $news_query->result();
 			}
 			
