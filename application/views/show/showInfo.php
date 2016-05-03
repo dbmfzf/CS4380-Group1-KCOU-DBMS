@@ -37,11 +37,18 @@
         	<input value="'Others'" name= "type[]" type ="checkbox"> Others
          </p>
 	<div class="hbox">
-		<div class = "flex1"><b>Showing date</b></div>
-		<div class = "flex2">from</div>
-		<div class = "flex1"><input type = "date" name = "submit_start" class="form-control" ></div>
-		<div class = "flex2">to</div>
-		<div class = "flex1"><input type = "date" name = "submit_end" class="form-control" ></div>
+		<tr>
+            <td width = "15%" class="tableleft">Type</td>
+            <td>
+            <select name="day">
+  			<option value="Monday">Monday</option>
+  			<option value="Tuesday">Tuesday</option>
+	  		<option value="Wednesday">Wednesday</option>
+	  		<option value="Thursday">Thursday</option>
+	  		<option value="Firday">Firday</option>
+	  		<option value="Saturday">Saturday</option>
+	  		<option value="Sunday">Sunday</option>
+		</select></br></td>
 	</div>
 		<p><b>Order by: </b>
 			<input value="nid" name="order[]" type="checkbox" > Shows ID
@@ -67,6 +74,7 @@
             <th>Actor</th>
             <th>Start time</th>
             <th>End time</th>
+            <th>Day</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -85,13 +93,14 @@
 			<td>%s</td>
 			<td>%s</td>
 			<td>%s</td>
+			<td>%s</td>
 			<td>
 				<div class="btn-group  btn-group-xs">
 				  <a class="btn btn-warning btn-xs" href="%s">Edit</a>
 				  <a class="btn btn-danger" href="%s">Delete</a> 
 				</div>
 			</td>
-		</tr>',$mb->show_id,$mb->title,$mb->category,site_url("info/news/edit_content/".$mb->show_id),$mb->actor,$mb->start_time,$mb->end_time,site_url("info/news/edit/".$mb->show_id),site_url("info/news/delete/".$mb->show_id));
+		</tr>',$mb->show_id,$mb->title,$mb->category,site_url("info/news/edit_content/".$mb->show_id),$mb->actor,$mb->start_time,$mb->end_time, $mb->day,site_url("info/news/edit/".$mb->show_id),site_url("info/news/delete/".$mb->show_id));
 	}
 	?>
   </tbody>
