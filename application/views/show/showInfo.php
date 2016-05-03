@@ -38,7 +38,7 @@
          </p>
 	<div class="hbox">
 		<tr>
-            <td width = "15%" class="tableleft">Type</td>
+            <td width = "15%" class="tableleft">Day</td>
             <td>
             <select name="day">
   			<option value="Monday">Monday</option>
