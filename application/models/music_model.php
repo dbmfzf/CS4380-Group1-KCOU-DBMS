@@ -14,7 +14,7 @@ class Music_model extends CI_Model {
         $songName = htmlspecialchars($songName);
         
         //SQL string
-        $sql = "SELECT s.title AS Song_title, ar.name AS Artist, al.title AS Album, s.category AS Genre
+        $sql = "SELECT s.title AS Song_title, ar.name AS Artist, al.title AS Album, s.category AS Genre, al.location AS Location
         FROM song s, produces aps, artist ar, releases r,  album al
         WHERE s.title LIKE '%" . $this->db->escape_like_str($songName) . 
         "%' AND aps.sid = s.sid AND ar.artist_id = aps.artist_id AND ar.artist_id = r.artist_id AND al.album_id = r.album_id;";
@@ -30,7 +30,7 @@ class Music_model extends CI_Model {
     
     public function searchByArtist($artistName){
         $artistName = htmlspecialchars($artistName);
-        $sql = "SELECT s.title AS Song_title, ar.name AS Artist, al.title AS Album, s.category AS Genre
+        $sql = "SELECT s.title AS Song_title, ar.name AS Artist, al.title AS Album, s.category AS Genre, al.location AS Location
         FROM song s, produces aps, artist ar, releases r,  album al
         WHERE ar.name LIKE '%" . $this->db->escape_like_str($artistName) . 
         "%' AND aps.sid = s.sid AND ar.artist_id = aps.artist_id AND ar.artist_id = r.artist_id AND al.album_id = r.album_id;";
@@ -42,7 +42,7 @@ class Music_model extends CI_Model {
     public function searchByAlbum($albumName){
         $albumName = htmlspecialchars($albumName);
         
-        $sql = "SELECT s.title AS Song_title, ar.name AS Artist, al.title AS Album, s.category AS Genre
+        $sql = "SELECT s.title AS Song_title, ar.name AS Artist, al.title AS Album, s.category AS Genre, al.location AS Location
         FROM song s, produces aps, artist ar, releases r,  album al
         WHERE al.title LIKE '%" . $this->db->escape_like_str($albumName) . 
         "%' AND aps.sid = s.sid AND ar.artist_id = aps.artist_id AND ar.artist_id = r.artist_id AND al.album_id = r.album_id;";
@@ -55,7 +55,7 @@ class Music_model extends CI_Model {
     public function genericSearch($searchString){
         $searchString = htmlspecialchars($searchString);
         
-        $sql = "SELECT s.title AS Song_title, ar.name AS Artist, al.title AS Album, s.category AS Genre
+        $sql = "SELECT s.title AS Song_title, ar.name AS Artist, al.title AS Album, s.category AS Genre, al.location AS Location
         FROM song s, produces aps, artist ar, releases r,  album al
         WHERE (al.title LIKE '%" . $this->db->escape_like_str($searchString) . 
         "%' OR ar.name LIKE '%" . $this->db->escape_like_str($searchString) .
@@ -69,7 +69,7 @@ class Music_model extends CI_Model {
     public function searchByGenre($genre){
         $genre = htmlspecialchars($genre);
         
-        $sql = "SELECT s.title AS Song_title, ar.name AS Artist, al.title AS Album, s.category AS Genre
+        $sql = "SELECT s.title AS Song_title, ar.name AS Artist, al.title AS Album, s.category AS Genre, al.location AS Location
         FROM song s, produces aps, artist ar, releases r,  album al
         WHERE s.category = " . $this->db->escape($genre) 
         . " AND aps.sid = s.sid AND ar.artist_id = aps.artist_id AND ar.artist_id = r.artist_id AND al.album_id = r.album_id;";
@@ -117,7 +117,7 @@ class Music_model extends CI_Model {
     }
     
     public function getPopularSongs($number){
-        $sql = "SELECT s.title AS Song, al.title AS Album, ar.name AS Artist, s.category AS Genre, count(*) AS count FROM search_song sa, song s, produces p, artist ar, releases r, album al
+        $sql = "SELECT s.title AS Song, al.title AS Album, ar.name AS Artist, s.category AS Genre, count(*) AS count, al.location AS Location FROM search_song sa, song s, produces p, artist ar, releases r, album al
                 WHERE s.sid = sa.sid AND ar.artist_id = p.artist_id AND p.sid = s.sid AND r.album_id = al.album_id AND r.artist_id = ar.artist_id GROUP BY s.sid ORDER BY count(*) DESC;";
         $result = $this->db->query($sql)->result();
         $resultArr = array();
@@ -138,7 +138,7 @@ class Music_model extends CI_Model {
     }
     
     public function getPopularAlbums($number){
-        $sql = "SELECT a.title AS Album, ar.name AS Artist, count(*) AS count FROM search_album sa, album a, releases r, artist ar 
+        $sql = "SELECT a.title AS Album, ar.name AS Artist, count(*) AS count, a.location AS Location FROM search_album sa, album a, releases r, artist ar 
                 WHERE a.album_id = sa.album_id AND r.artist_id = ar.artist_id GROUP BY a.album_id ORDER BY count(*) DESC;";
         $result = $this->db->query($sql)->result();
         $resultArr = array();

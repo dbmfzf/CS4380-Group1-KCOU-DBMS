@@ -12,7 +12,6 @@ class search_music extends CI_Controller {
     
     public function index(){
         $input = $this->input->get(NULL, TRUE); // returns all GET items with XSS filter
-        print_r($input);
         $data = array();
         //Call a different search handler based on what get keys are set
         if(array_key_exists('searchString', $input)){
@@ -22,7 +21,6 @@ class search_music extends CI_Controller {
         }else{
             $data['searchValues'] = NULL;
         }
-        print_r($data);
         //Insert the songs that we found into their respective logs
         if(!empty($data['searchValues'])){
             $this->logSearch($data['searchValues']);
@@ -30,6 +28,7 @@ class search_music extends CI_Controller {
         $popular['songs'] = $this->music_model->getPopularSongs(10);
         $popular['artists'] = $this->music_model->getPopularArtists(10);
         $popular['albums'] = $this->music_model->getPopularAlbums(10);
+        $popular['clearance'] = rbac_conf(array('INFO','rid'));
         $this->load->view("music/master_music.php", $popular);
         $this->load->view("music/search_music.php", $data);
     }

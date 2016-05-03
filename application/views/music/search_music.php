@@ -33,6 +33,9 @@
     #toggleSearch {
         margin: 5px 0;
     }
+    #searchMusic {
+        height: 450px;
+    }
 </style>
 <div class="well" id="searchMusic">
     <div class="well well-lg" id="searchBar">
@@ -79,6 +82,7 @@
                         <th>Artist</th>
                         <th>Album</th>
                         <th>Genre</th>    
+                        <th>Location</th>    
                     </tr>
                 </thead>
                 <tbody>
@@ -90,8 +94,8 @@
                             echo("\t\t<td>" . $arrayOfSongs[$i]->Artist . "</td>\n");
                             echo("\t\t<td>" . $arrayOfSongs[$i]->Album . "</td>\n");
                             echo("\t\t<td>" . $arrayOfSongs[$i]->Genre . "</td>\n");
-                            echo("\t</tr>\n");
-                            
+                            echo("\t\t<td>" . $arrayOfSongs[$i]->Location . "</td>\n");
+                            echo("\t</tr>\n"); 
                         }
                     ?>
                 </tbody>
