@@ -191,7 +191,6 @@ class Department extends CI_Controller {
 		$current_role_dept_query = $this->db->query("SELECT R.rid,R.name as rolename,D.name as deptname, D.did FROM Role R, User U, Department D WHERE D.did = R.did AND U.rid = R.rid AND U.uid = '".$uid."' limit 1");
 		$current_role_dept_data = $current_role_dept_query -> row_array();
 
-	
 		$data['uid'] = $user_data['uid'];
 		$data['fullname'] = $user_data['fullname'];
 		$data['gender'] = $user_data['gender'];
@@ -295,7 +294,7 @@ class Department extends CI_Controller {
 					$this->db->query($sql);
 					success_redirct("info/department/see_all/'".$department_data['did']."'","Delete successful!");
 				}else{
-					error_redirct("info/department/see_all","Delete cancelled!");
+					error_redirct("info/department/see_all","Failed to delete!");
 				}
 			}
 			$this->load->view("info/department/user_delete",array("data"=>$data,"department_data"=>$department_data));
