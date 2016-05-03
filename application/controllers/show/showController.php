@@ -32,7 +32,7 @@ class showController extends CI_Controller {
 			}else{
 				
 				if($type){$where_type = "AND s.category in (".$type.")";}else{$where_type = "";}
-				if($day){$where_day = "AND r.day in (".$type.")";}else{$where_day = "";}
+				if($day){$where_day = "AND r.day = ".$type."";}else{$where_day = "";}
 				if($order){$order_by = "ORDER BY ".$order."";}else{$order_by = "";}
 				$shows_query = $this->db->query("SELECT s.show_id, s.title, s.category, description, u.fullname as actor, r.start_time, r.end_time FROM shows s, responses r,user u where u.uid = r.uid AND s.show_id = r.show_id {$where_type} {$where_day} {$order_by}");
 				$shows_data = $shows_query->result();
