@@ -32,7 +32,7 @@ class showController extends CI_Controller {
 				$shows_data = $shows_query->result();
 			}else{
 				
-				if($type){$where_type = "AND s.type in (".$type.")";}else{$where_type = "";}
+				if($type){$where_type = "AND s.category in (".$type.")";}else{$where_type = "";}
 				if($submit_start){$where_start = "AND r.start_time > '{$submit_start}'";}else{$where_start = "";}
 				if($submit_end){$where_end = "AND r.end_time < '{$submit_end}'";}else{$where_end = "";}
 				if($order){$order_by = "ORDER BY ".$order."";}else{$order_by = "";}
