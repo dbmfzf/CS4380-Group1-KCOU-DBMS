@@ -42,10 +42,11 @@ class Playlist extends CI_Controller {
 		$login_uid = rbac_conf(array('INFO','uid'));
 		$song_query = $this -> db ->query("SELECT title FROM Song WHERE sid = '{$sid}'");
 		$song_data = $song_query-> row_array();
-		$playlist_query = $this -> db ->query("SELECT name FROM playlist P, User U WHERE P.uid = U.uid AND U.uid = '{$login_uid}'");
+		$playlist_query = $this -> db ->query("SELECT pid,name FROM playlist P, User U WHERE P.uid = U.uid AND U.uid = '{$login_uid}'");
 		$playlist_data = $playlist_query ->result();
 		if($this->input->post()){
 			$pid = $this->input->post("pid");
+			echo $pid;
 			if($pid){
 				$query = $this->db->query("SELECT * FROM Playlist P, User U, Song_in_playlist S WHERE S.pid = P.pid AND P.uid = U.uid AND uid = '{$login_uid}' AND sid = '{$sid}'");
 				$data = $query->row_array();
