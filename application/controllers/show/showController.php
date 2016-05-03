@@ -21,14 +21,14 @@ class showController extends CI_Controller {
 		
 		if($this->input->post()){
 			
-			$news = $this->input->post("news");
+			$shows = $this->input->post("shows");
 			if($this->input->post("type")){$type = implode(',',$this->input->post("type"));}else{$type=null;}
 			$submit_start = $this->input->post("submit_start");
 			$submit_end = $this->input->post("submit_end");
 			if($this->input->post("order")){$order = implode(',',$this->input->post("order"));}else{$order=null;}
 			
 			if($shows){
-				$shows_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time, u.fullname as author FROM news n, submits s，user u WHERE u.uid = s.uid AND n.nid = s.nid AND (n.nid = '{$news}' OR N.title like '%{$news}%') ");
+				$shows_query = $this->db->query("SELECT s.show_id, s.title, s.category, description, u.fullname as actor, r.start_time, r.end_time FROM shows s, responses r，user u WHERE u.uid = r.uid AND s.show_id = r.show_id AND (s.show_id = '{$shows}' OR s.title like '%{$shows}%') ");
 				$shows_data = $shows_query->result();
 			}else{
 				
