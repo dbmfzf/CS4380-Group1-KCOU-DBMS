@@ -11,7 +11,7 @@
       </tr>
      <tr>
             <td class="tableleft">Memo</td>
-            <td><textarea class= "textarea" name="memo" > <?php echo $data['memo'];?></textarea></td>
+            <td><textarea class= "textarea" name="memo" > </textarea></td>
       </tr> 
     </table>
     <button type="submit" class="btn btn-success">Save</button> 
