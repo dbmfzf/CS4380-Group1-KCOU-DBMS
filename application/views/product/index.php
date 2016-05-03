@@ -23,7 +23,7 @@
               <div style="border:2px solid #EAADEA;border-radius:5px;padding:8px">
               <form role="form" action="" method="post">
                  <p><input name = "search_song" type = "text" class="form-control" placeholder="Please input song title here"></p>
-                 <p align = "right"><button type="submit" class="btn btn-default">GO!</button></p>
+                 <p align = "right"><button type="submit" class="btn btn-info">GO!</button></p>
               </form>
               <p>
                 <b>Most recently searched song:</b>
@@ -39,10 +39,10 @@
               </div>
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
-              <div style="background-color:#EBC79E;border-radius:5px"><h2 align="center">Message</h2></div>
-              <div style="border:2px solid #EBC79E;border-radius:5px;padding:8px">
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn btn-default" href="#" role="button">View all &raquo;</a></p>
+              <div style="background-color:#EBC79E;border-radius:5px"><h2 align="center">Developers</h2></div>
+              <div align = "center" style="border:2px solid #EBC79E;border-radius:5px;padding:8px">
+              <img src = "<?php echo base_url();?>static/img/test1.jpg" />
+              <p>If you have any questions, please contact dbmsgroup1@gmail.com</p>
               </div>
             </div><!--/span-->
           </div><!--/row-->
