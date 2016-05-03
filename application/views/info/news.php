@@ -39,6 +39,14 @@
 		<div class = "flex2">to</div>
 		<div class = "flex1"><input type = "date" name = "submit_end" class="form-control" ></div>
 	</div>
+	<p><b>Order by: </b>
+		<input value="nid" name="order[]" type="checkbox" > News ID
+		<input value="title" name="order[]" type="checkbox" > Birthday
+        	<input value="author" name= "order[]" type ="checkbox"> Author name
+        	<input value="submit_time" name="order[]" type="checkbox"> submited time
+        	<input value="last_modified_time" name="order[]" type = "checkbox"> modified time
+       
+        </p>
 	</div>
 	<div class="form-group">
 	    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>  Search</button>
