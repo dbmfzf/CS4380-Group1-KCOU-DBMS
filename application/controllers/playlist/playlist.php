@@ -43,7 +43,7 @@ class Playlist extends CI_Controller {
 		$song_query = $this -> db ->query("SELECT title FROM Song WHERE sid = '{$sid}'");
 		$song_data = $song_query-> row_array();
 		$playlist_query = $this -> db ->query("SELECT name FROM playlist P, User U WHERE P.uid = U.uid AND U.uid = '{$login_uid}'");
-		$playlist_data = $query ->result();
+		$playlist_data = $playlist_query ->result();
 			if($this->input->post()){
 			$pid = $this->input->post("pid");
 			if($playlist_name){
