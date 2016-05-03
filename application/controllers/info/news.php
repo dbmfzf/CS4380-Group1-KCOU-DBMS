@@ -110,8 +110,9 @@ class news extends CI_Controller {
 		//$type = $news_data['type'];
 		//$submit_time = $news_data['submit_time'];
 		$login_uid = rbac_conf(array('INFO','uid'));
+		$content = $_POST["content"];
 		if($this->input->post()){
-			$content = $this->input->post["content"];
+			//$content = $this->input->post["content"];
 			$last_modified_time = date('Y-m-d H:i:s',time());
 			
 			
