@@ -116,11 +116,36 @@ class Music_model extends CI_Model {
         }
     }
     
-    /*public function advancedSearch($data){
-        switch($data){
-            case
+    public function getPopularSongs($number){
+        $sql = "SELECT s.title AS Song, al.title AS Album, ar.name AS Artist, s.category AS Genre, count(*) AS count FROM search_song sa, song s, produces p, artist ar, releases r, album al
+                WHERE s.sid = sa.sid AND ar.artist_id = p.artist_id AND p.sid = s.sid AND r.album_id = al.album_id AND r.artist_id = ar.artist_id GROUP BY s.sid ORDER BY count(*) DESC;";
+        $result = $this->db->query($sql)->result();
+        $resultArr = array();
+        for($i = 0; $i < min(count($result), $number); $i++){
+            array_push($resultArr, $result[$i]);
         }
-    }*/
-
+        return $resultArr;
+    }
+    
+    public function getPopularArtists($number){
+        $sql = "SELECT a.name AS Artist, count(*) AS count FROM search_artist sa, artist a WHERE sa.artist_id = a.artist_id GROUP BY a.artist_id ORDER BY count(*) DESC;";
+        $result = $this->db->query($sql)->result();
+        $resultArr = array();
+        for($i = 0; $i < min(count($result), $number); $i++){
+            array_push($resultArr, $result[$i]);
+        }
+        return $resultArr;
+    }
+    
+    public function getPopularAlbums($number){
+        $sql = "SELECT a.title AS Album, ar.name AS Artist, count(*) AS count FROM search_album sa, album a, releases r, artist ar 
+                WHERE a.album_id = sa.album_id AND r.artist_id = ar.artist_id GROUP BY a.album_id ORDER BY count(*) DESC;";
+        $result = $this->db->query($sql)->result();
+        $resultArr = array();
+        for($i = 0; $i < min(count($result), $number); $i++){
+            array_push($resultArr, $result[$i]);
+        }
+        return $resultArr;
+    }
 }
 
