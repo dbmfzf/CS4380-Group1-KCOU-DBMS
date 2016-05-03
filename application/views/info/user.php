@@ -14,7 +14,7 @@
     <div class="hbox">
 	<div class="form-group">
 	  <label>Search by user ID</label>
-	   <input type="text" name = "uid" class="form-control" placeholder="Enter ID here"> 
+	   <input type="text" name = "user_info" class="form-control" placeholder="Enter ID/email/phone number here"> 
 	</div>
 	<div class="form-group">
 	    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>  Search</button>
