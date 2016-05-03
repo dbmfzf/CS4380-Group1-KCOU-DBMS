@@ -17,8 +17,8 @@ class showController extends CI_Controller {
 	}
 
 	public function genericSearchHandler() {
-		$startdate = $this->input->get("start");
-		$enddate = $this->input->get("end");
+		$startdate = parseDateTime($this->input->get("start",TRUE));
+		$enddate = parseDateTime($this->input->get("end",TRUE));
 		echo json_encode($startdate.$enddate);
 		return;
 		/*require base_url() . 'static/full-calendar/utils.php';
