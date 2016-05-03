@@ -47,7 +47,7 @@
         	<input value="1" name= "enable" type ="checkbox"> Enable
         	<input value="1" name= "disable" type ="checkbox"> Disable
         </p>
-        <p>Order by:
+        <p><b>Order by: </b>
         	<input value="uid" name="order[]" type="checkbox"> User ID
         	<input value="fullname" name="order[]" type = "checkbox"> Fullname
         	<input value="'gender" name="order[]" type="checkbox" > Gender
