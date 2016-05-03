@@ -41,7 +41,7 @@ class Playlist extends CI_Controller {
 	public function add_music($sid){
 		$login_uid = rbac_conf(array('INFO','uid'));
 		$song_query = $this -> db ->query("SELECT title FROM Song WHERE sid = '{$sid}'");
-		$song_data = $query-> row_array();
+		$song_data = $song_query-> row_array();
 		$playlist_query = $this -> db ->query("SELECT name FROM playlist P, User U WHERE P.uid = U.uid AND U.uid = '{$login_uid}'");
 		$playlist_data = $query ->result();
 			if($this->input->post()){
