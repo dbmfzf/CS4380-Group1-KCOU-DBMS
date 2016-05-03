@@ -49,6 +49,7 @@ class Playlist extends CI_Controller {
 		$data = $query->row_array();
 		if($this->input->post()){
 			$name = $this->input->post("name");
+			$memo = $this->input->post("memo");
 			if($name){
 				$query = $this->db->query("SELECT * FROM Playlist WHERE uid = '{$login_uid}' AND name = '{$name}' AND pid!='{$pid}'");
 				$data = $query->row_array();
@@ -79,6 +80,7 @@ class Playlist extends CI_Controller {
 		$login_uid = rbac_conf(array('INFO','uid'));  
 		if($this->input->post()){
 			$name = $this->input->post("name");
+			$memo = $this->input->post("memo");
 			if($name){
 				$query = $this->db->query("SELECT * FROM Playlist WHERE uid = '{$login_uid}' AND name = '{$name}'");
 				$data = $query->row_array();
