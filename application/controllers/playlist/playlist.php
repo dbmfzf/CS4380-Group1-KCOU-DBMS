@@ -63,7 +63,7 @@ class Playlist extends CI_Controller {
 			}
 		}
 		else{
-			$this->load->view("playlist/add_songs",array("playlist_data"=>$playlist_data,"song_data"=>$song_data));
+			$this->load->view("playlist/add_music",array("playlist_data"=>$playlist_data,"song_data"=>$song_data));
 		}
 	}
 	
