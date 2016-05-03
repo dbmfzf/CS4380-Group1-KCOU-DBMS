@@ -82,7 +82,8 @@
                         <th>Artist</th>
                         <th>Album</th>
                         <th>Genre</th>    
-                        <th>Location</th>    
+                        <th>Location</th>
+                        <th>Add to Playlist</th>    
                     </tr>
                 </thead>
                 <tbody>
@@ -95,7 +96,15 @@
                             echo("\t\t<td>" . $arrayOfSongs[$i]->Album . "</td>\n");
                             echo("\t\t<td>" . $arrayOfSongs[$i]->Genre . "</td>\n");
                             echo("\t\t<td>" . $arrayOfSongs[$i]->Location . "</td>\n");
-                            echo("\t</tr>\n"); 
+                            echo("\t\t<td><form action=\"" . base_url() . "index.php/playlist/playlist/index\" method=\"post\">
+                            <input type=\"hidden\" name=\"sid\" value=\"" . openssl_encrypt($arrayOfSongs[$i]->sid, 'aes128', 'CS4380G1', OPENSSL_RAW_DATA, '6871358468913485') . "\">
+                            <input type=\"submit\" value=\"Add\" class=\"btn btn-primary\"></form></td>\n");
+                            echo("\t</tr>\n");
+                            $encrypted = openssl_encrypt($arrayOfSongs[$i]->sid, 'aes128', 'CS4380G1', OPENSSL_RAW_DATA, '6871358468913485');
+                            
+                            echo("sid without encryption/decryption: " . $arrayOfSongs[$i]->sid);
+
+                            echo("sid with encryption/decryption: " . openssl_decrypt($encrypted, 'aes128', 'CS4380G1', OPENSSL_RAW_DATA, '6871358468913485'));
                         }
                     ?>
                 </tbody>

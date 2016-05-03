@@ -55,7 +55,7 @@ class Music_model extends CI_Model {
     public function genericSearch($searchString){
         $searchString = htmlspecialchars($searchString);
         
-        $sql = "SELECT s.title AS Song_title, ar.name AS Artist, al.title AS Album, s.category AS Genre, al.location AS Location
+        $sql = "SELECT s.title AS Song_title, ar.name AS Artist, al.title AS Album, s.category AS Genre, al.location AS Location, s.sid AS sid
         FROM song s, produces aps, artist ar, releases r,  album al
         WHERE (al.title LIKE '%" . $this->db->escape_like_str($searchString) . 
         "%' OR ar.name LIKE '%" . $this->db->escape_like_str($searchString) .

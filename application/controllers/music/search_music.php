@@ -81,7 +81,7 @@ class search_music extends CI_Controller {
     private function logSearch($logData){
         $arrayOfSongs = json_decode($logData);
         //echo("printing array of objects:\n");
-        print_r($arrayOfSongs);
+        //print_r($arrayOfSongs);
         //print("logged in as uid: " . rbac_conf(array('INFO','uid')));
         //Insert each song/artist/album name once
         $songs = array();
