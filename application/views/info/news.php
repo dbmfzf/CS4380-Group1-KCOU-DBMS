@@ -16,7 +16,7 @@
     <div class="hbox">
 	<div class="form-group">
 	  <label>Search by news ID or news title</label>
-	   <input type="text" name ="news" class="form-control" placeholder="Enter ID/title here"> 
+	   <input type="text" name ="news" class="form-control" placeholder="Enter ID/title/author's name here"> 
 	</div>
 	<div class="form-group">
 	    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>  Search</button>
