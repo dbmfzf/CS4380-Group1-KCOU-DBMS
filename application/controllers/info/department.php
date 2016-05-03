@@ -99,7 +99,7 @@ class Department extends CI_Controller {
 
 				if($did!=""){
 					if($did&&$dname){
-						$query = $this->db->query("SELECT * FROM departments WHERE dname = '{$dname}'");
+						$query = $this->db->query("SELECT * FROM departments WHERE dname = '{$dname}' and did != '{$did}'");
 						$result = $query -> row_array();
 						if(!$result){
 							$sql = "UPDATE department set name='{$dname}' , description='{$description}' WHERE did = '{$did}'";
@@ -171,7 +171,7 @@ class Department extends CI_Controller {
 					$this->db->query($sql);
 					success_redirct("info/department/index","Delete successful!");
 				}else{
-					error_redirct("info/department/index","Delete cancelled!");
+					error_redirct("info/department/index","Failed to delete!");
 				}
 			}
 			$this->load->view("info/department/delete",array("data"=>$data));
