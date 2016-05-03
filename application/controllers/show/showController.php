@@ -23,8 +23,8 @@ class showController extends CI_Controller {
 			
 			$shows = $this->input->post("shows");
 			if($this->input->post("type")){$type = implode(',',$this->input->post("type"));}else{$type=null;}
-			if($this->input->post("day")){$day = implode(',',$this->input->post("day"));}else{$day=null;}
-			//$day =  $this->input->post("day");
+			//if($this->input->post("day")){$day = implode(',',$this->input->post("day"));}else{$day=null;}
+			$day =  $this->input->post("day");
 			if($this->input->post("order")){$order = implode(',',$this->input->post("order"));}else{$order=null;}
 			
 			if($shows){
