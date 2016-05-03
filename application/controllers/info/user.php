@@ -28,7 +28,7 @@ class User extends CI_Controller {
 		
 		if($this->input->post()){
 			$flag['pagination'] = "disable";
-			$uid = $this->input->post("uid");
+			$user_info = $this->input->post("user_info");
 			if($this->input->post("dept")){$did = implode(',',$this->input->post("dept"));}else{$did=null;}
 			$is_leader = $this->input->post("leader");
 			$is_volunteer = $this->input->post("volunteer");
@@ -39,7 +39,7 @@ class User extends CI_Controller {
 			if($this->input->post("order")){$order = implode(',',$this->input->post("order"));}else{$order=null;}
 			
 			if($uid){
-				$query = $this->db->query("SELECT U.uid,U.fullname,U.gender,U.email,U.phone,U.birth,U.status,R.name as rolename,D.name as deptname FROM Department D, User U, Role R WHERE R.rid = U.rid AND D.did = R.did AND U.uid = '{$uid}'");
+				$query = $this->db->query("SELECT U.uid,U.fullname,U.gender,U.email,U.phone,U.birth,U.status,R.name as rolename,D.name as deptname FROM Department D, User U, Role R WHERE R.rid = U.rid AND D.did = R.did AND (U.uid = '{$user_info}' OR U.email = '{$user_info}' OR U.phone = '{$user_info}')");
 				$data = $query->result();
 				$this->load->view("info/user",array("data"=>$data,"dept_data"=>$dept_data,"flag"=>$flag));
 			}else{
