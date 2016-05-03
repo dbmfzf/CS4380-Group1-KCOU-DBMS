@@ -41,6 +41,7 @@
             <td width = "15%" class="tableleft">Day</td>
             <td>
             <select name="day">
+            <option value="''">- -</option>
   			<option value="'Monday'">Monday</option>
   			<option value="'Tuesday'">Tuesday</option>
 	  		<option value="'Wednesday'">Wednesday</option>
