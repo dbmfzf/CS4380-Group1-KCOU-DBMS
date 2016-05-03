@@ -1,5 +1,5 @@
 <style>
-     .flex {text-align: center;width:100%}
+     .img{width:100%}
 </style>
 <p class="pull-right visible-xs">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
@@ -44,9 +44,7 @@
             <div class="col-6 col-sm-6 col-lg-4">
               <div style="background-color:#EBC79E;border-radius:5px"><h2 align="center">Developers</h2></div>
               <div align = "center" style="border:2px solid #EBC79E;border-radius:5px;padding:8px">
-              <div class = "flex">
-              <img src = "<?php echo base_url();?>static/img/test1.jpg" />
-              </div>
+              <img style="width:80%" src = "<?php echo base_url();?>static/img/test1.jpg" />
               <p>If you have any questions, please contact dbmsgroup1@gmail.com</p>
               </div>
             </div><!--/span-->
