@@ -19,5 +19,5 @@
 
     </table>
     <button type="submit" class="btn btn-success">Submit</button> 
-     <a class="btn btn-danger" href="<?php echo site_url('info/news/index'); ?>">Cancel</a> 
+     <a class="btn btn-danger" href="<?php echo site_url('playlist/playlist/index'); ?>">Cancel</a> 
 </form>
