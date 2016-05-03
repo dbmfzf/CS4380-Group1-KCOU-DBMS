@@ -43,18 +43,22 @@ class Role extends CI_Controller {
 				$rolename = $this->input->post("rolename");
 				$dept = $this->input->post("dept");
 				$status = $this->input->post("status")?1:0;
-				$query = $this->db->query("SELECT * FROM Role WHERE name = '".$rolename."'");
-				$data = $query->row_array();
+				
 				if($data){
 					if($rolename&&$level){
-						$sql = "UPDATE Role set did = '{$dept}',level = '{$level}',name='{$rolename}',status='{$status}' WHERE rid = {$rid}";
-						$this->db->query($sql);
-						success_redirct("manage/role/index","Edit successful!");
+						$query = $this->db->query("SELECT * FROM Role WHERE name = '".$rolename."'");
+						$result = $query->row_array();
+						if(!$result){
+							$sql = "UPDATE Role set did = '{$dept}',level = '{$level}',name='{$rolename}',status='{$status}' WHERE rid = {$rid}";
+							$this->db->query($sql);
+							success_redirct("manage/role/index","Edit successful!");
+						}else{
+							error_redirct("","The role's name already exists!");
+						}
+						
 					}else{
 						error_redirct("","The role's information is not complete!");
 					}
-				}else{
-					error_redirct("","The role's name already exists!");
 				}
 				
 			}
@@ -81,8 +85,8 @@ class Role extends CI_Controller {
 			$dname = $dname_data['dept_name'];
 			if($rolename&&$level){
 				$query = $this->db->query("SELECT * FROM Role WHERE name = '".$rolename."'");
-				$data = $query->row_array();
-				if(!$data){
+				$result = $query->row_array();
+				if(!$result){
 					$sql = "INSERT INTO Role(name,status,level,did,dname) values('{$rolename}','{$status}','{$level}','{$dept}','{$dname}')";
 					$this->db->query($sql);
 					success_redirct("manage/role/index","Add successful!");
