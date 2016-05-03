@@ -27,9 +27,9 @@ class showController extends CI_Controller {
 			$submit_end = $this->input->post("submit_end");
 			if($this->input->post("order")){$order = implode(',',$this->input->post("order"));}else{$order=null;}
 			
-			if($news){
-				$news_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time, u.fullname as author FROM news n, submits s，user u WHERE u.uid = s.uid AND n.nid = s.nid AND (n.nid = '{$news}' OR N.title like '%{$news}%') ");
-				$news_data = $news_query->result();
+			if($shows){
+				$shows_query = $this->db->query("SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time, u.fullname as author FROM news n, submits s，user u WHERE u.uid = s.uid AND n.nid = s.nid AND (n.nid = '{$news}' OR N.title like '%{$news}%') ");
+				$shows_data = $shows_query->result();
 			}else{
 				
 				if($type){$where_type = "AND n.type in (".$type.")";}else{$where_type = "";}
@@ -43,19 +43,19 @@ class showController extends CI_Controller {
 		}else{
 		
 			if($login_rname=="Manager"){
-				$news_query = $this->db->query("select s.show_id,title,category,description,u.fullname as actor, r.start_time, r.end_time, day from shows s, responses r, user u where u.uid = r.uid and s.show_id = r.show_id");
-				$news_data = $news_query->result();
+				$shows_query = $this->db->query("select s.show_id,title,category,description,u.fullname as actor, r.start_time, r.end_time, day from shows s, responses r, user u where u.uid = r.uid and s.show_id = r.show_id");
+				$shows_data = $shows_query->result();
 			
 			}else if($login_rname=="Shows dept leader"){
-				$news_query = $this->db->query("select s.show_id,title,category,description,u.fullname as actor, r.start_time, r.end_time, day from shows s, responses r, user u where u.uid = r.uid and s.show_id = r.show_id");
-				$news_data = $news_query->result();
+				$shows_query = $this->db->query("select s.show_id,title,category,description,u.fullname as actor, r.start_time, r.end_time, day from shows s, responses r, user u where u.uid = r.uid and s.show_id = r.show_id");
+				$shows_data = $shows_query->result();
 			}else{
-				$news_query = $this->db->query("select s.show_id,title,category,description,u.fullname as actor, r.start_time, r.end_time, day from shows s, responses r, user u where u.uid = r.uid and s.show_id = r.show_id AND r.uid = '{$login_uid}'");
-				$news_data = $news_query->result();
+				$shows_query = $this->db->query("select s.show_id,title,category,description,u.fullname as actor, r.start_time, r.end_time, day from shows s, responses r, user u where u.uid = r.uid and s.show_id = r.show_id AND r.uid = '{$login_uid}'");
+				$shows_data = $shows_query->result();
 				
 			}
 		}
-		$this->load->view("show/showInfo",array("news_data"=>$news_data,"role_data"=>$role_data));
+		$this->load->view("show/showInfo",array("news_data"=>$shows_data,"role_data"=>$role_data));
 	}
 
 
