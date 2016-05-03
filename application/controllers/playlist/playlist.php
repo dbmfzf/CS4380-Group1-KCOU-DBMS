@@ -46,7 +46,7 @@ class Playlist extends CI_Controller {
 		$playlist_data = $playlist_query ->result();
 			if($this->input->post()){
 			$pid = $this->input->post("pid");
-			if($playlist_name){
+			if($pid){
 				$query = $this->db->query("SELECT * FROM Playlist P, User U, Song_in_playlist S WHERE S.pid = P.pid AND P.uid = U.uid AND uid = '{$login_uid}' AND sid = '{$sid}'");
 				$data = $query->row_array();
 				if(!$data){
