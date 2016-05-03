@@ -44,7 +44,7 @@ class Playlist extends CI_Controller {
 		$song_data = $song_query-> row_array();
 		$playlist_query = $this -> db ->query("SELECT name FROM playlist P, User U WHERE P.uid = U.uid AND U.uid = '{$login_uid}'");
 		$playlist_data = $playlist_query ->result();
-			if($this->input->post()){
+		if($this->input->post()){
 			$pid = $this->input->post("pid");
 			if($pid){
 				$query = $this->db->query("SELECT * FROM Playlist P, User U, Song_in_playlist S WHERE S.pid = P.pid AND P.uid = U.uid AND uid = '{$login_uid}' AND sid = '{$sid}'");
@@ -57,12 +57,11 @@ class Playlist extends CI_Controller {
 				}else{
 					error_redirct("","The song has already been added to this playlist!");
 				}
-				
+			
 			}else{
 				error_redirct("","The playlist doesn't exist!");
 			}
-		}
-		else{
+		}else{
 			$this->load->view("playlist/add_music",array("playlist_data"=>$playlist_data,"song_data"=>$song_data));
 		}
 	}
