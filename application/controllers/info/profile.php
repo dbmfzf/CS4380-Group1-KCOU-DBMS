@@ -57,7 +57,7 @@ class Profile extends CI_Controller {
 					$this->db->query($sql);
 					success_redirct("info/profile/index","Edit successful!");
 				}else{
-					error_redirct("info/profile/edit","The user's information is not complete!");
+					error_redirct("","The user's information is not complete!");
 				}
 			}
 			$this->load->view("info/profile/edit",array("data"=>$data));
