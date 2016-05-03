@@ -25,8 +25,7 @@
 </form>
 <form method = "post">
      <div class="form-group">
-	  <label >Advanced search</label>
-	  <p>
+	  <p><b>News type:</b>
         	<input value="'Sports'" name="type[]" type="checkbox"> Sports
         	<input value="'Academic'" name="type[]" type = "checkbox"> Academic
         	<input value="'Social'" name="type[]" type="checkbox" > Social
