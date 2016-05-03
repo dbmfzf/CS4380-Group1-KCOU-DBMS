@@ -26,7 +26,7 @@
 					<td>%s</td>
 					<td>%s</td>
 					<td>
-						<div class="btn-group  btn-group-xs  pull-right">
+						<div class="btn-group  btn-group-xs">
 						  <a class="btn btn-info btn-xs" href="%s">Authorize</a>
 						  <a %s class="btn btn-warning btn-xs" href="%s">Edit</a>
 						  <a %s class="btn btn-danger" href="%s">Delete</a>
