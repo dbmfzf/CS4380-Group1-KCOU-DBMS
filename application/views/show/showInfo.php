@@ -1,5 +1,7 @@
 <style>
-.table td:nth-child(7){width:30%}
+.table td:nth-child(6){width:20%}
+.table td:nth-child(7){width:20%}
+.table td:nth-child(8){width:12%}
 .hbox .flex1{width:20%;}
 .hbox .flex2{width:10%;}
 </style>
