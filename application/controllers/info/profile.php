@@ -52,16 +52,12 @@ class Profile extends CI_Controller {
 				$email = $this->input->post("email");
 				$phone = $this->input->post("phone");
 				$birth = $this->input->post("birth");
-				if($uid!=""){
-					if($uid&&$gender&&$email&&$phone&&$birth){
-						$sql = "UPDATE User set gender = '{$gender}', email='{$email}', phone='{$phone}',birth = '{$birth}' WHERE uid = '{$uid}'";
-						$this->db->query($sql);
-						success_redirct("info/profile/index","Edit successful!");
-					}else{
-						error_redirct("","The user's information is not complete!");
-					}
+				if($uid&&$gender&&$email&&$phone&&$birth){
+					$sql = "UPDATE User set gender = '{$gender}', email='{$email}', phone='{$phone}',birth = '{$birth}' WHERE uid = '{$uid}'";
+					$this->db->query($sql);
+					success_redirct("info/profile/index","Edit successful!");
 				}else{
-					error_redirct("","No user is found!");
+					error_redirct("info/profile/edit","The user's information is not complete!");
 				}
 			}
 			$this->load->view("info/profile/edit",array("data"=>$data));
