@@ -1,7 +1,7 @@
  <style>
 .tableleft{font-weight:bold;background-color:#F5F5F5;}
 </style>
-<h1>Add <?php echo $song_data['title'];?> to a playlist</h1>
+<h1>Add <i><?php echo $song_data['title'];?></i> to a playlist</h1>
 <form action="" method="post"> 
 
         <tr>
@@ -9,15 +9,12 @@
             <td>
               <select name="pid">
               <?php
-		    		        $rid = $data['rid'];
-		    		        $rolename = $data['rolename'];
-		    		        $deptname = $data['deptname'];
-			    		      foreach($playlist_data as $key){
-					  	          printf('<option value = "%s"> %s </option>',$key->pid,$key->name);
-			    		      }
-		    	    ?>
-	        	  </select>
-		      </td>
+    		      foreach($playlist_data as $key){
+		  	          printf('<option value = "%s"> %s </option>',$key->pid,$key->name);
+    		      }
+		?>
+	       </select>
+	</td>
         </tr>
 
     </table>
