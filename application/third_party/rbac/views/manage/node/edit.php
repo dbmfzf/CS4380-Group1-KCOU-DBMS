@@ -18,7 +18,7 @@
   </div>
   <div class="checkbox">
     <label>
-      <input value="1" name="status" type="checkbox" <?php if($data['status']){echo "checked";}?>> Enalble?
+      <input value="1" name="status" type="checkbox" <?php if($data['status']){echo "checked";}?>> Enable?
     </label>
   </div>
   <button type="submit" class="btn btn-success">Save</button>
