@@ -77,7 +77,7 @@ class showController extends CI_Controller {
 				$result = $query->row_array();
 				$actorQuery = $this->db->query("SELECT * FROM user WHERE uid = '{$actor}'"); 
 				$actorResult = $query->row_array();
-				if((!$result) && $actorResult){
+				if(!$result){
 					$showType = $this->input->post("showType");
 					if($showType == "Special Show"){
 						
