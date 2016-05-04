@@ -1,4 +1,5 @@
 <?php 
+	//for general
 	foreach($data as $row){
 		$login_arr[] = $row["login_date"];
 		$count_arr[] = intval($row["cnt"]);
@@ -6,11 +7,14 @@
 	$login_date = json_encode($login_arr);
 	$login_cnt = json_encode($count_arr);
 	
+	//for specific
 	for($i=1;$i<=7;$i++){ 
 		$date_arr[] = date("Y-m-d",strtotime("-$i day"));
 		$total_arr[] = intval($total_data[$i-1]);
+		$manager_arr[] = intval($manager_data[$i-1]);
 	}
 	$total_cnt = json_encode(array_reverse($total_arr));
+	$manager_cnt = json_encode(array_reverse($manager_arr));
 	$date_data = json_encode(array_reverse($date_arr));
 ?>
 <h1>Usage tracking for the previous 7(at most) days</h1>
@@ -99,6 +103,10 @@ $(function () {
         series: [{
             name: 'Total',
             data: <?php echo $total_cnt; ?>
+        },
+            name: 'Manager',
+            data: <?php echo $manager_cnt;?>
+            
         }]
     });
 });
