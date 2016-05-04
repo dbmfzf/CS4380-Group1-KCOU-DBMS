@@ -1,7 +1,8 @@
 <?php for($i=1;$i<=7;$i++){ 
- 			$date[]=date("Y-m-d",strtotime("-$i day"));
+			$temp_date = date("Y-m-d",strtotime("-$i day"));
+ 			$date[]= "'{$temp_date}'";
  			
 		} 
-			$date_string = implode("OR date_time = ", "'{$date}'");
+			$date_string = implode(",", $date);
 			echo $date_string;
 ?>
