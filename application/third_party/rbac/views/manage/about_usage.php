@@ -2,6 +2,6 @@
  			$date[]=date("Y-m-d",strtotime("-$i day"));
  			
 		} 
-			$date_string = implode("OR date_time = ", '".$date."');
+			$date_string = implode("OR date_time = ", "'{$date}'");
 			echo $date_string;
 ?>
