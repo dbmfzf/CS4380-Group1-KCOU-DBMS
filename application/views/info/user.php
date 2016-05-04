@@ -1,5 +1,5 @@
 <style>
-.table td:nth-child(9){width:12%}
+.table td:nth-child(9){width:15%}
 </style>
 <script>
 	$(document).ready(function() {
