@@ -29,10 +29,10 @@
 </ul>
 <div id="myTabContent" class="tab-content">
    <div class="tab-pane fade in active" id="home">
-      <div align ="center" id="general" style="min-width: 600px; height: 450px; max-width: 800px; margin: 0 auto; padding-top:5%"></div>
+      <div align ="center" id="general" style="width: 800px; height: 450px; max-width: 800px; margin: 0 auto; padding-top:5%"></div>
    </div>
    <div class="tab-pane fade" id="second">
-      <div align ="center" id="specific" style="min-width: 600px; height: 450px; max-width: 800px; margin: 0 auto; padding-top:5%"></div>
+      <div align ="center" id="specific" style="width: 800px; height: 450px; max-width: 800px; margin: 0 auto; padding-top:5%"></div>
    </div>
 </div>
 <script>
