@@ -110,4 +110,4 @@
 <hr/>
 
 <?php echo '<a class="btn btn-success pull-right" href="'.site_url("show/showController/add").'">Add a new show!</a>'; ?>
-<?php echo '<a class="btn btn-primary pull-right" href="'.site_url("show/analysis").'">See rankings!</a>'; ?>
+<?php echo '<a class="btn btn-primary pull-right" href="'.site_url("show/showController/analysis").'">See rankings!</a>'; ?>
