@@ -222,7 +222,7 @@ class showController extends CI_Controller {
 			if($this->input->post()){
 				$verfiy = $this->input->post("verfiy");
 				if($verfiy){
-					$sql = "DELETE FROM responses WHERE show_id = '".$nid."' ";
+					$sql = "DELETE FROM responses WHERE show_id = '".$sid."' ";
 					$this->db->query($sql);
 					$sub_sql = "DELETE FROM shows WHERE show_id = '".$sid."' ";
 					$this->db->query($sub_sql);
