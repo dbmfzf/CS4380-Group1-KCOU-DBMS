@@ -108,7 +108,7 @@ class showController extends CI_Controller {
 						}else{
 							error_redirct("","Time conflict with a special show, please check your time");
 						}
-					}else if($showType == "Normal Show"){
+					}else if($showType == "Normal show"){
 						$queryString = "select * from responses 
 										where weekday = '{$weekday}' and showdate = '0000-00-00' and ((start_time <'{$start_time}' and end_time> '{$start_time}') 
 										or (start_time <'{$end_time}' and end_time> '{$end_time}') 
