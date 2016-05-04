@@ -31,7 +31,7 @@ class Analytics extends CI_Controller {
 			$total_data = $total_query->row_array();
 			$total_arr[$i-1] = $total_data['cnt'];
 			
-			$manager_query = $this->db->query("SELECT count(*) as cnt,substr(date_time,1,10) as login_date FROM login_record LR, user U, role R WHERE R.rid = U.rid AND U.uid = LR.uid AND R.name = "Manager" AND substr(date_time,1,10) = '{$temp_date}'");
+			$manager_query = $this->db->query("SELECT count(*) as cnt,substr(date_time,1,10) as login_date FROM login_record LR, user U, role R WHERE R.rid = U.rid AND U.uid = LR.uid AND R.name = 'Manager' AND substr(date_time,1,10) = '{$temp_date}'");
 			$manager_data = $manager_query->row_array();
 			$manager_arr[$i-1] = $manager_data['cnt'];
 			
