@@ -6,7 +6,7 @@
           <tr>
             <th>Department</th>
             <th>Description</th>
-            <th></th>
+            <th>Action</th>
           </tr>
         </thead>
    <tbody>
