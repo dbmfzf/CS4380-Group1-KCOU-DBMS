@@ -38,11 +38,11 @@
 			<td>%s</td>
 			<td>
 				<div class="btn-group  btn-group-xs">
-				  <a class="btn btn-warning btn-xs" href="%s">Edit</a>
-				  <a class="btn btn-danger" href="%s">Delete</a>
+				  <a class="btn btn-warning btn-xs" %s href="%s">Edit</a>
+				  <a class="btn btn-danger" %s href="%s">Delete</a>
 				</div>
 			</td>
-		</tr>',$row->dname,$row->rname,$row->uid,$row->uname,$row->gender,$row->email,$row->phone,$row->birth,($row->status==1?"Enable":"Disable"),site_url("info/department/user_edit/".$row->uid),site_url("info/department/user_delete/".$row->uid));
+		</tr>',$row->dname,$row->rname,$row->uid,$row->uname,$row->gender,$row->email,$row->phone,$row->birth,($row->status==1?"Enable":"Disable"),$disable,site_url("info/department/user_edit/".$row->uid),$disable,site_url("info/department/user_delete/".$row->uid));
 	}
 	?>
   </tbody>
