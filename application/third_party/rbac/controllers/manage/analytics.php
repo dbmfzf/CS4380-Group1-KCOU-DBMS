@@ -23,6 +23,10 @@ class Analytics extends CI_Controller {
 	
 	public function usage(){
 		
+		for($i=1;$i<=7;$i++){
+			echo date("Y-m-d",strtotime("-$i day"));
+		}
+		
 		
 	}
 
