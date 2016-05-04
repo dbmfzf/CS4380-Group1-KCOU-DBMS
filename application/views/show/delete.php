@@ -2,7 +2,7 @@
 .table td:first-child{width:30%}
 .table td:nth-child(2){width:40%}
 </style>
-<h1>Are you sure to delete this piece of news(<?php echo $data["title"]; ?>)?</h1>
+<h1>Are you sure to delete this piece of news(<?php echo $data["show_id"]; ?>)?</h1>
 
 <form method="POST" action="">
 	<input type="hidden" name="verfiy" value="1" >
