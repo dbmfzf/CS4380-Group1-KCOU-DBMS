@@ -26,12 +26,17 @@ class Analytics extends CI_Controller {
 		for($i=1;$i<=7;$i++){ 
 			$temp_date = date("Y-m-d",strtotime("-$i day"));
  			$date[]= "'{$temp_date}'";
+ 			
+ 			$total_query = $this->db->query("SELECT count(*) as cnt substr(date_time,1,10) as login_date FROM login_record WHERE substr(date_time,1,10) = '{$temp_date}'");
+			$total_data = $total_query->row_array;
+			$total_arr[] = $total_data['cnt'];
+			
 		} 
 		$date_string = implode(",", $date);
 		//echo $date_string;
 		$query=$this->db->query("SELECT count(*) as cnt,substr(date_time,1,10) as login_date FROM login_record WHERE substr(date_time,1,10) IN ($date_string) GROUP BY substr(date_time,1,10) ORDER BY substr(date_time,1,10)");
 		$data = $query->result_array();
-		$this->load->view("manage/about_usage",array("data"=>$data));
+		$this->load->view("manage/about_usage",array("data"=>$data,"$total_data"=>$total_arr));
 		
 	}
 
