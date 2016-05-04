@@ -1,13 +1,4 @@
-<?php 
-foreach($final_data as $row){
-    $normal_arr[] = array( 
-      $row['day'],  intval($row['shows_num']) 
-    ); 
-}
 
-$shows_data = json_encode($normal_arr);
-
-?>
 <!DOCTYPE html>
 <html>
 <head>

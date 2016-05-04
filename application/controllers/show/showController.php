@@ -282,7 +282,7 @@ class showController extends CI_Controller {
 
 		// Send JSON to the client.
 		$finalData  = json_encode($output_arrays);*/
-		$this->load->view("show/show_calander",array("final_data"=>$finalData));
+		$this->load->view("show/show_calander");
 	}
 
 	private function util(){
