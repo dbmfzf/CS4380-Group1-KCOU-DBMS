@@ -21,7 +21,7 @@ $special_type_data = json_encode($special_type_arr);
 <ul id="myTab" class="nav nav-tabs">
    <li class="active"><a href="#home" data-toggle="tab">Normal Weekdays Distribution</a>
    </li>
-   <li><a href="#second" data-toggle="tab">Special Shows Date Distribution</a></li>
+   <li><a href="#second" data-toggle="tab">Special Shows Monthly Distribution</a></li>
 </ul>
 <div id="myTabContent" class="tab-content">
    <div class="tab-pane fade in active" id="home">
@@ -90,7 +90,7 @@ $(function () {
             //width: 600
         },
         title: {
-            text: 'News types'
+            text: 'Special Shows Monthly Distribution'
         },
         xAxis: {
             type: 'category',
