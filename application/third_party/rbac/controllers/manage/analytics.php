@@ -7,7 +7,7 @@ class Analytics extends CI_Controller {
 		$this->load->database();
 	}
 
-	public function index()
+	public function user()
 	{
 		$user_dept_query = $this->db->query("SELECT D.name as dept_name, count(*) as user_num FROM User U, Department D, Role R WHERE R.rid = U.rid AND R.did = D.did GROUP BY D.did");
 		$user_dept_data = $user_dept_query->result_array();
@@ -19,6 +19,11 @@ class Analytics extends CI_Controller {
 		$user_role_data = $user_role_query->result_array();
 		
 		$this->load->view("manage/analytics",array("user_dept_data"=>$user_dept_data,"user_gender_data"=>$user_gender_data,"user_role_data"=>$user_role_data));
+	}
+	
+	public function usage(){
+		
+		
 	}
 
 }
