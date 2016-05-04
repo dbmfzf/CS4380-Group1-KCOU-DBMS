@@ -99,7 +99,7 @@ class Department extends CI_Controller {
 
 				if($did!=""){
 					if($did&&$dname){
-						$query = $this->db->query("SELECT * FROM departments WHERE dname = '{$dname}' and did != '{$did}'");
+						$query = $this->db->query("SELECT * FROM department WHERE dname = '{$dname}' and did != '{$did}'");
 						$result = $query -> row_array();
 						if(!$result){
 							$sql = "UPDATE department set name='{$dname}' , description='{$description}' WHERE did = '{$did}'";
