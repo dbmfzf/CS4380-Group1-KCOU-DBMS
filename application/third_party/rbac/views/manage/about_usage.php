@@ -104,6 +104,7 @@ $(function () {
             name: 'Total',
             data: <?php echo $total_cnt; ?>
         },
+        {
             name: 'Manager',
             data: <?php echo $manager_cnt;?>
             
