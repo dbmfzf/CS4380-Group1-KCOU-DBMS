@@ -145,7 +145,7 @@ function getWeekDay(){
 				</select></br></td>
 			</tr>
 			<tr>
-				<td width = "15%" class="tableleft"">Start Time</td>
+				<td width = "15%" class="tableleft">Start Time</td>
 				<td><input type = "time" name = "start_time"/></td>
 			</tr>
 			<tr>
