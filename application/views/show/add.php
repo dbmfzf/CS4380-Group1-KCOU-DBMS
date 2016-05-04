@@ -100,23 +100,23 @@ function getWeekDay(){
 </div>
 
 <div id="normalShow" style="display: none">
-	<form action="" method="post" class = "specialShow" disabled="true">
+	<form action="" method="post">
 
 		<table class="table table-bordered table-hover definewidth m10">
 			<tr>
-				<td width = "15%" class="tableleft">Shows ID</td>
+				<td width = "15%" class="tableleft">Normal Show ID</td>
 				<td>
-				<input type="text" name="nid" >
+				<input type="text" name="sid" >
 				</td>
 			</tr>
 			<tr>
-				<td width = "15%" class="tableleft">Title</td>
+				<td width = "15%" class="tableleft">Normal Show Title</td>
 				<td>
 				<input type="text" name="title" >
 				</td>
 			</tr>
 			<tr>
-				<td width = "15%" class="tableleft">Type</td>
+				<td width = "15%" class="tableleft">Category</td>
 				<td>
 				<select name="type">
 					<option value="Sports">Sports</option>
@@ -124,6 +124,37 @@ function getWeekDay(){
 					<option value="Social">Social</option>
 					<option value="International">International</option>
 				</select></br></td>
+			</tr>
+			<tr>
+				<td width = "15%" class="tableleft">Actor ID</td>
+				<td>
+				<input type="text" name="actor" >
+				</td>
+			</tr>
+			<tr>
+				<td width = "15%" class="tableleft">Weekday</td>
+				<td>
+				<select name="weekday">
+					<option value="Monday">Monday</option>
+					<option value="Tuesday">Tuesday</option>
+					<option value="Wednesday">Wednesday</option>
+					<option value="Thursday">Thursday</option>
+					<option value="Firday">Firday</option>
+					<option value="Saturday">Saturday</option>
+					<option value="Sunday">Sunday</option>
+				</select></br></td>
+			</tr>
+			<tr>
+				<td width = "15%" class="tableleft"">Start Time</td>
+				<td><input type = "time" name = "start_time"/></td>
+			</tr>
+			<tr>
+				<td width = "15%" class="tableleft">End Time</td>
+				<td><input type = "time" name = "end_time" ></td>
+			</tr>
+			<tr>
+				<td width = "15%" class="tableleft">Attention: Show type</td>
+				<td><input type = "text" name = "showType" readonly="readonly" value = "Normal show"></td>
 			</tr>
 
 		</table>

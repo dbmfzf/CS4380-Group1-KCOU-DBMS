@@ -65,7 +65,7 @@ class showController extends CI_Controller {
 			$title = $this->input->post("title");
 			$type = $this->input->post("type");
 			$actor = $this->input->post("actor");
-			$date = $this->input->post("date");
+			//$date = $this->input->post("date");
 			$start_time = $this->input->post("start_time");
 			$end_time = $this->input->post("end_time");
 			$weekday = $this->input->post("weekday");
@@ -80,35 +80,61 @@ class showController extends CI_Controller {
 				if(!$result){
 					$showType = $this->input->post("showType");
 					if($showType == "Special show"){
+						$date = $this->input->post("date");
+						$queryString = "select * from responses 
+						where showdate = '{$date}' and ((start_time <'{$start_time}' and end_time> '{$start_time}') 
+						or (start_time <'{$end_time}' and end_time> '{$end_time}') 
+						or (start_time >= '{$start_time}' and end_time <= '{$end_time}'));";
+						$query = $this->db->query($queryString); 
+						$specialConflit = $query->row_array();
+						if(!$specialConflit){
 							$queryString = "select * from responses 
-							where showdate = '{$date}' and ((start_time <'{$start_time}' and end_time> '{$start_time}') 
-							or (start_time <'{$end_time}' and end_time> '{$end_time}') 
-							or (start_time >= '{$start_time}' and end_time <= '{$end_time}'));";
+										where showdate = '0000-00-00' and ((start_time <'{$start_time}' and end_time> '{$start_time}') 
+										or (start_time <'{$end_time}' and end_time> '{$end_time}') 
+										or (start_time >= '{$start_time}' and end_time <= '{$end_time}'));";
+							$query = $this->db->query($queryString); 
+							$normalConflit = $query->row_array();
+							//insertion
+							$sub_sql = "INSERT INTO shows values('{$sid}', '{$title}','{$type}','')";
+							$this->db->query($sub_sql);
+							$sql = "INSERT INTO responses values('{$sid}','{$actor}','{$start_time}','{$end_time}','{$weekday}','{$date}')";
+							$this->db->query($sql);
+							
+							if(!$normalConflit){
+								success_redirct("show/showController/index","Add successful!");
+							}else{
+								success_redirct("show/showController/index","Time conflict with a normal show. we already add your show, but please schule your time with this normal show or delete your show");
+							}
+						}else{
+							error_redirct("","Time conflict with a special show, please check your time");
+						}
+					}else if($showType == "Normal Show"){
+						$queryString = "select * from responses 
+										where weekday = '{$weekday}' and showdate = '0000-00-00' and ((start_time <'{$start_time}' and end_time> '{$start_time}') 
+										or (start_time <'{$end_time}' and end_time> '{$end_time}') 
+										or (start_time >= '{$start_time}' and end_time <= '{$end_time}'));";
+						$query = $this->db->query($queryString); 
+						$normalConflit = $query->row_array();
+						if(!$normalConflit){
+							$queryString = "select * from responses 
+										where weekday = '{$weekday}' and showdate <> '0000-00-00' and ((start_time <'{$start_time}' and end_time> '{$start_time}') 
+										or (start_time <'{$end_time}' and end_time> '{$end_time}') 
+										or (start_time >= '{$start_time}' and end_time <= '{$end_time}'));";
 							$query = $this->db->query($queryString); 
 							$specialConflit = $query->row_array();
+							//insertion
+							$sub_sql = "INSERT INTO shows values('{$sid}', '{$title}','{$type}','')";
+							$this->db->query($sub_sql);
+							$sql = "INSERT INTO responses values('{$sid}','{$actor}','{$start_time}','{$end_time}','{$weekday}','0000-00-00')";
+							$this->db->query($sql);
 							if(!$specialConflit){
-								$queryString = "select * from responses 
-											where showdate = '0000-00-00' and ((start_time <'{$start_time}' and end_time> '{$start_time}') 
-											or (start_time <'{$end_time}' and end_time> '{$end_time}') 
-											or (start_time >= '{$start_time}' and end_time <= '{$end_time}'));";
-								$query = $this->db->query($queryString); 
-								$normalConflit = $query->row_array();
-								//insertion
-								$sub_sql = "INSERT INTO shows values('{$sid}', '{$title}','{$type}','')";
-								$this->db->query($sub_sql);
-								$sql = "INSERT INTO responses values('{$sid}','{$actor}','{$start_time}','{$end_time}','{$weekday}','{$date}')";
-								$this->db->query($sql);
-								
-								if(!$normalConflit){
-									success_redirct("show/showController/index","Add successful!");
-								}else{
-									success_redirct("show/showController/index","Time conflict with a normal show. we already add your show, but please schule your time with this normal show or delete your show");
-								}
-							}else{
-								error_redirct("","Time conflict with a special show, please check your time");
+								success_redirct("show/showController/index","Add successful!");
+							}else {
+								success_redirct("show/showController/index","Time conflict with a sepcial show. we already add your show, normal show have the highest preority!");
 							}
-					}else if($showType == "Normal Show"){
-						
+						}else {
+							error_redirct("","Time conflict with another normal show, please check your time");
+						}
 					}else{
 						error_redirct("","Show Type error");
 					}
