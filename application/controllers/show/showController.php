@@ -189,25 +189,12 @@ class showController extends CI_Controller {
 	public function edit_content($sid){
 		$shows_query = $this->db->query("SELECT s.show_id, s.description as content FROM shows s WHERE show_id = '".$sid."'");
 		$shows_data = $shows_query->row_array();
-		//$title = $news_data['title'];
-		//$type = $news_data['type'];
-		//$submit_time = $news_data['submit_time'];
 		$login_uid = rbac_conf(array('INFO','uid'));
 		
 		if($this->input->post()){
-			//$content = $this->input->post["content"];
-			//$last_modified_time = date('Y-m-d H:i:s',time());
 			$content = $_POST["content"];
-			
-			//SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid
-			//$sql = "update news set title = '{$title}',type = '{$type}',content = '{$content}' where nid = '{$nid}'";
-			//$this->db->query($sql);
 			$sql = "update shows set description = '{$content}' where show_id = '{$sid}'";
 			$this->db->query($sql);
-			//$sub_sql = "update submits set uid = '{$login_uid}', last_modified_time = '{$last_modified_time}', submit_time = '{$submit_time}' where nid = '{$nid}'";
-			//$this->db->query($sub_sql);
-			//$sub_sql = "update submits set last_modified_time = '{$last_modified_time}' where nid = '{$nid}'";
-			//$this->db->query($sub_sql);
 			success_redirct("show/showController/index","Edit successful!");
 	
 		}else{
@@ -237,6 +224,17 @@ class showController extends CI_Controller {
 		}else{
 			error_redirct("show/showController/index","No show found!");
 		}
+	}
+	//analysis
+	public function analysis()
+	{
+		$normal_query = $this->db->query("SELECT r.day, count(*) as shows_num FROM responses r, shows s where r.show_id = s.show_id and r.showdate = '0000-00-00' GROUP BY r.day ORDER BY shows_num DESC");
+		$normal_weekday_data = $normal_query->result_array();
+		
+		$special_type = $this->db->query("SELECT r.showdate, count(*) as shows_cnt FROM shows s, responses r WHERE s.show_id = r.show_id and r.showdate <> '0000-00-00' GROUP BY showdate ORDER BY showdate;");
+		$special_type_data = $special_type -> result_array();
+		
+		$this->load->view("show/analysis",array("normal_data"=>$normal_weekday_data,"special_type_data"=>$special_type_data));
 	}
 	
 	public function genericSearchHandler() {
