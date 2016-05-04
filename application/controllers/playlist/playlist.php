@@ -99,7 +99,6 @@ class Playlist extends CI_Controller {
 			error_redirct("playlist/playlist/index","No department is found!");
 		}
 	}
-	}
 	 
 	public function edit($pid){
 		$login_uid = rbac_conf(array('INFO','uid')); 
