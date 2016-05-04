@@ -28,28 +28,28 @@ class showController extends CI_Controller {
 			if($this->input->post("order")){$order = implode(',',$this->input->post("order"));}else{$order=null;}
 			
 			if($shows){
-				$shows_query = $this->db->query("SELECT s.show_id, s.title, s.category, description, u.fullname as actor, r.start_time, r.end_time,day FROM shows s, responses r,user u where u.uid = r.uid AND s.show_id = r.show_id AND (s.show_id = '{$shows}' OR s.title like '%{$shows}%') ");
+				$shows_query = $this->db->query("SELECT s.show_id, s.title, s.category, description, u.fullname as actor, r.start_time, r.end_time, showdate, day FROM shows s, responses r,user u where u.uid = r.uid AND s.show_id = r.show_id AND (s.show_id = '{$shows}' OR s.title like '%{$shows}%') ");
 				$shows_data = $shows_query->result();
 			}else{
 				
 				if($type){$where_type = "AND s.category in (".$type.")";}else{$where_type = "";}
 				if($day){$where_day = "AND day in (".$day.")";}else{$where_day = "";}
 				if($order == "start_time" | $order == "end_time"){$order_by = "ORDER BY ".$order." desc";}else if ($order){$order_by = "ORDER BY ".$order."";}else{$order_by = "";}
-				$shows_query = $this->db->query("SELECT s.show_id, s.title, s.category, description, u.fullname as actor, r.start_time, r.end_time,day FROM shows s, responses r,user u where u.uid = r.uid AND s.show_id = r.show_id {$where_type} {$where_day} {$order_by}");
+				$shows_query = $this->db->query("SELECT s.show_id, s.title, s.category, description, u.fullname as actor, r.start_time, r.end_time,showdate,day FROM shows s, responses r,user u where u.uid = r.uid AND s.show_id = r.show_id {$where_type} {$where_day} {$order_by}");
 				$shows_data = $shows_query->result();
 			}
 			
 		}else{
 		
 			if($login_rname=="Manager"){
-				$shows_query = $this->db->query("select s.show_id,title,category,description,u.fullname as actor, r.start_time, r.end_time, day from shows s, responses r, user u where u.uid = r.uid and s.show_id = r.show_id");
+				$shows_query = $this->db->query("select s.show_id,title,category,description,u.fullname as actor, r.start_time, r.end_time, showdate, day from shows s, responses r, user u where u.uid = r.uid and s.show_id = r.show_id");
 				$shows_data = $shows_query->result();
 			
 			}else if($login_rname=="Shows dept leader"){
-				$shows_query = $this->db->query("select s.show_id,title,category,description,u.fullname as actor, r.start_time, r.end_time, day from shows s, responses r, user u where u.uid = r.uid and s.show_id = r.show_id");
+				$shows_query = $this->db->query("select s.show_id,title,category,description,u.fullname as actor, r.start_time, r.end_time, showdate, day from shows s, responses r, user u where u.uid = r.uid and s.show_id = r.show_id");
 				$shows_data = $shows_query->result();
 			}else{
-				$shows_query = $this->db->query("select s.show_id,title,category,description,u.fullname as actor, r.start_time, r.end_time, day from shows s, responses r, user u where u.uid = r.uid and s.show_id = r.show_id AND r.uid = '{$login_uid}'");
+				$shows_query = $this->db->query("select s.show_id,title,category,description,u.fullname as actor, r.start_time, r.end_time, showdate, day from shows s, responses r, user u where u.uid = r.uid and s.show_id = r.show_id AND r.uid = '{$login_uid}'");
 				$shows_data = $shows_query->result();
 				
 			}
@@ -64,27 +64,34 @@ class showController extends CI_Controller {
 			$sid = $this->input->post("sid");
 			$title = $this->input->post("title");
 			$type = $this->input->post("type");
+			$actor = $this->input->post("actor");
 			$date = $this->input->post("date");
 			$start_time = $this->input->post("start_time");
 			$end_time = $this->input->post("end_time");
 			//$last_modified_time = date('Y-m-d H:i:s',time());
 			//$submit_time = date('Y-m-d H:i:s',time());
 			//SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid
-			if($sid&&$title&&$type){
+			if($sid&&$title&&$type&&$actor&&$date&&$start_time&&$end_time){
 				$query = $this->db->query("SELECT * FROM responses r WHERE r.show_id = '{$sid}'"); 
 				$result = $query->row_array();
-				if(!$result){
+				$actorQuery = $this->db->query("SELECT * FROM user WHERE uid = '{$actor}'"); 
+				$actorResult = $query->row_array();
+				if((!$result) && $actorResult){
 					$queryString = "select * from responses 
 									where (start_time <'{$start_time}' and end_time> '{$start_time}') 
 									or (start_time <'{$end_time}' and end_time> '{$end_time}') 
 									or (start_time >= '{$start_time}' and end_time <= '{$end_time}');";
 					$query = $this->db->query($queryString); 
-					$sql = "INSERT INTO news (show_id, title, type,content) values('{$nid}','{$title}','{$type}','')";
-					$this->db->query($sql);
-					$sub_sql = "INSERT INTO submits (nid, uid, last_modified_time, submit_time) values('{$nid}', '{$login_uid}','{$last_modified_time}','{$submit_time}')";
-					$this->db->query($sub_sql);
-					success_redirct("info/news/index","Add successful!");
-		
+					$result1 = $query->row_array();
+					if(!$result1){
+						$sql = "INSERT INTO responses (show_id, uid, start_time, end_time) values('{$nid}','{$title}','{$type}','')";
+						$this->db->query($sql);
+						$sub_sql = "INSERT INTO submits (nid, uid, last_modified_time, submit_time) values('{$nid}', '{$login_uid}','{$last_modified_time}','{$submit_time}')";
+						$this->db->query($sub_sql);
+						success_redirct("show/showController/index","Add successful!");
+					}else{
+						error_redirct("","Time conflict");
+					}
 				}else{
 					error_redirct("","The news ID already exists!");
 				}

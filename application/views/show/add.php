@@ -6,6 +6,20 @@ function show(div1,div2,box){
   	document.getElementById(div2).style.display = vis2;
 }
 
+function getWeekDay(){
+	var s = document.getElementById("date").value;   
+	var d = new Date(Date.parse(s.replace(/-/g,   "/"))); 
+	var weekday = new Array(7);
+		weekday[0]=  "Sunday";
+		weekday[1] = "Monday";
+		weekday[2] = "Tuesday";
+		weekday[3] = "Wednesday";
+		weekday[4] = "Thursday";
+		weekday[5] = "Friday";
+		weekday[6] = "Saturday";
+	document.getElementById("weekday").value = weekday[d.getDay()];
+}
+
 </script>
 
 <style>
@@ -50,12 +64,24 @@ function show(div1,div2,box){
 				</select></br></td>
 			</tr>
 			<tr>
-				<td width = "15%" class="tableleft">Date</td>
-				<td><input type = "date" name = "date" ></td>
+				<td width = "15%" class="tableleft">Actor ID</td>
+				<td>
+				<input type="text" name="actor" >
+				</td>
 			</tr>
 			<tr>
-				<td width = "15%" class="tableleft">Start Time</td>
-				<td><input type = "time" name = "start_time" ></td>
+				<td width = "15%" class="tableleft">Date</td>
+				<td>
+					<input type="text" name="date" id = "date">
+				</td>
+				</td>
+				<td>
+					<input type="text" name="weekday" id = "weekday" readonly="readonly" >
+				</td>
+			</tr>
+			<tr>
+				<td width = "15%" class="tableleft"">Start Time</td>
+				<td><input type = "time" name = "start_time"  onclick="getWeekDay()" /></td>
 			</tr>
 			<tr>
 				<td width = "15%" class="tableleft">End Time</td>

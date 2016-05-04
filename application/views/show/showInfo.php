@@ -57,6 +57,7 @@
 	        	<input value="fullname" name= "order[]" type ="checkbox"> Actor name
 	        	<input value="start_time" name="order[]" type="checkbox"> start time
 	        	<input value="end_time" name="order[]" type = "checkbox"> end time
+	        	<input value="showdate" name="order[]" type = "checkbox"> Show date
 	       
 	    </p>
 	</div>
@@ -75,12 +76,14 @@
             <th>Actor</th>
             <th>Start time</th>
             <th>End time</th>
+            <th>Show date</th>
             <th>Day</th>
             <th>Action</th>
           </tr>
         </thead>
    <tbody>
 	<?php 
+	$every = "Every Week";
 	foreach($shows_data as $mb){
 		printf('<tr>
 			<td>%s</td>
@@ -95,13 +98,14 @@
 			<td>%s</td>
 			<td>%s</td>
 			<td>%s</td>
+			<te>%s</td>
 			<td>
 				<div class="btn-group  btn-group-xs">
 				  <a class="btn btn-warning btn-xs" href="%s">Edit</a>
 				  <a class="btn btn-danger" href="%s">Delete</a> 
 				</div>
 			</td>
-		</tr>',$mb->show_id,$mb->title,$mb->category,site_url("info/news/edit_content/".$mb->show_id),$mb->actor,$mb->start_time,$mb->end_time, $mb->day,site_url("info/news/edit/".$mb->show_id),site_url("info/news/delete/".$mb->show_id));
+		</tr>',$mb->show_id,$mb->title,$mb->category,site_url("info/news/edit_content/".$mb->show_id),$mb->actor,$mb->start_time,$mb->end_time, (($mb->showdate) == "0000-00-00")?($every):($mb->showdate) ,$mb->day,site_url("info/news/edit/".$mb->show_id),site_url("info/news/delete/".$mb->show_id));
 	}
 	?>
   </tbody>
