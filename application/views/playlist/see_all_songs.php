@@ -26,7 +26,7 @@
 						  <a class="btn btn-danger" href="%s">Delete</a>
 						</div>
 					</td>
-				</tr>',$row->Song_title,$row->Artist,$row->Album,$row->Genre,$row->Location,site_url("playlist/playlist/delete_song".$row->pid));
+				</tr>',$row->Song_title,$row->Artist,$row->Album,$row->Genre,$row->Location,site_url("playlist/playlist/delete_song/".$row->sid));
 	}
 	?>
   </tbody>
