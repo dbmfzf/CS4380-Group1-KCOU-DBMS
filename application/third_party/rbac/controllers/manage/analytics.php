@@ -28,7 +28,7 @@ class Analytics extends CI_Controller {
  			$date[]= "'{$temp_date}'";
 		} 
 		$date_string = implode(",", $date);
-		echo $date_string;
+		//echo $date_string;
 		$query=$this->db->query("SELECT count(*) as cnt,substr(date_time,1,10) as login_date FROM login_record WHERE substr(date_time,1,10) IN ($date_string) GROUP BY substr(date_time,1,10) ORDER BY substr(date_time,1,10)");
 		$data = $query->result_array();
 		$this->load->view("manage/about_usage",array("data"=>$data));
