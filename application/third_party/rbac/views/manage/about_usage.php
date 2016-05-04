@@ -5,6 +5,15 @@
 	}
 	$login_date = json_encode($login_arr);
 	$login_cnt = json_encode($count_arr);
+	
+	foreach($total_data as $row){
+		$total_arr[] = $row["cnt"];
+	}
+	$total_cnt = json_encode(array_reverse($total_arr));
+	for($i=1;$i<=7;$i++){ 
+		$date_arr[] = date("Y-m-d",strtotime("-$i day"));
+	}
+	$date_data = json_encode($date_arr);
 ?>
 <h1>Usage tracking for the previous 7(at most) days</h1>
 <ul id="myTab" class="nav nav-tabs">
@@ -56,6 +65,42 @@ $(function () {
         series: [{
             name: 'Total',
             data: <?php echo $login_cnt; ?>
+        }]
+    });
+        $('#specific').highcharts({
+        title: {
+            text: 'Specific usage(for different roles)',
+            x: -20 //center
+        },
+        subtitle: {
+            text: '<?php echo date("Y-m-d"); ?>',
+            x: -20
+        },
+        xAxis: {
+            categories: <?php echo $date_data; ?>
+        },
+        yAxis: {
+            title: {
+                text: 'Login Record'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            valueSuffix: 'item(s)'
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+            name: 'Total',
+            data: <?php echo $total_cnt; ?>
         }]
     });
 });
