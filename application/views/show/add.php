@@ -30,7 +30,7 @@ function show(div1,div2,box){
 			<tr>
 				<td width = "15%" class="tableleft">Special News ID</td>
 				<td>
-				<input type="text" name="nid" >
+				<input type="text" name="sid" >
 				</td>
 			</tr>
 			<tr>
@@ -50,10 +50,16 @@ function show(div1,div2,box){
 				</select></br></td>
 			</tr>
 			<tr>
-				<td width = "15%" class="tableleft">Special News Title</td>
-				<td>
-				<input type="text" name="title" >
-				</td>
+				<td width = "15%" class="tableleft">Date</td>
+				<td><input type = "date" name = "date" ></td>
+			</tr>
+			<tr>
+				<td width = "15%" class="tableleft">Start Time</td>
+				<td><input type = "time" name = "start_time" ></td>
+			</tr>
+			<tr>
+				<td width = "15%" class="tableleft">End Time</td>
+				<td><input type = "time" name = "end_time" ></td>
 			</tr>
 
 		</table>
