@@ -39,12 +39,16 @@ class Analytics extends CI_Controller {
 			$leader_data = $leader_query->row_array();
 			$leader_arr[$i-1] = $leader_data['cnt'];
 			
+			$volunteer_query = $this->db->query("SELECT count(*) as cnt,substr(date_time,1,10) as login_date FROM login_record LR, user U, role R WHERE R.rid = U.rid AND U.uid = LR.uid AND R.name like '%volunteer' AND substr(date_time,1,10) = '{$temp_date}'");
+			$volunteer_data = $volunteer_query->row_array();
+			$volunteer_arr[$i-1] = $volunteer_data['cnt'];
+			
 		} 
 		$date_string = implode(",", $date);
 		//echo $date_string;
 		$query=$this->db->query("SELECT count(*) as cnt,substr(date_time,1,10) as login_date FROM login_record WHERE substr(date_time,1,10) IN ($date_string) GROUP BY substr(date_time,1,10) ORDER BY substr(date_time,1,10)");
 		$data = $query->result_array();
-		$this->load->view("manage/about_usage",array("data"=>$data,"total_data"=>$total_arr,"manager_data"=>$manager_arr,"leader_data"=>$leader_arr));
+		$this->load->view("manage/about_usage",array("data"=>$data,"total_data"=>$total_arr,"manager_data"=>$manager_arr,"leader_data"=>$leader_arr,"volunteer_data"=>$volunteer_arr));
 		
 	}
 
