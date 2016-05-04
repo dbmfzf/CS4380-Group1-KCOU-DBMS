@@ -29,7 +29,7 @@ class Analytics extends CI_Controller {
  			
  			$total_query = $this->db->query("SELECT count(*) as cnt,substr(date_time,1,10) as login_date FROM login_record WHERE substr(date_time,1,10) = '{$temp_date}'");
 			$total_data = $total_query->row_array();
-			$total_arr[] = $total_data['cnt'];
+			$total_arr[$i-1] = $total_data['cnt'];
 			
 		} 
 		$date_string = implode(",", $date);
