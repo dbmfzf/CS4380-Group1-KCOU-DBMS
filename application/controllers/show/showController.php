@@ -236,11 +236,12 @@ class showController extends CI_Controller {
 		
 		$this->load->view("show/analysis",array("normal_data"=>$normal_weekday_data,"special_type_data"=>$special_type_data));
 	}
+	
 	//calendar
 	public function calendar()
 	{
-		$range_start = date_parse("2013-05-01 12:30:45");
-		$range_end = date_parse("2017-05-01 12:30:45");
+		/*$range_start = parseDateTime("2013-05-01 12:30:45");
+		$range_end = parseDateTime("2017-05-01 12:30:45");
 		
 		$normal_query = $this->db->query("SELECT s.title, r.start_time as start, r.end_time as end,count(*) as shows_num FROM responses r, shows s where r.show_id = s.show_id and r.showdate = '0000-00-00' GROUP BY r.day ORDER BY shows_num DESC");
 		$normal_weekday_data = $normal_query->result_array();
@@ -248,7 +249,7 @@ class showController extends CI_Controller {
 		$special_type = $this->db->query("SELECT r.showdate, count(*) as shows_cnt FROM shows s, responses r WHERE s.show_id = r.show_id and r.showdate <> '0000-00-00' GROUP BY showdate ORDER BY showdate;");
 		$special_type_data = $special_type -> result_array();
 		
-		require base_url() . 'static/full-calendar/utils.php';
+		require site_url("show/showController/util");
 
 		// Short-circuit if the client did not give us a date range.
 		if (!isset($_GET['start']) || !isset($_GET['end'])) {
@@ -257,9 +258,9 @@ class showController extends CI_Controller {
 
 		// Parse the timezone parameter if it is present.
 		$timezone = null;
-		/*if (isset($_GET['timezone'])) {
+		if (isset($_GET['timezone'])) {
 			$timezone = new DateTimeZone($_GET['timezone']);
-		}*/
+		}
 
 		// Read and parse our events JSON file into an array of event data arrays.
 		$jsondata = base_url().'static/full-calendar/events.json';
@@ -280,8 +281,12 @@ class showController extends CI_Controller {
 		}
 
 		// Send JSON to the client.
-		$finalData  = json_encode($output_arrays);
+		$finalData  = json_encode($output_arrays);*/
 		$this->load->view("show/show_calander",array("final_data"=>$finalData));
+	}
+
+	private function util(){
+		
 	}
 	public function genericSearchHandler() {
 		$startdate = parseDateTime($this->input->get("start",TRUE));
