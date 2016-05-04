@@ -82,7 +82,7 @@ class Playlist extends CI_Controller {
 	
 	public function delete_song($sid){
 		
-		$query = $this->db->query("SELECT title FROM Song WHERE sid = '{$sid}' ");
+		$query = $this->db->query("SELECT sid,title FROM Song WHERE sid = '{$sid}' ");
 		$data = $query->row_array();
 		if($data){
 			if($this->input->post()){
