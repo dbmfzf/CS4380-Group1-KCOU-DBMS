@@ -5,7 +5,7 @@
 <form action="" method="post"> 
 <table class="table table-bordered table-hover definewidth m10">
         <tr>
-            <td class="tableleft">Playlist</td>
+            <td width="15%" class="tableleft">Playlist</td>
             <td>
               <select name="pid">
               <?php
