@@ -43,5 +43,5 @@
 
 <hr/>
 <a class="btn btn-success pull-right" href="<?php echo site_url('info/profile/edit'); ?>">Edit profile</a>
-<a class="btn btn-warning pull-right" href="<?php echo site_url('info/profile/reset'); ?>">Reset psaaword</a>
+<a class="btn btn-warning pull-right" href="<?php echo site_url('info/profile/reset'); ?>">Change password</a>
 
