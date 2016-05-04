@@ -7,13 +7,13 @@
 	$login_cnt = json_encode($count_arr);
 	
 	foreach($total_data as $row){
-		$total_arr[] = $row["cnt"];
+		$total_arr[] = intval($row["cnt"]);
 	}
 	$total_cnt = json_encode(array_reverse($total_arr));
 	for($i=1;$i<=7;$i++){ 
 		$date_arr[] = date("Y-m-d",strtotime("-$i day"));
 	}
-	$date_data = json_encode($date_arr);
+	$date_data = json_encode(array_reverse($date_arr));
 ?>
 <h1>Usage tracking for the previous 7(at most) days</h1>
 <ul id="myTab" class="nav nav-tabs">
