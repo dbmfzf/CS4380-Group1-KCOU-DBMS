@@ -149,6 +149,40 @@ class showController extends CI_Controller {
 			$this->load->view("show/add");
 		}
 	}
+	
+	//shows edit
+	public function edit($sid)
+	{
+		$login_uid = rbac_conf(array('INFO','uid'));
+		$shows_query = $this->db->query("SELECT s.sid, s.title, s.category as type, s.description as content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid and n.nid = '".$nid."'");
+		$news_data = $shows_query->row_array();
+		 
+		$data['nid'] = $news_data['nid'];
+		$data['title'] = $news_data['title'];
+		$data['type'] = $news_data['type'];
+		$submit_time = $news_data['submit_time'];
+		$content = $news_data['content'];
+		
+		if($data){
+			if($this->input->post()){
+				$title = $this->input->post("title");
+				$type = $this->input->post("type");
+				$last_modified_time = date('Y-m-d H:i:s',time());
+				if($title&&$type&&$last_modified_time){
+					$sql = "update news set title = '{$title}',type = '{$type}',content = '{$content}' where nid = '{$nid}'";
+					$this->db->query($sql);
+					$sub_sql = "update submits set uid = '{$login_uid}', last_modified_time = '{$last_modified_time}', submit_time = '{$submit_time}' where nid = '{$nid}'";
+					$this->db->query($sub_sql);
+					success_redirct("info/news/index","Edit successful!");
+				}else{
+					error_redirct("","The news information is not complete!");	
+				}
+			}
+				$this->load->view("info/news/edit",array("data"=>$data ));
+		}else{
+			error_redirct("info/news/index","No news is found!");
+		}
+	}
 
 	//edit content
 	public function edit_content($sid){
@@ -173,12 +207,37 @@ class showController extends CI_Controller {
 			//$this->db->query($sub_sql);
 			//$sub_sql = "update submits set last_modified_time = '{$last_modified_time}' where nid = '{$nid}'";
 			//$this->db->query($sub_sql);
-			success_redirct("show/showInfo","Edit successful!");
+			success_redirct("show/showController/index","Edit successful!");
 	
 		}else{
 			$this->load->view("show/edit_content",array("shows_data"=>$shows_data));
 		}
 	}
+
+	//delete
+	public function delete($sid){
+		$query = $this->db->query("SELECT * FROM shows WHERE show_id = '".$sid."' ");
+		$data = $query->row_array();
+		if($data){
+			if($this->input->post()){
+				$verfiy = $this->input->post("verfiy");
+				if($verfiy){
+					$sql = "DELETE FROM responses WHERE show_id = '".$nid."' ";
+					$this->db->query($sql);
+					$sub_sql = "DELETE FROM shows WHERE show_id = '".$sid."' ";
+					$this->db->query($sub_sql);
+					
+					success_redirct("show/showController/index","Delete successful!");
+				}else{
+					error_redirct("show/showController/index","Delete cancelled!");
+				}
+			}
+			$this->load->view("show/delete",array("data"=>$data));
+		}else{
+			error_redirct("show/showController/index","No show found!");
+		}
+	}
+	
 	public function genericSearchHandler() {
 		$startdate = parseDateTime($this->input->get("start",TRUE));
 		$enddate = parseDateTime($this->input->get("end",TRUE));
