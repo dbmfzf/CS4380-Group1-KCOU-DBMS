@@ -41,7 +41,10 @@ $(function () {
             //width: 600
         },
         title: {
-            text: 'Contributors'
+            text: 'Top 3 Contributors'
+        },
+        subtitle:{
+            text: '<?php echo date("Y-m-d");?>'  
         },
         xAxis: {
             type: 'category',
@@ -91,6 +94,9 @@ $(function () {
         },
         title: {
             text: 'News types'
+        },
+        subtitle:{
+            text: '<?php echo date("Y-m-d");?>'  
         },
         xAxis: {
             type: 'category',
