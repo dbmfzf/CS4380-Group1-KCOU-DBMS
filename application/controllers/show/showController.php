@@ -130,7 +130,7 @@ class showController extends CI_Controller {
 							if(!$specialConflit){
 								success_redirct("show/showController/index","Add successful!");
 							}else {
-								success_redirct("show/showController/index","Time conflict with a sepcial show. we already add your show, normal show have the highest preority!");
+								success_redirct("show/showController/index","Time conflict with a sepcial show. we already add your show, normal show have the highest priority!");
 							}
 						}else {
 							error_redirct("","Time conflict with another normal show, please check your time");
@@ -150,6 +150,35 @@ class showController extends CI_Controller {
 		}
 	}
 
+	//edit content
+	public function edit_content($sid){
+		$shows_query = $this->db->query("SELECT s.sid, s.description FROM shows s WHERE show_id = '".$sid."'");
+		$shows_data = $news_query->row_array();
+		//$title = $news_data['title'];
+		//$type = $news_data['type'];
+		//$submit_time = $news_data['submit_time'];
+		$login_uid = rbac_conf(array('INFO','uid'));
+		
+		if($this->input->post()){
+			//$content = $this->input->post["content"];
+			//$last_modified_time = date('Y-m-d H:i:s',time());
+			$content = $_POST["content"];
+			
+			//SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid
+			//$sql = "update news set title = '{$title}',type = '{$type}',content = '{$content}' where nid = '{$nid}'";
+			//$this->db->query($sql);
+			$sql = "update shows set description = '{$content}' where show_id = '{$sid}'";
+			$this->db->query($sql);
+			//$sub_sql = "update submits set uid = '{$login_uid}', last_modified_time = '{$last_modified_time}', submit_time = '{$submit_time}' where nid = '{$nid}'";
+			//$this->db->query($sub_sql);
+			//$sub_sql = "update submits set last_modified_time = '{$last_modified_time}' where nid = '{$nid}'";
+			//$this->db->query($sub_sql);
+			success_redirct("show/showInfo","Edit successful!");
+	
+		}else{
+			$this->load->view("show/edit_content",array("shows_data"=>$shows_data));
+		}
+	}
 	public function genericSearchHandler() {
 		$startdate = parseDateTime($this->input->get("start",TRUE));
 		$enddate = parseDateTime($this->input->get("end",TRUE));

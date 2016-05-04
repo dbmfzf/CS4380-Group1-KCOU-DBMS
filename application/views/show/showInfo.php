@@ -102,7 +102,7 @@
 				  <a class="btn btn-danger" href="%s">Delete</a> 
 				</div>
 			</td>
-		</tr>',$mb->show_id,$mb->title,$mb->category,site_url("info/news/edit_content/".$mb->show_id),$mb->actor,$mb->start_time,$mb->end_time, (($mb->showdate) == "0000-00-00")?($every):($mb->showdate), $mb->day,site_url("info/news/edit/".$mb->show_id),site_url("info/news/delete/".$mb->show_id));
+		</tr>',$mb->show_id,$mb->title,$mb->category,site_url("show/showController/edit_content/".$mb->show_id),$mb->actor,$mb->start_time,$mb->end_time, (($mb->showdate) == "0000-00-00")?($every):($mb->showdate), $mb->day,site_url("info/news/edit/".$mb->show_id),site_url("info/news/delete/".$mb->show_id));
 	}
 	?>
   </tbody>
