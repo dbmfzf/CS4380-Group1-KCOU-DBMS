@@ -96,7 +96,7 @@ class showController extends CI_Controller {
 								//insertion
 								$sub_sql = "INSERT INTO shows values('{$sid}', '{$title}','{$type}','')";
 								$this->db->query($sub_sql);
-								$sql = "INSERT INTO responses values('{$sid}','{$actor}','{$start_time}','{$end_time}','{$weekday}','{$day}')";
+								$sql = "INSERT INTO responses values('{$sid}','{$actor}','{$start_time}','{$end_time}','{$weekday}','{$date}')";
 								$this->db->query($sql);
 								
 								if(!$normalConflit){
