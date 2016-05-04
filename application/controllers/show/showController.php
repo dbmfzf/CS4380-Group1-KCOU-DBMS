@@ -161,7 +161,7 @@ class showController extends CI_Controller {
 		$data['sid'] = $news_data['show_id'];
 		$data['title'] = $news_data['title'];
 		$data['type'] = $news_data['type'];
-		$submit_time = $news_data['submit_time'];
+		//$submit_time = $news_data['submit_time'];
 		$content = $news_data['content'];
 		
 		if($data){
