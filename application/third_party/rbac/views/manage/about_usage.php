@@ -42,7 +42,7 @@ $(function () {
             borderWidth: 0
         },
         series: [{
-            name: 'Tokyo',
+            name: 'Total',
             data: <?php echo $login_cnt; ?>
         }]
     });
