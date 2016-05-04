@@ -5,6 +5,7 @@
 ?>
 <h1>Usage tracking for the previous 7 days</h1>
 <div align ="center" id="container" style="min-width: 600px; height: 450px; max-width: 800px; margin: 0 auto; padding-top:5%"></div>
+<script>
 $(function () {
     $('#container').highcharts({
         title: {
@@ -53,3 +54,4 @@ $(function () {
         }]
     });
 });
+</script>
