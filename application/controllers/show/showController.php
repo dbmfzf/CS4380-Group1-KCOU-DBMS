@@ -236,7 +236,53 @@ class showController extends CI_Controller {
 		
 		$this->load->view("show/analysis",array("normal_data"=>$normal_weekday_data,"special_type_data"=>$special_type_data));
 	}
-	
+	//calendar
+	public function calendar()
+	{
+		$range_start = parseDateTime($this->input->get("start",TRUE));
+		$range_end = parseDateTime($this->input->get("end",TRUE));
+		
+		$normal_query = $this->db->query("SELECT s.title, r.start_time as start, r.end_time as end,count(*) as shows_num FROM responses r, shows s where r.show_id = s.show_id and r.showdate = '0000-00-00' GROUP BY r.day ORDER BY shows_num DESC");
+		$normal_weekday_data = $normal_query->result_array();
+		
+		$special_type = $this->db->query("SELECT r.showdate, count(*) as shows_cnt FROM shows s, responses r WHERE s.show_id = r.show_id and r.showdate <> '0000-00-00' GROUP BY showdate ORDER BY showdate;");
+		$special_type_data = $special_type -> result_array();
+		
+		require base_url() . 'static/full-calendar/utils.php';
+
+		// Short-circuit if the client did not give us a date range.
+		if (!isset($_GET['start']) || !isset($_GET['end'])) {
+			die("Please provide a date range.");
+		}
+
+		// Parse the timezone parameter if it is present.
+		$timezone = null;
+		/*if (isset($_GET['timezone'])) {
+			$timezone = new DateTimeZone($_GET['timezone']);
+		}*/
+
+		// Read and parse our events JSON file into an array of event data arrays.
+		$jsondata = base_url().'static/full-calendar/events.json';
+		$json = file_get_contents($jsondata);
+		$input_arrays = json_decode($json, true);
+
+		// Accumulate an output array of event data arrays.
+		$output_arrays = array();
+		foreach ($input_arrays as $array) {
+
+			// Convert the input array into a useful Event object
+			$event = new Event($array, $timezone);
+
+			// If the event is in-bounds, add it to the output
+			if ($event -> isWithinDayRange($range_start, $range_end)) {
+				$output_arrays[] = $event -> toArray();
+			}
+		}
+
+		// Send JSON to the client.
+		$finalData  = json_encode($output_arrays);
+		$this->load->view("show/show_calander",array("final_data"=>$finalData));
+	}
 	public function genericSearchHandler() {
 		$startdate = parseDateTime($this->input->get("start",TRUE));
 		$enddate = parseDateTime($this->input->get("end",TRUE));

@@ -1,3 +1,13 @@
+<?php 
+foreach($final_data as $row){
+    $normal_arr[] = array( 
+      $row['day'],  intval($row['shows_num']) 
+    ); 
+}
+
+$shows_data = json_encode($normal_arr);
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,16 +25,13 @@
 			header: {
 				left: 'prev,next today',
 				center: 'title',
-				right: 'month,agendaWeek,agendaDay'
+				right: 'month'
 			},
-			defaultDate: '2016-01-12',
+			defaultDate: '2016-05-01',
 			editable: true,
 			eventLimit: true, // allow "more" link when too many events
 			events: {
-				url: '<?php echo base_url(); ?>index.php/show/showController/genericSearchHandler',
-				error: function() {
-					$('#script-warning').show();
-				}
+				<?php echo $shows_data; ?>
 			},
 			loading: function(bool) {
 				$('#loading').toggle(bool);
