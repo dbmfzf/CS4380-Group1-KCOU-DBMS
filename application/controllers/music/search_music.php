@@ -25,12 +25,12 @@ class search_music extends CI_Controller {
         if(!empty($data['searchValues'])){
             $this->logSearch($data['searchValues']);
         }
-        $popular['songs'] = $this->music_model->getPopularSongs(10);
-        $popular['artists'] = $this->music_model->getPopularArtists(10);
-        $popular['albums'] = $this->music_model->getPopularAlbums(10);
-        $popular['clearance'] = rbac_conf(array('INFO','rid'));
-        $this->load->view("music/master_music.php", $popular);
-        $this->load->view("music/search_music.php", $data);
+        $data['songs'] = $this->music_model->getPopularSongs(10);
+        $data['artists'] = $this->music_model->getPopularArtists(10);
+        $data['albums'] = $this->music_model->getPopularAlbums(10);
+        $data['clearance'] = rbac_conf(array('INFO','rid'));
+        $this->load->view("music/master_music.php", $data);
+        //$this->load->view("music/search_music.php", $data);
     }
     
     //Input: get request from the ajax in the search_music view
