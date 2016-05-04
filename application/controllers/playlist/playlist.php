@@ -95,7 +95,7 @@ class Playlist extends CI_Controller {
 					error_redirct("","Failed to delete!");
 				}
 			}
-			$this->load->view("playlist/playlist/user_delete",array("data"=>$data));
+			$this->load->view("playlist/playlist/delete_song",array("data"=>$data));
 		}else{
 			error_redirct("playlist/playlist/index","No songs is found!");
 		}
