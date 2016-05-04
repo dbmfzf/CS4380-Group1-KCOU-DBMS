@@ -69,9 +69,9 @@ class Playlist extends CI_Controller {
 	
 	public function see_all_songs($pid){
 		if($pid){
-			$query = $this->db->query("SELECT sp.sid,s.title AS Song_title, ar.name AS Artist, al.title AS Album, s.category AS Genre, al.location AS Location 
-			FROM song s,produces aps,artist ar,releases r,album al,song_in_playlist sp
-			WHERE aps.sid = s.sid AND ar.artist_id = aps.artist_id AND ar.artist_id = r.artist_id AND al.album_id = r.album_id and sp.sid = s.sid and sp.pid = '{$pid}'; ");
+			$query = $this->db->query("SELECT p.name, sp.sid,s.title AS Song_title, ar.name AS Artist, al.title AS Album, s.category AS Genre, al.location AS Location 
+			FROM song s,produces aps,artist ar,releases r,album al,song_in_playlist sp,playlist p
+			WHERE aps.sid = s.sid AND ar.artist_id = aps.artist_id AND ar.artist_id = r.artist_id AND al.album_id = r.album_id and sp.sid = s.sid and sp.pid = p.pid and sp.pid = '{$pid}'; ");
 			$data = $query->result();
 			$this->load->view("playlist/see_all_songs",array("data"=>$data));
 		}else{
