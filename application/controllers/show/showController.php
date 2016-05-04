@@ -68,6 +68,7 @@ class showController extends CI_Controller {
 			$date = $this->input->post("date");
 			$start_time = $this->input->post("start_time");
 			$end_time = $this->input->post("end_time");
+			$weekday = $this->input->post("weekday");
 			//$last_modified_time = date('Y-m-d H:i:s',time());
 			//$submit_time = date('Y-m-d H:i:s',time());
 			//SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid
@@ -77,23 +78,43 @@ class showController extends CI_Controller {
 				$actorQuery = $this->db->query("SELECT * FROM user WHERE uid = '{$actor}'"); 
 				$actorResult = $query->row_array();
 				if((!$result) && $actorResult){
-					$queryString = "select * from responses 
-									where (start_time <'{$start_time}' and end_time> '{$start_time}') 
-									or (start_time <'{$end_time}' and end_time> '{$end_time}') 
-									or (start_time >= '{$start_time}' and end_time <= '{$end_time}');";
-					$query = $this->db->query($queryString); 
-					$result1 = $query->row_array();
-					if(!$result1){
-						$sql = "INSERT INTO responses (show_id, uid, start_time, end_time) values('{$nid}','{$title}','{$type}','')";
-						$this->db->query($sql);
-						$sub_sql = "INSERT INTO submits (nid, uid, last_modified_time, submit_time) values('{$nid}', '{$login_uid}','{$last_modified_time}','{$submit_time}')";
-						$this->db->query($sub_sql);
-						success_redirct("show/showController/index","Add successful!");
+					$showType = $this->input->post("showType");
+					if($showType == "Special Show"){
+						
+					}else if($showType == "Normal Show"){
+						
 					}else{
-						error_redirct("","Time conflict");
+						error_redirct("","Show Type error");
+					}
+					$queryString = "select * from responses 
+									where showdate = '{$date}' and ((start_time <'{$start_time}' and end_time> '{$start_time}') 
+									or (start_time <'{$end_time}' and end_time> '{$end_time}') 
+									or (start_time >= '{$start_time}' and end_time <= '{$end_time}'));";
+					$query = $this->db->query($queryString); 
+					$specialConflit = $query->row_array();
+					if(!$specialConflit){
+						$queryString = "select * from responses 
+									where showdate = '0000-00-00' and ((start_time <'{$start_time}' and end_time> '{$start_time}') 
+									or (start_time <'{$end_time}' and end_time> '{$end_time}') 
+									or (start_time >= '{$start_time}' and end_time <= '{$end_time}'));";
+						$query = $this->db->query($queryString); 
+						$normalConflit = $query->row_array();
+						//insertion
+						$sub_sql = "INSERT INTO shows values('{$sid}', '{$title}','{$type}','')";
+						$this->db->query($sub_sql);
+						$sql = "INSERT INTO responses values('{$sid}','{$actor}','{$start_time}','{$end_time}','{$weekday}','{$day}')";
+						$this->db->query($sql);
+						
+						if(!$normalConflit){
+							success_redirct("show/showController/index","Add successful!");
+						}else{
+							success_redirct("show/showController/index","Time conflict with a normal show. we already add your show, but please schule your time with this normal show or delete your show");
+						}
+					}else{
+						error_redirct("","Time conflict with a special show, please check your time");
 					}
 				}else{
-					error_redirct("","The news ID already exists!");
+					error_redirct("","The show ID already exists or the user name is invalid!");
 				}
 			}else{
 				error_redirct("","The news information is not complete!");

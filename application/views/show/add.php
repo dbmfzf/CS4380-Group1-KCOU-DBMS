@@ -42,19 +42,19 @@ function getWeekDay(){
 
 		<table class="table table-bordered table-hover definewidth m10">
 			<tr>
-				<td width = "15%" class="tableleft">Special News ID</td>
+				<td width = "15%" class="tableleft">Special Show ID</td>
 				<td>
 				<input type="text" name="sid" >
 				</td>
 			</tr>
 			<tr>
-				<td width = "15%" class="tableleft">Special News Title</td>
+				<td width = "15%" class="tableleft">Special Show Title</td>
 				<td>
 				<input type="text" name="title" >
 				</td>
 			</tr>
 			<tr>
-				<td width = "15%" class="tableleft">Type</td>
+				<td width = "15%" class="tableleft">Category</td>
 				<td>
 				<select name="type">
 					<option value="Sports">Sports</option>
@@ -86,6 +86,10 @@ function getWeekDay(){
 			<tr>
 				<td width = "15%" class="tableleft">End Time</td>
 				<td><input type = "time" name = "end_time" ></td>
+			</tr>
+			<tr>
+				<td width = "15%" class="tableleft">Attention: Show type</td>
+				<td><input type = "text" name = "showType" readonly="readonly" value = "Special show"></td>
 			</tr>
 
 		</table>
@@ -129,4 +133,4 @@ function getWeekDay(){
 	</form>
 </div>
 
-<a class="btn btn-danger" href="<?php echo site_url('show/showInfo'); ?>">Cancel</a>
+<a class="btn btn-danger" href="<?php echo site_url('show/showController/index'); ?>">Cancel</a>
