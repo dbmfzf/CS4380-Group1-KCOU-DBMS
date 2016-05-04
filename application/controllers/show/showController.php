@@ -110,14 +110,14 @@ class showController extends CI_Controller {
 						}
 					}else if($showType == "Normal show"){
 						$queryString = "select * from responses 
-										where weekday = '{$weekday}' and showdate = '0000-00-00' and ((start_time <'{$start_time}' and end_time> '{$start_time}') 
+										where day = '{$weekday}' and showdate = '0000-00-00' and ((start_time <'{$start_time}' and end_time> '{$start_time}') 
 										or (start_time <'{$end_time}' and end_time> '{$end_time}') 
 										or (start_time >= '{$start_time}' and end_time <= '{$end_time}'));";
 						$query = $this->db->query($queryString); 
 						$normalConflit = $query->row_array();
 						if(!$normalConflit){
 							$queryString = "select * from responses 
-										where weekday = '{$weekday}' and showdate <> '0000-00-00' and ((start_time <'{$start_time}' and end_time> '{$start_time}') 
+										where day = '{$weekday}' and showdate <> '0000-00-00' and ((start_time <'{$start_time}' and end_time> '{$start_time}') 
 										or (start_time <'{$end_time}' and end_time> '{$end_time}') 
 										or (start_time >= '{$start_time}' and end_time <= '{$end_time}'));";
 							$query = $this->db->query($queryString); 
