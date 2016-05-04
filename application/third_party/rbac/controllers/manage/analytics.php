@@ -23,7 +23,7 @@ class Analytics extends CI_Controller {
 	
 	public function usage(){
 		
-		for($i=1;$i<=7;$i++){ 
+		for($i=1;$i<=8;$i++){ 
 			$temp_date = date("Y-m-d",strtotime("-$i day"));
  			$date[]= "'{$temp_date}'";
 		} 
