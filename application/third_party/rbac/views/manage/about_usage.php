@@ -111,6 +111,15 @@ $(function () {
         {
             name: 'Manager',
             data: <?php echo $manager_cnt;?>
+        },
+        {
+            name: 'Leader',
+            data: <?php echo $leader_cnt;?>
+            
+        },
+        {
+            name: 'volunteer',
+            data: <?php echo $volunteer_cnt;?>
             
         }]
     });
