@@ -72,7 +72,7 @@ class showController extends CI_Controller {
 			//$last_modified_time = date('Y-m-d H:i:s',time());
 			//$submit_time = date('Y-m-d H:i:s',time());
 			//SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid
-			if($sid&&$title&&$type&&$actor&&$date&&$start_time&&$end_time){
+			if($sid&&$title&&$type&&$actor&&$start_time&&$end_time){
 				$query = $this->db->query("SELECT * FROM responses r WHERE r.show_id = '{$sid}'"); 
 				$result = $query->row_array();
 				$actorQuery = $this->db->query("SELECT * FROM user WHERE uid = '{$actor}'"); 
