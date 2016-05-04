@@ -12,9 +12,13 @@
 		$date_arr[] = date("Y-m-d",strtotime("-$i day"));
 		$total_arr[] = intval($total_data[$i-1]);
 		$manager_arr[] = intval($manager_data[$i-1]);
+		$leader_arr[] = intval($leader_data[$i-1]);
+		$volunteer_arr[] = intval($volunteer_data[$i-1]);
 	}
 	$total_cnt = json_encode(array_reverse($total_arr));
 	$manager_cnt = json_encode(array_reverse($manager_arr));
+	$leader_cnt = json_encode(array_reverse($leader_arr));
+	$volunteer_cnt = json_encode(array_reverse($volunteer_arr));
 	$date_data = json_encode(array_reverse($date_arr));
 ?>
 <h1>Usage tracking for the previous 7(at most) days</h1>
