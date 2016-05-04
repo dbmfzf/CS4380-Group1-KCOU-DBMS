@@ -11,17 +11,17 @@
 <script>
 
 	$(document).ready(function() {
-	
+		
 		$('#calendar').fullCalendar({
 			header: {
 				left: 'prev,next today',
 				center: 'title',
-				right: 'month'
+				right: 'month,agendaWeek,agendaDay'
 			},
-			defaultDate: '2016-05-01',
+			defaultDate: '2016-01-12',
 			editable: true,
 			eventLimit: true, // allow "more" link when too many events
-			events: {
+			events: [
 				{
 					title: 'All Day Event',
 					start: '2016-01-01'
@@ -76,10 +76,7 @@
 					url: 'http://google.com/',
 					start: '2016-01-28'
 				}
-			},
-			loading: function(bool) {
-				$('#loading').toggle(bool);
-			}
+			]
 		});
 		
 	});
@@ -88,46 +85,20 @@
 <style>
 
 	body {
-		margin: 0;
+		margin: 40px 10px;
 		padding: 0;
 		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
 		font-size: 14px;
 	}
 
-	#script-warning {
-		display: none;
-		background: #eee;
-		border-bottom: 1px solid #ddd;
-		padding: 0 10px;
-		line-height: 40px;
-		text-align: center;
-		font-weight: bold;
-		font-size: 12px;
-		color: red;
-	}
-
-	#loading {
-		display: none;
-		position: absolute;
-		top: 10px;
-		right: 10px;
-	}
-
 	#calendar {
 		max-width: 900px;
-		margin: 40px auto;
-		padding: 0 10px;
+		margin: 0 auto;
 	}
 
 </style>
 </head>
 <body>
-
-	<div id='script-warning'>
-		<code>php/get-events.php</code> must be running.
-	</div>
-
-	<div id='loading'>loading...</div>
 
 	<div id='calendar'></div>
 
