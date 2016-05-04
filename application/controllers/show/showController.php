@@ -152,7 +152,7 @@ class showController extends CI_Controller {
 
 	//edit content
 	public function edit_content($sid){
-		$shows_query = $this->db->query("SELECT s.sid, s.description FROM shows s WHERE show_id = '".$sid."'");
+		$shows_query = $this->db->query("SELECT s.show_id, s.description FROM shows s WHERE show_id = '".$sid."'");
 		$shows_data = $news_query->row_array();
 		//$title = $news_data['title'];
 		//$type = $news_data['type'];
