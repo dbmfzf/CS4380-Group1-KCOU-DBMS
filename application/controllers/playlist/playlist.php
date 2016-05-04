@@ -97,7 +97,7 @@ class Playlist extends CI_Controller {
 			}
 			$this->load->view("playlist/playlist/user_delete",array("data"=>$data));
 		}else{
-			error_redirct("playlist/playlist/index","No department is found!");
+			error_redirct("playlist/playlist/index","No songs is found!");
 		}
 	}
 	 
