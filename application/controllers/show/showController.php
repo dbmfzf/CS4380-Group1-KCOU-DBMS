@@ -155,7 +155,7 @@ class showController extends CI_Controller {
 	{
 		$login_uid = rbac_conf(array('INFO','uid'));
 		
-		$shows_query = $this->db->query("SELECT s.show_id, s.title, s.category as type, s.description as content, s.start_time, s.end_time, s.date,s.day as weekday,r.uid FROM shows s, responses r WHERE s.show_id = r.show_id and s.show_id = '".$sid."'");
+		$shows_query = $this->db->query("SELECT s.show_id, s.title, s.category as type, s.description as content, r.start_time, r.end_time, r.showdate as date ,r.day as weekday,r.uid FROM shows s, responses r WHERE s.show_id = r.show_id and s.show_id = '".$sid."'");
 		$news_data = $shows_query->row_array();
 		 
 		$data['sid'] = $news_data['show_id'];
