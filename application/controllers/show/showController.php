@@ -56,7 +56,38 @@ class showController extends CI_Controller {
 		}
 		$this->load->view("show/showInfo",array("shows_data"=>$shows_data,"role_data"=>$role_data));
 	}
+/*add*/
 
+	public function add(){
+		$login_uid = rbac_conf(array('INFO','uid'));
+		if($this->input->post()){
+			$nid = $this->input->post("nid");
+			$title = $this->input->post("title");
+			$type = $this->input->post("type");
+			$last_modified_time = date('Y-m-d H:i:s',time());
+			$submit_time = date('Y-m-d H:i:s',time());
+			//SELECT n.nid, n.title, n.type, n.content, s.last_modified_time, s.submit_time FROM news n, submits s WHERE n.nid = s.nid
+			if($nid&&$title&&$type){
+				$query = $this->db->query("SELECT * FROM News WHERE nid = '{$nid}'"); 
+				$result = $query->row_array();
+				if(!$result){
+					$sql = "INSERT INTO news (nid, title, type,content) values('{$nid}','{$title}','{$type}','')";
+					$this->db->query($sql);
+					$sub_sql = "INSERT INTO submits (nid, uid, last_modified_time, submit_time) values('{$nid}', '{$login_uid}','{$last_modified_time}','{$submit_time}')";
+					$this->db->query($sub_sql);
+					success_redirct("info/news/index","Add successful!");
+		
+				}else{
+					error_redirct("","The news ID already exists!");
+				}
+			}else{
+				error_redirct("","The news information is not complete!");
+			}
+	
+		}else{
+			$this->load->view("show/add");
+		}
+	}
 
 	public function genericSearchHandler() {
 		$startdate = parseDateTime($this->input->get("start",TRUE));
