@@ -21,8 +21,8 @@
             <div class="col-6 col-sm-6 col-lg-4">
               <div style="background-color:#EAADEA;border-radius:5px"><h2 align="center">Music</h2></div>
               <div style="border:2px solid #EAADEA;border-radius:5px;padding:8px">
-              <form role="form" action="" method="post">
-                 <p><input name = "search_song" type = "text" class="form-control" placeholder="Please input song title here"></p>
+              <form role="form" action="<?php echo site_url('music/search_music/'); ?>" method="get">
+                 <p><input name = "searchString" type = "text" class="form-control" placeholder="Please input song title here"></p>
                  <p align = "right"><button type="submit" class="btn btn-info">GO!</button></p>
               </form>
               <p>

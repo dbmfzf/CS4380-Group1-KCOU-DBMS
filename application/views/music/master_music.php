@@ -1,6 +1,6 @@
 <script>
-$(function () { 
-    <?php
+/*$(function () { 
+    <?php /*
     if($clearance < 3){
     echo("$('#searchUsageGraph').highcharts({
         title: {
@@ -34,9 +34,9 @@ $(function () {
             data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2]
         }]
     });");
-    }
+    }*/
     ?>
-});
+});*/
 </script>
 <h1>Search for Music</h1>
 <ul id="myTab" class="nav nav-tabs">
@@ -45,7 +45,7 @@ $(function () {
    <li><a href="#song" id="songTab" data-toggle="tab">Popular Songs</a></li>
    <li><a href="#album" id="albumTab" data-toggle="tab">Popular Albums</a></li>
    <li><a href="#artist" id="artistTab" data-toggle="tab">Popular Artists</a></li>
-   <?php echo $clearance < 3 ? "<li><a href=\"#searchUsage\" id=\"searchUsageTab\" data-toggle=\"tab\">Search Usage</a></li>" : ""; ?>
+   <?php /* echo $clearance < 3 ? "<li><a href=\"#searchUsage\" id=\"searchUsageTab\" data-toggle=\"tab\">Search Usage</a></li>" : ""; */ ?>
 </ul>
 <div id="myTabContent" class="tab-content">
    <div class="tab-pane fade in active" id="search">
@@ -229,11 +229,11 @@ $(function () {
     </table>
       
    </div>
-   <?php 
+   <?php /*
     echo $clearance < 3 ?
    "<div class=\"tab-pane fade\" id=\"searchUsage\">
        <div id=\"searchUsageGraph\" align=\"center\" style=\"min-width: 600px; height: 450px; max-width: 800px; margin: 0 auto; padding-top:5%\"></div>
-   </div>" : "";
+   </div>" : "";*/
     ?>
    
 </div>
