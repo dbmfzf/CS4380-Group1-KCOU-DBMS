@@ -49,8 +49,9 @@ class Role extends CI_Controller {
 						$query = $this->db->query("SELECT * FROM Role WHERE name = '".$rolename."'");
 						$result = $query->row_array();
 						if(!$result){
-							$sql = "UPDATE Role set did = '{$dept}',level = '{$level}',name='{$rolename}',status='{$status}' WHERE rid = {$rid}";
+							$sql = "UPDATE Role set did = '{$dept}',level = '{$level}',name='{$rolename}',status='{$status}' WHERE rid = '{$rid}'";
 							$this->db->query($sql);
+							$sql = "UPDATE User SET status = '{$status} WHERE rid = '{$rid}'";
 							success_redirct("manage/role/index","Edit successful!");
 						}else{
 							error_redirct("","The role's name already exists!");
