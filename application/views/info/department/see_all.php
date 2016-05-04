@@ -4,8 +4,8 @@
 <table class="table  table-bordered well">
 	<thead>
           <tr>
-          	<th>Department</th>
-          	<th>Role</th>
+            <th>Department</th>
+            <th>Role</th>
             <th>User ID</th>
             <th>User name</th>
             <th>Gender</th>
@@ -18,24 +18,31 @@
         </thead>
    <tbody>
 	<?php 
-	foreach($data as $mb){
+	foreach($data as $row){
+		if($row->rname =="Manager"){
+			$disable = "disabled";
+		}
+		else{
+			$disable = "";
+			
+		}
 		printf('<tr>
-					<td>%s</td>
-					<td>%s</td>
-					<td>%s</td>
-					<td>%s</td>
-					<td>%s</td>
-					<td>%s</td>
-					<td>%s</td>
-					<td>%s</td>
-					<td>%s</td>
-					<td>
-						<div class="btn-group  btn-group-xs">
-						  <a class="btn btn-warning btn-xs" href="%s">Edit</a>
-						  <a class="btn btn-danger" href="%s">Delete</a>
-						</div>
-					</td>
-				</tr>',$mb->dname,$mb->rname,$mb->uid,$mb->uname,$mb->gender,$mb->email,$mb->phone,$mb->birth,($mb->status==1?"Enable":"Disable"),site_url("info/department/user_edit/".$mb->uid),site_url("info/department/user_delete/".$mb->uid));
+			<td>%s</td>
+			<td>%s</td>
+			<td>%s</td>
+			<td>%s</td>
+			<td>%s</td>
+			<td>%s</td>
+			<td>%s</td>
+			<td>%s</td>
+			<td>%s</td>
+			<td>
+				<div class="btn-group  btn-group-xs">
+				  <a class="btn btn-warning btn-xs" href="%s">Edit</a>
+				  <a class="btn btn-danger" href="%s">Delete</a>
+				</div>
+			</td>
+		</tr>',$row->dname,$row->rname,$row->uid,$row->uname,$row->gender,$row->email,$row->phone,$row->birth,($row->status==1?"Enable":"Disable"),site_url("info/department/user_edit/".$row->uid),site_url("info/department/user_delete/".$row->uid));
 	}
 	?>
   </tbody>
