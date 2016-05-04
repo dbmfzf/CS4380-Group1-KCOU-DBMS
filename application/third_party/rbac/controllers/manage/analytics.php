@@ -23,7 +23,11 @@ class Analytics extends CI_Controller {
 	
 	public function usage(){
 		
-		
+		for($i=1;$i<=7;$i++){ 
+ 			$date[] = date("Y-m-d",strtotime("-$i day")); 
+		}
+		$date_string = implode("OR date_time = ", $date);
+		//$query=$this->db->query("SELECT");
 		$this->load->view("manage/about_usage");
 		
 	}
