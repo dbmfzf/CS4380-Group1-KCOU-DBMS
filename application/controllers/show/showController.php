@@ -239,8 +239,8 @@ class showController extends CI_Controller {
 	//calendar
 	public function calendar()
 	{
-		$range_start = parseDateTime($this->input->get("start",TRUE));
-		$range_end = parseDateTime($this->input->get("end",TRUE));
+		$range_start = date_parse("2013-05-01 12:30:45");
+		$range_end = date_parse("2017-05-01 12:30:45");
 		
 		$normal_query = $this->db->query("SELECT s.title, r.start_time as start, r.end_time as end,count(*) as shows_num FROM responses r, shows s where r.show_id = s.show_id and r.showdate = '0000-00-00' GROUP BY r.day ORDER BY shows_num DESC");
 		$normal_weekday_data = $normal_query->result_array();
