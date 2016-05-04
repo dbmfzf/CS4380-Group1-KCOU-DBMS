@@ -231,7 +231,8 @@ class showController extends CI_Controller {
 		$normal_query = $this->db->query("SELECT r.day, count(*) as shows_num FROM responses r, shows s where r.show_id = s.show_id and r.showdate = '0000-00-00' GROUP BY r.day ORDER BY shows_num DESC");
 		$normal_weekday_data = $normal_query->result_array();
 		
-		$special_type = $this->db->query("SELECT r.showdate, count(*) as shows_cnt FROM shows s, responses r WHERE s.show_id = r.show_id and r.showdate <> '0000-00-00' GROUP BY showdate ORDER BY showdate;");
+		$special_type = $this->db->query("select substr(showdate,6,2) as showdate, count(*) as shows_cnt from responses where showdate <> '0000-00-00' group by substr(showdate,6,2)");
+		
 		$special_type_data = $special_type -> result_array();
 		
 		$this->load->view("show/analysis",array("normal_data"=>$normal_weekday_data,"special_type_data"=>$special_type_data));
