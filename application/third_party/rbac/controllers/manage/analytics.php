@@ -18,7 +18,7 @@ class Analytics extends CI_Controller {
 		$user_role_query = $this->db->query("SELECT count(*) as user_num, R.name as role_name FROM User U, Role R WHERE R.rid = U.rid GROUP BY R.rid");
 		$user_role_data = $user_role_query->result_array();
 		
-		$this->load->view("manage/analytics",array("user_dept_data"=>$user_dept_data,"user_gender_data"=>$user_gender_data,"user_role_data"=>$user_role_data));
+		$this->load->view("manage/about_user",array("user_dept_data"=>$user_dept_data,"user_gender_data"=>$user_gender_data,"user_role_data"=>$user_role_data));
 	}
 	
 	public function usage(){
