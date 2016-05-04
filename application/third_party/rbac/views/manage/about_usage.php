@@ -7,12 +7,24 @@
 	$login_cnt = json_encode($count_arr);
 ?>
 <h1>Usage tracking for the previous 7(at most) days</h1>
-<div align ="center" id="container" style="min-width: 600px; height: 450px; max-width: 800px; margin: 0 auto; padding-top:5%"></div>
+<ul id="myTab" class="nav nav-tabs">
+   <li class="active"><a href="#home" data-toggle="tab">General</a>
+   </li>
+   <li><a href="#second" data-toggle="tab">Specific</a></li>
+</ul>
+<div id="myTabContent" class="tab-content">
+   <div class="tab-pane fade in active" id="home">
+      <div align ="center" id="general" style="min-width: 600px; height: 450px; max-width: 800px; margin: 0 auto; padding-top:5%"></div>
+   </div>
+   <div class="tab-pane fade" id="second">
+      <div align ="center" id="specific" style="min-width: 600px; height: 450px; max-width: 800px; margin: 0 auto; padding-top:5%"></div>
+   </div>
+</div>
 <script>
 $(function () {
-    $('#container').highcharts({
+    $('#general').highcharts({
         title: {
-            text: 'Usage tracking for the previous 7 days',
+            text: 'General usage(ignore the day having no login record)',
             x: -20 //center
         },
         subtitle: {
