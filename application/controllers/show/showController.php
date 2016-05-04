@@ -179,7 +179,7 @@ class showController extends CI_Controller {
 					error_redirct("","The news information is not complete!");	
 				}
 			}
-				$this->load->view("show/edit",array("data"=>$data ));
+				$this->load->view("show/edit",array("data"=>$news_data ));
 		}else{
 			error_redirct("show/showController/index","No news is found!");
 		}
