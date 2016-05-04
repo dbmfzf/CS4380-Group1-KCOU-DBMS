@@ -3,9 +3,9 @@
 </style>
 <h1>Add <i><?php echo $song_data['title'];?></i> to a playlist</h1>
 <form action="" method="post"> 
-
+<table>
         <tr>
-            <td width = "15%" class="tableleft">Playlist</td>
+            <td class="tableleft">Playlist</td>
             <td>
               <select name="pid">
               <?php
