@@ -24,11 +24,14 @@ class Analytics extends CI_Controller {
 	public function usage(){
 		
 		for($i=1;$i<=7;$i++){ 
- 			$date[] = date("Y-m-d",strtotime("-$i day")); 
-		}
+			$temp_date = date("Y-m-d",strtotime("-$i day"));
+ 			$date[]= "'{$temp_date}'";
+		} 
 		$date_string = implode(",", $date);
-		//$query=$this->db->query("SELECT");
-		$this->load->view("manage/about_usage");
+		echo $date_string;
+		$query=$this->db->query("SELECT count(*) as cnt,substr(date_time,1,10) AS login_date FROM login_record WHERE login_date IN ($date_string) GROUP BY login_date ORDER BY login_date");
+		$data = $query->result_array();
+		$this->load->view("manage/about_usage",array("data"=>$data));
 		
 	}
 
