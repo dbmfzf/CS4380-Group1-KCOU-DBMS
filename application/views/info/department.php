@@ -19,7 +19,7 @@
 			<div class="btn-group  btn-group-xs">
 			  <a class="btn btn-warning btn-xs" href="%s">Edit</a>
 			  <a class="btn btn-danger" href="%s">Delete</a>
-			  <a class="btn btn-info btn-xs" href="%s">See All Volunteers</a>
+			  <a class="btn btn-info btn-xs" href="%s">See All Staffs</a>
 			</div>
 		</td>
 		</tr>',$row->dname,$row->description,site_url("info/department/edit/".$row->did),site_url("info/department/delete/".$row->did),site_url("info/department/see_all/".$row->did));
