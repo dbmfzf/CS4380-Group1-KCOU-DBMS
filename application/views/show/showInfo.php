@@ -108,5 +108,5 @@
 </table>
 <hr/>
 
-<?php echo '<a class="btn btn-success pull-right" href="'.site_url("info/news/add").'">Add news</a>'; ?>
-<?php echo '<a class="btn btn-primary pull-right" href="'.site_url("info/news/analysis").'">See rankings!</a>'; ?>
+<?php echo '<a class="btn btn-success pull-right" href="'.site_url("show/add").'">Add a new show!</a>'; ?>
+<?php echo '<a class="btn btn-primary pull-right" href="'.site_url("show/analysis").'">See rankings!</a>'; ?>
