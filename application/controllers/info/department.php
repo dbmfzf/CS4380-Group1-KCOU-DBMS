@@ -294,12 +294,12 @@ class Department extends CI_Controller {
 					$this->db->query($sql);
 					success_redirct("info/department/see_all/'".$department_data['did']."'","Delete successful!");
 				}else{
-					error_redirct("info/department/see_all","Failed to delete!");
+					error_redirct("","Failed to delete!");
 				}
 			}
 			$this->load->view("info/department/user_delete",array("data"=>$data,"department_data"=>$department_data));
 		}else{
-			error_redirct("info/department/see_all","No department is found!");
+			error_redirct("info/department/index","No department is found!");
 		}
 	}
 	}
