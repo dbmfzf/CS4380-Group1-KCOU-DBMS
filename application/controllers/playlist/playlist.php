@@ -78,6 +78,28 @@ class Playlist extends CI_Controller {
 		}
 
 	}
+	
+	public function delete_song($sid){
+		
+		$query = $this->db->query("SELECT title FROM Song WHERE sid = '{$sid}' ");
+		$data = $query->row_array();
+		if($data){
+			if($this->input->post()){
+				$verfiy = $this->input->post("verfiy");
+				if($verfiy){
+					$sql = "DELETE FROM songs_in_playlist WHERE sid = '{$sid}' ";
+					$this->db->query($sql);
+					success_redirct("playlist/playlist/index","Delete successful!");
+				}else{
+					error_redirct("","Failed to delete!");
+				}
+			}
+			$this->load->view("playlist/playlist/user_delete",array("data"=>$data));
+		}else{
+			error_redirct("playlist/playlist/index","No department is found!");
+		}
+	}
+	}
 	 
 	public function edit($pid){
 		$login_uid = rbac_conf(array('INFO','uid')); 
