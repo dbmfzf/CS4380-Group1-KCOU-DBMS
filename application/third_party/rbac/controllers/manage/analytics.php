@@ -26,7 +26,7 @@ class Analytics extends CI_Controller {
 		for($i=1;$i<=7;$i++){ 
  			$date[] = date("Y-m-d",strtotime("-$i day")); 
 		}
-		$date_string = implode("OR date_time = ", $date);
+		$date_string = implode(",", $date);
 		//$query=$this->db->query("SELECT");
 		$this->load->view("manage/about_usage");
 		
