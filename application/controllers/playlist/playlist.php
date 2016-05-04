@@ -70,8 +70,8 @@ class Playlist extends CI_Controller {
 	public function see_all_songs($pid){
 		if($pid){
 			$query = $this->db->query("SELECT s.title AS Song_title, ar.name AS Artist, al.title AS Album, s.category AS Genre, al.location AS Location 
-			FROM song s,produces aps,artist ar,releases r,album al,playlist p
-			WHERE aps.sid = s.sid AND ar.artist_id = aps.artist_id AND ar.artist_id = r.artist_id AND al.album_id = r.album_id and p.sid = s.sid and p.pid = '{$pid}'; ");
+			FROM song s,produces aps,artist ar,releases r,album al,song_in_playlist sp
+			WHERE aps.sid = s.sid AND ar.artist_id = aps.artist_id AND ar.artist_id = r.artist_id AND al.album_id = r.album_id and sp.sid = s.sid and sp.pid = '{$pid}'; ");
 			$this->load->view("playlist/see_all_songs",array("song_data"=>$data));
 		}else{
 			error_redirct("","The playlist doesn't exist!");
@@ -87,7 +87,7 @@ class Playlist extends CI_Controller {
 			if($this->input->post()){
 				$verfiy = $this->input->post("verfiy");
 				if($verfiy){
-					$sql = "DELETE FROM songs_in_playlist WHERE sid = '{$sid}' ";
+					$sql = "DELETE FROM song_in_playlist WHERE sid = '{$sid}' ";
 					$this->db->query($sql);
 					success_redirct("playlist/playlist/index","Delete successful!");
 				}else{
