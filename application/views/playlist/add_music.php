@@ -3,7 +3,7 @@
 </style>
 <h1>Add <i><?php echo $song_data['title'];?></i> to a playlist</h1>
 <form action="" method="post"> 
-<table>
+<table class="table table-bordered table-hover definewidth m10">
         <tr>
             <td class="tableleft">Playlist</td>
             <td>
