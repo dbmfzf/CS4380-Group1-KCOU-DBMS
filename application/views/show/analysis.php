@@ -7,7 +7,7 @@ foreach($normal_data as $row){
 
 foreach($special_type_data as $row){
     $special_type_arr[] = array(
-        $row['type'],intval($row['shows_cnt'])
+        $row['showdate'],intval($row['shows_cnt'])
     );
     
 }
