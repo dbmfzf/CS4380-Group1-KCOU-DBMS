@@ -1,7 +1,7 @@
  <style>
 .tableleft{font-weight:bold;background-color:#F5F5F5;}
 </style>
-<h1>News Info Edit</h1>
+<h1>Edit a show</h1>
 <form action="" method="post"> 
 
 
