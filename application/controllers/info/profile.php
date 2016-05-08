@@ -53,9 +53,15 @@ class Profile extends CI_Controller {
 				$phone = $this->input->post("phone");
 				$birth = $this->input->post("birth");
 				if($uid&&$gender&&$email&&$phone&&$birth){
-					$sql = "UPDATE User set gender = '{$gender}', email='{$email}', phone='{$phone}',birth = '{$birth}' WHERE uid = '{$uid}'";
-					$this->db->query($sql);
-					success_redirct("info/profile/index","Edit successful!");
+					$query = $this->db->query("SELECT * FROM User WHERE (email = '{$email}' OR phone = '{$phone}') AND uid != '{$uid}' "); 							
+					$data = $query->row_array();
+					if(!$data){
+						$sql = "UPDATE User set gender = '{$gender}', email='{$email}', phone='{$phone}',birth = '{$birth}' WHERE uid = '{$uid}'";
+						$this->db->query($sql);
+						success_redirct("info/profile/index","Edit successful!");
+					}else{
+						error_redirct("","The email or phone number already exists!");
+					}
 				}else{
 					error_redirct("","The user's information is not complete!");
 				}
