@@ -113,11 +113,18 @@ class Role extends CI_Controller {
 			if($this->input->post()){
 				$verfiy = $this->input->post("verfiy");
 				if($verfiy){
-					$sql = "DELETE FROM Role WHERE rid = ".$rid." ";
-					$this->db->query($sql);
-					$sql = "DELETE FROM Authorizes WHERE rid = ".$rid." ";
-					$this->db->query($sql);
-					success_redirct("manage/role/index","Delete successful!");
+					$query = $this->db->query("SELECT * FROM User WHERE rid = ".$rid);
+					$data = $query->row_array();
+					if(!$data){
+						$sql = "DELETE FROM Role WHERE rid = ".$rid." ";
+						$this->db->query($sql);
+						$sql = "DELETE FROM Authorizes WHERE rid = ".$rid." ";
+						$this->db->query($sql);
+						success_redirct("manage/role/index","Delete successful!");
+					}
+					else{
+						error_redirct("manage/role/index","You can't delete the role with users in it.");
+					}
 				}else{
 					error_redirct("manage/role/index","Failed to delete!");
 				}
