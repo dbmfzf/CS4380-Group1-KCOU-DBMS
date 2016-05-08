@@ -136,7 +136,7 @@ class User extends CI_Controller {
 				if($uid!=""){
 					if($password==$password2){
 						if($uid&&$fullname&&$gender&&$email&&$phone&&$birth&&$role){
-							$query = $this->db->query("SELECT * FROM User WHERE email = '".$email."' OR phone = '{$phone}'");
+							$query = $this->db->query("SELECT * FROM User WHERE (email = '".$email."' OR phone = '{$phone}') AND uid != '{$uid}' ");
 							$data = $query->row_array();
 							if(!$data){
 								if($password){$newpass = ",password='".md5($password2)."'";}else{$newpass="";}
