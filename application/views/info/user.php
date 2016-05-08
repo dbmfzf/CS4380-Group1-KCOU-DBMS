@@ -50,7 +50,7 @@
         <p><b>Order by: </b>
         	<input value="uid" name="order[]" type="checkbox"> User ID
         	<input value="fullname" name="order[]" type = "checkbox"> Fullname
-        	<input value="'gender" name="order[]" type="checkbox" > Gender
+        	<input value="gender" name="order[]" type="checkbox" > Gender
         	<input value="birth" name="order[]" type="checkbox" > Birthday
         	<input value="name" name= "order[]" type ="checkbox"> Role name
         </p>
