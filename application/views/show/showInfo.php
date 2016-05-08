@@ -25,7 +25,7 @@
 </form>
 <form method = "post">
      <div class="form-group">
-	  <label >Advanced search</label>
+	  <label >Type</label>
 	  <p>
         	<input value="'Sports'" name="type[]" type="checkbox"> Sports
         	<input value="'Academic'" name="type[]" type = "checkbox"> Academic
@@ -59,7 +59,7 @@
 	    </p>
 	</div>
 	<div class="form-group">
-	    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>  Search</button>
+	    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>  Filter</button>
     </div>
 </form>
 </div>
